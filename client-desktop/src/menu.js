@@ -1,10 +1,21 @@
 const { app, Menu } = require('electron');
+const { createFileActions } = require('./fileActions');
 
 function createMenu({ mainWindow }) {
+  const fileActions = createFileActions({ mainWindow });
   const template = [
     {
       label: 'File',
-      submenu: [{ label: 'Open Folder' }, { label: 'Open File' }]
+      submenu: [
+        {
+          label: 'Open Folder',
+          accelerator: 'CmdOrCtrl+O',
+          click() {
+            fileActions.openFile();
+          }
+        },
+        { label: 'Open File' }
+      ]
     },
     {
       label: 'Edit',
