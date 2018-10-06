@@ -3,8 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "emotion": "^9.2.12",
+    "emotion-theming": "^9.2.9",
+    "markdown-to-jsx": "^6.7.3",
     "react": "^16.5.2",
+    "react-ace": "^6.2.0",
     "react-dom": "^16.5.2",
+    "react-emotion": "^9.2.12",
     "react-scripts": "2.0.4"
   },
   "main": "src/main.js",

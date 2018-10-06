@@ -16,10 +16,12 @@ function createFileActions({ mainWindow }) {
     // Return if no files were selected
     if (!files) return;
 
-    // Load the file
+    // Load the filepath returned by the dialog
     const file = files[0];
     const fileContent = fs.readFileSync(file).toString();
-    console.log(fileContent);
+
+    // Send file content to renderer
+    mainWindow.webContents.send('new-file', fileContent);
   }
 }
 
