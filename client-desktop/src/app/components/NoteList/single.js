@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { object } from 'prop-types';
 
-import { SingleNoteContainer, Title, Body, Author, Divider } from './styles';
+import { SingleNoteContainer, SubContainer, Day, Note, Title, Body, Author, Divider } from './styles';
 
 class SingleNote extends Component {
   static propTypes = {
@@ -13,9 +13,16 @@ class SingleNote extends Component {
     return (
       <SingleNoteContainer>
         <Divider />
-        <Title>{note.title}</Title>
-        <Body>{note.body}</Body>
-        <Author><span>Written by</span> {note.author && note.author.userName}</Author>
+        <SubContainer>
+          <Day>1 d</Day>
+
+          <Note>
+          {/* <Day>{note.createdAt}</Day> */}
+            <Title>{note.title}</Title>
+            <Body>{note.body}</Body>
+            <Author><span>Written by</span> {note.author && note.author.userName}</Author>
+          </Note>
+        </SubContainer>
       </SingleNoteContainer>
     );
   }

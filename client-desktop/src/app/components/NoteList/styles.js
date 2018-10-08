@@ -14,6 +14,20 @@ const SingleNoteContainer = styled('div')`
   padding: 10px;
 `
 
+const SubContainer = styled('div')`
+  display: flex;
+`
+
+const Day = styled('div')`
+  justify-content: column;
+  font-size: .8em;
+  margin-right: 2vw;
+`
+
+const Note = styled('div')`
+  justify-content: column;
+`
+
 const Title = styled('div')`
   font-size: .8em;
   font-weight: 600;
@@ -48,6 +62,9 @@ const Divider =styled('hr')`
 export{
   NoteListContainer,
   SingleNoteContainer,
+  SubContainer,
+  Day,
+  Note,
   Title,
   Body,
   Author,
