@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { func, string } from 'prop-types';
 import Markdown from 'markdown-to-jsx';
 import AceEditor from 'react-ace';
+// eslint-disable-next-line no-unused-vars
 import brace from 'brace';
 import 'brace/mode/markdown';
 import 'brace/theme/github';
