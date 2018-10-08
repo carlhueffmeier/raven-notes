@@ -92,25 +92,6 @@ const SectionBullet = styled("li")`
   list-style-type: none;
 `;
 
-/* const SearchBoxB = props => {
-  return (
-    <input css={
-      `
-      color: blue;
-      font-size: ${props.fontSize}px;
-
-      &:hover {
-        background-color: black;
-        color: white
-      }
-      &:after .searchBox {
-        content: 'prova di stampa'
-      }
-      `
-    }/>
-  )
-};  */
-
 export {
   SidebarContainer,
   RowStuff,
