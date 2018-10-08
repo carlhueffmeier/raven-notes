@@ -33,7 +33,7 @@ const h5 = {
 const p = {
   fontSize: '.8em',
   fontWeight: 400,
-  padding: 5
+  padding: 5,
 }
 export {
   h1,
