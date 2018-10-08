@@ -2,9 +2,10 @@ import styled from 'react-emotion';
 
 const EditorContainer = styled('div')`
   display: flex;
-  width: 50vw;
-  height: 100vh;
+  width: 80VW;
+  height: 150vh;
   flex-direction: column;
+  padding: 8vw;
 `;
 
 const RenderedMarkdownContainer = styled('div')`
@@ -14,4 +15,15 @@ const RenderedMarkdownContainer = styled('div')`
   overflow: auto;
 `;
 
-export { EditorContainer, RenderedMarkdownContainer };
+const PreviewButton = styled('button')`
+  margin: 10px;
+  padding: 10px;
+  width: 10vw;
+  background-color: lavender;
+`
+
+export {
+  EditorContainer,
+  RenderedMarkdownContainer,
+  PreviewButton
+};

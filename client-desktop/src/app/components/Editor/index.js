@@ -6,31 +6,56 @@ import AceEditor from 'react-ace';
 import brace from 'brace';
 import 'brace/mode/markdown';
 import 'brace/theme/github';
-import { EditorContainer, RenderedMarkdownContainer } from './styles';
+import { EditorContainer, RenderedMarkdownContainer, PreviewButton } from './styles';
 
 export default class Editor extends Component {
+
+  state = {
+    isPreview: false,
+  }
+
   static propTypes = {
     onChange: func,
     content: string
   };
 
+  change = () => {
+    this.setState({
+      isPreview: !this.state.isPreview
+    })
+  }
+
+  // If click on preview, render this.props.content.
   render() {
     return (
+      <div>
+      <PreviewButton onClick={this.change}>Click for preview</PreviewButton>
+
       <EditorContainer>
-        <AceEditor
+        {
+          !this.state.isPreview &&
+          <AceEditor
           mode="markdown"
           theme="github"
           onChange={this.props.onChange}
           name="markdown_editor"
           value={this.props.content}
           height="100%"
-          width="50%"
+          width="100%"
           wrapEnabled={true}
-        />
-        <RenderedMarkdownContainer>
+          />
+        }
+
+
+        {
+          this.state.isPreview &&
+          <RenderedMarkdownContainer>
           <Markdown>{this.props.content}</Markdown>
-        </RenderedMarkdownContainer>
+          </RenderedMarkdownContainer>
+        }
+
       </EditorContainer>
+      </div>
     );
   }
 }
