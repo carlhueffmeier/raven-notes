@@ -17,7 +17,6 @@ class SingleNote extends Component {
           <Day>1 d</Day>
 
           <Note>
-          {/* <Day>{note.createdAt}</Day> */}
             <Title>{note.title}</Title>
             <Body>{note.body}</Body>
             <Author><span>Written by</span> {note.author && note.author.userName}</Author>

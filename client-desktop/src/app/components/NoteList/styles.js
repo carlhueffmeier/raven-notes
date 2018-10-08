@@ -21,11 +21,13 @@ const SubContainer = styled('div')`
 const Day = styled('div')`
   justify-content: column;
   font-size: .8em;
-  margin-right: 2vw;
+  font-weight: 600;
+  width: 10%;
 `
 
 const Note = styled('div')`
   justify-content: column;
+  width: 90%;
 `
 
 const Title = styled('div')`
