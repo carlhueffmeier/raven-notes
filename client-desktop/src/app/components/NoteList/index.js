@@ -9,7 +9,7 @@ class NoteList extends Component {
     notes: array
   }
 
-
+  // If no note is open on the right side, show the list width 100%, if not show the list 25vw is now.
   render() {
     const { notes } = this.props;
     return (

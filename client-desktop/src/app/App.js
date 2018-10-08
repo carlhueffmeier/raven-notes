@@ -12,7 +12,7 @@ const { ipcRenderer } = window.require('electron');
 const Layout = styled('div')`
   display: flex;
   width: 100%;
-  height: 100%;
+  height: 100vh;
 `;
 
 const NOTES_QUERY = gql`
@@ -30,7 +30,6 @@ query {
   }
 }
 `;
-
 
 class App extends Component {
   state = {

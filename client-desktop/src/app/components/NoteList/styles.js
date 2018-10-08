@@ -1,12 +1,11 @@
 import styled from 'react-emotion';
 
 const NoteListContainer = styled('div')`
-  background-color: red;
   display: flex;
   flex-direction: column;
   width: 25vw;
-  height: 100%
-  overflow: hidden;
+  height: 100%;
+  overflow: auto;
 `
 
 const SingleNoteContainer = styled('div')`
@@ -21,13 +20,13 @@ const SubContainer = styled('div')`
 const Day = styled('div')`
   justify-content: column;
   font-size: .8em;
-  font-weight: 600;
-  width: 10%;
+  font-weight: 500;
+  width: 15%;
 `
 
 const Note = styled('div')`
   justify-content: column;
-  width: 90%;
+  width: 85%;
 `
 
 const Title = styled('div')`

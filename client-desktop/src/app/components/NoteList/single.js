@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { object } from 'prop-types';
 
 import { SingleNoteContainer, SubContainer, Day, Note, Title, Body, Author, Divider } from './styles';
+const moment = require('moment');
+
 
 class SingleNote extends Component {
   static propTypes = {
@@ -14,7 +16,9 @@ class SingleNote extends Component {
       <SingleNoteContainer>
         <Divider />
         <SubContainer>
-          <Day>1 d</Day>
+          <Day>
+            {moment(note.createdAt).format("MMM Do YY")}
+          </Day>
 
           <Note>
             <Title>{note.title}</Title>
