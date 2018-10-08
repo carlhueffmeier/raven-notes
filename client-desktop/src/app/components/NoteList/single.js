@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { object } from 'prop-types';
 
 import { SingleNoteContainer, Title, Body, Author, Divider } from './styles';
-import user from '../../../assets/man.svg'
-import { h1, h5 } from '../../shared/typography';
 
 class SingleNote extends Component {
   static propTypes = {
