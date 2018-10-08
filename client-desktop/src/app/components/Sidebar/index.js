@@ -1,51 +1,51 @@
-import React, { Component } from "react";
-import { func, string } from "prop-types";
-// eslint-disable-next-line no-unused-vars
+import React, { Component } from 'react';
 import {
   SidebarContainer,
-  RowStuff,
-  Logo,
+  InlineRow,
+  MainLogo,
   AppTitle,
   SearchBox,
   Button,
   SectionTitle,
-  RavenSection,
+  Section,
   SectionBullet
-} from "./styles";
-import LogoB from "./assets/logo.svg";
+} from './styles';
+import { BrandIcon } from '../Icons';
 
 export default class Sidebar extends Component {
   render() {
     return (
       <SidebarContainer>
-        <RowStuff>
-          <Logo src={LogoB} alt="logo" />
+        <InlineRow>
+          <MainLogo>
+            <BrandIcon />
+          </MainLogo>
           <AppTitle>Raven</AppTitle>
-        </RowStuff>
+        </InlineRow>
         <h3>
           Hello, <span>Name!</span>
         </h3>
-        <RowStuff>
+        <InlineRow>
           <SearchBox type="search" />
           <Button>Go!</Button>
-        </RowStuff>
+        </InlineRow>
 
-        <RavenSection>
+        <Section>
           <SectionTitle>My Notes</SectionTitle>
-        </RavenSection>
-        <RavenSection>
+        </Section>
+        <Section>
           <SectionTitle>My Extracts</SectionTitle>
-        </RavenSection>
-        <RavenSection>
+        </Section>
+        <Section>
           <SectionTitle>Groups</SectionTitle>
           <ul>
             <SectionBullet>Ciao!</SectionBullet>
             <SectionBullet>Ciao!</SectionBullet>
           </ul>
-        </RavenSection>
-        <RavenSection>
+        </Section>
+        <Section>
           <SectionTitle>Favorites</SectionTitle>
-        </RavenSection>
+        </Section>
       </SidebarContainer>
     );
   }
