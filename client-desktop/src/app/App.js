@@ -51,13 +51,13 @@ class App extends Component {
       <div>
         <ThemeProvider theme={lightTheme}>
           <Layout>
-            <Query query={NOTES_QUERY}>
+            {/* <Query query={NOTES_QUERY}>
               {({data, loading, error}) => {
                 if (loading) return "Loading..";
                 if (error) return error;
                 return <NoteList notes={data.notes} />
               }}
-            </Query>
+            </Query> */}
             <Editor
               content={this.state.loadedFile}
               onChange={newContent => {
