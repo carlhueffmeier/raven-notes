@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Editor from './components/Editor';
+import { lightTheme } from './themes';
+import { ThemeProvider } from 'emotion-theming';
 import './styles';
 const { ipcRenderer } = window.require('electron');
 
@@ -20,7 +22,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <ThemeProvider theme={lightTheme}>
         <Editor
           content={this.state.loadedFile}
           onChange={newContent => {
@@ -29,7 +31,7 @@ class App extends Component {
             });
           }}
         />
-      </div>
+      </ThemeProvider>
     );
   }
 }
