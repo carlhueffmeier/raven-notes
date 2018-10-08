@@ -4,19 +4,53 @@ const NoteListContainer = styled('div')`
   background-color: red;
   display: flex;
   flex-direction: column;
-  width: 30vw;
-  padding: 10px
+  width: 25vw;
+  height: 100%
+  overflow: hidden;
 `
 
 const SingleNoteContainer = styled('div')`
   background-color: lavender;
-  height: 100%;
-
+  padding: 10px;
 `
 
+const Title = styled('div')`
+  font-size: .8em;
+  font-weight: 600;
+  margin-bottom: 6px;
+`
+
+const Body = styled('div')`
+  font-size: .8em;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.5);
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`
+
+const Author = styled('div')`
+  font-size: .7em;
+  font-weight: 500;
+  margin-top: 6px;
+  span {
+    font-weight: 300
+  }
+`
+
+const Divider =styled('hr')`
+  border-bottom: .1px solid #8c8b8b;
+`
 
 export{
   NoteListContainer,
-  SingleNoteContainer
+  SingleNoteContainer,
+  Title,
+  Body,
+  Author,
+  Divider
 };
 
