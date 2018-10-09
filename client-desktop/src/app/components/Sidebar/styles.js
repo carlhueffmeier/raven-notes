@@ -1,35 +1,38 @@
 import styled from "react-emotion";
 
-const SidebarContainer = styled("div")`
-  width: 200px;
-  height: auto;
-  overflow: auto;
-  display: flex;
-  flex-flow: column wrap;
-  border-right: 1px solid black;
-  align-items: center;
-  background: linear-gradient(to right bottom, #2bff00, #99ffbb);
-  padding-left: 15px;
-  padding-right: 15px;
-`;
-
-const InlineRow = styled("div")`
-  display: inline-flex;
-  flex-flow: row nowrap;
-  justify-content: space-evenly;
-  margin-top: 15px;
-  margin-bottom: 15px;
-`;
-
-const MainLogo = styled("div")`
-  font-size: 2rem;
-  margin-right: 10px;
-`;
-
-const AppTitle = styled("h2")`
+const SidebarContainer = styled('div')`
+  border-right: .1px solid #8c8b8b;
+  padding: 15px;
+  padding: 15px;
+  background-color: lavender;
+`
+const H3 = styled('h3')`
+  color: #778899;
+  font-weight: 500;
+  font-size: .9em;
   margin: 0;
-  line-height: 35px;
-`;
+`
+
+const USection = styled('div')`
+  // background-color: #F9F9F9;
+  font-weight: 600;
+  margin-top: 10px;
+`
+
+const GSection = styled('div')`
+  font-weight: 500;
+  color: #333;
+  margin-top: 10px;
+`
+
+const Sect = styled('p')`
+  margin: 4px;
+  font-size: .8em;
+`
+
+const Divider =styled('hr')`
+  border-bottom: .1px solid #8c8b8b;
+`
 
 const SearchBox = styled("input")`
   border-radius: 20px;
@@ -59,31 +62,16 @@ const Button = styled("button")`
   :hover {
     border: 1px solid white;
   }
-`;
+`
 
-const SectionTitle = styled("h3")`
-  font-weight: bold;
-`;
-
-const Section = styled("section")`
-  text-indent: 5px;
-  width: 100%;
-  align-items: flex-start;
-`;
-
-const SectionBullet = styled("li")`
-  list-style-type: none;
-  margin: 5px 0;
-`;
 
 export {
   SidebarContainer,
-  InlineRow,
-  MainLogo,
-  AppTitle,
+  USection,
+  GSection,
+  Sect,
+  H3,
+  Divider,
   SearchBox,
   Button,
-  SectionTitle,
-  Section,
-  SectionBullet
 };
