@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
   SidebarContainer,
   InlineRow,
@@ -9,10 +9,10 @@ import {
   SectionTitle,
   Section,
   SectionBullet
-} from './styles';
-import { BrandIcon } from '../Icons';
+} from "./styles";
+import { BrandIcon } from "../Icons";
 
-export default class Sidebar extends Component {
+class Sidebar extends Component {
   render() {
     return (
       <SidebarContainer>
@@ -50,3 +50,5 @@ export default class Sidebar extends Component {
     );
   }
 }
+
+export default Sidebar;
