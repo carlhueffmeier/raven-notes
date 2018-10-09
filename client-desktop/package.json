@@ -17,6 +17,7 @@
     "react-apollo": "^2.2.4",
     "react-dom": "^16.5.2",
     "react-emotion": "^9.2.12",
+    "react-highlight.js": "^1.0.7",
     "react-scripts": "2.0.4",
     "slate": "^0.41.2",
     "slate-plain-serializer": "^0.6.7",
