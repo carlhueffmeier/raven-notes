@@ -3,24 +3,20 @@ import { func, string } from 'prop-types';
 
 //========== Slate editor
 import { Editor } from 'slate-react';
+import Prism from 'slate-prism'
 import { Value } from 'slate';
-import Prism from 'prismjs';
 
 import { EditorContainer, User, Quote, H1, H2, H3, H4, H5, H6, List, Code } from './styles';
 import initialValue from './value.json';
 
-//========= TESTING HIGHLIGHTING
-function getContent(token) {
-  if (typeof token == 'string') {
-    return token
-  } else if (typeof token.content == 'string') {
-    return token.content
-  } else {
-    return token.content.map(getContent).join('')
-  }
-}
-//===========================================
+//❗️❗️❗️ THIS IS A MESS!
 
+const plugins = [
+  Prism({
+    onlyIn: node => node.type === 'code-block',
+    getSyntax: node => node.data.get('syntax')
+  })
+]
 class Text extends Component {
   // Change the initialValue to empty string.
   state = {
@@ -54,7 +50,7 @@ class Text extends Component {
         return 'heading-five'
       case '######':
         return 'heading-six'
-      case 'c':
+      case '<':
         return 'code-block'
       default:
         return null
@@ -66,7 +62,7 @@ class Text extends Component {
     const { attributes, children, node } = props
     switch (node.type) {
       case 'block-quote':
-        return <Quote {...attributes}><span role='img' aria-label='robot' >🤖</span> {children}</Quote>
+        return <Quote {...attributes}>{children}</Quote>
       case 'bulleted-list':
         return <List {...attributes}>{children}</List>
       case 'heading-one':
@@ -85,10 +81,10 @@ class Text extends Component {
         return <List {...attributes}>{children}</List>
       case 'code-block':
         return (
-          <pre>
-            <Code {...attributes}>{children}</Code>
-          </pre>
+            <Code {...attributes}><span role='img' aria-label='robot' >🤖</span> {children}</Code>
         )
+      case 'code-line':
+          return <Code {...props} />
       default:
         return null;
     }
@@ -98,7 +94,7 @@ class Text extends Component {
     this.setState({ value })
   }
 
-  // On key down, check for specific key shortcuts.
+// On key down, check for specific key shortcuts (next three functions).
   onKeyDown = (event, change) => {
     switch (event.key) {
       case ' ':
@@ -112,8 +108,10 @@ class Text extends Component {
     }
   }
 
-  // On space, if it was after an auto-markdown shortcut, convert the current node into the shortcut's
-  // corresponding type.
+// ========== HELPER FUNCTIONS (?) ========== //
+
+// If it was after an auto-markdown shortcut, convert the current node into the shortcut's
+// corresponding type.
   onSpace = (event, change) => {
     const { value } = change
     const { selection } = value
@@ -125,7 +123,7 @@ class Text extends Component {
     const type = this.getType(chars)
 
     if (!type) return
-    if (type === 'list-item' && startBlock.type == 'list-item') return
+    if (type === 'list-item' && startBlock.type === 'list-item') return
     event.preventDefault()
 
     change.setBlocks(type)
@@ -138,7 +136,7 @@ class Text extends Component {
     return true
   }
 
-  // On backspace if at the start of a non-paragraph, convert it back into a paragraph node.
+// If at the start of a non-paragraph, convert it back into a paragraph node.
   onBackspace = (event, change) => {
     const { value } = change
     const { selection } = value
@@ -158,7 +156,7 @@ class Text extends Component {
     return true
   }
 
-  // On return, if at the end of a node type that should not be extended, create a new paragraph below it.
+// If at the end of a node type that should not be extended, create a new paragraph below it.
   onEnter = (event, change) => {
     const { value } = change
     const { selection } = value
@@ -166,7 +164,7 @@ class Text extends Component {
     if (isExpanded) return
 
     const { startBlock } = value
-    if (start.offset === 0 && startBlock.text.length == 0)
+    if (start.offset === 0 && startBlock.text.length === 0)
       return this.onBackspace(event, change)
     if (end.offset !== startBlock.text.length) return
 
@@ -177,7 +175,8 @@ class Text extends Component {
       startBlock.type !== 'heading-four' &&
       startBlock.type !== 'heading-five' &&
       startBlock.type !== 'heading-six' &&
-      startBlock.type !== 'block-quote'
+      startBlock.type !== 'block-quote' &&
+      startBlock.type !== 'code-block'
     ) {
       return
     }
@@ -187,81 +186,17 @@ class Text extends Component {
     return true
   }
 
-  //================================================ TESTING HIGHLIGHTING
-  decorateNode = node => {
-    if (node.type !== 'code') return
-
-    const language = node.data.get('language')
-    const texts = node.getTexts().toArray()
-    const string = texts.map(t => t.text).join('\n')
-    const grammar = Prism.languages[language]
-    const tokens = Prism.tokenize(string, grammar)
-    const decorations = []
-    let startText = texts.shift()
-    let endText = startText
-    let startOffset = 0
-    let endOffset = 0
-    let start = 0
-
-    for (const token of tokens) {
-      startText = endText
-      startOffset = endOffset
-
-      const content = getContent(token)
-      const newlines = content.split('\n').length - 1
-      const length = content.length - newlines
-      const end = start + length
-
-      let available = startText.text.length - startOffset
-      let remaining = length
-
-      endOffset = startOffset + remaining
-
-      while (available < remaining && texts.length > 0) {
-        endText = texts.shift()
-        remaining = length - available
-        available = endText.text.length
-        endOffset = remaining
-      }
-
-      if (typeof token !== 'string') {
-        const dec = {
-          anchor: {
-            key: startText.key,
-            offset: startOffset,
-          },
-          focus: {
-            key: endText.key,
-            offset: endOffset,
-          },
-          mark: {
-            type: token.type,
-          },
-        }
-
-        decorations.push(dec)
-      }
-
-      start = end
-    }
-
-    return decorations
-  }
-  //=====================================================================
-
-
   render() {
     return (
       <EditorContainer>
         <User><span role='img' aria-label='user'>🙆🏼‍</span></User>
         <Editor
           placeholder='Write in here...'
+          plugins={plugins}
           value={this.state.value}
           onChange={this.onChange}
           onKeyDown={this.onKeyDown}
           renderNode={this.renderNode}
-          decorateNode={this.decorateNode}
-
         />
       </EditorContainer>
     );
