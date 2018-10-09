@@ -41,10 +41,8 @@ const List = styled('li')`
 `
 
 const Code = styled('code')`
-  background-color: #f9f9f9;
   padding: 5px;
-  border-left: 1px solid #ccc;
-
+  background: lavender;
 `
 
 

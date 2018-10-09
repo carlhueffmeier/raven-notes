@@ -1,27 +1,25 @@
 import React, { Component } from 'react';
+import Prism from 'prismjs';
+import './prism.css';
 import { func, string } from 'prop-types';
 
 //========== Slate editor
 import { Editor } from 'slate-react';
-import Prism from 'slate-prism'
 import { Value } from 'slate';
 
 import { EditorContainer, User, Quote, H1, H2, H3, H4, H5, H6, List, Code } from './styles';
 import initialValue from './value.json';
 
 //❗️❗️❗️ THIS IS A MESS!
-
-const plugins = [
-  Prism({
-    onlyIn: node => node.type === 'code-block',
-    getSyntax: node => node.data.get('syntax')
-  })
-]
 class Text extends Component {
   // Change the initialValue to empty string.
   state = {
     isPreview: false,
     value: Value.fromJSON(initialValue),
+  }
+
+  componentDidMount() {
+    // Prism.highlightAll();
   }
 
   static propTypes = {
@@ -62,7 +60,7 @@ class Text extends Component {
     const { attributes, children, node } = props
     switch (node.type) {
       case 'block-quote':
-        return <Quote {...attributes}>{children}</Quote>
+        return <Quote {...attributes}><span role='img' aria-label='robot' >🤖</span> {children}</Quote>
       case 'bulleted-list':
         return <List {...attributes}>{children}</List>
       case 'heading-one':
@@ -81,10 +79,12 @@ class Text extends Component {
         return <List {...attributes}>{children}</List>
       case 'code-block':
         return (
-            <Code {...attributes}><span role='img' aria-label='robot' >🤖</span> {children}</Code>
+          <pre className='language-javascript'>
+            <code className='language-javascript' {...attributes}>
+              {children}
+            </code>
+          </pre>
         )
-      case 'code-line':
-          return <Code {...props} />
       default:
         return null;
     }
@@ -133,6 +133,7 @@ class Text extends Component {
     }
 
     change.moveFocusToStartOfNode(startBlock).delete()
+    // Prism.highlightAll();
     return true
   }
 
@@ -192,7 +193,6 @@ class Text extends Component {
         <User><span role='img' aria-label='user'>🙆🏼‍</span></User>
         <Editor
           placeholder='Write in here...'
-          plugins={plugins}
           value={this.state.value}
           onChange={this.onChange}
           onKeyDown={this.onKeyDown}
