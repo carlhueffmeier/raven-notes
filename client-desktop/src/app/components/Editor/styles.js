@@ -3,10 +3,15 @@ import styled from 'react-emotion';
 const EditorContainer = styled('div')`
   display: flex;
   width: 80VW;
-  height: 150vh;
+  height: 100vh;
   flex-direction: column;
   padding: 8vw;
+  background-color: lavender;
 `;
+
+const TextEditor = styled('div')`
+  background-color: lavender;
+`
 
 const RenderedMarkdownContainer = styled('div')`
   flex-direction: column;
@@ -24,6 +29,7 @@ const PreviewButton = styled('button')`
 
 export {
   EditorContainer,
+  TextEditor,
   RenderedMarkdownContainer,
   PreviewButton
 };
