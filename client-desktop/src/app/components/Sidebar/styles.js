@@ -1,6 +1,6 @@
-import styled from 'react-emotion';
+import styled from "react-emotion";
 
-const SidebarContainer = styled('div')`
+const SidebarContainer = styled("div")`
   width: 200px;
   height: auto;
   overflow: auto;
@@ -11,12 +11,9 @@ const SidebarContainer = styled('div')`
   background: linear-gradient(to right bottom, #2bff00, #99ffbb);
   padding-left: 15px;
   padding-right: 15px;
-  & RavenSection {
-    align-items: flex-start;
-  }
 `;
 
-const InlineRow = styled('div')`
+const InlineRow = styled("div")`
   display: inline-flex;
   flex-flow: row nowrap;
   justify-content: space-evenly;
@@ -24,17 +21,17 @@ const InlineRow = styled('div')`
   margin-bottom: 15px;
 `;
 
-const MainLogo = styled('div')`
+const MainLogo = styled("div")`
   font-size: 2rem;
   margin-right: 10px;
 `;
 
-const AppTitle = styled('h2')`
+const AppTitle = styled("h2")`
   margin: 0;
   line-height: 35px;
 `;
 
-const SearchBox = styled('input')`
+const SearchBox = styled("input")`
   border-radius: 20px;
   transition: 1s;
   margin: 0 5px;
@@ -50,29 +47,33 @@ const SearchBox = styled('input')`
   }
 `;
 
-const Button = styled('button')`
+const Button = styled("button")`
   border-radius: 20px;
-  height: auto;
+  height: 27px;
   background-color: black;
   color: white;
   cursor: pointer;
-`;
-
-const SectionTitle = styled('h3')`
-  font-weight: bold;
-  > :empty {
-    margin: 5vh 0;
+  :focus {
+    outline: 0;
+  }
+  :hover {
+    border: 1px solid white;
   }
 `;
 
-const Section = styled('section')`
+const SectionTitle = styled("h3")`
+  font-weight: bold;
+`;
+
+const Section = styled("section")`
   text-indent: 5px;
   width: 100%;
   align-items: flex-start;
 `;
 
-const SectionBullet = styled('li')`
+const SectionBullet = styled("li")`
   list-style-type: none;
+  margin: 5px 0;
 `;
 
 export {
