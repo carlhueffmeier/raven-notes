@@ -8,7 +8,7 @@ import { Value } from 'slate'
 import { EditorContainer, Quote, H1, H2, H3, H4, H5, H6, List } from './styles';
 import initialValue from './value.json';
 
-export default class Text extends Component {
+class Text extends Component {
   // Change the initialValue to empty string.
   state = {
     isPreview: false,
@@ -185,3 +185,4 @@ export default class Text extends Component {
   }
 }
 
+export default  Text;
