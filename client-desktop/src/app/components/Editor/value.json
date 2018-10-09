@@ -146,6 +146,20 @@
       },
       {
         "object": "block",
+        "type": "code-block",
+        "nodes": [
+          {
+            "object": "text",
+            "leaves": [
+              {
+                "text": "let banana = 'super cool string'"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
         "type": "paragraph",
         "nodes": [
           {

@@ -4,12 +4,12 @@ const EditorContainer = styled('div')`
   display: flex;
   width: 100%;
   height: 100%;
-  flex-direction: column;
   padding: 8vw;
-  border: 1px solid black;
 `;
-
-const Quote = styled('blockquotequote')`
+const User = styled('div')`
+  flex-direction: column;
+`
+const Quote = styled('blockquote')`
   background: #f9f9f9;
   border-left: 10px solid #ccc;
   margin: 1.5em 10px;
@@ -40,8 +40,15 @@ const List = styled('li')`
   font-size: .8em;
 `
 
+const Code = styled('code')`
+  padding: 5px;
+  background: lavender;
+`
+
+
 export {
   EditorContainer,
+  User,
   Quote,
   H1,
   H2,
@@ -49,5 +56,6 @@ export {
   H4,
   H5,
   H6,
-  List
+  List,
+  Code
 };

@@ -1,18 +1,25 @@
 import React, { Component } from 'react';
+import Prism from 'prismjs';
+import './prism.css';
 import { func, string } from 'prop-types';
 
 //========== Slate editor
-import { Editor } from 'slate-react'
-import { Value } from 'slate'
+import { Editor } from 'slate-react';
+import { Value } from 'slate';
 
-import { EditorContainer, Quote, H1, H2, H3, H4, H5, H6, List } from './styles';
+import { EditorContainer, User, Quote, H1, H2, H3, H4, H5, H6, List, Code } from './styles';
 import initialValue from './value.json';
 
-export default class Text extends Component {
+//❗️❗️❗️ THIS IS A MESS!
+class Text extends Component {
   // Change the initialValue to empty string.
   state = {
     isPreview: false,
     value: Value.fromJSON(initialValue),
+  }
+
+  componentDidMount() {
+    // Prism.highlightAll();
   }
 
   static propTypes = {
@@ -41,6 +48,8 @@ export default class Text extends Component {
         return 'heading-five'
       case '######':
         return 'heading-six'
+      case '<':
+        return 'code-block'
       default:
         return null
     }
@@ -51,7 +60,7 @@ export default class Text extends Component {
     const { attributes, children, node } = props
     switch (node.type) {
       case 'block-quote':
-        return <Quote {...attributes}>{children}</Quote>
+        return <Quote {...attributes}><span role='img' aria-label='robot' >🤖</span> {children}</Quote>
       case 'bulleted-list':
         return <List {...attributes}>{children}</List>
       case 'heading-one':
@@ -68,6 +77,14 @@ export default class Text extends Component {
         return <H6 {...attributes}>{children}</H6>
       case 'list-item':
         return <List {...attributes}>{children}</List>
+      case 'code-block':
+        return (
+          <pre className='language-javascript'>
+            <code className='language-javascript' {...attributes}>
+              {children}
+            </code>
+          </pre>
+        )
       default:
         return null;
     }
@@ -77,7 +94,7 @@ export default class Text extends Component {
     this.setState({ value })
   }
 
-  // On key down, check for specific key shortcuts.
+// On key down, check for specific key shortcuts (next three functions).
   onKeyDown = (event, change) => {
     switch (event.key) {
       case ' ':
@@ -91,8 +108,10 @@ export default class Text extends Component {
     }
   }
 
-  // On space, if it was after an auto-markdown shortcut, convert the current node into the shortcut's
-  // corresponding type.
+// ========== HELPER FUNCTIONS (?) ========== //
+
+// If it was after an auto-markdown shortcut, convert the current node into the shortcut's
+// corresponding type.
   onSpace = (event, change) => {
     const { value } = change
     const { selection } = value
@@ -104,7 +123,7 @@ export default class Text extends Component {
     const type = this.getType(chars)
 
     if (!type) return
-    if (type === 'list-item' && startBlock.type == 'list-item') return
+    if (type === 'list-item' && startBlock.type === 'list-item') return
     event.preventDefault()
 
     change.setBlocks(type)
@@ -114,10 +133,11 @@ export default class Text extends Component {
     }
 
     change.moveFocusToStartOfNode(startBlock).delete()
+    // Prism.highlightAll();
     return true
   }
 
-  // On backspace if at the start of a non-paragraph, convert it back into a paragraph node.
+// If at the start of a non-paragraph, convert it back into a paragraph node.
   onBackspace = (event, change) => {
     const { value } = change
     const { selection } = value
@@ -137,7 +157,7 @@ export default class Text extends Component {
     return true
   }
 
-  // On return, if at the end of a node type that should not be extended, create a new paragraph below it.
+// If at the end of a node type that should not be extended, create a new paragraph below it.
   onEnter = (event, change) => {
     const { value } = change
     const { selection } = value
@@ -145,7 +165,7 @@ export default class Text extends Component {
     if (isExpanded) return
 
     const { startBlock } = value
-    if (start.offset === 0 && startBlock.text.length == 0)
+    if (start.offset === 0 && startBlock.text.length === 0)
       return this.onBackspace(event, change)
     if (end.offset !== startBlock.text.length) return
 
@@ -156,7 +176,8 @@ export default class Text extends Component {
       startBlock.type !== 'heading-four' &&
       startBlock.type !== 'heading-five' &&
       startBlock.type !== 'heading-six' &&
-      startBlock.type !== 'block-quote'
+      startBlock.type !== 'block-quote' &&
+      startBlock.type !== 'code-block'
     ) {
       return
     }
@@ -166,22 +187,20 @@ export default class Text extends Component {
     return true
   }
 
-
   render() {
     return (
-      <div>
-
       <EditorContainer>
+        <User><span role='img' aria-label='user'>🙆🏼‍</span></User>
         <Editor
-          placeholder="Write some markdown..."
+          placeholder='Write in here...'
           value={this.state.value}
           onChange={this.onChange}
           onKeyDown={this.onKeyDown}
           renderNode={this.renderNode}
         />
       </EditorContainer>
-      </div>
     );
   }
 }
 
+export default Text;
