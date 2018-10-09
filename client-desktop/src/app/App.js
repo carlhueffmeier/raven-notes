@@ -3,8 +3,9 @@ import { lightTheme } from './themes';
 import { ThemeProvider } from 'emotion-theming';
 import './styles';
 import Layout from './components/Layout';
-import Text from './components/Editor';
 import Sidebar from './components/Sidebar';
+import NoteList from './components/NoteList';
+import Editor from './components/Editor';
 const { ipcRenderer } = window.require('electron');
 
 class App extends Component {
@@ -26,9 +27,9 @@ class App extends Component {
     return (
       <ThemeProvider theme={lightTheme}>
         <Layout columns={3}>
-          <Layout.Sidebar><Sidebar /></Layout.Sidebar>
-          <Layout.NoteList>NoteList</Layout.NoteList>
-          <Layout.Editor><Text /></Layout.Editor>
+          <Layout.Sidebar><Sidebar/></Layout.Sidebar>
+          <Layout.NoteList><NoteList/></Layout.NoteList>
+          <Layout.Editor><Editor/></Layout.Editor>
         </Layout>
       </ThemeProvider>
     );

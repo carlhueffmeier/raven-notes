@@ -4,14 +4,14 @@ import './prism.css';
 import { func, string } from 'prop-types';
 
 //========== Slate editor
-import { Editor } from 'slate-react';
+import { Editor as SlateEditor } from 'slate-react';
 import { Value } from 'slate';
 
 import { EditorContainer, User, Quote, H1, H2, H3, H4, H5, H6, List, Code } from './styles';
 import initialValue from './value.json';
 
 //❗️❗️❗️ THIS IS A MESS!
-class Text extends Component {
+class Editor extends Component {
   // Change the initialValue to empty string.
   state = {
     isPreview: false,
@@ -191,7 +191,7 @@ class Text extends Component {
     return (
       <EditorContainer>
         <User><span role='img' aria-label='user'>🙆🏼‍</span></User>
-        <Editor
+        <SlateEditor
           placeholder='Write in here...'
           value={this.state.value}
           onChange={this.onChange}
@@ -203,4 +203,4 @@ class Text extends Component {
   }
 }
 
-export default Text;
+export default Editor;
