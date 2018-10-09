@@ -8,6 +8,7 @@
     "emotion": "^9.2.12",
     "emotion-theming": "^9.2.9",
     "graphql": "^14.0.2",
+    "immutable": "^3.8.2",
     "markdown-to-jsx": "^6.7.3",
     "moment": "^2.22.2",
     "react": "^16.5.2",
@@ -15,7 +16,9 @@
     "react-apollo": "^2.2.4",
     "react-dom": "^16.5.2",
     "react-emotion": "^9.2.12",
-    "react-scripts": "2.0.4"
+    "react-scripts": "2.0.4",
+    "slate": "^0.41.2",
+    "slate-react": "^0.18.10"
   },
   "main": "src/main.js",
   "scripts": {
