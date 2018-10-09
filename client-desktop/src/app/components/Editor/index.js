@@ -2,11 +2,24 @@ import React, { Component } from 'react';
 import { func, string } from 'prop-types';
 
 //========== Slate editor
-import { Editor } from 'slate-react'
-import { Value } from 'slate'
+import { Editor } from 'slate-react';
+import { Value } from 'slate';
+import Prism from 'prismjs';
 
-import { EditorContainer, Quote, H1, H2, H3, H4, H5, H6, List } from './styles';
+import { EditorContainer, User, Quote, H1, H2, H3, H4, H5, H6, List, Code } from './styles';
 import initialValue from './value.json';
+
+//========= TESTING HIGHLIGHTING
+function getContent(token) {
+  if (typeof token == 'string') {
+    return token
+  } else if (typeof token.content == 'string') {
+    return token.content
+  } else {
+    return token.content.map(getContent).join('')
+  }
+}
+//===========================================
 
 class Text extends Component {
   // Change the initialValue to empty string.
@@ -41,6 +54,8 @@ class Text extends Component {
         return 'heading-five'
       case '######':
         return 'heading-six'
+      case 'c':
+        return 'code-block'
       default:
         return null
     }
@@ -51,7 +66,7 @@ class Text extends Component {
     const { attributes, children, node } = props
     switch (node.type) {
       case 'block-quote':
-        return <Quote {...attributes}>{children}</Quote>
+        return <Quote {...attributes}><span role='img' aria-label='robot' >🤖</span> {children}</Quote>
       case 'bulleted-list':
         return <List {...attributes}>{children}</List>
       case 'heading-one':
@@ -68,6 +83,12 @@ class Text extends Component {
         return <H6 {...attributes}>{children}</H6>
       case 'list-item':
         return <List {...attributes}>{children}</List>
+      case 'code-block':
+        return (
+          <pre>
+            <Code {...attributes}>{children}</Code>
+          </pre>
+        )
       default:
         return null;
     }
@@ -166,23 +187,85 @@ class Text extends Component {
     return true
   }
 
+  //================================================ TESTING HIGHLIGHTING
+  decorateNode = node => {
+    if (node.type !== 'code') return
+
+    const language = node.data.get('language')
+    const texts = node.getTexts().toArray()
+    const string = texts.map(t => t.text).join('\n')
+    const grammar = Prism.languages[language]
+    const tokens = Prism.tokenize(string, grammar)
+    const decorations = []
+    let startText = texts.shift()
+    let endText = startText
+    let startOffset = 0
+    let endOffset = 0
+    let start = 0
+
+    for (const token of tokens) {
+      startText = endText
+      startOffset = endOffset
+
+      const content = getContent(token)
+      const newlines = content.split('\n').length - 1
+      const length = content.length - newlines
+      const end = start + length
+
+      let available = startText.text.length - startOffset
+      let remaining = length
+
+      endOffset = startOffset + remaining
+
+      while (available < remaining && texts.length > 0) {
+        endText = texts.shift()
+        remaining = length - available
+        available = endText.text.length
+        endOffset = remaining
+      }
+
+      if (typeof token !== 'string') {
+        const dec = {
+          anchor: {
+            key: startText.key,
+            offset: startOffset,
+          },
+          focus: {
+            key: endText.key,
+            offset: endOffset,
+          },
+          mark: {
+            type: token.type,
+          },
+        }
+
+        decorations.push(dec)
+      }
+
+      start = end
+    }
+
+    return decorations
+  }
+  //=====================================================================
+
 
   render() {
     return (
-      <div>
-
       <EditorContainer>
+        <User><span role='img' aria-label='user'>🙆🏼‍</span></User>
         <Editor
-          placeholder="Write some markdown..."
+          placeholder='Write in here...'
           value={this.state.value}
           onChange={this.onChange}
           onKeyDown={this.onKeyDown}
           renderNode={this.renderNode}
+          decorateNode={this.decorateNode}
+
         />
       </EditorContainer>
-      </div>
     );
   }
 }
 
-export default  Text;
+export default Text;
