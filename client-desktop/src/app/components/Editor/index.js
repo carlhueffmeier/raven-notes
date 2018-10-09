@@ -3,6 +3,8 @@ import Prism from 'prismjs';
 import './prism.css';
 import { func, string } from 'prop-types';
 
+import { GET_CURRENT_NOTE } from '../../graphql/queries';
+import { Query } from "react-apollo";
 //========== Slate editor
 import { Editor as SlateEditor } from 'slate-react';
 import { Value } from 'slate';
@@ -10,13 +12,17 @@ import { Value } from 'slate';
 import { EditorContainer, User, Quote, H1, H2, H3, H4, H5, H6, List, Code } from './styles';
 import initialValue from './value.json';
 
-//❗️❗️❗️ THIS IS A MESS!
+import Html from 'slate-html-serializer'
+const html = new Html();
+
 class Editor extends Component {
   // Change the initialValue to empty string.
-  state = {
-    isPreview: false,
-    value: Value.fromJSON(initialValue),
-  }
+    state = {
+      isPreview: false,
+      value: html.deserialize(''),
+    }
+
+
 
   componentDidMount() {
     // Prism.highlightAll();
@@ -91,7 +97,7 @@ class Editor extends Component {
   }
 
   onChange = ({ value }) => {
-    this.setState({ value })
+    // this.setState({ value })
   }
 
 // On key down, check for specific key shortcuts (next three functions).
@@ -189,16 +195,25 @@ class Editor extends Component {
 
   render() {
     return (
-      <EditorContainer>
-        <User><span role='img' aria-label='user'>🙆🏼‍</span></User>
-        <SlateEditor
-          placeholder='Write in here...'
-          value={this.state.value}
-          onChange={this.onChange}
-          onKeyDown={this.onKeyDown}
-          renderNode={this.renderNode}
-        />
-      </EditorContainer>
+      <Query query={GET_CURRENT_NOTE}>
+        {({ loading, error, data}) => {
+          if (loading) return 'Loading...';
+          if (error) return 'Error!';
+          return (
+            <div>
+            <EditorContainer>
+              <Editor
+                placeholder="Write some markdown..."
+                value={html.deserialize(data.currentNote.body)}
+                onChange={this.onChange}
+                onKeyDown={this.onKeyDown}
+                renderNode={this.renderNode}
+              />
+            </EditorContainer>
+            </div>
+          )
+        }}
+      </Query>
     );
   }
 }

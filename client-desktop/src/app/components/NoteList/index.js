@@ -21,7 +21,7 @@ class NoteList extends Component {
           if (error) return <p>There's an error</p>
           return (
             <NoteListContainer>
-              {notes.map(note => <SingleNote note={note} />)}
+              {notes.map(note => <SingleNote key={note.id} note={note} />)}
             </NoteListContainer>
           )
         }}
