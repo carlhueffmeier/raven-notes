@@ -4,6 +4,7 @@ import { ThemeProvider } from 'emotion-theming';
 import './styles';
 import Layout from './components/Layout';
 import Text from './components/Editor';
+import Sidebar from './components/Sidebar';
 const { ipcRenderer } = window.require('electron');
 
 class App extends Component {
@@ -25,7 +26,7 @@ class App extends Component {
     return (
       <ThemeProvider theme={lightTheme}>
         <Layout columns={3}>
-          <Layout.Sidebar>Sidebar</Layout.Sidebar>
+          <Layout.Sidebar><Sidebar /></Layout.Sidebar>
           <Layout.NoteList>NoteList</Layout.NoteList>
           <Layout.Editor><Text /></Layout.Editor>
         </Layout>
