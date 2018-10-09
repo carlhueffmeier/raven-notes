@@ -1,36 +1,187 @@
 import React, { Component } from 'react';
 import { func, string } from 'prop-types';
-import Markdown from 'markdown-to-jsx';
-import AceEditor from 'react-ace';
-// eslint-disable-next-line no-unused-vars
-import brace from 'brace';
-import 'brace/mode/markdown';
-import 'brace/theme/github';
-import { EditorContainer, RenderedMarkdownContainer } from './styles';
 
-export default class Editor extends Component {
+//========== Slate editor
+import { Editor } from 'slate-react'
+import { Value } from 'slate'
+
+import { EditorContainer, Quote, H1, H2, H3, H4, H5, H6, List } from './styles';
+import initialValue from './value.json';
+
+export default class Text extends Component {
+  // Change the initialValue to empty string.
+  state = {
+    isPreview: false,
+    value: Value.fromJSON(initialValue),
+  }
+
   static propTypes = {
     onChange: func,
     content: string
   };
 
+// Get the block type for a series of auto-markdown shortcut `chars`.
+  getType = chars => {
+    switch (chars) {
+      case '*':
+      case '-':
+      case '+':
+        return 'list-item'
+      case '>':
+        return 'block-quote'
+      case '#':
+        return 'heading-one'
+      case '##':
+        return 'heading-two'
+      case '###':
+        return 'heading-three'
+      case '####':
+        return 'heading-four'
+      case '#####':
+        return 'heading-five'
+      case '######':
+        return 'heading-six'
+      default:
+        return null
+    }
+  }
+
+// Render slate node.
+  renderNode = props => {
+    const { attributes, children, node } = props
+    switch (node.type) {
+      case 'block-quote':
+        return <Quote {...attributes}>{children}</Quote>
+      case 'bulleted-list':
+        return <List {...attributes}>{children}</List>
+      case 'heading-one':
+        return <H1 {...attributes}>{children}</H1>
+      case 'heading-two':
+        return <H2 {...attributes}>{children}</H2>
+      case 'heading-three':
+        return <H3 {...attributes}>{children}</H3>
+      case 'heading-four':
+        return <H4 {...attributes}>{children}</H4>
+      case 'heading-five':
+        return <H5 {...attributes}>{children}</H5>
+      case 'heading-six':
+        return <H6 {...attributes}>{children}</H6>
+      case 'list-item':
+        return <List {...attributes}>{children}</List>
+      default:
+        return null;
+    }
+  }
+
+  onChange = ({ value }) => {
+    this.setState({ value })
+  }
+
+  // On key down, check for specific key shortcuts.
+  onKeyDown = (event, change) => {
+    switch (event.key) {
+      case ' ':
+        return this.onSpace(event, change)
+      case 'Backspace':
+        return this.onBackspace(event, change)
+      case 'Enter':
+        return this.onEnter(event, change)
+      default:
+        return null;
+    }
+  }
+
+  // On space, if it was after an auto-markdown shortcut, convert the current node into the shortcut's
+  // corresponding type.
+  onSpace = (event, change) => {
+    const { value } = change
+    const { selection } = value
+    if (selection.isExpanded) return
+
+    const { startBlock } = value
+    const { start } = selection
+    const chars = startBlock.text.slice(0, start.offset).replace(/\s*/g, '')
+    const type = this.getType(chars)
+
+    if (!type) return
+    if (type === 'list-item' && startBlock.type == 'list-item') return
+    event.preventDefault()
+
+    change.setBlocks(type)
+
+    if (type === 'list-item') {
+      change.wrapBlock('bulleted-list')
+    }
+
+    change.moveFocusToStartOfNode(startBlock).delete()
+    return true
+  }
+
+  // On backspace if at the start of a non-paragraph, convert it back into a paragraph node.
+  onBackspace = (event, change) => {
+    const { value } = change
+    const { selection } = value
+    if (selection.isExpanded) return
+    if (selection.start.offset !== 0) return
+
+    const { startBlock } = value
+    if (startBlock.type === 'paragraph') return
+
+    event.preventDefault()
+    change.setBlocks('paragraph')
+
+    if (startBlock.type === 'list-item') {
+      change.unwrapBlock('bulleted-list')
+    }
+
+    return true
+  }
+
+  // On return, if at the end of a node type that should not be extended, create a new paragraph below it.
+  onEnter = (event, change) => {
+    const { value } = change
+    const { selection } = value
+    const { start, end, isExpanded } = selection
+    if (isExpanded) return
+
+    const { startBlock } = value
+    if (start.offset === 0 && startBlock.text.length == 0)
+      return this.onBackspace(event, change)
+    if (end.offset !== startBlock.text.length) return
+
+    if (
+      startBlock.type !== 'heading-one' &&
+      startBlock.type !== 'heading-two' &&
+      startBlock.type !== 'heading-three' &&
+      startBlock.type !== 'heading-four' &&
+      startBlock.type !== 'heading-five' &&
+      startBlock.type !== 'heading-six' &&
+      startBlock.type !== 'block-quote'
+    ) {
+      return
+    }
+
+    event.preventDefault()
+    change.splitBlock().setBlocks('paragraph')
+    return true
+  }
+
+
   render() {
     return (
+      <div>
+
       <EditorContainer>
-        <AceEditor
-          mode="markdown"
-          theme="github"
-          onChange={this.props.onChange}
-          name="markdown_editor"
-          value={this.props.content}
-          height="100%"
-          width="50%"
-          wrapEnabled={true}
+        <Editor
+          placeholder="Write some markdown..."
+          value={this.state.value}
+          onChange={this.onChange}
+          onKeyDown={this.onKeyDown}
+          renderNode={this.renderNode}
         />
-        <RenderedMarkdownContainer>
-          <Markdown>{this.props.content}</Markdown>
-        </RenderedMarkdownContainer>
       </EditorContainer>
+      </div>
     );
   }
 }
+
