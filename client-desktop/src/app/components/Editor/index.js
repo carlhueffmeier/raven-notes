@@ -5,7 +5,7 @@ import { func, string } from 'prop-types';
 import { Editor } from 'slate-react'
 import { Value } from 'slate'
 
-import { EditorContainer } from './styles';
+import { EditorContainer, Quote, H1, H2, H3, H4, H5, H6, List } from './styles';
 import initialValue from './value.json';
 
 export default class Text extends Component {
@@ -51,23 +51,23 @@ export default class Text extends Component {
     const { attributes, children, node } = props
     switch (node.type) {
       case 'block-quote':
-        return <blockquote {...attributes}>{children}</blockquote>
+        return <Quote {...attributes}>{children}</Quote>
       case 'bulleted-list':
-        return <ul {...attributes}>{children}</ul>
+        return <List {...attributes}>{children}</List>
       case 'heading-one':
-        return <h1 {...attributes}>{children}</h1>
+        return <H1 {...attributes}>{children}</H1>
       case 'heading-two':
-        return <h2 {...attributes}>{children}</h2>
+        return <H2 {...attributes}>{children}</H2>
       case 'heading-three':
-        return <h3 {...attributes}>{children}</h3>
+        return <H3 {...attributes}>{children}</H3>
       case 'heading-four':
-        return <h4 {...attributes}>{children}</h4>
+        return <H4 {...attributes}>{children}</H4>
       case 'heading-five':
-        return <h5 {...attributes}>{children}</h5>
+        return <H5 {...attributes}>{children}</H5>
       case 'heading-six':
-        return <h6 {...attributes}>{children}</h6>
+        return <H6 {...attributes}>{children}</H6>
       case 'list-item':
-        return <li {...attributes}>{children}</li>
+        return <List {...attributes}>{children}</List>
       default:
         return null;
     }
