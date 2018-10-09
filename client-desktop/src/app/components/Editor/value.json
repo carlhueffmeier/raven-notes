@@ -18,20 +18,6 @@
       },
       {
         "object": "block",
-        "type": "block-quote",
-        "nodes": [
-          {
-            "object": "text",
-            "leaves": [
-              {
-                "text": "A wise quote."
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "object": "block",
         "type": "paragraph",
         "nodes": [
           {
@@ -47,13 +33,112 @@
       },
       {
         "object": "block",
+        "type": "heading-one",
+        "nodes": [
+          {
+            "object": "text",
+            "leaves": [
+              {
+                "text":
+                  "Heading one"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
         "type": "heading-two",
         "nodes": [
           {
             "object": "text",
             "leaves": [
               {
-                "text": "Try it out!"
+                "text": "Heading two"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "heading-three",
+        "nodes": [
+          {
+            "object": "text",
+            "leaves": [
+              {
+                "text": "Heading three"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "heading-four",
+        "nodes": [
+          {
+            "object": "text",
+            "leaves": [
+              {
+                "text": "Heading four"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "heading-five",
+        "nodes": [
+          {
+            "object": "text",
+            "leaves": [
+              {
+                "text": "Heading five"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "heading-six",
+        "nodes": [
+          {
+            "object": "text",
+            "leaves": [
+              {
+                "text": "Heading six"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "block-quote",
+        "nodes": [
+          {
+            "object": "text",
+            "leaves": [
+              {
+                "text": "This is a quote"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "object": "block",
+        "type": "list-item",
+        "nodes": [
+          {
+            "object": "text",
+            "leaves": [
+              {
+                "text": "List?"
               }
             ]
           }
