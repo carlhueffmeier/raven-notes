@@ -9,6 +9,7 @@
     "emotion-theming": "^9.2.9",
     "graphql": "^14.0.2",
     "markdown-to-jsx": "^6.7.3",
+    "moment": "^2.22.2",
     "react": "^16.5.2",
     "react-ace": "^6.2.0",
     "react-apollo": "^2.2.4",
