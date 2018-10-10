@@ -5,7 +5,7 @@ import { func, string } from 'prop-types';
 
 //========== Apollo imports
 import { GET_CURRENT_NOTE } from '../../graphql/queries';
-import { POST_NOTES_TO_SERVER } from '../../graphql/mutations';
+import { POST_NOTES_TO_CACHE } from '../../graphql/mutations';
 import { Mutation } from 'react-apollo';
 import { client } from '../../../index.js'
 //========== Slate editor
@@ -13,8 +13,6 @@ import { Editor as SlateEditor } from 'slate-react';
 import { Value } from 'slate'
 
 import { EditorContainer, Quote, H1, H2, H3, H4, H5, H6, List } from './styles';
-
-const _ = require('lodash');
 
 class Editor extends Component {
   // Change the initialValue to empty string.
@@ -25,7 +23,6 @@ class Editor extends Component {
       value: Value.fromJSON({}),
       id: ''
     }
-    this.updateNoteToServer = _.debounce(this.updateNoteToServer, 20000);
   }
 
   componentDidMount() {
@@ -223,7 +220,7 @@ class Editor extends Component {
   render() {
     const { id } = this.state;
     return (
-      <Mutation mutation={POST_NOTES_TO_SERVER}>
+      <Mutation mutation={POST_NOTES_TO_CACHE}>
         {(updateNote, {data}) => (
           <div>
           <EditorContainer>
