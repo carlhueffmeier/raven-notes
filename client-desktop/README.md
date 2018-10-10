@@ -6,11 +6,9 @@ Desktop client for Raven Notes.
 
 ### Getting started
 
-1. Change into the `client-desktop` folder
+1. Before you get started, make sure to fill create your own `.env` file using `.env.example` as a template.
 
-```sh
-> cd client-desktop
-```
+   > **Note: Any changes to the `.env` file require a restart of the development server.**
 
 2. Install dependencies
 
