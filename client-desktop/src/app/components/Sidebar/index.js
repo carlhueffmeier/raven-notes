@@ -1,51 +1,28 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   SidebarContainer,
-  InlineRow,
-  MainLogo,
-  AppTitle,
-  SearchBox,
-  Button,
-  SectionTitle,
-  Section,
-  SectionBullet
-} from "./styles";
-import { BrandIcon } from "../Icons";
-
+  H3,
+  SName,
+  USection,
+  GSection,
+  Sect,
+} from './styles';
 class Sidebar extends Component {
   render() {
     return (
       <SidebarContainer>
-        <InlineRow>
-          <MainLogo>
-            <BrandIcon />
-          </MainLogo>
-          <AppTitle>Raven</AppTitle>
-        </InlineRow>
-        <h3>
-          Hello, <span>Name!</span>
-        </h3>
-        <InlineRow>
-          <SearchBox type="search" />
-          <Button>Go!</Button>
-        </InlineRow>
-
-        <Section>
-          <SectionTitle>My Notes</SectionTitle>
-        </Section>
-        <Section>
-          <SectionTitle>My Extracts</SectionTitle>
-        </Section>
-        <Section>
-          <SectionTitle>Groups</SectionTitle>
-          <ul>
-            <SectionBullet>Ciao!</SectionBullet>
-            <SectionBullet>Ciao!</SectionBullet>
-          </ul>
-        </Section>
-        <Section>
-          <SectionTitle>Favorites</SectionTitle>
-        </Section>
+        <H3><span role='img' aria-label='monkey'>🐒</span> User Name</H3>
+        <USection>
+          <SName>PRIVATE</SName>
+          <Sect><span role='img' aria-label='monkey'>🌼</span> All Notes</Sect>
+          <Sect><span role='img' aria-label='monkey'>🌼</span> Extracts</Sect>
+        </USection>
+        <GSection>
+        <SName>WORKSPACE</SName>
+        <Sect><span role='img' aria-label='monkey'>🌞</span>Codeworks</Sect>
+        <Sect><span role='img' aria-label='monkey'>🌞</span>Sassy Designers</Sect>
+        <Sect><span role='img' aria-label='monkey'>🌞</span>ReactJS</Sect>
+        </GSection>
       </SidebarContainer>
     );
   }
