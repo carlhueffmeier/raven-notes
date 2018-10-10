@@ -1,7 +1,6 @@
 {
-  "name": "client-desktop",
-  "version": "0.1.0",
-  "private": true,
+  "name": "raven-client-desktop",
+  "version": "0.0.1",
   "dependencies": {
     "@reach/router": "^1.2.1",
     "apollo-boost": "^0.1.16",
