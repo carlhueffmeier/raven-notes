@@ -4,28 +4,38 @@ import './prism.css';
 import { func, string } from 'prop-types';
 
 import { GET_CURRENT_NOTE } from '../../graphql/queries';
-import { Query } from "react-apollo";
+import { client } from '../../../index.js'
 //========== Slate editor
 import { Editor as SlateEditor } from 'slate-react';
-import { Value } from 'slate';
 
-import { EditorContainer, User, Quote, H1, H2, H3, H4, H5, H6, List, Code } from './styles';
-import initialValue from './value.json';
+import { EditorContainer, Quote, H1, H2, H3, H4, H5, H6, List } from './styles';
 
 import Html from 'slate-html-serializer'
-const html = new Html();
+
+const rules = [
+  {
+    serialize(obj, children) {
+        if (obj.object == 'block' && obj.type == 'paragraph') {
+          return <p>{children}</p>
+        }
+      },
+    }
+]
+const html = new Html({rules});
 
 class Editor extends Component {
   // Change the initialValue to empty string.
-    state = {
+  constructor(props) {
+    super(props)
+    this.state = {
       isPreview: false,
       value: html.deserialize(''),
     }
-
-
+  }
 
   componentDidMount() {
-    // Prism.highlightAll();
+    client.watchQuery({ query: GET_CURRENT_NOTE })
+    .subscribe(({data}) => this.setState({ value: html.deserialize(data.currentNote.body)}))
   }
 
   static propTypes = {
@@ -96,8 +106,8 @@ class Editor extends Component {
     }
   }
 
-  onChange = ({ value }) => {
-    // this.setState({ value })
+  onChange = ({value}) => {
+    this.setState({ value })
   }
 
 // On key down, check for specific key shortcuts (next three functions).
@@ -195,25 +205,17 @@ class Editor extends Component {
 
   render() {
     return (
-      <Query query={GET_CURRENT_NOTE}>
-        {({ loading, error, data}) => {
-          if (loading) return 'Loading...';
-          if (error) return 'Error!';
-          return (
-            <div>
-            <EditorContainer>
-              <Editor
-                placeholder="Write some markdown..."
-                value={html.deserialize(data.currentNote.body)}
-                onChange={this.onChange}
-                onKeyDown={this.onKeyDown}
-                renderNode={this.renderNode}
-              />
-            </EditorContainer>
-            </div>
-          )
-        }}
-      </Query>
+      <div>
+      <EditorContainer>
+        <SlateEditor
+          placeholder="Write some markdown..."
+          value={this.state.value}
+          onChange={this.onChange}
+          onKeyDown={this.onKeyDown}
+          renderNode={this.renderNode}
+        />
+      </EditorContainer>
+      </div>
     );
   }
 }

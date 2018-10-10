@@ -26,7 +26,7 @@ const stateLink = withClientState({
 
 const link = ApolloLink.from([
   stateLink,
-  new HttpLink({ uri: 'https://api-euwest.graphcms.com/v1/cjmx9j5qa0uhh01glgne6ra2p/master' })
+  new HttpLink({ uri: process.env.REACT_APP_APOLLO_SERVER_URI })
 ])
 
 const defaultOptions = {
@@ -47,3 +47,5 @@ ReactDOM.render(
   </ApolloProvider>,
   document.getElementById('root')
 );
+
+export { client };
