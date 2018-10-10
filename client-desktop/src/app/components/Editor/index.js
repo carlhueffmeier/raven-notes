@@ -3,23 +3,39 @@ import Prism from 'prismjs';
 import './prism.css';
 import { func, string } from 'prop-types';
 
+import { GET_CURRENT_NOTE } from '../../graphql/queries';
+import { client } from '../../../index.js'
 //========== Slate editor
-import { Editor } from 'slate-react';
-import { Value } from 'slate';
+import { Editor as SlateEditor } from 'slate-react';
 
-import { EditorContainer, User, Quote, H1, H2, H3, H4, H5, H6, List, Code } from './styles';
-import initialValue from './value.json';
+import { EditorContainer, Quote, H1, H2, H3, H4, H5, H6, List } from './styles';
 
-//❗️❗️❗️ THIS IS A MESS!
-class Text extends Component {
+import Html from 'slate-html-serializer'
+
+const rules = [
+  {
+    serialize(obj, children) {
+        if (obj.object == 'block' && obj.type == 'paragraph') {
+          return <p>{children}</p>
+        }
+      },
+    }
+]
+const html = new Html({rules});
+
+class Editor extends Component {
   // Change the initialValue to empty string.
-  state = {
-    isPreview: false,
-    value: Value.fromJSON(initialValue),
+  constructor(props) {
+    super(props)
+    this.state = {
+      isPreview: false,
+      value: html.deserialize(''),
+    }
   }
 
   componentDidMount() {
-    // Prism.highlightAll();
+    client.watchQuery({ query: GET_CURRENT_NOTE })
+    .subscribe(({data}) => this.setState({ value: html.deserialize(data.currentNote.body)}))
   }
 
   static propTypes = {
@@ -90,7 +106,7 @@ class Text extends Component {
     }
   }
 
-  onChange = ({ value }) => {
+  onChange = ({value}) => {
     this.setState({ value })
   }
 
@@ -189,18 +205,19 @@ class Text extends Component {
 
   render() {
     return (
+      <div>
       <EditorContainer>
-        <User><span role='img' aria-label='user'>🙆🏼‍</span></User>
-        <Editor
-          placeholder='Write in here...'
+        <SlateEditor
+          placeholder="Write some markdown..."
           value={this.state.value}
           onChange={this.onChange}
           onKeyDown={this.onKeyDown}
           renderNode={this.renderNode}
         />
       </EditorContainer>
+      </div>
     );
   }
 }
 
-export default Text;
+export default Editor;
