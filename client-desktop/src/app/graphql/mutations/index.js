@@ -1,20 +1,22 @@
 import gql from 'graphql-tag';
 
 const POST_CURRENT_NOTE = gql`
-  mutation PostCurrentNote ($body: String!) {
+  mutation ($body: String!) {
     currentNote (body: $body) @client {
+      id
       body
     }
   }
 `
-const POST_NOTES_TO_SERVER = gql`
-  mutation PostNotesToServer ($body: String!) {
-    postNotes (body: $body) {
-      body
-    }
-  }`;
+const POST_NOTES_TO_CACHE = gql`
+mutation ($body: String!) {
+  updateNote (body: $body) @client {
+    id
+    body
+  }
+}`
 
 export {
   POST_CURRENT_NOTE,
-  POST_NOTES_TO_SERVER
+  POST_NOTES_TO_CACHE
 };
