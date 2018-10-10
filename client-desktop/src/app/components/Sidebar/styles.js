@@ -13,25 +13,28 @@ const H3 = styled('h3')`
   margin: 0;
 `
 
+const SName = styled('h1')`
+  font-size: .8em;
+  font-weight: 500;
+  color: #778899;
+  margin-bottom: 1vh;
+`
+
 const USection = styled('div')`
-  // background-color: #F9F9F9;
   font-weight: 600;
-  margin-top: 10px;
+  padding: 1vh;
 `
 
 const GSection = styled('div')`
   font-weight: 500;
   color: #333;
-  margin-top: 10px;
+  padding: 1vh;
+
 `
 
 const Sect = styled('p')`
   margin: 4px;
   font-size: .8em;
-`
-
-const Divider =styled('hr')`
-  border-bottom: .1px solid #8c8b8b;
 `
 
 const SearchBox = styled("input")`
@@ -67,11 +70,11 @@ const Button = styled("button")`
 
 export {
   SidebarContainer,
+  SName,
   USection,
   GSection,
   Sect,
   H3,
-  Divider,
   SearchBox,
   Button,
 };
