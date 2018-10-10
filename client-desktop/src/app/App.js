@@ -16,7 +16,9 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      groups: []
+      groups: [],
+      displayNoteList: false,
+      notes: []
     }
     // When a new file is opened, load the file content
     ipcRenderer.on('new-file', (event, fileContent) => {
@@ -26,12 +28,16 @@ class App extends Component {
     });
   }
 
+  displayNotes = notes => {
+    this.setState({displayNoteList: true, notes})
+  }
+
   render() {
     return (
       <ThemeProvider theme={lightTheme}>
         <Layout columns={3}>
-          <Layout.Sidebar><Sidebar/></Layout.Sidebar>
-          <Layout.NoteList><NoteList/></Layout.NoteList>
+          <Layout.Sidebar><Sidebar display={this.displayNotes}/></Layout.Sidebar>
+          <Layout.NoteList><NoteList notes={this.state.notes}/></Layout.NoteList>
           <Layout.Editor><Editor/></Layout.Editor>
         </Layout>
       </ThemeProvider>

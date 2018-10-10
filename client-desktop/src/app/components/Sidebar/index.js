@@ -36,15 +36,20 @@ class Sidebar extends Component {
           if (loading) return <p>Loading...</p>
           if (error) return <p>There's an error.</p>
           const groups = data.groups
-          const index = data.groups.map(i => i.name)
-          console.log('test index', index)
-          // let index = data.groups.indexOf(groups)
-          console.log(data)
-          let count = 0;
+          console.log('data from query', data)
           return (
-            groups.map(group => <Sect group={group} onClick={() => {
-              client.writeQuery({ query: GET_CURRENT_GROUP_NOTES, data:[groups[count]]})
-            }}><span role='img' aria-label='monkey'>🌞</span>{groups[count++].name}</Sect>)
+            groups.map((group, i) => {
+            return (
+              <Sect
+                key={i}
+                group={group}
+                onClick={() => console.log(group) || this.props.display(group.notes)}
+                // onClick={() => {client.writeQuery({ query: GET_CURRENT_GROUP_NOTES, data: { groups: groups[i] }})}}
+              >
+                <span role='img' aria-label='monkey'>🌞</span>{groups[i].name}
+              </Sect>
+            )
+          })
           // Map sections and return notes from indexOf section
           )
         }}
