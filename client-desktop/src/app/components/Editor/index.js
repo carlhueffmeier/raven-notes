@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Prism from 'prismjs';
+// import Prism from 'prismjs';
 import './prism.css';
 import { func, string } from 'prop-types';
 
@@ -15,7 +15,7 @@ import Html from 'slate-html-serializer'
 const rules = [
   {
     serialize(obj, children) {
-        if (obj.object == 'block' && obj.type == 'paragraph') {
+        if (obj.object === 'block' && obj.type === 'paragraph') {
           return <p>{children}</p>
         }
       },
@@ -34,8 +34,14 @@ class Editor extends Component {
   }
 
   componentDidMount() {
+    // console.log(client)
     client.watchQuery({ query: GET_CURRENT_NOTE })
-    .subscribe(({data}) => this.setState({ value: html.deserialize(data.currentNote.body)}))
+    .subscribe(({data}) => {
+      data?
+      this.setState({ value: html.deserialize(data.currentNote.body)})
+      :
+      this.setState({value: html.deserialize('')})
+    })
   }
 
   static propTypes = {
