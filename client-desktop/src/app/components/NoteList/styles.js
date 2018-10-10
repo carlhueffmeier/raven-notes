@@ -3,9 +3,8 @@ import styled from 'react-emotion';
 const NoteListContainer = styled('div')`
   display: flex;
   flex-direction: column;
-  width: 25vw;
-  height: 100%;
-  overflow: auto;
+  height: 100vh;
+  overflow-y: scroll;
 `
 
 const SingleNoteContainer = styled('div')`
