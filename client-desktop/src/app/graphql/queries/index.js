@@ -18,6 +18,7 @@ const GET_NOTES_FROM_SERVER = gql`
 const GET_CURRENT_NOTE = gql`
   {
     currentNote @client {
+      id
       body
     }
   }
