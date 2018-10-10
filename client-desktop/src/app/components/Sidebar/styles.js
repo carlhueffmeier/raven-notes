@@ -1,6 +1,7 @@
 import styled from "react-emotion";
 
 const SidebarContainer = styled('div')`
+  height: 100%;
   border-right: .1px solid #8c8b8b;
   padding: 15px;
   padding: 15px;
