@@ -10,15 +10,18 @@ const { ipcRenderer } = window.require('electron');
 
 class App extends Component {
   state = {
-    loadedFile: ''
+    loadedFile: '',
   };
 
   constructor() {
     super();
+    this.state = {
+      groups: []
+    }
     // When a new file is opened, load the file content
     ipcRenderer.on('new-file', (event, fileContent) => {
       this.setState({
-        loadedFile: fileContent
+        loadedFile: fileContent,
       });
     });
   }

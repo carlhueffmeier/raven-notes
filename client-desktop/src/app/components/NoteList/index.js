@@ -16,18 +16,17 @@ class NoteList extends Component {
     return (
       <Query query={GET_CURRENT_GROUP_NOTES}>
         {({loading, error, data}) => {
-
-          if (loading) return <p>Loading...</p>
-          if (error) return <p>There's an error.</p>
-          console.log(data)
-          const notes = data.groups[0].notes
-          console.log(data.groups[0].notes)
-
-          return (
-            <NoteListContainer>
-              {data ? notes.map(note => <SingleNote key={notes.id} note={note} /> ) : <p>'Ooops...'</p>}
-            </NoteListContainer>
-          )
+        if (loading) return <p>Loading...</p>
+        if (error) return <p>There's an error.</p>
+        console.log('NOTE LIST', data)
+        if (!Object.keys(data).length) data = {groups: [{notes: []}]}
+        const notes = data.groups[0].notes
+        console.log(data.groups[0].notes)
+        return (
+          <NoteListContainer>
+            {data ? notes.map(note => <SingleNote key={notes.id} note={note} /> ) : <p>Ooops...</p>}
+          </NoteListContainer>
+        )
         }}
       </Query>
     );
