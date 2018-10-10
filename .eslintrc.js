@@ -18,6 +18,7 @@ module.exports = {
     'no-return-assign': 'error',
     'no-throw-literal': 'error',
     'no-new-wrappers': 'error',
+    'no-unused-vars': ['error', { args: 'after-used', varsIgnorePattern: '^_' }],
     yoda: 'error',
     curly: 'warn'
   },

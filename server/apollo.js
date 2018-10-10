@@ -29,9 +29,12 @@ const resolvers = {};
 // Put the request and response objects into the context
 // As well as generate the database models based on the
 // current user
+const FAKE_USER = {
+  id: 'FAKE'
+};
 function createContext({ req, res }) {
   return {
-    db: generateModels({ user: req.user }),
+    db: generateModels({ user: req.user || FAKE_USER }),
     req,
     res
   };
@@ -44,8 +47,7 @@ function createContext({ req, res }) {
 const apolloServer = new ApolloServer({
   typeDefs: [Query, Mutation, DateTime, Group, Note, User],
   resolvers: merge(resolvers, dateTimeResolvers, groupResolvers, noteResolvers, userResolvers),
-  context: createContext,
-  mocks: true
+  context: createContext
 });
 
 module.exports = apolloServer;

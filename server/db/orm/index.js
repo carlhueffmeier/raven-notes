@@ -2,18 +2,17 @@ const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
 const nameOfThisFile = path.basename(__filename);
+const env = process.env.NODE_ENV || 'development';
+const config = require('../config/config.js')[env];
 const db = {};
 
-const sequelizeOptions = {
-  dialectOptions: {
-    charset: 'utf8mb4'
-  },
-  define: {
-    charset: 'utf8mb4',
-    collation: 'utf8mb4_col'
-  }
-};
-const sequelize = new Sequelize(process.env.MYSQL_URI, sequelizeOptions);
+let sequelize;
+if (config.use_env_variable) {
+  console.log(config);
+  sequelize = new Sequelize(process.env[config.use_env_variable], config);
+} else {
+  sequelize = new Sequelize(config.database, config.username, config.password, config);
+}
 
 fs.readdirSync(__dirname)
   .filter(filename => filename !== nameOfThisFile && /\.js$/.test(filename))
@@ -27,5 +26,10 @@ Object.keys(db).forEach(modelName => {
     db[modelName].associate(db);
   }
 });
+
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
+
+console.log(Object.keys(db));
 
 module.exports = db;

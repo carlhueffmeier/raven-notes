@@ -17,6 +17,7 @@
     "graphql": "^14.0.2",
     "jsonwebtoken": "^8.3.0",
     "lodash.merge": "^4.6.1",
+    "mysql2": "^1.6.1",
     "nodemailer": "^4.6.8",
     "sequelize": "^4.39.0"
   },

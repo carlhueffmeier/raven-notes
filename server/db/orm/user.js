@@ -1,12 +1,19 @@
 module.exports = (sequelize, DataTypes) => {
-  var User = sequelize.define('User', {
+  var User = sequelize.define('user', {
     email: DataTypes.STRING,
     password: DataTypes.STRING,
-    name: DataTypes.STRING
+    name: DataTypes.STRING,
+    resetToken: DataTypes.STRING,
+    resetTokenExpiry: DataTypes.DATE
   });
 
   User.associate = function(models) {
-    models.User.belongsToMany(models.Group, { through: 'UserGroup' });
+    // Associate members
+    models.user.belongsToMany(models.group, { as: 'memberOf', through: 'group_members' });
+    models.group.belongsToMany(models.user, { as: 'members', through: 'group_members' });
+    // Associate administrators
+    models.user.belongsToMany(models.group, { as: 'adminOf', through: 'group_admins' });
+    models.group.belongsToMany(models.user, { as: 'admins', through: 'group_admins' });
   };
 
   return User;

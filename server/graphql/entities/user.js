@@ -53,13 +53,12 @@ const me = (_, __, { req }) => {
   return req.user;
 };
 
-const signup = async (_, { data: { email, password, name } }, { db, res }) => {
+const signup = async (_, { data: { email, name, password } }, { db, res }) => {
   // Create new user
   const newUser = await db.user.create({
-    email: email,
-    password: await bcrypt.hash(password, 10),
-    name: name,
-    permissions: ['USER']
+    email,
+    name,
+    password: await bcrypt.hash(password, 10)
   });
   // Authenticate right away
   storeUserInCookie(newUser, res);
