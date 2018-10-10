@@ -3,7 +3,7 @@ import {array} from 'prop-types';
 import SingleNote from './single';
 import { NoteListContainer } from './styles';
 import { Query } from "react-apollo";
-import { GET_NOTES_FROM_SERVER } from '../../graphql/queries';
+import { GET_NOTES_FROM_SERVER, GET_CURRENT_GROUP_NOTES } from '../../graphql/queries';
 
 
 class NoteList extends Component {
@@ -14,14 +14,18 @@ class NoteList extends Component {
   // If no note is open on the right side, show the list width 100%, if not show the list 25vw is now.
   render() {
     return (
-      <Query query={GET_NOTES_FROM_SERVER}>
+      <Query query={GET_CURRENT_GROUP_NOTES}>
         {({loading, error, data}) => {
-          const notes = data.notes
+
           if (loading) return <p>Loading...</p>
-          if (error) return <p>There's an error</p>
+          if (error) return <p>There's an error.</p>
+          console.log(data)
+          const notes = data.groups[0].notes
+          console.log(data.groups[0].notes)
+
           return (
             <NoteListContainer>
-              {notes.map(note => <SingleNote key={note.id} note={note} />)}
+              {data ? notes.map(note => <SingleNote key={notes.id} note={note} /> ) : <p>'Ooops...'</p>}
             </NoteListContainer>
           )
         }}
