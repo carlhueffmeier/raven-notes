@@ -16,12 +16,12 @@ class NoteList extends Component {
     return (
       <Query query={GET_NOTES_FROM_SERVER}>
         {({loading, error, data}) => {
-          const notes = data.notes
+          // const notes = data.notes
           if (loading) return <p>Loading...</p>
           if (error) return <p>There's an error</p>
           return (
             <NoteListContainer>
-              {notes.map(note => <SingleNote key={note.id} note={note} />)}
+              {this.props.notes.map(note => <SingleNote key={note.id} note={note} />)}
             </NoteListContainer>
           )
         }}
