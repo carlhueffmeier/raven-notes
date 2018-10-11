@@ -7,6 +7,9 @@ import { GET_NOTES_FROM_SERVER, GET_GROUP_NOTES, GET_USER_NOTES } from '../../gr
 
 
 class Sidebar extends Component {
+
+  state = {}
+
   render() {
     return (
       <SidebarContainer>
@@ -20,7 +23,11 @@ class Sidebar extends Component {
               if (loading) return <p>Loading</p>
               if (error) return <p>There's an error...</p>
               const notes = data.userses[0].authoredNotes
-              console.log('users notes', data.userses)
+              // This shows the second column on render.
+              if (!this.state.calledOnce) {
+                this.props.display(notes)
+                this.setState({calledOnce: true})
+              }
               return(
                 <Sect
                   onClick={() => this.props.display(notes)}>

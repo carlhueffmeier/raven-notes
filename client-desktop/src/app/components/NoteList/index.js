@@ -10,7 +10,7 @@ class NoteList extends Component {
   }
 
   render() {
-    console.log(this.props.notes)
+    console.log('note list notes', this.props.notes)
     return (
       <NoteListContainer>
         {this.props.notes.map(note => <SingleNote key={note.id} note={note} /> ) || <p>Ooops...</p>}
