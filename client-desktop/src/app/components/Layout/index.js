@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import posed, { PoseGroup } from "react-pose";
+import posed from 'react-pose';
 import styled from 'react-emotion';
 
 const Container = posed.div({
@@ -27,17 +27,21 @@ const SidebarPane = posed.div({
   },
   twoColumnLayout: {
     width: "150px",
-    x: 0,   
+    x: 0,
     transition: {
       default: {
         duration: 150,
         ease:'linear'
       }
-    } 
+    }
   },
   threeColumnLayout: {
     width: "150px",
+<<<<<<< HEAD
     x: 0,  
+=======
+    x: 0,
+>>>>>>> f510002ad9485f2a7d1c525cd0bd831860c957d0
     transition: {
       default: {
         duration: 150,
@@ -46,8 +50,6 @@ const SidebarPane = posed.div({
     }
   }
 });
-
-
 
 const NoteListPane = posed.div({
   oneColumnLayout: {
@@ -168,49 +170,5 @@ class Layout extends Component {
       );
     }
   }
-  
+
   export default Layout;
-  
-  /* <Container pose={pose}>
-  <SidebarPane pose={pose} key={1}>
-  {this.renderTypeOf(Layout.Sidebar)}
-  </SidebarPane>
-  <StyledNoteListPane pose={pose} key={2}>
-  {this.renderTypeOf(Layout.NoteList)}
-  </StyledNoteListPane>
-  <EditorPane pose={pose} key={3}>
-  {this.renderTypeOf(Layout.Editor)}
-  </EditorPane>
-  </Container> */
-  /* <Container pose={pose}>
-  {pose === 'twoColumnLayout' && (
-    <React.Fragment>
-
-     <SidebarPane key={1}>
-     {this.renderTypeOf(Layout.Sidebar)}
-   </SidebarPane> 
-
-   <StyledNoteListPane key={2}>
-      {this.renderTypeOf(Layout.NoteList)}
-    </StyledNoteListPane>
-    </React.Fragment>
-  ) }
-  {pose === 'oneColumnLayout' && (
-    <EditorPane key={3}>
-    {this.renderTypeOf(Layout.Editor)}
-  </EditorPane>
-  )}
-  {pose === 'threeColumnLayout' && (
-    <React.Fragment>
-    <SidebarPane key={1}>
-    {this.renderTypeOf(Layout.Sidebar)}
-  </SidebarPane> 
-  <StyledNoteListPane key={2}>
-     {this.renderTypeOf(Layout.NoteList)}
-   </StyledNoteListPane>
-   <EditorPane key={3}>
-    {this.renderTypeOf(Layout.Editor)}
-  </EditorPane>
-  </React.Fragment>
-  )}
-  </Container> */
