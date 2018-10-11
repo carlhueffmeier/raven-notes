@@ -1,33 +1,21 @@
 import React, { Component } from 'react';
-import {array} from 'prop-types';
+
 import SingleNote from './single';
 import SearchBar from '../SearchBar/index';
+
 import { NoteListContainer } from './styles';
-import { Query } from "react-apollo";
-import { GET_NOTES_FROM_SERVER } from '../../graphql/queries';
 
 
 class NoteList extends Component {
-  static propTypes = {
-    notes: array
-  }
 
-  // If no note is open on the right side, show the list width 100%, if not show the list 25vw is now.
   render() {
     return (
-      <Query query={GET_NOTES_FROM_SERVER}>
-        {({loading, error, data}) => {
-          // const notes = data.notes
-          if (loading) return <p>Loading...</p>
-          if (error) return <p>There's an error</p>
-          return (
             <NoteListContainer>
               <SearchBar />
-              {this.props.notes.map(note => <SingleNote key={note.id} note={note} />)}
+              {/* Change with new props ↪️ */}
+              {/* {this.props.notes.map(note => <SingleNote key={note.id} note={note} />)} */}
+              <SingleNote />
             </NoteListContainer>
-          )
-        }}
-      </Query>
     );
   }
 }
