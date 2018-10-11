@@ -9,7 +9,7 @@ const Container = styled('div')`
 
 
 const Pane = posed.div({
-  
+
 })
 
 const Pane = styled('div')`
@@ -17,4 +17,7 @@ const Pane = styled('div')`
   display: flex;
 `;
 
-export { Container, Pane };
+export {
+  Container,
+  Pane,
+};

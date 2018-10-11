@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { lightTheme } from './themes';
 import { ThemeProvider } from 'emotion-theming';
 import './styles';
+import { EditorButton } from './styles';
 import Layout from './components/Layout';
 import Sidebar from './components/Sidebar';
 import NoteList from './components/NoteList';
@@ -36,8 +37,8 @@ class App extends Component {
     return (
       <ThemeProvider theme={lightTheme}>
         <React.Fragment>
-        
-          <button
+
+          <EditorButton
             style={{
               position: "absolute",
               top: 0,
@@ -45,8 +46,8 @@ class App extends Component {
               height: "50px"
             }}
             onClick={() => this.setState({ actualColumns: 1 })}>
-            columns 1
-          </button>
+            Editor
+          </EditorButton>
           <button
             style={{
               position: "absolute",
@@ -55,7 +56,7 @@ class App extends Component {
               height: "50px"
             }}
             onClick={() => this.setState({ actualColumns: 2 })}>
-            columns 2
+            Notes && Menu
           </button>
           <button
             style={{
@@ -65,7 +66,7 @@ class App extends Component {
               height: "50px"
             }}
             onClick={() => this.setState({ actualColumns: 3 })}>
-            columns 3
+            All
           </button>
           <Layout columns={this.state.actualColumns}>
           <Layout.Sidebar><Sidebar display={this.displayNotes}/></Layout.Sidebar>

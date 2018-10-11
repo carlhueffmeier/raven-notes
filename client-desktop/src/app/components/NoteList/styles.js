@@ -8,7 +8,6 @@ const NoteListContainer = styled('div')`
 `
 
 const SingleNoteContainer = styled('div')`
-  background-color: lavender;
   padding: 10px;
 `
 

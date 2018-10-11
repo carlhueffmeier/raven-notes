@@ -1,4 +1,5 @@
 import { injectGlobal } from 'emotion';
+import styled from 'react-emotion';
 
 injectGlobal`
   html {
@@ -19,3 +20,17 @@ injectGlobal`
     box-sizing: border-box;
   }
 `;
+
+const EditorButton = styled('button')`
+  position: absolute;
+  top: 0;
+  left: 90vw;
+  height: 50px;
+  background-color: lavender;
+`
+
+export { EditorButton }
+
+
+
+
