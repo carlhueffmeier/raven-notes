@@ -7,6 +7,7 @@ const moment = require('moment');
 class SingleNote extends Component {
 
   render() {
+    const note = this.props.note
     return (
       <SingleNoteContainer>
         <Divider />
@@ -17,9 +18,16 @@ class SingleNote extends Component {
           </Day>
 
           <Note>
-            <Title>Title</Title>
-            <Body>{this.props.note.body}</Body>
-            <Author><span>Written by</span> {this.props.note.author.name}</Author>
+            <Title>
+              {
+                this.props.note.body.length > 10
+                ?
+                (this.props.note.body.slice(0,5) + '...')
+                : this.props.note.body
+              }
+            </Title>
+            <Body>{note.body}</Body>
+            <Author><span>Written by</span> {note.author.name}</Author>
           </Note>
         </SubContainer>
       </SingleNoteContainer>
