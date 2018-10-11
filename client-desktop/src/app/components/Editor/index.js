@@ -3,7 +3,10 @@ import React, { Component } from 'react';
 import './prism.css';
 import { func, string } from 'prop-types';
 
+//========== Apollo imports
 import { GET_CURRENT_NOTE } from '../../graphql/queries';
+import { POST_CURRENT_NOTE } from '../../graphql/mutations';
+import { Mutation } from 'react-apollo';
 import { client } from '../../../index.js'
 //========== Slate editor
 import { Editor as SlateEditor } from 'slate-react';
@@ -211,17 +214,21 @@ class Editor extends Component {
 
   render() {
     return (
-      <div>
-      <EditorContainer>
-        <SlateEditor
-          placeholder="Write some markdown..."
-          value={this.state.value}
-          onChange={this.onChange}
-          onKeyDown={this.onKeyDown}
-          renderNode={this.renderNode}
-        />
-      </EditorContainer>
-      </div>
+      <Mutation mutation={POST_CURRENT_NOTE} >
+        {(postNote, {data}) => (
+          <div>
+          <EditorContainer>
+            <SlateEditor
+              placeholder="Write some markdown..."
+              value={this.state.value}
+              onChange={this.onChange}
+              onKeyDown={this.onKeyDown}
+              renderNode={this.renderNode}
+            />
+          </EditorContainer>
+          </div>
+        )}
+      </Mutation>
     );
   }
 }
