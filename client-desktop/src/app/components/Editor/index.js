@@ -24,7 +24,7 @@ class Editor extends Component {
   // };
 
   componentDidMount() {
-    
+
   }
 
 // Get the block type for a series of auto-markdown shortcut `chars`.
@@ -196,10 +196,9 @@ class Editor extends Component {
           onKeyDown={this.onKeyDown}
           renderNode={this.renderNode}
           style={{
-            backgroundColor: 'lavender',
             width: '100%',
             height: '100%',
-            cursor: 'text'
+            border:'.4px solid rgba(119, 136, 153, 0.1)'
           }}
         />
       </EditorContainer>

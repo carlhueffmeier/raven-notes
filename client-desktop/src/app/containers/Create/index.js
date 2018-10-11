@@ -18,7 +18,9 @@ class Create extends Component {
 
   render() {
     return (
-      <div onClick={this.fetchAndCreate}>🙊</div>
+      <div onClick={this.fetchAndCreate}>
+        <span role='img' aria-label='monkey'>🆕</span>
+      </div>
     );
   }
 }
