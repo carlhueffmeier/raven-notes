@@ -37,7 +37,7 @@ const SidebarPane = posed.div({
   },
   threeColumnLayout: {
     width: "150px",
-    x: 0,    
+    x: 0,  
     transition: {
       default: {
         duration: 150,
@@ -61,7 +61,7 @@ const NoteListPane = posed.div({
     }
   },
   twoColumnLayout: {
-    width: 88 + "vw",
+    width: 100 + "vw",
     x: 0,
     transition: {
       default: {
@@ -86,6 +86,7 @@ const NoteListPane = posed.div({
 const EditorPane = posed.div({
   oneColumnLayout: {
     width: 100 + "vw",
+    overflow: 'hidden',
     transition: {
       default: {
         duration: 150,
@@ -95,6 +96,7 @@ const EditorPane = posed.div({
   },
   twoColumnLayout: {
     width: 0,
+    overflow: 'hidden',
     transition: {
       default: {
         duration: 150,
@@ -104,13 +106,14 @@ const EditorPane = posed.div({
   },
   threeColumnLayout: {
     width: 68 + "vw",
+    overflow: 'hidden',
     transition: {
       default: {
         duration: 150,
         ease:'linear'
       }
     }
-  }
+  },
 });
 
 const StyledSidebarPane = styled(SidebarPane)`
@@ -143,9 +146,11 @@ class Layout extends Component {
     let pose = "oneColumnLayout";
     if (columns === 2) {
       pose = "twoColumnLayout";
+      console.log('pose : 2', pose)
     }
     if (columns === 3) {
       pose = "threeColumnLayout";
+      console.log('pose: 3', pose)
     }
     return (
       <Container pose={pose}>
@@ -156,6 +161,7 @@ class Layout extends Component {
   {this.renderTypeOf(Layout.NoteList)}
   </StyledNoteListPane>
   <StyledEditorPane key={3}>
+  {console.log(Layout.Editor)}
   {this.renderTypeOf(Layout.Editor)}
   </StyledEditorPane>
   </Container>
