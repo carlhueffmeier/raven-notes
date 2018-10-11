@@ -4,7 +4,7 @@ import { ThemeProvider } from 'emotion-theming';
 
 import './styles';
 
-import { P1, P2, P3 } from './styles';
+import { P1, P2, P3, Buttons } from './styles';
 
 import Layout from './components/Layout';
 import Sidebar from './components/Sidebar';
@@ -38,30 +38,19 @@ class App extends Component {
       <ThemeProvider theme={lightTheme}>
         <React.Fragment>
 
-          <P1
-            onClick={() => this.setState({ actualColumns: 1 })}>
-            Editor
+        <Buttons>
+          <P1 onClick={() => this.setState({ actualColumns: 1 })}>
+            01
           </P1>
-          <P2
-            style={{
-              position: "absolute",
-              top: 50,
-              left: "90vw",
-              height: "50px"
-            }}
-            onClick={() => this.setState({ actualColumns: 2 })}>
-            Notes && Menu
+          <P2 onClick={() => this.setState({ actualColumns: 2 })}>
+            02
           </P2>
-          <P3
-            style={{
-              position: "absolute",
-              top: 100,
-              left: "90vw",
-              height: "50px"
-            }}
-            onClick={() => this.setState({ actualColumns: 3 })}>
-            All
+          <P3 onClick={() => this.setState({ actualColumns: 3 })}>
+            03
           </P3>
+        </Buttons>
+
+
           <Layout columns={this.state.actualColumns}>
           <Layout.Sidebar><Sidebar /></Layout.Sidebar>
           <Layout.NoteList><NoteListStatefulContainer /></Layout.NoteList>

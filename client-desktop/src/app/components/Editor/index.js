@@ -18,10 +18,14 @@ class Editor extends Component {
     }
   }
 
-  static propTypes = {
-    onChange: func,
-    content: string
-  };
+  // static propTypes = {
+  //   onChange: func,
+  //   content: string
+  // };
+
+  componentDidMount() {
+    
+  }
 
 // Get the block type for a series of auto-markdown shortcut `chars`.
   getType = chars => {
