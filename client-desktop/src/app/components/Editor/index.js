@@ -224,6 +224,12 @@ class Editor extends Component {
               onChange={this.onChange}
               onKeyDown={this.onKeyDown}
               renderNode={this.renderNode}
+              style={{
+                backgroundColor: 'lavender',
+                width: '100%',
+                height: '100%',
+                cursor: 'text'
+              }}
             />
           </EditorContainer>
           </div>
