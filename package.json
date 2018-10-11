@@ -1,5 +1,6 @@
 {
   "name": "raven-notes",
+  "productName": "Raven Notes Test1"
   "version": "0.0.1",
   "description": "Collaborative note taking app",
   "scripts": {
@@ -41,5 +42,8 @@
     "jest": "^23.6.0",
     "lint-staged": "^7.3.0",
     "prettier": "^1.14.3"
+  },
+  "dependencies": {
+    "electron-packager": "^12.2.0"
   }
 }
