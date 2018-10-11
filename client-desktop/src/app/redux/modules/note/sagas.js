@@ -7,10 +7,8 @@ import * as actions from './actions';
 function* fetchNotes() {
   try {
     const response = yield call([graphqlClient, 'request'], ALL_NOTES_QUERY);
-    console.log('api response', response)
     yield put(actions.fetchNotesSuccess(response.allNotes));
   } catch (error) {
-    console.log('api errorrrr')
     yield put(actions.fetchNotesError(error));
   }
 }
