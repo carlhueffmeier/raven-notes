@@ -1,6 +1,6 @@
 {
   "name": "raven-client-desktop",
-  "productName": "Raven Notes Test2",
+  "productName": "Raven Notes",
   "version": "0.0.1",
   "dependencies": {
     "@reach/router": "^1.2.1",

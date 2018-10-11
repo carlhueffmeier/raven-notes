@@ -1,6 +1,5 @@
 {
   "name": "raven-notes",
-  "productName": "Raven Notes Test1"
   "version": "0.0.1",
   "description": "Collaborative note taking app",
   "scripts": {

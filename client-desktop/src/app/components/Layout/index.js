@@ -144,11 +144,9 @@ class Layout extends Component {
     let pose = "oneColumnLayout";
     if (columns === 2) {
       pose = "twoColumnLayout";
-      console.log('pose : 2', pose)
     }
     if (columns === 3) {
       pose = "threeColumnLayout";
-      console.log('pose: 3', pose)
     }
     return (
       <Container pose={pose}>
@@ -159,7 +157,6 @@ class Layout extends Component {
   {this.renderTypeOf(Layout.NoteList)}
   </StyledNoteListPane>
   <StyledEditorPane key={3}>
-  {console.log(Layout.Editor)}
   {this.renderTypeOf(Layout.Editor)}
   </StyledEditorPane>
   </Container>
