@@ -23,6 +23,7 @@
     "react-dom": "^16.5.2",
     "react-emotion": "^9.2.12",
     "react-highlight.js": "^1.0.7",
+    "react-pose": "^3.3.6",
     "react-scripts": "2.0.4",
     "slate": "^0.41.2",
     "slate-html-serializer": "^0.7.7",
