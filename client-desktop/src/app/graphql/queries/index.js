@@ -57,9 +57,33 @@ const GET_CURRENT_GROUP_NOTES = gql`
   }
 `
 
+const GET_USER_NOTES = gql`
+{
+  userses {
+    createdAt
+    updatedAt
+    status
+    id
+    firstName
+    lastName
+    userName
+    authoredNotes {
+      createdAt
+      updatedAt
+      status
+      id
+      title
+      body
+      tags
+    }
+  }
+}
+`
+
 export {
   GET_NOTES_FROM_SERVER,
   GET_CURRENT_NOTE,
   GET_GROUP_NOTES,
-  GET_CURRENT_GROUP_NOTES
+  GET_CURRENT_GROUP_NOTES,
+  GET_USER_NOTES
 };
