@@ -1,0 +1,26 @@
+{
+  "name": "raven-server",
+  "version": "0.0.1",
+  "description": "Backend of raven-notes",
+  "main": "start.js",
+  "scripts": {
+    "start": "nodemon start.js"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server-express": "^2.1.0",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.4",
+    "dotenv": "^6.1.0",
+    "express": "^4.16.3",
+    "graphql": "^14.0.2",
+    "jsonwebtoken": "^8.3.0",
+    "lodash.merge": "^4.6.1",
+    "nodemailer": "^4.6.8",
+    "sequelize": "^4.39.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  }
+}
