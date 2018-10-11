@@ -68,6 +68,9 @@ const GET_USER_NOTES = gql`
     lastName
     userName
     authoredNotes {
+      author {
+        userName
+      }
       createdAt
       updatedAt
       status
