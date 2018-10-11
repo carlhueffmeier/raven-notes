@@ -14,6 +14,7 @@ class SingleNote extends Component {
 
   render() {
     const {note} = this.props;
+    console.log('kajsdbjka', note)
     return (
       <Mutation mutation={POST_CURRENT_NOTE} variables={{body: note}}>
         {(currentNote, {data}) => (
@@ -27,7 +28,8 @@ class SingleNote extends Component {
               <Note>
                 <Title>{note.title}</Title>
                 <Body>{note.body}</Body>
-                <Author><span>Written by</span> {note.author && note.author.userName}</Author>
+                <Author><span>Written by</span> {note.author && note.author.userName }</Author>
+
               </Note>
             </SubContainer>
           </SingleNoteContainer>
