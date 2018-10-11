@@ -21,7 +21,7 @@ injectGlobal`
   }
 `;
 
-const EditorButton = styled('button')`
+const P1 = styled('button')`
   position: absolute;
   top: 0;
   left: 90vw;
@@ -29,7 +29,23 @@ const EditorButton = styled('button')`
   background-color: lavender;
 `
 
-export { EditorButton }
+const P2 = styled('button')`
+  position: absolute;
+  top: 50;
+  left: 90vw;
+  height: 50px;
+  background-color: pink;
+`
+const P3 = styled('button')`
+  position: absolute;
+  top: 100;
+  left: 90vw;
+  height: 50px;
+  background-color: peachpuff;
+`
+
+
+export { P1, P2, P3 }
 
 
 

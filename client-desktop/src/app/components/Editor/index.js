@@ -3,48 +3,19 @@ import React, { Component } from 'react';
 import './prism.css';
 import { func, string } from 'prop-types';
 
-//========== Apollo imports
-import { GET_CURRENT_NOTE } from '../../graphql/queries';
-import { POST_CURRENT_NOTE } from '../../graphql/mutations';
-import { Mutation } from 'react-apollo';
-import { client } from '../../../index.js'
 //========== Slate editor
 import { Editor as SlateEditor } from 'slate-react';
+import { Value } from 'slate';
 
 import { EditorContainer, Quote, H1, H2, H3, H4, H5, H6, List } from './styles';
-
-import Html from 'slate-html-serializer'
-
-const rules = [
-  {
-    serialize(obj, children) {
-        if (obj.object === 'block' && obj.type === 'paragraph') {
-          return <p>{children}</p>
-        }
-      },
-    }
-]
-const html = new Html({rules});
+import initialValue from './value.json';
 
 class Editor extends Component {
-  // Change the initialValue to empty string.
   constructor(props) {
     super(props)
     this.state = {
-      isPreview: false,
-      value: html.deserialize(''),
+      value: Value.fromJSON(initialValue),
     }
-  }
-
-  componentDidMount() {
-    // console.log(client)
-    client.watchQuery({ query: GET_CURRENT_NOTE })
-    .subscribe(({data}) => {
-      data?
-      this.setState({ value: html.deserialize(data.currentNote.body)})
-      :
-      this.setState({value: html.deserialize('')})
-    })
   }
 
   static propTypes = {
@@ -134,7 +105,6 @@ class Editor extends Component {
   }
 
 // ========== HELPER FUNCTIONS (?) ========== //
-
 // If it was after an auto-markdown shortcut, convert the current node into the shortcut's
 // corresponding type.
   onSpace = (event, change) => {
@@ -214,27 +184,21 @@ class Editor extends Component {
 
   render() {
     return (
-      <Mutation mutation={POST_CURRENT_NOTE} >
-        {(postNote, {data}) => (
-          <div>
-          <EditorContainer>
-            <SlateEditor
-              placeholder="Write some markdown..."
-              value={this.state.value}
-              onChange={this.onChange}
-              onKeyDown={this.onKeyDown}
-              renderNode={this.renderNode}
-              style={{
-                backgroundColor: 'lavender',
-                width: '100%',
-                height: '100%',
-                cursor: 'text'
-              }}
-            />
-          </EditorContainer>
-          </div>
-        )}
-      </Mutation>
+      <EditorContainer>
+        <SlateEditor
+          placeholder='Write here 👓'
+          value={this.state.value}
+          onChange={this.onChange}
+          onKeyDown={this.onKeyDown}
+          renderNode={this.renderNode}
+          style={{
+            backgroundColor: 'lavender',
+            width: '100%',
+            height: '100%',
+            cursor: 'text'
+          }}
+        />
+      </EditorContainer>
     );
   }
 }
