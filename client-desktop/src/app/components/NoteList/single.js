@@ -12,14 +12,14 @@ class SingleNote extends Component {
         <Divider />
         <SubContainer>
           <Day>
-            {/* {moment(note.createdAt).format("MMM Do YY")} */}
-            8th Oct
+            {moment(this.props.note.createdAt).format("MMM Do YY")}
+
           </Day>
 
           <Note>
             <Title>Title</Title>
-            <Body>Body</Body>
-            <Author><span>Written by</span> Someone.</Author>
+            <Body>{this.props.note.body}</Body>
+            <Author><span>Written by</span> {this.props.note.author.name}</Author>
           </Note>
         </SubContainer>
       </SingleNoteContainer>

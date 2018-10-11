@@ -186,7 +186,7 @@ class Editor extends Component {
     return (
       <EditorContainer>
         <SlateEditor
-          placeholder='Write here 👓'
+          placeholder='Write here'
           value={this.state.value}
           onChange={this.onChange}
           onKeyDown={this.onKeyDown}
