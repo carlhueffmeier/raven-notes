@@ -11,17 +11,25 @@ const { ipcRenderer } = window.require('electron');
 class App extends Component {
   state = {
     loadedFile: '',
-    actualColumns: 3
   };
 
   constructor() {
     super();
+    this.state = {
+      groups: [],
+      displayNoteList: false,
+      notes: []
+    }
     // When a new file is opened, load the file content
     ipcRenderer.on('new-file', (event, fileContent) => {
       this.setState({
-        loadedFile: fileContent
+        loadedFile: fileContent,
       });
     });
+  }
+
+  displayNotes = notes => {
+    this.setState({displayNoteList: true, notes})
   }
 
   render() {
@@ -60,8 +68,8 @@ class App extends Component {
             columns 3
           </button>
           <Layout columns={this.state.actualColumns}>
-          <Layout.Sidebar><Sidebar/></Layout.Sidebar>
-          <Layout.NoteList><NoteList/></Layout.NoteList>
+          <Layout.Sidebar><Sidebar display={this.displayNotes}/></Layout.Sidebar>
+          <Layout.NoteList><NoteList notes={this.state.notes}/></Layout.NoteList>
           <Layout.Editor><Editor/></Layout.Editor>
         </Layout>
         </React.Fragment>

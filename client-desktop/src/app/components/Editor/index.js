@@ -18,7 +18,7 @@ import Html from 'slate-html-serializer'
 const rules = [
   {
     serialize(obj, children) {
-        if (obj.object == 'block' && obj.type == 'paragraph') {
+        if (obj.object === 'block' && obj.type === 'paragraph') {
           return <p>{children}</p>
         }
       },
@@ -37,12 +37,13 @@ class Editor extends Component {
   }
 
   componentDidMount() {
+    // console.log(client)
     client.watchQuery({ query: GET_CURRENT_NOTE })
     .subscribe(({data}) => {
-      data ?
+      data?
       this.setState({ value: html.deserialize(data.currentNote.body)})
       :
-      this.setState({ value: html.deserialize('') })
+      this.setState({value: html.deserialize('')})
     })
   }
 
