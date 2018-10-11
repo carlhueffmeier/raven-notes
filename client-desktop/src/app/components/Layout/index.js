@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import posed from 'react-pose';
+import posed, { PoseGroup } from "react-pose";
 import styled from 'react-emotion';
 
 const Container = posed.div({
@@ -33,15 +33,11 @@ const SidebarPane = posed.div({
         duration: 150,
         ease:'linear'
       }
-    }
+    } 
   },
   threeColumnLayout: {
     width: "150px",
-<<<<<<< HEAD
-    x: 0,  
-=======
     x: 0,
->>>>>>> f510002ad9485f2a7d1c525cd0bd831860c957d0
     transition: {
       default: {
         duration: 150,
@@ -50,6 +46,8 @@ const SidebarPane = posed.div({
     }
   }
 });
+
+
 
 const NoteListPane = posed.div({
   oneColumnLayout: {
@@ -170,5 +168,5 @@ class Layout extends Component {
       );
     }
   }
-
+  
   export default Layout;

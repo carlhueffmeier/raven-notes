@@ -4,7 +4,7 @@ const EditorContainer = styled('div')`
   display: flex;
   width: 100%;
   height: 100%;
-  padding: 3vw;
+  padding: 8vw;
 `;
 const User = styled('div')`
   flex-direction: column;
@@ -45,6 +45,8 @@ const Code = styled('code')`
   background: lavender;
 `
 
+
+
 export {
   EditorContainer,
   User,
@@ -56,5 +58,5 @@ export {
   H5,
   H6,
   List,
-  Code,
+  Code
 };
