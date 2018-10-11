@@ -1,13 +1,7 @@
-const FETCH_NOTES = createTypeWithStatus('app/note/fetch');
-const CREATE_NOTE = createTypeWithStatus('app/note/create');
-const UPDATE_NOTE = createTypeWithStatus('app/note/update');
+import { createTypeWithStatus } from '../../../lib/reduxUtils';
 
-function createTypeWithStatus(baseType) {
-  return {
-    START: baseType + '/start',
-    SUCCESS: baseType + '/success',
-    ERROR: baseType + '/error'
-  };
-}
+const FETCH_NOTES = createTypeWithStatus('app/entities/note/fetch');
+const CREATE_NOTE = createTypeWithStatus('app/entities/note/create');
+const UPDATE_NOTE = createTypeWithStatus('app/entities/note/update');
 
 export { FETCH_NOTES, CREATE_NOTE, UPDATE_NOTE };
