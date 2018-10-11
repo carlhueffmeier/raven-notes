@@ -47,8 +47,6 @@ const SidebarPane = posed.div({
   }
 });
 
-
-
 const NoteListPane = posed.div({
   oneColumnLayout: {
     width: 0,
@@ -80,8 +78,6 @@ const NoteListPane = posed.div({
     }
   }
 });
-
-
 
 const EditorPane = posed.div({
   oneColumnLayout: {
@@ -115,6 +111,8 @@ const EditorPane = posed.div({
     }
   },
 });
+
+//Fallbacks in case posed transitions break
 
 const StyledSidebarPane = styled(SidebarPane)`
   transition: all 0.3s linear
