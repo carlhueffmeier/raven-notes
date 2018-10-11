@@ -11,7 +11,6 @@ class Sidebar extends Component {
     return (
       <SidebarContainer>
         <H3><span role='img' aria-label='monkey'>🐒</span>Nikko89</H3>
-        <H3><span role='img' aria-label='monkey'>🐒</span>Nikko89</H3>
 
         {/* Getting the notes and extracts from user. */}
         <USection>
