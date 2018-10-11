@@ -9,6 +9,7 @@ const NoteListContainer = styled('div')`
 
 const SingleNoteContainer = styled('div')`
   padding: 10px;
+  margin-bottom: -12px;
 `
 
 const SubContainer = styled('div')`

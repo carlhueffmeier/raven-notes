@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {array} from 'prop-types';
 import SingleNote from './single';
+import SearchBar from '../SearchBar/index';
 import { NoteListContainer } from './styles';
 import { Query } from "react-apollo";
 import { GET_NOTES_FROM_SERVER } from '../../graphql/queries';
@@ -21,6 +22,7 @@ class NoteList extends Component {
           if (error) return <p>There's an error</p>
           return (
             <NoteListContainer>
+              <SearchBar />
               {this.props.notes.map(note => <SingleNote key={note.id} note={note} />)}
             </NoteListContainer>
           )
