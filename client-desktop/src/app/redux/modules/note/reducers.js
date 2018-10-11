@@ -3,6 +3,7 @@ import { FETCH_NOTES, CREATE_NOTE, UPDATE_NOTE } from './types';
 import { toMapIndexedBy, unique, prop } from '../../../lib/utils';
 
 function byId(state = {}, action) {
+  console.log(action.type);
   switch (action.type) {
     case CREATE_NOTE.SUCCESS:
     case UPDATE_NOTE.SUCCESS: {

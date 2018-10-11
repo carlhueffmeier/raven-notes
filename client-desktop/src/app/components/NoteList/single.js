@@ -7,7 +7,6 @@ const moment = require('moment');
 class SingleNote extends Component {
 
   render() {
-    const {note} = this.props;
     return (
       <SingleNoteContainer>
         <Divider />
