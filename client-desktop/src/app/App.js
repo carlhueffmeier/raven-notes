@@ -9,7 +9,7 @@ import { P1, P2, P3 } from './styles';
 import Layout from './components/Layout';
 import Sidebar from './components/Sidebar';
 import NoteList from './components/NoteList';
-import Editor from './components/Editor';
+import EditorStatefulContainer from './components/EditorStatefulContainer';
 
 const { ipcRenderer } = window.require('electron');
 
@@ -65,7 +65,7 @@ class App extends Component {
           <Layout columns={this.state.actualColumns}>
           <Layout.Sidebar><Sidebar /></Layout.Sidebar>
           <Layout.NoteList><NoteList /></Layout.NoteList>
-          <Layout.Editor><Editor /></Layout.Editor>
+          <Layout.Editor><EditorStatefulContainer /></Layout.Editor>
         </Layout>
         </React.Fragment>
       </ThemeProvider>
