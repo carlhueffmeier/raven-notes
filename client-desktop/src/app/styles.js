@@ -26,7 +26,7 @@ const Buttons = styled('div')`
   background-color: red;
   width: 10vw;
   margin: 0;
-`
+`;
 const P1 = styled('button')`
   position: absolute;
   margin-top: 50px;
@@ -50,9 +50,4 @@ const P3 = styled('button')`
   background-color: peachpuff;
 `;
 
-
-export { P1, P2, P3, Buttons }
-
-
-
-
+export { P1, P2, P3, Buttons };
