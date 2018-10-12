@@ -6,15 +6,16 @@ import { func, string } from 'prop-types';
 //========== Slate editor
 import { Editor as SlateEditor } from 'slate-react';
 import { Value } from 'slate';
+import Plain from 'slate-plain-serializer';
+import initialValue from './value.json'
 
 import { EditorContainer, Quote, H1, H2, H3, H4, H5, H6, List } from './styles';
-import initialValue from './value.json';
 
 class Editor extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      value: Value.fromJSON(initialValue),
+      value:  Plain.deserialize(this.props.currentNote?  this.props.currentNote.body : ''),
     }
   }
 

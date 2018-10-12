@@ -12,7 +12,7 @@ class NoteList extends Component {
   render() {
     console.log(this.props)
     return (
-            <NoteListContainer onClick={() => console.log('click to open note into editor')}>
+            <NoteListContainer>
               <SearchBar />
               <Create fetchNotes={this.props.fetchNotes}/>
               {this.props.notes.map(note => <SingleNote key={note.id} note={note} />)}
