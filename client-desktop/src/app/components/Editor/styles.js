@@ -4,7 +4,7 @@ const EditorContainer = styled('div')`
   display: flex;
   width: 100%;
   height: 100%;
-  padding: 3vw;
+  padding: 8vw;
 `;
 const User = styled('div')`
   flex-direction: column;

@@ -1,5 +1,6 @@
 {
   "name": "raven-client-desktop",
+  "productName": "Raven Notes",
   "version": "0.0.1",
   "dependencies": {
     "@reach/router": "^1.2.1",
@@ -9,6 +10,7 @@
     "apollo-link": "^1.2.3",
     "apollo-link-http": "^1.5.5",
     "apollo-link-state": "^0.4.2",
+    "electron-packager": "^12.2.0",
     "emotion": "^9.2.12",
     "emotion-theming": "^9.2.9",
     "graphql": "^14.0.2",

@@ -33,7 +33,7 @@ const SidebarPane = posed.div({
         duration: 150,
         ease: 'linear'
       }
-    }
+    } 
   },
   threeColumnLayout: {
     width: '150px',
@@ -59,7 +59,7 @@ const NoteListPane = posed.div({
     }
   },
   twoColumnLayout: {
-    width: 88 + 'vw',
+    width: 100 + "vw",
     x: 0,
     transition: {
       default: {
@@ -81,6 +81,8 @@ const NoteListPane = posed.div({
 
 const EditorPane = posed.div({
   oneColumnLayout: {
+    width: 100 + "vw",
+    overflow: 'hidden',
     width: 100 + 'vw',
     transition: {
       default: {
@@ -91,6 +93,7 @@ const EditorPane = posed.div({
   },
   twoColumnLayout: {
     width: 0,
+    overflow: 'hidden',
     transition: {
       default: {
         duration: 150,
@@ -99,15 +102,18 @@ const EditorPane = posed.div({
     }
   },
   threeColumnLayout: {
-    width: 68 + 'vw',
+    width: 68 + "vw",
+    overflow: 'hidden',
     transition: {
       default: {
         duration: 150,
         ease: 'linear'
       }
     }
-  }
+  },
 });
+
+//Fallbacks in case posed transitions break
 
 const StyledSidebarPane = styled(SidebarPane)`
   transition: all 0.3s linear;

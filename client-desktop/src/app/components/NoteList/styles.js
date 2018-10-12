@@ -4,7 +4,7 @@ const NoteListContainer = styled('div')`
   display: flex;
   flex-direction: column;
   height: 100vh;
-  overflow-y: scroll;
+  overflow-y: auto;
 `;
 
 const SingleNoteContainer = styled('div')`
