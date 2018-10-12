@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { actions as noteActions } from '../redux/modules/note';
 
-import { actions as noteActions } from '../../redux/modules/note';
-
-class Create extends Component {
+class CreateNoteContainer extends Component {
   render() {
     return (
       <button onClick={() => this.props.createNote({ body: 'Ello' })}>
@@ -22,4 +21,4 @@ const mapDispatchToProps = {
 export default connect(
   null,
   mapDispatchToProps
-)(Create);
+)(CreateNoteContainer);
