@@ -14,8 +14,9 @@ const SingleNoteContainer = styled('div')`
 `;
 
 const SearchAndCreateContainer = styled('div')`
-  background-color: pink;
-`
+  width: 100%;
+  margin: auto;
+`;
 
 const SubContainer = styled('div')`
   display: flex;
