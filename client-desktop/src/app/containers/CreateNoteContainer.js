@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { actions as noteActions } from '../redux/modules/note';
 
+import { CreateButton, CreateImg } from './../components/SearchBar/styles';
+import add from './../../assets/plus.svg';
+
 class CreateNoteContainer extends Component {
   render() {
     return (
-      <button onClick={() => this.props.createNote({ body: 'Ello' })}>
-        <span role="img" aria-label="monkey">
-          🆕
-        </span>
-      </button>
+      <CreateButton onClick={() => this.props.createNote({ body: 'Ello' })}>
+        <CreateImg alt="Add Notes" src={add} />
+      </CreateButton>
     );
   }
 }
