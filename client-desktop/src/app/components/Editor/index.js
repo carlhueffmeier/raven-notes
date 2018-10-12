@@ -12,12 +12,6 @@ import initialValue from './value.json'
 import { EditorContainer, Quote, H1, H2, H3, H4, H5, H6, List } from './styles';
 
 class Editor extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      value:  Plain.deserialize(this.props.currentNote?  this.props.currentNote.body : ''),
-    }
-  }
 
   // static propTypes = {
   //   onChange: func,
@@ -89,10 +83,6 @@ class Editor extends Component {
       default:
         return null;
     }
-  }
-
-  onChange = ({value}) => {
-    this.setState({ value })
   }
 
 // On key down, check for specific key shortcuts (next three functions).
@@ -188,12 +178,13 @@ class Editor extends Component {
   }
 
   render() {
+    const { content, onChange } = this.props
     return (
       <EditorContainer>
         <SlateEditor
           placeholder='Write here'
-          value={this.state.value}
-          onChange={this.onChange}
+          value={content}
+          onChange={change => onChange(change.value)}
           onKeyDown={this.onKeyDown}
           renderNode={this.renderNode}
           style={{

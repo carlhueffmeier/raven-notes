@@ -1,26 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { selectors as noteSelectors } from '../../redux/modules/currentNote';
+import { actions as editorActions, selectors as noteSelectors } from '../../redux/modules/editor';
 
 import Editor from '../../components/Editor/index';
 
 class EditorStatefulContainer extends Component {
 
-  // componentDidMount() {
-  //   this.props.fetchNotes()
-  // }
-
   render() {
     console.log('editor', this.props.currentNote)
     return (
-      <Editor currentNote={this.props.currentNote}/>
+      <Editor content={this.props.editorContent}
+        onChange={this.props.updateEditorContent}
+      />
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  currentNote: noteSelectors.getCurrentNote(state)
+  editorContent: noteSelectors.getEditorContent(state)
 })
 
-export default connect(mapStateToProps, null)(EditorStatefulContainer);
+const mapDispatchToProps = (dispatch) => ({
+  updateEditorContent: (content) => dispatch(editorActions.updateEditorContent(content))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditorStatefulContainer);
