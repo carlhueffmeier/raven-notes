@@ -1,6 +1,7 @@
 import styled from 'react-emotion';
 
 const SearchBox = styled('input')`
+  height: 5vh;
   border-radius: 20px;
   border: 0.5px solid #ccc;
   transition: 1s;
@@ -18,4 +19,11 @@ const SearchBox = styled('input')`
   }
 `;
 
-export { SearchBox };
+//Create button styling is in this page, the button is in the same component.
+const CreateButton = styled('button')`
+  background-color: lavender;
+  width: 10vh;
+  height: 10vh;
+`
+
+export { SearchBox, CreateButton };

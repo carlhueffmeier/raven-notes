@@ -13,6 +13,10 @@ const SingleNoteContainer = styled('div')`
   margin-bottom: -12px;
 `;
 
+const SearchAndCreateContainer = styled('div')`
+  background-color: pink;
+`
+
 const SubContainer = styled('div')`
   display: flex;
   padding-top: 2vh;
@@ -72,5 +76,6 @@ export {
   Title,
   Body,
   Author,
-  Divider
+  Divider,
+  SearchAndCreateContainer
 };
