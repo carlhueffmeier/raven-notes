@@ -1,26 +1,41 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import {
+  actions as currentNoteActions,
+  selectors as currentNoteSelectors
+} from '../../redux/modules/currentNote';
 
-import { SingleNoteContainer, SubContainer, Day, Note, Title, Body, Author, Divider } from './styles';
+import {
+  SingleNoteContainer,
+  SubContainer,
+  Day,
+  Note,
+  Title,
+  Body,
+  Author,
+  Divider
+} from './styles';
 const moment = require('moment');
 
-
 class SingleNote extends Component {
-
   render() {
-    const {note} = this.props;
+    const note = this.props.note;
     return (
-      <SingleNoteContainer>
+      <SingleNoteContainer onClick={() => this.props.selectCurrentNote(this.props.note)}>
         <Divider />
         <SubContainer>
-          <Day>
-            {/* {moment(note.createdAt).format("MMM Do YY")} */}
-            8th Oct
-          </Day>
+          <Day>{moment(this.props.note.createdAt).format('MMM Do YY')}</Day>
 
           <Note>
-            <Title>Title</Title>
-            <Body>Body</Body>
-            <Author><span>Written by</span> Someone.</Author>
+            <Title>
+              {this.props.note.body.length > 10
+                ? this.props.note.body.slice(0, 5) + ' 🚀'
+                : this.props.note.body}
+            </Title>
+            <Body>{note.body}</Body>
+            <Author>
+              <span>Written by</span> {note.author.name}
+            </Author>
           </Note>
         </SubContainer>
       </SingleNoteContainer>
@@ -28,4 +43,11 @@ class SingleNote extends Component {
   }
 }
 
-export default SingleNote;
+const mapDispatchToProps = dispatch => ({
+  selectCurrentNote: id => dispatch(currentNoteActions.selectCurrentNote(id))
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(SingleNote);

@@ -5,7 +5,8 @@
   "scripts": {
     "test": "jest",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "prettier:client": "prettier --write \"client-desktop/src/**/*.{js,jsx}\""
   },
   "husky": {
     "hooks": {
@@ -14,7 +15,11 @@
   },
   "lint-staged": {
     "*.js": [
-      "npm run lint",
+      "npm run lint:fix",
+      "git add"
+    ],
+    "client-desktop/src/**/*.{js,jsx,json,css}": [
+      "prettier --write",
       "git add"
     ]
   },
@@ -28,15 +33,9 @@
   },
   "homepage": "https://github.com/carlhueffmeier/raven-notes#readme",
   "devDependencies": {
-    "babel-eslint": "^10.0.1",
-    "eslint": "^5.6.1",
+    "eslint": "5.6.0",
     "eslint-config-prettier": "^3.1.0",
-    "eslint-config-react-app": "^3.0.3",
-    "eslint-plugin-flowtype": "^2.50.3",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-prettier": "^3.0.0",
-    "eslint-plugin-react": "^7.11.1",
     "husky": "^1.1.1",
     "jest": "^23.6.0",
     "lint-staged": "^7.3.0",
