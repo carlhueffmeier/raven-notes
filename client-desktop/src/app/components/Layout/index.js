@@ -1,21 +1,22 @@
 import React, { Component, Fragment } from 'react';
 import posed from 'react-pose';
 import styled from 'react-emotion';
+import { constants as layoutConstants } from '../../redux/modules/layout';
 
 const Container = posed.div({
-  oneColumnLayout: {
+  [layoutConstants.ONE_COLUMN_LAYOUT]: {
     display: 'flex'
   },
-  twoColumnLayout: {
+  [layoutConstants.TWO_COLUMN_LAYOUT]: {
     display: 'flex'
   },
-  threeColumnLayout: {
+  [layoutConstants.THREE_COLUMN_LAYOUT]: {
     display: 'flex'
   }
 });
 
 const SidebarPane = posed.div({
-  oneColumnLayout: {
+  [layoutConstants.ONE_COLUMN_LAYOUT]: {
     x: -200,
     width: 0,
     transition: {
@@ -25,7 +26,7 @@ const SidebarPane = posed.div({
       }
     }
   },
-  twoColumnLayout: {
+  [layoutConstants.TWO_COLUMN_LAYOUT]: {
     width: '150px',
     x: 0,
     transition: {
@@ -35,7 +36,7 @@ const SidebarPane = posed.div({
       }
     }
   },
-  threeColumnLayout: {
+  [layoutConstants.THREE_COLUMN_LAYOUT]: {
     width: '150px',
     x: 0,
     transition: {
@@ -48,7 +49,7 @@ const SidebarPane = posed.div({
 });
 
 const NoteListPane = posed.div({
-  oneColumnLayout: {
+  [layoutConstants.ONE_COLUMN_LAYOUT]: {
     width: 0,
     x: -200,
     transition: {
@@ -58,7 +59,7 @@ const NoteListPane = posed.div({
       }
     }
   },
-  twoColumnLayout: {
+  [layoutConstants.TWO_COLUMN_LAYOUT]: {
     width: 88 + 'vw',
     x: 0,
     transition: {
@@ -67,7 +68,7 @@ const NoteListPane = posed.div({
       }
     }
   },
-  threeColumnLayout: {
+  [layoutConstants.THREE_COLUMN_LAYOUT]: {
     width: '250px',
     x: 0,
     transition: {
@@ -80,7 +81,7 @@ const NoteListPane = posed.div({
 });
 
 const EditorPane = posed.div({
-  oneColumnLayout: {
+  [layoutConstants.ONE_COLUMN_LAYOUT]: {
     width: 100 + 'vw',
     transition: {
       default: {
@@ -89,7 +90,7 @@ const EditorPane = posed.div({
       }
     }
   },
-  twoColumnLayout: {
+  [layoutConstants.TWO_COLUMN_LAYOUT]: {
     width: 0,
     transition: {
       default: {
@@ -98,7 +99,7 @@ const EditorPane = posed.div({
       }
     }
   },
-  threeColumnLayout: {
+  [layoutConstants.THREE_COLUMN_LAYOUT]: {
     width: 68 + 'vw',
     transition: {
       default: {
@@ -135,16 +136,9 @@ class Layout extends Component {
   };
 
   render() {
-    const { columns } = this.props;
-    let pose = 'oneColumnLayout';
-    if (columns === 2) {
-      pose = 'twoColumnLayout';
-    }
-    if (columns === 3) {
-      pose = 'threeColumnLayout';
-    }
+    const { layout } = this.props;
     return (
-      <Container pose={pose}>
+      <Container pose={layout}>
         <StyledSidebarPane key={1}>{this.renderTypeOf(Layout.Sidebar)}</StyledSidebarPane>
         <StyledNoteListPane key={2}>{this.renderTypeOf(Layout.NoteList)}</StyledNoteListPane>
         <StyledEditorPane key={3}>{this.renderTypeOf(Layout.Editor)}</StyledEditorPane>

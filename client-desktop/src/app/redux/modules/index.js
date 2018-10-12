@@ -3,7 +3,7 @@ import { all, call } from 'redux-saga/effects';
 import noteReducer, { saga as noteSaga } from './note';
 import currentNoteReducer, { saga as currentNoteSaga } from './currentNote';
 import editorReducer from './editor';
-import layoutReducer from './editor';
+import layoutReducer from './layout';
 
 const rootReducer = combineReducers({
   entities: combineReducers({
@@ -13,6 +13,7 @@ const rootReducer = combineReducers({
   }),
   ui: combineReducers({
     currentNote: currentNoteReducer,
+    // currentGroup: currentGroupReducer,
     editor: editorReducer,
     layout: layoutReducer
   })

@@ -1,4 +1,5 @@
-import { call, put, takeEvery } from 'redux-saga/effects';
+import { call, put, takeEvery, spawn } from 'redux-saga/effects';
+import { delay } from 'redux-saga';
 import graphqlClient from '../../../api/graphqlClient';
 import { FETCH_NOTES, CREATE_NOTE, UPDATE_NOTE } from './types';
 import { ALL_NOTES_QUERY, CREATE_NOTE_MUTATION, UPDATE_NOTE_MUTATION } from './graphqlMock';
@@ -36,10 +37,23 @@ function* updateNote(action) {
   }
 }
 
+function* pollFetchNotes() {
+  while (true) {
+    try {
+      yield call(fetchNotes);
+      yield call(delay, 10000);
+    } catch (error) {
+      console.error(error);
+      yield put(actions.fetchNotesError(error));
+    }
+  }
+}
+
 function* noteSaga() {
   yield takeEvery(FETCH_NOTES.START, fetchNotes);
   yield takeEvery(CREATE_NOTE.START, createNote);
   yield takeEvery(UPDATE_NOTE.START, updateNote);
+  yield spawn(pollFetchNotes);
 }
 
 export default noteSaga;

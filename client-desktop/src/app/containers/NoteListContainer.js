@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { actions as noteActions, selectors as noteSelectors } from '../redux/modules/note';
+import NoteList from '../components/NoteList';
 
-import { actions as noteActions, selectors as noteSelectors } from '../../redux/modules/note';
-import { fetchNotes } from '../../redux/modules/note/actions';
-
-import NoteList from '../../components/NoteList/index';
-
-class NoteListStatefulContainer extends Component {
+class NoteListContainer extends Component {
   componentDidMount() {
     this.props.fetchNotes();
   }
@@ -27,4 +24,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(NoteListStatefulContainer);
+)(NoteListContainer);
