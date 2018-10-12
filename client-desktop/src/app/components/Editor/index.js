@@ -7,157 +7,160 @@ import { func, string } from 'prop-types';
 import { Editor as SlateEditor } from 'slate-react';
 import { Value } from 'slate';
 import Plain from 'slate-plain-serializer';
-import initialValue from './value.json'
+import initialValue from './value.json';
 
 import { EditorContainer, Quote, H1, H2, H3, H4, H5, H6, List } from './styles';
 
 class Editor extends Component {
-
   // static propTypes = {
   //   onChange: func,
   //   content: string
   // };
 
-  componentDidMount() {
+  componentDidMount() {}
 
-  }
-
-// Get the block type for a series of auto-markdown shortcut `chars`.
+  // Get the block type for a series of auto-markdown shortcut `chars`.
   getType = chars => {
     switch (chars) {
       case '*':
       case '-':
       case '+':
-        return 'list-item'
+        return 'list-item';
       case '>':
-        return 'block-quote'
+        return 'block-quote';
       case '#':
-        return 'heading-one'
+        return 'heading-one';
       case '##':
-        return 'heading-two'
+        return 'heading-two';
       case '###':
-        return 'heading-three'
+        return 'heading-three';
       case '####':
-        return 'heading-four'
+        return 'heading-four';
       case '#####':
-        return 'heading-five'
+        return 'heading-five';
       case '######':
-        return 'heading-six'
+        return 'heading-six';
       case '<':
-        return 'code-block'
+        return 'code-block';
       default:
-        return null
+        return null;
     }
-  }
+  };
 
-// Render slate node.
+  // Render slate node.
   renderNode = props => {
-    const { attributes, children, node } = props
+    const { attributes, children, node } = props;
     switch (node.type) {
       case 'block-quote':
-        return <Quote {...attributes}><span role='img' aria-label='robot' >🤖</span> {children}</Quote>
+        return (
+          <Quote {...attributes}>
+            <span role="img" aria-label="robot">
+              🤖
+            </span>{' '}
+            {children}
+          </Quote>
+        );
       case 'bulleted-list':
-        return <List {...attributes}>{children}</List>
+        return <List {...attributes}>{children}</List>;
       case 'heading-one':
-        return <H1 {...attributes}>{children}</H1>
+        return <H1 {...attributes}>{children}</H1>;
       case 'heading-two':
-        return <H2 {...attributes}>{children}</H2>
+        return <H2 {...attributes}>{children}</H2>;
       case 'heading-three':
-        return <H3 {...attributes}>{children}</H3>
+        return <H3 {...attributes}>{children}</H3>;
       case 'heading-four':
-        return <H4 {...attributes}>{children}</H4>
+        return <H4 {...attributes}>{children}</H4>;
       case 'heading-five':
-        return <H5 {...attributes}>{children}</H5>
+        return <H5 {...attributes}>{children}</H5>;
       case 'heading-six':
-        return <H6 {...attributes}>{children}</H6>
+        return <H6 {...attributes}>{children}</H6>;
       case 'list-item':
-        return <List {...attributes}>{children}</List>
+        return <List {...attributes}>{children}</List>;
       case 'code-block':
         return (
-          <pre className='language-javascript'>
-            <code className='language-javascript' {...attributes}>
+          <pre className="language-javascript">
+            <code className="language-javascript" {...attributes}>
               {children}
             </code>
           </pre>
-        )
+        );
       default:
         return null;
     }
-  }
+  };
 
-// On key down, check for specific key shortcuts (next three functions).
+  // On key down, check for specific key shortcuts (next three functions).
   onKeyDown = (event, change) => {
     switch (event.key) {
       case ' ':
-        return this.onSpace(event, change)
+        return this.onSpace(event, change);
       case 'Backspace':
-        return this.onBackspace(event, change)
+        return this.onBackspace(event, change);
       case 'Enter':
-        return this.onEnter(event, change)
+        return this.onEnter(event, change);
       default:
         return null;
     }
-  }
+  };
 
-// ========== HELPER FUNCTIONS (?) ========== //
-// If it was after an auto-markdown shortcut, convert the current node into the shortcut's
-// corresponding type.
+  // ========== HELPER FUNCTIONS (?) ========== //
+  // If it was after an auto-markdown shortcut, convert the current node into the shortcut's
+  // corresponding type.
   onSpace = (event, change) => {
-    const { value } = change
-    const { selection } = value
-    if (selection.isExpanded) return
+    const { value } = change;
+    const { selection } = value;
+    if (selection.isExpanded) return;
 
-    const { startBlock } = value
-    const { start } = selection
-    const chars = startBlock.text.slice(0, start.offset).replace(/\s*/g, '')
-    const type = this.getType(chars)
+    const { startBlock } = value;
+    const { start } = selection;
+    const chars = startBlock.text.slice(0, start.offset).replace(/\s*/g, '');
+    const type = this.getType(chars);
 
-    if (!type) return
-    if (type === 'list-item' && startBlock.type === 'list-item') return
-    event.preventDefault()
+    if (!type) return;
+    if (type === 'list-item' && startBlock.type === 'list-item') return;
+    event.preventDefault();
 
-    change.setBlocks(type)
+    change.setBlocks(type);
 
     if (type === 'list-item') {
-      change.wrapBlock('bulleted-list')
+      change.wrapBlock('bulleted-list');
     }
 
-    change.moveFocusToStartOfNode(startBlock).delete()
+    change.moveFocusToStartOfNode(startBlock).delete();
     // Prism.highlightAll();
-    return true
-  }
+    return true;
+  };
 
-// If at the start of a non-paragraph, convert it back into a paragraph node.
+  // If at the start of a non-paragraph, convert it back into a paragraph node.
   onBackspace = (event, change) => {
-    const { value } = change
-    const { selection } = value
-    if (selection.isExpanded) return
-    if (selection.start.offset !== 0) return
+    const { value } = change;
+    const { selection } = value;
+    if (selection.isExpanded) return;
+    if (selection.start.offset !== 0) return;
 
-    const { startBlock } = value
-    if (startBlock.type === 'paragraph') return
+    const { startBlock } = value;
+    if (startBlock.type === 'paragraph') return;
 
-    event.preventDefault()
-    change.setBlocks('paragraph')
+    event.preventDefault();
+    change.setBlocks('paragraph');
 
     if (startBlock.type === 'list-item') {
-      change.unwrapBlock('bulleted-list')
+      change.unwrapBlock('bulleted-list');
     }
 
-    return true
-  }
+    return true;
+  };
 
-// If at the end of a node type that should not be extended, create a new paragraph below it.
+  // If at the end of a node type that should not be extended, create a new paragraph below it.
   onEnter = (event, change) => {
-    const { value } = change
-    const { selection } = value
-    const { start, end, isExpanded } = selection
-    if (isExpanded) return
+    const { value } = change;
+    const { selection } = value;
+    const { start, end, isExpanded } = selection;
+    if (isExpanded) return;
 
-    const { startBlock } = value
-    if (start.offset === 0 && startBlock.text.length === 0)
-      return this.onBackspace(event, change)
-    if (end.offset !== startBlock.text.length) return
+    const { startBlock } = value;
+    if (start.offset === 0 && startBlock.text.length === 0) return this.onBackspace(event, change);
+    if (end.offset !== startBlock.text.length) return;
 
     if (
       startBlock.type !== 'heading-one' &&
@@ -169,20 +172,20 @@ class Editor extends Component {
       startBlock.type !== 'block-quote' &&
       startBlock.type !== 'code-block'
     ) {
-      return
+      return;
     }
 
-    event.preventDefault()
-    change.splitBlock().setBlocks('paragraph')
-    return true
-  }
+    event.preventDefault();
+    change.splitBlock().setBlocks('paragraph');
+    return true;
+  };
 
   render() {
-    const { content, onChange } = this.props
+    const { content, onChange } = this.props;
     return (
       <EditorContainer>
         <SlateEditor
-          placeholder='Write here'
+          placeholder="Write here"
           value={content}
           onChange={change => onChange(change.value)}
           onKeyDown={this.onKeyDown}
@@ -190,7 +193,7 @@ class Editor extends Component {
           style={{
             width: '100%',
             height: '100%',
-            border:'.4px solid rgba(119, 136, 153, 0.1)'
+            border: '.4px solid rgba(119, 136, 153, 0.1)'
           }}
         />
       </EditorContainer>
