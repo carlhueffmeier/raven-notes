@@ -14,9 +14,8 @@ const fetchNotesError = error => ({
 });
 
 // Create new note
-const createNote = payload => ({
-  type: types.CREATE_NOTE.START,
-  payload
+const createNote = () => ({
+  type: types.CREATE_NOTE.START
 });
 const createNoteSuccess = payload => ({
   type: types.CREATE_NOTE.SUCCESS,

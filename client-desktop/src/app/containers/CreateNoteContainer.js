@@ -5,7 +5,7 @@ import { actions as noteActions } from '../redux/modules/note';
 class CreateNoteContainer extends Component {
   render() {
     return (
-      <button onClick={() => this.props.createNote({ body: 'Ello' })}>
+      <button onClick={() => this.props.createNote()}>
         <span role="img" aria-label="monkey">
           🆕
         </span>

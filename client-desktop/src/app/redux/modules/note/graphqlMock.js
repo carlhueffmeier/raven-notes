@@ -2,7 +2,8 @@ const ALL_NOTES_QUERY = `
   query allNotes {
     notes {
       id
-      body
+      contentJson
+      contentText
       author {
         id
         email
@@ -13,10 +14,17 @@ const ALL_NOTES_QUERY = `
 `;
 
 const CREATE_NOTE_MUTATION = `
-  mutation createNote($body: String) {
-    createNote(data: {body: $body, author: { connect: {id: "cjn5pv4vkjqgw0932trypskwh"}}}) {
+  mutation createNote($contentJson: Json, $contentText: String) {
+    createNote(
+      data: {
+        contentText: $contentText,
+        contentJson: $contentJson,
+        author: { connect: { id: "cjn5pv4vkjqgw0932trypskwh" } }
+      }
+    ) {
       id
-      body
+      contentJson
+      contentText
       author {
         id
         email
@@ -27,10 +35,19 @@ const CREATE_NOTE_MUTATION = `
 `;
 
 const UPDATE_NOTE_MUTATION = `
-  mutation updateNote($id: ID!, $body: String) {
-    updateNote(where: {id: $id} data: {body: $body}) {
+  mutation updateNote($id: ID!, $contentJson: Json, $contentText: String) {
+    updateNote(
+      where: {
+        id: $id
+      }
+      data: {
+        contentText: $contentText,
+        contentJson: $contentJson
+      }
+    ) {
       id
-      body
+      contentJson
+      contentText
       author {
         id
         email
