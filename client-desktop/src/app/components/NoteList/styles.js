@@ -15,7 +15,12 @@ const SingleNoteContainer = styled('div')`
 
 const SearchAndCreateContainer = styled('div')`
   width: 100%;
-  margin: auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  min-height: 25px;
+  max-height: 25px;
+  margin-top 19px;
 `;
 
 const SubContainer = styled('div')`
@@ -29,6 +34,12 @@ const Day = styled('div')`
   font-weight: 400;
   width: 15%;
   padding-right: 5px;
+`;
+
+const Hour = styled('span')`
+  display: block;
+  color: gray;
+  margin-top: 5px;
 `;
 
 const Note = styled('div')`
@@ -78,5 +89,6 @@ export {
   Body,
   Author,
   Divider,
-  SearchAndCreateContainer
+  SearchAndCreateContainer,
+  Hour
 };

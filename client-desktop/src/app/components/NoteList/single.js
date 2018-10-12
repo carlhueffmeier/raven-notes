@@ -10,7 +10,8 @@ import {
   Title,
   Body,
   Author,
-  Divider
+  Divider,
+  Hour
 } from './styles';
 const moment = require('moment');
 
@@ -21,11 +22,14 @@ class SingleNote extends Component {
       <SingleNoteContainer onClick={() => this.props.selectCurrentNote(this.props.note)}>
         <Divider />
         <SubContainer>
-          <Day>{moment(this.props.note.createdAt).format('Do MMM')}</Day>
+          <Day>
+            {moment(this.props.note.createdAt).format('Do MMM')}
+            <Hour>{moment(this.props.note.createdAt).format('hh:mm a')}</Hour>
+          </Day>
 
           <Note>
             <Title>
-              {this.props.note.body.length > 10
+              {this.props.note.body && this.props.note.body.length > 10
                 ? this.props.note.body.slice(0, 10) + '... 🚀'
                 : this.props.note.body}
             </Title>
