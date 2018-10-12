@@ -60,7 +60,7 @@ const NoteListPane = posed.div({
     }
   },
   [layoutConstants.TWO_COLUMN_LAYOUT]: {
-    width: 88 + 'vw',
+    width: 90 + 'vw',
     x: 0,
     transition: {
       default: {

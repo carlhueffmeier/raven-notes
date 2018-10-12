@@ -4,7 +4,7 @@ const ButtonContainer = styled('div')`
   position: fixed;
   right: 0;
   bottom: 2vh;
-  background-color: lavender;
+  background-color: #F7F6F3;
   width: 12vh;
   z-index: 100;
   padding: 6px;
@@ -15,7 +15,7 @@ const ButtonContainer = styled('div')`
 const LayoutSwitchButton = styled('button')`
   border: none;
   display: flex;
-  background-color: lavender;
+  background-color: #F7F6F3;
   padding: 5px;
   :focus {
     outline: none;
