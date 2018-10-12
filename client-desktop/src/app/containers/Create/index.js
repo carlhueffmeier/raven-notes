@@ -5,22 +5,19 @@ import { actions as noteActions } from '../../redux/modules/note';
 
 class Create extends Component {
 
-  fetchAndCreate = () => {
-    this.props.createNote()
-    this.props.fetchNotes()
-  }
+
 
   render() {
     return (
-      <div onClick={this.fetchAndCreate}>
+      <button onClick={() => this.props.createNote({ body: 'Ello' })}>
         <span role='img' aria-label='monkey'>🆕</span>
-      </div>
+      </button>
     );
   }
 }
 
-const mapDispatchToProps = () => ({
+const mapDispatchToProps = {
   createNote: noteActions.createNote
-})
+}
 
 export default connect (null, mapDispatchToProps)(Create);

@@ -14,7 +14,7 @@ class NoteListStatefulContainer extends Component {
 
   render() {
     return (
-      <NoteList notes={this.props.notes} fetchNotes={this.props.fetchNotes}/>
+      <NoteList notes={this.props.notes}/>
     );
   }
 }

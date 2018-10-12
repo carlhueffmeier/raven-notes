@@ -24,7 +24,7 @@ function allIds(state = [], action) {
     case CREATE_NOTE.SUCCESS:
     case UPDATE_NOTE.SUCCESS: {
       const note = action.payload;
-      return unique([...state, note.id]);
+      return unique([note.id, ...state]);
     }
     case FETCH_NOTES.SUCCESS: {
       const notes = action.payload;

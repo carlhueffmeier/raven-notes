@@ -14,7 +14,7 @@ class NoteList extends Component {
     return (
             <NoteListContainer>
               <SearchBar />
-              <Create fetchNotes={this.props.fetchNotes}/>
+              <Create/>
               {this.props.notes.map(note => <SingleNote key={note.id} note={note} />)}
             </NoteListContainer>
     );
