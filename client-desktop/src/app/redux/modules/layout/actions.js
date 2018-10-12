@@ -1,8 +1,8 @@
 import * as types from './types';
 
-const updateEditorContent = payload => ({
-  type: types.UPDATE_EDITOR_CONTENT,
+const changeLayout = payload => ({
+  type: types.CHANGE_LAYOUT,
   payload
 });
 
-export { updateEditorContent };
+export { changeLayout };
