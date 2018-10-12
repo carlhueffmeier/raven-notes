@@ -6,22 +6,21 @@ import { func, string } from 'prop-types';
 //========== Slate editor
 import { Editor as SlateEditor } from 'slate-react';
 import { Value } from 'slate';
+import Plain from 'slate-plain-serializer';
+import initialValue from './value.json'
 
 import { EditorContainer, Quote, H1, H2, H3, H4, H5, H6, List } from './styles';
-import initialValue from './value.json';
 
 class Editor extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      value: Value.fromJSON(initialValue),
-    }
-  }
 
-  static propTypes = {
-    onChange: func,
-    content: string
-  };
+  // static propTypes = {
+  //   onChange: func,
+  //   content: string
+  // };
+
+  componentDidMount() {
+
+  }
 
 // Get the block type for a series of auto-markdown shortcut `chars`.
   getType = chars => {
@@ -84,10 +83,6 @@ class Editor extends Component {
       default:
         return null;
     }
-  }
-
-  onChange = ({value}) => {
-    this.setState({ value })
   }
 
 // On key down, check for specific key shortcuts (next three functions).
@@ -183,19 +178,19 @@ class Editor extends Component {
   }
 
   render() {
+    const { content, onChange } = this.props
     return (
       <EditorContainer>
         <SlateEditor
-          placeholder='Write here 👓'
-          value={this.state.value}
-          onChange={this.onChange}
+          placeholder='Write here'
+          value={content}
+          onChange={change => onChange(change.value)}
           onKeyDown={this.onKeyDown}
           renderNode={this.renderNode}
           style={{
-            backgroundColor: 'lavender',
             width: '100%',
             height: '100%',
-            cursor: 'text'
+            border:'.4px solid rgba(119, 136, 153, 0.1)'
           }}
         />
       </EditorContainer>
