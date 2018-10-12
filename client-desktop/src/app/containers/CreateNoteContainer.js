@@ -9,7 +9,7 @@ class CreateNoteContainer extends Component {
   render() {
     return (
       <CreateButton onClick={() => this.props.createNote({ body: 'Ello' })}>
-        <CreateImg alt='Add Notes' src={add} />
+        <CreateImg alt="Add Notes" src={add} />
       </CreateButton>
     );
   }

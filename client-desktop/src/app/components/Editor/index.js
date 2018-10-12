@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import Prism from 'prismjs';
 import './prism.css';
 
 //========== Slate editor
@@ -8,7 +7,6 @@ import { Editor as SlateEditor } from 'slate-react';
 import { EditorContainer, Quote, H1, H2, H3, H4, H5, H6, List } from './styles';
 
 class Editor extends Component {
-
   // Get the block type for a series of auto-markdown shortcut `chars`.
   getType = chars => {
     switch (chars) {

@@ -5,8 +5,7 @@ import { connect } from 'react-redux';
 
 import OneColumnLayout from '../../../assets/menu-1.svg';
 import TwoColumnLayout from '../../../assets/menu-2.svg';
-import ThreeColumnLayout from '../../../assets/menu-3.svg'
-
+import ThreeColumnLayout from '../../../assets/menu-3.svg';
 
 class LayoutSwitch extends Component {
   render() {
@@ -14,13 +13,13 @@ class LayoutSwitch extends Component {
     return (
       <ButtonContainer>
         <LayoutSwitchButton onClick={() => changeLayout(layoutConstants.ONE_COLUMN_LAYOUT)}>
-          <Img alt='OneColumnLayout' src={OneColumnLayout} />
+          <Img alt="OneColumnLayout" src={OneColumnLayout} />
         </LayoutSwitchButton>
         <LayoutSwitchButton onClick={() => changeLayout(layoutConstants.TWO_COLUMN_LAYOUT)}>
-          <Img alt='TwoColumnLayout' src={TwoColumnLayout} />
+          <Img alt="TwoColumnLayout" src={TwoColumnLayout} />
         </LayoutSwitchButton>
         <LayoutSwitchButton onClick={() => changeLayout(layoutConstants.THREE_COLUMN_LAYOUT)}>
-          <Img alt='ThreeColumnLayout' src={ThreeColumnLayout} />
+          <Img alt="ThreeColumnLayout" src={ThreeColumnLayout} />
         </LayoutSwitchButton>
       </ButtonContainer>
     );

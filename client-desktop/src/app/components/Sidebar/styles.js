@@ -6,7 +6,7 @@ const SidebarContainer = styled('div')`
   padding: 15px;
   padding: 15px;
 
-  background-color: #F7F6F3;
+  background-color: #f7f6f3;
 `;
 const H3 = styled('h3')`
   color: #778899;

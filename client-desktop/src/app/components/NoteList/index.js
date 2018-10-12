@@ -13,9 +13,9 @@ class NoteList extends Component {
           <CreateNoteContainer />
         </SearchAndCreateContainer>
         <div>
-        {this.props.notes.map(note => (
-          <SingleNote key={note.id} note={note} />
-        ))}
+          {this.props.notes.map(note => (
+            <SingleNote key={note.id} note={note} />
+          ))}
         </div>
       </NoteListContainer>
     );
