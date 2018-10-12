@@ -24,12 +24,12 @@ class SingleNote extends Component {
       <SingleNoteContainer onClick={() => this.props.selectCurrentNote(this.props.note)}>
         <Divider />
         <SubContainer>
-          <Day>{moment(this.props.note.createdAt).format('MMM Do YY')}</Day>
+          <Day>{moment(this.props.note.createdAt).format('Do MMM')}</Day>
 
           <Note>
             <Title>
               {this.props.note.body.length > 10
-                ? this.props.note.body.slice(0, 5) + ' 🚀'
+                ? this.props.note.body.slice(0, 10) + '... 🚀'
                 : this.props.note.body}
             </Title>
             <Body>{note.body}</Body>

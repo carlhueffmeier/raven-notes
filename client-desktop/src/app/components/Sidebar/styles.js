@@ -2,11 +2,11 @@ import styled from 'react-emotion';
 
 const SidebarContainer = styled('div')`
   height: 100%;
-  border-right: 0.4px solid rgba(119, 136, 153, 0.8);
+  // border-right: 0.4px solid rgba(119, 136, 153, 0.8);
   padding: 15px;
   padding: 15px;
 
-  // background-color: #F7F9F9;
+  background-color: #F7F6F3;
 `;
 const H3 = styled('h3')`
   color: #778899;
