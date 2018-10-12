@@ -7,6 +7,11 @@ function getAllNotes(state) {
   return notes.allIds.map(id => notes.byId[id]);
 }
 
+function getNoteById(state, id) {
+  const notes = getNoteEntity(state);
+  return notes.byId[id];
+}
+
 function getLoading(state) {
   return getNoteEntity(state).loading;
 }
@@ -15,4 +20,4 @@ function getError(state) {
   return getNoteEntity(state).error;
 }
 
-export { getAllNotes, getLoading, getError };
+export { getAllNotes, getNoteById, getLoading, getError };

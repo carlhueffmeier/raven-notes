@@ -40,11 +40,14 @@ function loading(state = false, action) {
   switch (action.type) {
     case FETCH_NOTES.START:
     case CREATE_NOTE.START:
+    case UPDATE_NOTE.START:
       return true;
     case FETCH_NOTES.SUCCESS:
     case CREATE_NOTE.SUCCESS:
+    case UPDATE_NOTE.SUCCESS:
     case FETCH_NOTES.ERROR:
     case CREATE_NOTE.ERROR:
+    case UPDATE_NOTE.ERROR:
       return false;
     default:
       return state;
