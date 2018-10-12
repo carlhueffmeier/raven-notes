@@ -28,7 +28,7 @@ class SingleNote extends Component {
 
           <Note>
             <Title>
-              {this.props.note.body.length > 10
+              {this.props.note.body && this.props.note.body.length > 10
                 ? this.props.note.body.slice(0, 10) + '... 🚀'
                 : this.props.note.body}
             </Title>
