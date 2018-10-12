@@ -1,23 +1,15 @@
 import React, { Component } from 'react';
-// import Prism from 'prismjs';
 import './prism.css';
-import { func, string } from 'prop-types';
-
-//========== Slate editor
+import { func, object } from 'prop-types';
 import { Editor as SlateEditor } from 'slate-react';
-import { Value } from 'slate';
-import Plain from 'slate-plain-serializer';
-import initialValue from './value.json';
 
 import { EditorContainer, Quote, H1, H2, H3, H4, H5, H6, List } from './styles';
 
 class Editor extends Component {
-  // static propTypes = {
-  //   onChange: func,
-  //   content: string
-  // };
-
-  componentDidMount() {}
+  static propTypes = {
+    onChange: func,
+    content: object
+  };
 
   // Get the block type for a series of auto-markdown shortcut `chars`.
   getType = chars => {

@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {
-  actions as currentNoteActions,
-  selectors as currentNoteSelectors
-} from '../../redux/modules/currentNote';
+import { actions as currentNoteActions } from '../../redux/modules/currentNote';
 
 import {
   SingleNoteContainer,
@@ -43,9 +40,9 @@ class SingleNote extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  selectCurrentNote: id => dispatch(currentNoteActions.selectCurrentNote(id))
-});
+const mapDispatchToProps = {
+  selectCurrentNote: currentNoteActions.selectCurrentNote
+};
 
 export default connect(
   null,
