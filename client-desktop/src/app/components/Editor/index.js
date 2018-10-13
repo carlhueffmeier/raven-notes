@@ -10,6 +10,14 @@ class Editor extends Component {
   // Get the block type for a series of auto-markdown shortcut `chars`.
   getType = chars => {
     switch (chars) {
+      case '**':
+        return 'bold';
+      case '_':
+        return 'italic';
+      case '—':
+      return 'underline';
+      case ';':
+      return 'strike';
       case '*':
       case '-':
       case '+':
@@ -44,12 +52,18 @@ class Editor extends Component {
           <Quote {...attributes}>
             <span role="img" aria-label="robot">
               🤖
-            </span>{' '}
+            </span>
             {children}
           </Quote>
         );
-      case 'bulleted-list':
-        return <List {...attributes}>{children}</List>;
+      case 'bold':
+        return <b {...attributes}>{children}</b>;
+      case 'italic':
+      return <i {...attributes}>{children}</i>;
+      case 'underline':
+      return <u {...attributes}>{children}</u>;
+      case 'strike':
+      return <s {...attributes}>{children}</s>;
       case 'heading-one':
         return <H1 {...attributes}>{children}</H1>;
       case 'heading-two':
@@ -158,7 +172,12 @@ class Editor extends Component {
       startBlock.type !== 'heading-five' &&
       startBlock.type !== 'heading-six' &&
       startBlock.type !== 'block-quote' &&
-      startBlock.type !== 'code-block'
+      startBlock.type !== 'code-block' &&
+      startBlock.type !== 'bold' &&
+      startBlock.type !== 'italic' &&
+      startBlock.type !== 'underline' &&
+      startBlock.type !== 'strike'
+
     ) {
       return;
     }
