@@ -18,6 +18,7 @@ const moment = require('moment');
 class SingleNote extends Component {
   render() {
     const note = this.props.note;
+    console.log(note);
     return (
       <SingleNoteContainer onClick={() => this.props.selectCurrentNote(this.props.note)}>
         <Divider />

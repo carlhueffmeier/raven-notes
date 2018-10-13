@@ -29,11 +29,12 @@ const SubContainer = styled('div')`
 `;
 
 const Day = styled('div')`
-  justify-content: column;
+  justify-content: center;
   font-size: 0.8em;
   font-weight: 400;
-  width: 15%;
   padding-right: 5px;
+  max-width: 50px;
+  min-width: 50px;
 `;
 
 const Hour = styled('span')`
@@ -43,8 +44,9 @@ const Hour = styled('span')`
 `;
 
 const Note = styled('div')`
-  justify-content: column;
-  width: 85%;
+  justify-content: center;
+  display: flex;
+  flex-flow: row wrap;
 `;
 
 const Title = styled('div')`

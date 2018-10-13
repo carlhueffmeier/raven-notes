@@ -83,6 +83,8 @@ const NoteListPane = posed.div({
 const EditorPane = posed.div({
   [layoutConstants.ONE_COLUMN_LAYOUT]: {
     width: 100 + 'vw',
+    overflow: 'hidden',
+
     transition: {
       default: {
         duration: 150,
@@ -92,6 +94,8 @@ const EditorPane = posed.div({
   },
   [layoutConstants.TWO_COLUMN_LAYOUT]: {
     width: 0,
+    overflow: 'hidden',
+
     transition: {
       default: {
         duration: 150,
@@ -101,6 +105,7 @@ const EditorPane = posed.div({
   },
   [layoutConstants.THREE_COLUMN_LAYOUT]: {
     width: 68 + 'vw',
+    overflow: 'hidden',
     transition: {
       default: {
         duration: 150,
