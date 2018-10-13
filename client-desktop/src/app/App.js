@@ -30,7 +30,6 @@ class App extends Component {
   }
 
   render() {
-    console.log('🔥🔥🔥🔥', Value.create());
     return (
       <ThemeProvider theme={lightTheme}>
         <Fragment>

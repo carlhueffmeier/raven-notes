@@ -1,14 +1,18 @@
+const NOTE_FRAGMENT = `
+  id
+  contentJson
+  contentText
+  author {
+    id
+    email
+    name
+  }
+`;
+
 const ALL_NOTES_QUERY = `
   query allNotes {
     notes {
-      id
-      contentJson
-      contentText
-      author {
-        id
-        email
-        name
-      }
+      ${NOTE_FRAGMENT}
     }
   }
 `;
@@ -22,14 +26,7 @@ const CREATE_NOTE_MUTATION = `
         author: { connect: { id: "cjn5pv4vkjqgw0932trypskwh" } }
       }
     ) {
-      id
-      contentJson
-      contentText
-      author {
-        id
-        email
-        name
-      }
+      ${NOTE_FRAGMENT}
     }
   }
 `;
@@ -45,14 +42,7 @@ const UPDATE_NOTE_MUTATION = `
         contentJson: $contentJson
       }
     ) {
-      id
-      contentJson
-      contentText
-      author {
-        id
-        email
-        name
-      }
+      ${NOTE_FRAGMENT}
     }
   }
 `;

@@ -1,11 +1,11 @@
 import { selectors as noteSelectors } from '../../modules/note';
 
-function getEntity(state) {
+function getModuleState(state) {
   return state.ui.currentNote;
 }
 
 function getCurrentNote(state) {
-  const currentNoteId = getEntity(state).id;
+  const currentNoteId = getModuleState(state).id;
   if (!currentNoteId) {
     return null;
   }
@@ -13,7 +13,7 @@ function getCurrentNote(state) {
 }
 
 function getCurrentNoteIsDirty(state) {
-  return getEntity(state).dirty;
+  return getModuleState(state).dirty;
 }
 
 export { getCurrentNote, getCurrentNoteIsDirty };
