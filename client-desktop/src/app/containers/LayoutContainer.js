@@ -6,6 +6,8 @@ import Sidebar from '../components/Sidebar';
 import NoteListContainer from '../containers/NoteListContainer';
 import EditorContainer from '../containers/EditorContainer';
 
+import LogIn from '../components/LogIn';
+
 class LayoutContainer extends Component {
   render() {
     const { currentLayout } = this.props;
