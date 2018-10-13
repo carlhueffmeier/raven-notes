@@ -8,7 +8,7 @@ import add from './../../assets/plus.svg';
 class CreateNoteContainer extends Component {
   render() {
     return (
-      <CreateButton onClick={() => this.props.createNote({ body: 'Ello' })}>
+      <CreateButton onClick={() => this.props.createNote()}>
         <CreateImg alt="Add Notes" src={add} />
       </CreateButton>
     );

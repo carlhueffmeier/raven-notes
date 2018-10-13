@@ -14,7 +14,7 @@ class NoteListContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  notes: noteSelectors.getAllNotes(state)
+  notes: noteSelectors.getAllNotesWithAuthor(state)
 });
 
 const mapDispatchToProps = {

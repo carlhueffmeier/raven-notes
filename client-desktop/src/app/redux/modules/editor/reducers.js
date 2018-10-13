@@ -1,8 +1,7 @@
-import Plain from 'slate-plain-serializer';
 import { UPDATE_EDITOR_CONTENT } from './types';
-const initialState = Plain.deserialize('');
+import { createEmptyEditorValue } from '../../../lib/editorUtils';
 
-function rootReducer(state = initialState, action) {
+function rootReducer(state = createEmptyEditorValue(), action) {
   switch (action.type) {
     case UPDATE_EDITOR_CONTENT: {
       const newContent = action.payload;

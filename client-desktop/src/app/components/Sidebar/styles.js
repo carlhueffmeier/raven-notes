@@ -36,6 +36,7 @@ const GSection = styled('div')`
 const Sect = styled('p')`
   margin: 4px;
   font-size: 0.8em;
+  padding-bottom: 2px;
 `;
 
 const SearchBox = styled('input')`
@@ -68,4 +69,10 @@ const Button = styled('button')`
   }
 `;
 
-export { SidebarContainer, SName, USection, GSection, Sect, H3, SearchBox, Button };
+const Img = styled('img')`
+  height: 2.6vh;
+  padding-right: 2px;
+  vertical-align: middle;
+`;
+
+export { SidebarContainer, SName, USection, GSection, Sect, H3, SearchBox, Button, Img };

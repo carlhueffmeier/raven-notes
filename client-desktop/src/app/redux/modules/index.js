@@ -1,14 +1,15 @@
 import { combineReducers } from 'redux';
 import { all, call } from 'redux-saga/effects';
 import noteReducer, { saga as noteSaga } from './note';
+import userReducer from './user';
 import currentNoteReducer, { saga as currentNoteSaga } from './currentNote';
 import editorReducer from './editor';
 import layoutReducer from './layout';
 
 const rootReducer = combineReducers({
   entities: combineReducers({
-    notes: noteReducer
-    // users: userReducer,
+    notes: noteReducer,
+    users: userReducer
     // groups: groupReducer
   }),
   ui: combineReducers({

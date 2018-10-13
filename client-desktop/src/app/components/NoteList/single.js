@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 import { connect } from 'react-redux';
 import { actions as currentNoteActions } from '../../redux/modules/currentNote';
-
+import { createNoteTitle, createNoteSnippet } from '../../lib/noteUtils';
 import {
   SingleNoteContainer,
   SubContainer,
@@ -13,28 +14,25 @@ import {
   Divider,
   Hour
 } from './styles';
-const moment = require('moment');
 
 class SingleNote extends Component {
   render() {
     const note = this.props.note;
-    console.log(note);
+    const title = createNoteTitle(note);
+    const snippet = createNoteSnippet(note);
     return (
-      <SingleNoteContainer onClick={() => this.props.selectCurrentNote(this.props.note)}>
+      <SingleNoteContainer
+        onClick={() => {
+          this.props.updateCurrentNote();
+          this.props.selectCurrentNote(note);
+        }}
+      >
         <Divider />
         <SubContainer>
-          <Day>
-            {moment(this.props.note.createdAt).format('Do MMM')}
-            <Hour>{moment(this.props.note.createdAt).format('hh:mm a')}</Hour>
-          </Day>
-
+          <Day>{moment(note.createdAt).format('MMM Do YY')}</Day>
           <Note>
-            <Title>
-              {this.props.note.body && this.props.note.body.length > 10
-                ? this.props.note.body.slice(0, 10) + '... 🚀'
-                : this.props.note.body}
-            </Title>
-            <Body>{note.body}</Body>
+            <Title>{title}</Title>
+            <Body>{snippet}</Body>
             <Author>
               <span>Written by</span> {note.author.name}
             </Author>
