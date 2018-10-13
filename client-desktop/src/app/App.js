@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 import { lightTheme } from './themes';
 import { ThemeProvider } from 'emotion-theming';
 import './styles';
-import { Value } from 'slate';
 
 import LayoutContainer from './containers/LayoutContainer';
 import LayoutSwitch from './components/LayoutSwitch';

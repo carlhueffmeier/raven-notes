@@ -2,11 +2,11 @@ import styled from 'react-emotion';
 
 const SidebarContainer = styled('div')`
   height: 100%;
-  border-right: 0.4px solid rgba(119, 136, 153, 0.8);
+  // border-right: 0.4px solid rgba(119, 136, 153, 0.8);
   padding: 15px;
   padding: 15px;
 
-  // background-color: #F7F9F9;
+  background-color: #f7f6f3;
 `;
 const H3 = styled('h3')`
   color: #778899;
@@ -36,6 +36,7 @@ const GSection = styled('div')`
 const Sect = styled('p')`
   margin: 4px;
   font-size: 0.8em;
+  padding-bottom: 2px;
 `;
 
 const SearchBox = styled('input')`
@@ -68,4 +69,11 @@ const Button = styled('button')`
   }
 `;
 
-export { SidebarContainer, SName, USection, GSection, Sect, H3, SearchBox, Button };
+const Img = styled('img')`
+  height: 2.6vh;
+  padding-right: 2px;
+  vertical-align: middle;
+`;
+
+
+export { SidebarContainer, SName, USection, GSection, Sect, H3, SearchBox, Button, Img };

@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
 import './prism.css';
-import { func, object } from 'prop-types';
+
+//========== Slate editor
 import { Editor as SlateEditor } from 'slate-react';
 
 import { EditorContainer, Quote, H1, H2, H3, H4, H5, H6, List } from './styles';
 
 class Editor extends Component {
-  static propTypes = {
-    onChange: func,
-    content: object
-  };
-
   // Get the block type for a series of auto-markdown shortcut `chars`.
   getType = chars => {
     switch (chars) {
@@ -177,7 +173,7 @@ class Editor extends Component {
     return (
       <EditorContainer>
         <SlateEditor
-          placeholder="Write here"
+          placeholder="Let's write some notes! 💃🏼"
           value={content}
           onChange={change => onChange(change.value)}
           onKeyDown={this.onKeyDown}
@@ -185,7 +181,7 @@ class Editor extends Component {
           style={{
             width: '100%',
             height: '100%',
-            border: '.4px solid rgba(119, 136, 153, 0.1)'
+            padding: '2vh'
           }}
         />
       </EditorContainer>

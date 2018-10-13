@@ -1,33 +1,51 @@
 import styled from 'react-emotion';
 
 const ButtonContainer = styled('div')`
-  background-color: red;
-  width: 10vw;
-  margin: 0;
+  position: fixed;
+  right: 0;
+  bottom: 2vh;
+  background-color: #f7f6f3;
+  width: 12vh;
+  z-index: 100;
+  padding: 6px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 `;
 
 const LayoutSwitchButton = styled('button')`
-  position: fixed;
-  z-index: 100;
+  border: none;
+  display: flex;
+  background-color: #f7f6f3;
+  padding: 5px;
+  :focus {
+    outline: none;
+  }
 
   :nth-child(1) {
-    margin-top: 50px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     left: 90vw;
-    height: 10vh;
-    background-color: lavender;
+    width: 10vh;
   }
   :nth-child(2) {
-    margin-top: 120px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 10vh;
     left: 90vw;
-    height: 10vh;
-    background-color: pink;
   }
   :nth-child(3) {
-    margin-top: 200px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 10vh;
     left: 90vw;
-    height: 10vh;
-    background-color: peachpuff;
   }
 `;
 
-export { ButtonContainer, LayoutSwitchButton };
+const Img = styled('img')`
+  width: 5vw;
+`;
+
+export { ButtonContainer, LayoutSwitchButton, Img };

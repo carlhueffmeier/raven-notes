@@ -11,7 +11,8 @@ import {
   Title,
   Body,
   Author,
-  Divider
+  Divider,
+  Hour
 } from './styles';
 
 class SingleNote extends Component {
@@ -20,7 +21,10 @@ class SingleNote extends Component {
     const title = createNoteTitle(note);
     const snippet = createNoteSnippet(note);
     return (
-      <SingleNoteContainer onClick={() => this.props.selectCurrentNote(note)}>
+      <SingleNoteContainer onClick={() => {
+        this.props.updateCurrentNote();
+        this.props.selectCurrentNote(note)
+        }}>
         <Divider />
         <SubContainer>
           <Day>{moment(note.createdAt).format('MMM Do YY')}</Day>
@@ -37,8 +41,9 @@ class SingleNote extends Component {
   }
 }
 
+
 const mapDispatchToProps = {
-  selectCurrentNote: currentNoteActions.selectCurrentNote
+  selectCurrentNote: currentNoteActions.selectCurrentNote,
 };
 
 export default connect(

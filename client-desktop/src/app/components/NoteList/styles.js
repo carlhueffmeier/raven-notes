@@ -5,6 +5,7 @@ const NoteListContainer = styled('div')`
   flex-direction: column;
   height: 100vh;
   overflow-y: scroll;
+  border-right: 0.4px solid rgba(119, 136, 153, 0.8);
 `;
 
 const SingleNoteContainer = styled('div')`
@@ -12,15 +13,33 @@ const SingleNoteContainer = styled('div')`
   margin-bottom: -12px;
 `;
 
+const SearchAndCreateContainer = styled('div')`
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  min-height: 25px;
+  max-height: 25px;
+  margin-top 19px;
+`;
+
 const SubContainer = styled('div')`
   display: flex;
+  padding-top: 2vh;
 `;
 
 const Day = styled('div')`
   justify-content: column;
   font-size: 0.8em;
-  font-weight: 500;
+  font-weight: 400;
   width: 15%;
+  padding-right: 5px;
+`;
+
+const Hour = styled('span')`
+  display: block;
+  color: gray;
+  margin-top: 5px;
 `;
 
 const Note = styled('div')`
@@ -55,8 +74,9 @@ const Author = styled('div')`
   }
 `;
 
-const Divider = styled('hr')`
-  border-bottom: 0.1px solid #8c8b8b;
+const Divider = styled('div')`
+  border-bottom: 0.4px solid rgba(119, 136, 153, 0.8);
+  padding-bottom: 1vh;
 `;
 
 export {
@@ -68,5 +88,7 @@ export {
   Title,
   Body,
   Author,
-  Divider
+  Divider,
+  SearchAndCreateContainer,
+  Hour
 };
