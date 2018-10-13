@@ -5,6 +5,7 @@ import './styles';
 
 import LayoutContainer from './containers/LayoutContainer';
 import LayoutSwitch from './components/LayoutSwitch';
+import LogIn from './components/LogIn';
 
 const { ipcRenderer } = window.require('electron');
 
@@ -29,6 +30,11 @@ class App extends Component {
   }
 
   render() {
+    // if (!this.props.user) {
+    //   return (
+    //   <LogIn />
+    //   )
+    // } else {
     return (
       <ThemeProvider theme={lightTheme}>
         <Fragment>
@@ -37,6 +43,7 @@ class App extends Component {
         </Fragment>
       </ThemeProvider>
     );
+  // }
   }
 }
 

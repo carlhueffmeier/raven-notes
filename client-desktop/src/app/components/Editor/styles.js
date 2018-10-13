@@ -1,5 +1,6 @@
 import styled from 'react-emotion';
 
+
 const EditorContainer = styled('div')`
   display: flex;
   width: 100%;
@@ -46,4 +47,8 @@ const Code = styled('code')`
   background: lavender;
 `;
 
-export { EditorContainer, User, Quote, H1, H2, H3, H4, H5, H6, List, Code };
+const Raven = styled('div')`
+  font-family: 'Space Mono', monospace;
+`
+
+export { EditorContainer, User, Quote, H1, H2, H3, H4, H5, H6, List, Code, Raven };
