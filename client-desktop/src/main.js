@@ -1,14 +1,42 @@
 // Modules to control application life and create native browser window
-const { app, BrowserWindow, Menu } = require('electron');
+const { app, BrowserWindow, Menu, Tray } = require('electron');
 const { createMenu } = require('./menu');
+
+
+const {
+  default: installExtension,
+  REACT_DEVELOPER_TOOLS,
+  REDUX_DEVTOOLS
+} = require('electron-devtools-installer');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 
+// Install DevTools
+async function installDevTools() {
+  try {
+    await installExtension(REACT_DEVELOPER_TOOLS);
+  } catch (error) {
+    console.warn(error);
+  }
+  try {
+    await installExtension(REDUX_DEVTOOLS);
+  } catch (error) {
+    console.warn(error);
+  }
+}
+
+// App icon
+
 function createWindow() {
   // Create the browser window.
-  mainWindow = new BrowserWindow({ width: 900, height: 600 });
+  mainWindow = new BrowserWindow({
+    width: 900,
+    height: 600,
+    icon: __dirname + './../public/icons/mac/crow.icns'
+  });
+  installDevTools();
 
   const menu = createMenu({ mainWindow });
   Menu.setApplicationMenu(menu);

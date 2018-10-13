@@ -1,16 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './app/App';
-import ApolloClient from 'apollo-boost';
-import { ApolloProvider } from 'react-apollo';
+import { Provider } from 'react-redux';
+import configureStore from './app/redux/configureStore';
 
-const client = new ApolloClient({
-  uri: process.env.REACT_APP_APOLLO_SERVER_URI
-});
+const store = configureStore();
 
 ReactDOM.render(
-  <ApolloProvider client={client}>
+  <Provider store={store}>
     <App />
-  </ApolloProvider>,
+  </Provider>,
   document.getElementById('root')
 );
