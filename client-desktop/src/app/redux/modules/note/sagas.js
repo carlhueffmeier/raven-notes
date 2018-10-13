@@ -5,7 +5,7 @@ import * as actions from './actions';
 import { FETCH_NOTES, CREATE_NOTE, UPDATE_NOTE } from './types';
 import { ALL_NOTES_QUERY, CREATE_NOTE_MUTATION, UPDATE_NOTE_MUTATION } from './graphqlMock';
 import { note as noteSchema } from './schema';
-import { selectors as currentNoteSelectors, types as currentNoteTypes } from '../../modules/currentNote';
+import { selectors as currentNoteSelectors } from '../../modules/currentNote';
 import { selectors as editorSelectors } from '../../modules/editor';
 import {
   editorValueToJson,
@@ -78,7 +78,7 @@ function* updateIfDirty() {
 
 function* pollUpdateNotes() {
   while (true) {
-    yield call(updateIfDirty)
+    yield call(updateIfDirty);
     yield call(delay, POLL_INTERVAL);
   }
 }
@@ -99,8 +99,6 @@ function* noteSaga() {
   yield takeEvery(FETCH_NOTES.START, fetchNotes);
   yield takeEvery(CREATE_NOTE.START, createNote);
   yield takeEvery(UPDATE_NOTE.START, updateNote);
-  yield takeEvery(currentNoteTypes.SELECT_CURRENT_NOTE, updateIfDirty);
-  yield takeEvery(currentNoteTypes.RESET_CURRENT_NOTE, updateIfDirty);
   yield spawn(pollFetchNotes);
   yield spawn(pollUpdateNotes);
 }
