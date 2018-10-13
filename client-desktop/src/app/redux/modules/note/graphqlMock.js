@@ -27,12 +27,13 @@ const ALL_NOTES_QUERY = `
 `;
 
 const CREATE_NOTE_MUTATION = `
-  mutation createNote($contentJson: Json, $contentText: String) {
+  mutation createNote($contentJson: Json, $contentText: String, $groupId: ID!) {
     createNote(
       data: {
         contentText: $contentText,
         contentJson: $contentJson,
-        author: { connect: { id: "cjn5pv4vkjqgw0932trypskwh" } }
+        author: { connect: { id: "cjn5pv4vkjqgw0932trypskwh" } },
+        group: { connect: { id: $groupId } }
       }
     ) {
       ${NOTE_FRAGMENT}
