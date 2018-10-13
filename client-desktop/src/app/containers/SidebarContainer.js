@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { selectors as groupSelectors } from '../redux/modules/group';
 import { actions as currentGroupActions } from '../redux/modules/currentGroup';
 import Sidebar from '../components/Sidebar';
+import { prop, sortBy } from '../lib/utils';
 
 class SidebarContainer extends Component {
   render() {
@@ -12,8 +13,9 @@ class SidebarContainer extends Component {
 }
 
 function mapStateToProps(state) {
+  const allGroups = groupSelectors.getAllGroups(state);
   return {
-    groups: groupSelectors.getAllGroups(state)
+    groups: sortBy(prop('name'), allGroups)
   };
 }
 
