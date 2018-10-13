@@ -3,9 +3,13 @@ import styled from 'react-emotion';
 const NoteListContainer = styled('div')`
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: calc(100vh - 25px);
   overflow-y: scroll;
   border-right: 0.4px solid rgba(119, 136, 153, 0.8);
+  padding-top: 5px;
+  ::-webkit-scrollbar {
+    padding-top: 25px;
+  }
 `;
 
 const SingleNoteContainer = styled('div')`
@@ -49,7 +53,6 @@ const Note = styled('div')`
   flex-flow: column wrap;
   width: 100%;
   align-items: flex-start;
-  background-color: green;
 `;
 
 const Title = styled('div')`
@@ -76,7 +79,6 @@ const Author = styled('div')`
 
 const RowNote = styled(Note)`
   flex-flow: row wrap;
-  background: whitesmoke;
 `;
 
 const RowTitle = styled(Title)`

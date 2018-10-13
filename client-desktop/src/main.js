@@ -32,7 +32,7 @@ function createWindow() {
     height: 600,
     minHeight: 400,
     minWidth: 600,
-    titleBarStyle: 'customButtonsOnHover'
+    titleBarStyle: 'hidden'
   });
   installDevTools();
 
