@@ -4,7 +4,7 @@ import './prism.css';
 //========== Slate editor
 import { Editor as SlateEditor } from 'slate-react';
 
-import { EditorContainer, Quote, H1, H2, H3, H4, H5, H6, List } from './styles';
+import { EditorContainer, Quote, H1, H2, H3, H4, H5, H6, List, Raven } from './styles';
 
 class Editor extends Component {
   // Get the block type for a series of auto-markdown shortcut `chars`.
@@ -38,6 +38,8 @@ class Editor extends Component {
         return 'heading-six';
       case '<':
         return 'code-block';
+      case 'raven':
+        return 'raven'
       default:
         return null;
     }
@@ -78,6 +80,8 @@ class Editor extends Component {
         return <H6 {...attributes}>{children}</H6>;
       case 'list-item':
         return <List {...attributes}>{children}</List>;
+      case 'raven':
+        return <Raven {...attributes}>{children}</Raven>;
       case 'code-block':
         return (
           <pre className="language-javascript">

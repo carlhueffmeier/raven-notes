@@ -46,4 +46,8 @@ const Code = styled('code')`
   background: lavender;
 `;
 
-export { EditorContainer, User, Quote, H1, H2, H3, H4, H5, H6, List, Code };
+const Raven = styled('p')`
+  background-color: lavender
+`
+
+export { EditorContainer, User, Quote, H1, H2, H3, H4, H5, H6, List, Code, Raven };
