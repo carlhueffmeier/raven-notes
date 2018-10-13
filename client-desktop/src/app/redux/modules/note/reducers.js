@@ -1,39 +1,22 @@
 import { combineReducers } from 'redux';
 import { FETCH_NOTES, CREATE_NOTE, UPDATE_NOTE } from './types';
-import { toMapIndexedBy, unique, prop } from '../../../lib/utils';
+import { unique, path } from '../../../lib/utils';
 
 function byId(state = {}, action) {
-  switch (action.type) {
-    case CREATE_NOTE.SUCCESS:
-    case UPDATE_NOTE.SUCCESS: {
-      const note = action.payload;
-      return { ...state, [note.id]: note };
-    }
-    case FETCH_NOTES.SUCCESS: {
-      const notes = action.payload;
-      const normalizedNotes = toMapIndexedBy('id', notes);
-      return { ...state, ...normalizedNotes };
-    }
-    default:
-      return state;
+  const noteEntities = path(['payload', 'entities', 'notes'], action);
+  if (noteEntities) {
+    return { ...state, ...noteEntities };
   }
+  return state;
 }
 
 function allIds(state = [], action) {
-  switch (action.type) {
-    case CREATE_NOTE.SUCCESS:
-    case UPDATE_NOTE.SUCCESS: {
-      const note = action.payload;
-      return unique([note.id, ...state]);
-    }
-    case FETCH_NOTES.SUCCESS: {
-      const notes = action.payload;
-      const noteIds = notes.map(prop('id'));
-      return unique([...state, ...noteIds]);
-    }
-    default:
-      return state;
+  const noteEntities = path(['payload', 'entities', 'notes'], action);
+  if (noteEntities) {
+    const ids = Object.keys(noteEntities);
+    return unique([...ids, ...state]);
   }
+  return state;
 }
 
 function loading(state = false, action) {

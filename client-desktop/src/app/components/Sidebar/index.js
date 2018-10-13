@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import { SidebarContainer, H3, SName, USection, GSection, Sect } from './styles';
+import { SidebarContainer, H3, SName, USection, GSection, Sect, Img } from './styles';
+
+import notes from '../../../assets/paper-plane.svg';
+import extracts from '../../../assets/origami.svg';
+import codeworks from '../../../assets/codeworks-logo.svg'
 
 class Sidebar extends Component {
   render() {
@@ -16,15 +20,11 @@ class Sidebar extends Component {
         <USection>
           <SName>PRIVATE</SName>
           <Sect onClick={() => console.log('this is to show user notes')}>
-            <span role="img" aria-label="monkey">
-              🌼
-            </span>
+            <Img src={notes}/>
             All Notes
           </Sect>
           <Sect onClick={() => console.log('this is to show extracts')}>
-            <span role="img" aria-label="monkey">
-              🌼
-            </span>{' '}
+            <Img src={extracts}/>
             Extracts
           </Sect>
         </USection>
@@ -32,9 +32,7 @@ class Sidebar extends Component {
         <GSection>
           <SName>WORKSPACE</SName>
           <Sect onClick={() => console.log('this is to show groups notes')}>
-            <span role="img" aria-label="monkey">
-              🌞
-            </span>{' '}
+            <Img src={codeworks}/>
             Codeworks
           </Sect>
         </GSection>

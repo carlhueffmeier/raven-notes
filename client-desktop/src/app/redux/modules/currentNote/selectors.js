@@ -1,11 +1,19 @@
 import { selectors as noteSelectors } from '../../modules/note';
 
-function getCurrentNote(state) {
-  const currentNote = state.ui.currentNote;
-  if (!currentNote) {
-    return null;
-  }
-  return noteSelectors.getNoteById(state, currentNote);
+function getModuleState(state) {
+  return state.ui.currentNote;
 }
 
-export { getCurrentNote };
+function getCurrentNote(state) {
+  const currentNoteId = getModuleState(state).id;
+  if (!currentNoteId) {
+    return null;
+  }
+  return noteSelectors.getNoteById(state, currentNoteId);
+}
+
+function getCurrentNoteIsDirty(state) {
+  return getModuleState(state).dirty;
+}
+
+export { getCurrentNote, getCurrentNoteIsDirty };
