@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import moment from 'moment';
-import { connect } from 'react-redux';
-import { actions as currentNoteActions } from '../../redux/modules/currentNote';
 import { createNoteTitle, createNoteSnippet } from '../../lib/noteUtils';
 import { SizeMe } from 'react-sizeme';
 import {
@@ -17,12 +15,13 @@ import {
   Note,
   Title,
   Body,
-  Author
+  Author,
+  Divider
 } from './styles';
 
 class SingleNote extends Component {
   render() {
-    const note = this.props.note;
+    const { note, onClick } = this.props;
     const title = createNoteTitle(note);
     const snippet = createNoteSnippet(note);
     return (
@@ -62,11 +61,4 @@ class SingleNote extends Component {
   }
 }
 
-const mapDispatchToProps = {
-  selectCurrentNote: currentNoteActions.selectCurrentNote
-};
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(SingleNote);
+export default SingleNote;

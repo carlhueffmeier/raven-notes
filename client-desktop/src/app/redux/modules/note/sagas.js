@@ -5,10 +5,9 @@ import * as actions from './actions';
 import { FETCH_NOTES, CREATE_NOTE, UPDATE_NOTE } from './types';
 import { ALL_NOTES_QUERY, CREATE_NOTE_MUTATION, UPDATE_NOTE_MUTATION } from './graphqlMock';
 import { note as noteSchema } from './schema';
-import {
-  selectors as currentNoteSelectors,
-  types as currentNoteTypes
-} from '../../modules/currentNote';
+
+import { selectors as currentNoteSelectors } from '../../modules/currentNote';
+import { selectors as currentGroupSelectors } from '../../modules/currentGroup';
 import { selectors as editorSelectors } from '../../modules/editor';
 import {
   editorValueToJson,
@@ -32,9 +31,11 @@ function* fetchNotes() {
 
 function* createNote() {
   try {
+    const currentGroupId = yield select(currentGroupSelectors.getCurrentGroupId);
     const newNoteInfo = {
       contentJson: createEmptyJson(),
-      contentText: ''
+      contentText: '',
+      groupId: currentGroupId
     };
     const response = yield call([graphqlClient, 'request'], CREATE_NOTE_MUTATION, newNoteInfo);
     const normalizedData = normalize(response.createNote, noteSchema);
@@ -102,8 +103,6 @@ function* noteSaga() {
   yield takeEvery(FETCH_NOTES.START, fetchNotes);
   yield takeEvery(CREATE_NOTE.START, createNote);
   yield takeEvery(UPDATE_NOTE.START, updateNote);
-  yield takeEvery(currentNoteTypes.SELECT_CURRENT_NOTE, updateIfDirty);
-  yield takeEvery(currentNoteTypes.RESET_CURRENT_NOTE, updateIfDirty);
   yield spawn(pollFetchNotes);
   yield spawn(pollUpdateNotes);
 }

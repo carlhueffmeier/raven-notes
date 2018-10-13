@@ -6,6 +6,7 @@ import { NoteListContainer, SearchAndCreateContainer } from './styles';
 
 class NoteList extends Component {
   render() {
+    const { notes, selectNote } = this.props;
     return (
       <NoteListContainer>
         <SearchAndCreateContainer>
@@ -13,8 +14,8 @@ class NoteList extends Component {
           <CreateNoteContainer />
         </SearchAndCreateContainer>
         <div>
-          {this.props.notes.map(note => (
-            <SingleNote key={note.id} note={note} />
+          {notes.map(note => (
+            <SingleNote key={note.id} note={note} onClick={() => selectNote(note.id)} />
           ))}
         </div>
       </NoteListContainer>

@@ -18,35 +18,6 @@ injectGlobal`
   }
 `;
 
-// this is not working
-const Buttons = styled('div')`
-  background-color: red;
-  width: 10vw;
-  margin: 0;
-`;
-const P1 = styled('button')`
-  position: absolute;
-  margin-top: 50px;
-  left: 90vw;
-  height: 10vh;
-  background-color: lavender;
-`;
-
-const P2 = styled('button')`
-  position: absolute;
-  margin-top: 120px;
-  left: 90vw;
-  height: 10vh;
-  background-color: pink;
-`;
-const P3 = styled('button')`
-  position: absolute;
-  margin-top: 200px;
-  left: 90vw;
-  height: 10vh;
-  background-color: peachpuff;
-`;
-
 const Header = styled('header')`
   background-color: transparent;
   border-bottom: 0.2px solid black
@@ -63,4 +34,4 @@ const Header = styled('header')`
   font-weight: 600;
 `;
 
-export { P1, P2, P3, Buttons, Header };
+export { Header };

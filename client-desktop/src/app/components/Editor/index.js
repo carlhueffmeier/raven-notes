@@ -4,12 +4,20 @@ import './prism.css';
 //========== Slate editor
 import { Editor as SlateEditor } from 'slate-react';
 
-import { EditorContainer, Quote, H1, H2, H3, H4, H5, H6, List } from './styles';
+import { EditorContainer, Quote, H1, H2, H3, H4, H5, H6, List, Raven } from './styles';
 
 class Editor extends Component {
   // Get the block type for a series of auto-markdown shortcut `chars`.
   getType = chars => {
     switch (chars) {
+      case '**':
+        return 'bold';
+      case '_':
+        return 'italic';
+      case '—':
+      return 'underline';
+      case ';':
+      return 'strike';
       case '*':
       case '-':
       case '+':
@@ -30,6 +38,8 @@ class Editor extends Component {
         return 'heading-six';
       case '<':
         return 'code-block';
+      case 'raven':
+        return 'raven'
       default:
         return null;
     }
@@ -44,12 +54,18 @@ class Editor extends Component {
           <Quote {...attributes}>
             <span role="img" aria-label="robot">
               🤖
-            </span>{' '}
+            </span>
             {children}
           </Quote>
         );
-      case 'bulleted-list':
-        return <List {...attributes}>{children}</List>;
+      case 'bold':
+        return <b {...attributes}>{children}</b>;
+      case 'italic':
+      return <i {...attributes}>{children}</i>;
+      case 'underline':
+      return <u {...attributes}>{children}</u>;
+      case 'strike':
+      return <s {...attributes}>{children}</s>;
       case 'heading-one':
         return <H1 {...attributes}>{children}</H1>;
       case 'heading-two':
@@ -64,6 +80,13 @@ class Editor extends Component {
         return <H6 {...attributes}>{children}</H6>;
       case 'list-item':
         return <List {...attributes}>{children}</List>;
+      case 'raven':
+        return <Raven {...attributes}>
+        <span role="img" aria-label="monkeys">
+        🙈 🙉 🙊 🐒
+        </span>
+        {children}
+        </Raven>;
       case 'code-block':
         return (
           <pre className="language-javascript">
@@ -158,7 +181,12 @@ class Editor extends Component {
       startBlock.type !== 'heading-five' &&
       startBlock.type !== 'heading-six' &&
       startBlock.type !== 'block-quote' &&
-      startBlock.type !== 'code-block'
+      startBlock.type !== 'code-block' &&
+      startBlock.type !== 'bold' &&
+      startBlock.type !== 'italic' &&
+      startBlock.type !== 'underline' &&
+      startBlock.type !== 'strike'
+
     ) {
       return;
     }
@@ -181,7 +209,8 @@ class Editor extends Component {
           style={{
             width: '100%',
             height: '100%',
-            padding: '2vh'
+            padding: '2vh',
+            overflow: 'auto'
           }}
         />
       </EditorContainer>

@@ -1,6 +1,8 @@
 // Modules to control application life and create native browser window
-const { app, BrowserWindow, Menu } = require('electron');
+const { app, BrowserWindow, Menu, Tray } = require('electron');
 const { createMenu } = require('./menu');
+
+
 const {
   default: installExtension,
   REACT_DEVELOPER_TOOLS,
@@ -25,6 +27,8 @@ async function installDevTools() {
   }
 }
 
+// App icon
+
 function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
@@ -32,7 +36,8 @@ function createWindow() {
     height: 600,
     minHeight: 400,
     minWidth: 600,
-    titleBarStyle: 'hidden'
+    titleBarStyle: 'hidden',
+    icon: __dirname + './../public/icons/mac/crow.icns'
   });
   installDevTools();
 

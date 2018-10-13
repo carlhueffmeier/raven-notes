@@ -8,6 +8,7 @@ import user from '../../../assets/man.svg';
 
 class Sidebar extends Component {
   render() {
+    const { groups, selectGroup } = this.props;
     return (
       <SidebarContainer>
         <H3>
@@ -30,10 +31,12 @@ class Sidebar extends Component {
 
         <GSection>
           <SName>WORKSPACE</SName>
-          <Sect onClick={() => console.log('this is to show groups notes')}>
-            <Img src={codeworks} />
-            Codeworks
-          </Sect>
+          {groups.map(group => (
+            <Sect key={group.id} onClick={() => selectGroup(group.id)}>
+              <Img src={codeworks} />
+              {group.name}
+            </Sect>
+          ))}
         </GSection>
       </SidebarContainer>
     );

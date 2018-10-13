@@ -4,6 +4,7 @@
   "dependencies": {
     "emotion": "^9.2.12",
     "emotion-theming": "^9.2.9",
+    "final-form": "^4.10.0",
     "graphql-request": "^1.8.2",
     "immutable": "^3.8.2",
     "moment": "^2.22.2",
