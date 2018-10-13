@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { lightTheme } from './themes';
 import { ThemeProvider } from 'emotion-theming';
 import './styles';
+import { Header } from './styles';
 
 import LayoutContainer from './containers/LayoutContainer';
 import LayoutSwitch from './components/LayoutSwitch';
@@ -38,6 +39,7 @@ class App extends Component {
     return (
       <ThemeProvider theme={lightTheme}>
         <Fragment>
+          <Header>Raven Notes 1.0</Header>
           <LayoutSwitch />
           <LayoutContainer />
         </Fragment>

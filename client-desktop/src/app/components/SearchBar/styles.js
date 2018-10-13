@@ -1,13 +1,13 @@
 import styled from 'react-emotion';
 
 const SearchBox = styled('input')`
-  height: 3vh;
+  height: 25px;
   flex: 3 1;
   border-radius: 20px;
   border: 0.5px solid #ccc;
   margin: 0 10px;
   padding: 5px;
-  text-indent: 8px;
+  text-indent: 12px;
   :hover,
   :focus {
     background-color: #fafafa;
@@ -20,7 +20,7 @@ const SearchBox = styled('input')`
 const CreateButton = styled('button')`
   background: transparent;
   border: none;
-
+  cursor: pointer;
   margin-left: -10px;
   :focus {
     outline: none;
@@ -28,7 +28,8 @@ const CreateButton = styled('button')`
 `;
 
 const CreateImg = styled('img')`
-  height: 2.6vh;
+  height: 23px;
+  padding: 1px;
   vertical-align: middle;
 `;
 

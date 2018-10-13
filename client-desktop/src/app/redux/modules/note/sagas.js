@@ -5,6 +5,7 @@ import * as actions from './actions';
 import { FETCH_NOTES, CREATE_NOTE, UPDATE_NOTE } from './types';
 import { ALL_NOTES_QUERY, CREATE_NOTE_MUTATION, UPDATE_NOTE_MUTATION } from './graphqlMock';
 import { note as noteSchema } from './schema';
+
 import { selectors as currentNoteSelectors } from '../../modules/currentNote';
 import { selectors as currentGroupSelectors } from '../../modules/currentGroup';
 import { selectors as editorSelectors } from '../../modules/editor';

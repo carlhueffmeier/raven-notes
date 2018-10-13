@@ -3,9 +3,13 @@ import styled from 'react-emotion';
 const NoteListContainer = styled('div')`
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: calc(100vh - 25px);
   overflow-y: scroll;
   border-right: 0.4px solid rgba(119, 136, 153, 0.8);
+  padding-top: 5px;
+  ::-webkit-scrollbar {
+    padding-top: 25px;
+  }
 `;
 
 const SingleNoteContainer = styled('div')`
@@ -29,38 +33,38 @@ const SubContainer = styled('div')`
 `;
 
 const Day = styled('div')`
-  justify-content: column;
+  justify-content: center;
   font-size: 0.8em;
   font-weight: 400;
-  width: 15%;
-  padding-right: 5px;
+  margin-right: 15px;
+  max-width: 60px;
+  min-width: 60px;
 `;
 
 const Hour = styled('span')`
   display: block;
-  color: gray;
+  color: lightgray;
   margin-top: 5px;
 `;
 
 const Note = styled('div')`
-  justify-content: column;
-  width: 85%;
+  justify-content: space-evenly;
+  display: flex;
+  flex-flow: column wrap;
+  width: 100%;
+  align-items: flex-start;
 `;
 
 const Title = styled('div')`
-  font-size: 0.8em;
-  font-weight: 600;
-  margin-bottom: 6px;
+  & * {
+    margin: 20px 0 !important;
+  }
 `;
 
 const Body = styled('div')`
   font-size: 0.8em;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.5);
-
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
 `;
@@ -68,10 +72,25 @@ const Body = styled('div')`
 const Author = styled('div')`
   font-size: 0.7em;
   font-weight: 500;
-  margin-top: 6px;
   span {
     font-weight: 300;
   }
+`;
+
+const RowNote = styled(Note)`
+  flex-flow: row wrap;
+`;
+
+const RowTitle = styled(Title)`
+  flex-basis: 1 1 15%;
+`;
+
+const RowBody = styled(Body)`
+  flex-basis: 1 1 70%;
+`;
+
+const RowAuthor = styled(Author)`
+  flex-basis: 1 1 15%;
 `;
 
 const Divider = styled('div')`
@@ -84,11 +103,15 @@ export {
   SingleNoteContainer,
   SubContainer,
   Day,
+  RowNote,
+  RowTitle,
+  RowBody,
+  RowAuthor,
+  Divider,
+  SearchAndCreateContainer,
+  Hour,
   Note,
   Title,
   Body,
-  Author,
-  Divider,
-  SearchAndCreateContainer,
-  Hour
+  Author
 };
