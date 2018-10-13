@@ -16,7 +16,6 @@ import {
   Title,
   Body,
   Author,
-  Divider
 } from './styles';
 
 class SingleNote extends Component {
