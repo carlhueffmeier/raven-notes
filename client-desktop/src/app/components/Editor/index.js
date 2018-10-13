@@ -81,7 +81,12 @@ class Editor extends Component {
       case 'list-item':
         return <List {...attributes}>{children}</List>;
       case 'raven':
-        return <Raven {...attributes}>{children}</Raven>;
+        return <Raven {...attributes}>
+        <span role="img" aria-label="monkeys">
+        🙈 🙉 🙊 🐒
+        </span>
+        {children}
+        </Raven>;
       case 'code-block':
         return (
           <pre className="language-javascript">
