@@ -7,5 +7,8 @@ const selectCurrentNote = payload => ({
 const resetCurrentNote = () => ({
   type: types.RESET_CURRENT_NOTE
 });
+const updateCurrentNote = () => ({
+  type: types.UPDATE_CURRENT_NOTE
+});
 
-export { selectCurrentNote, resetCurrentNote };
+export { selectCurrentNote, resetCurrentNote, updateCurrentNote };

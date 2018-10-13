@@ -21,7 +21,10 @@ class SingleNote extends Component {
     const title = createNoteTitle(note);
     const snippet = createNoteSnippet(note);
     return (
-      <SingleNoteContainer onClick={() => this.props.selectCurrentNote(note)}>
+      <SingleNoteContainer onClick={() => {
+        this.props.updateCurrentNote();
+        this.props.selectCurrentNote(note)
+        }}>
         <Divider />
         <SubContainer>
           <Day>{moment(note.createdAt).format('MMM Do YY')}</Day>
@@ -38,8 +41,10 @@ class SingleNote extends Component {
   }
 }
 
+
 const mapDispatchToProps = {
-  selectCurrentNote: currentNoteActions.selectCurrentNote
+  selectCurrentNote: currentNoteActions.selectCurrentNote,
+  updateCurrentNote: currentNoteActions.updateCurrentNote
 };
 
 export default connect(
