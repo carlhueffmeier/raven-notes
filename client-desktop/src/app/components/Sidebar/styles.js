@@ -36,7 +36,7 @@ const GSection = styled('div')`
 const Sect = styled('p')`
   margin: 4px;
   font-size: 0.8em;
-  padding-bottom: 4px;
+  padding-bottom: 2px;
 `;
 
 const SearchBox = styled('input')`

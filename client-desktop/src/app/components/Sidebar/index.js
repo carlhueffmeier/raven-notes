@@ -4,15 +4,14 @@ import { SidebarContainer, H3, SName, USection, GSection, Sect, Img } from './st
 import notes from '../../../assets/paper-plane.svg';
 import extracts from '../../../assets/origami.svg';
 import codeworks from '../../../assets/codeworks-logo.svg'
+import user from '../../../assets/man.svg'
 
 class Sidebar extends Component {
   render() {
     return (
       <SidebarContainer>
         <H3>
-          <span role="img" aria-label="monkey">
-            🌚
-          </span>
+          <Img src={user}/>
           Nikko89
         </H3>
 
