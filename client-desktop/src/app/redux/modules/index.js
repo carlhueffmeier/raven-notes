@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import { all, call } from 'redux-saga/effects';
-import noteReducer, { saga as noteSaga } from './note';
+import noteReducer, { sagas as noteSaga } from './note';
 import userReducer from './user';
-import currentNoteReducer, { saga as currentNoteSaga } from './currentNote';
+import currentNoteReducer, { sagas as currentNoteSaga } from './currentNote';
 import editorReducer from './editor';
 import layoutReducer from './layout';
 
