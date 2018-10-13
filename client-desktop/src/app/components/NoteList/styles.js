@@ -32,37 +32,40 @@ const Day = styled('div')`
   justify-content: center;
   font-size: 0.8em;
   font-weight: 400;
-  padding-right: 5px;
-  max-width: 50px;
-  min-width: 50px;
+  margin-right: 15px;
+  max-width: 60px;
+  min-width: 60px;
 `;
 
 const Hour = styled('span')`
   display: block;
-  color: gray;
+  color: lightgray;
   margin-top: 5px;
 `;
 
 const Note = styled('div')`
-  justify-content: center;
+  justify-content: space-evenly;
   display: flex;
   flex-flow: row wrap;
+  width: 100%;
+  flex-basis: 1 1 50%;
+  align-items: center;
 `;
 
 const Title = styled('div')`
   font-size: 0.8em;
   font-weight: 600;
   margin-bottom: 6px;
+  flex: 1 1 15%;
+  justify-content: center;
 `;
 
 const Body = styled('div')`
   font-size: 0.8em;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.5);
+  flex: 1 1 70%;
 
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
 `;
@@ -70,7 +73,7 @@ const Body = styled('div')`
 const Author = styled('div')`
   font-size: 0.7em;
   font-weight: 500;
-  margin-top: 6px;
+  flex: 1 1 15%;
   span {
     font-weight: 300;
   }
