@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import moment from 'moment';
-import { connect } from 'react-redux';
-import { actions as currentNoteActions } from '../../redux/modules/currentNote';
 import { createNoteTitle, createNoteSnippet } from '../../lib/noteUtils';
 import {
   SingleNoteContainer,
@@ -16,11 +14,11 @@ import {
 
 class SingleNote extends Component {
   render() {
-    const note = this.props.note;
+    const { note, onClick } = this.props;
     const title = createNoteTitle(note);
     const snippet = createNoteSnippet(note);
     return (
-      <SingleNoteContainer onClick={() => this.props.selectCurrentNote({ id: note.id })}>
+      <SingleNoteContainer onClick={onClick}>
         <Divider />
         <SubContainer>
           <Day>{moment(note.createdAt).format('MMM Do YY')}</Day>
@@ -37,11 +35,4 @@ class SingleNote extends Component {
   }
 }
 
-const mapDispatchToProps = {
-  selectCurrentNote: currentNoteActions.selectCurrentNote
-};
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(SingleNote);
+export default SingleNote;

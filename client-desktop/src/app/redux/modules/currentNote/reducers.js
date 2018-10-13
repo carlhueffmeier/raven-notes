@@ -11,7 +11,7 @@ const rootReducer = combineReducers({
 function idReducer(state = null, action) {
   switch (action.type) {
     case SELECT_CURRENT_NOTE: {
-      const { id } = action.payload;
+      const id = action.payload;
       return id;
     }
     case RESET_CURRENT_NOTE:
