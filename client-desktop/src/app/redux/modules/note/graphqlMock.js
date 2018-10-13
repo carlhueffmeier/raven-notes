@@ -1,13 +1,21 @@
 const NOTE_FRAGMENT = `
-  id
-  contentJson
-  contentText
-  createdAt
-  author {
     id
-    email
-    name
-  }
+    contentJson
+    contentText
+    author {
+      id
+      email
+      name
+    }
+    group {
+      id
+      name
+      members {
+        id
+        email
+        name
+      }
+    }
 `;
 
 const ALL_NOTES_QUERY = `

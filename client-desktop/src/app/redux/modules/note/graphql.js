@@ -1,13 +1,18 @@
 const ALL_NOTES_QUERY = `
-  query allNotes {
-    allNotes {
+  id
+  body
+  author {
+    id
+    email
+    name
+  }
+  group {
+    id
+    name
+    members {
       id
-      body
-      author {
-        id
-        email
-        name
-      }
+      email
+      name
     }
   }
 `;
