@@ -44,7 +44,6 @@ class SingleNote extends Component {
 
 const mapDispatchToProps = {
   selectCurrentNote: currentNoteActions.selectCurrentNote,
-  updateCurrentNote: currentNoteActions.updateCurrentNote
 };
 
 export default connect(
