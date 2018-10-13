@@ -2,6 +2,7 @@ const NOTE_FRAGMENT = `
   id
   contentJson
   contentText
+  createdAt
   author {
     id
     email

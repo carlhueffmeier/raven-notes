@@ -5,7 +5,7 @@ import * as actions from './actions';
 import { FETCH_NOTES, CREATE_NOTE, UPDATE_NOTE } from './types';
 import { ALL_NOTES_QUERY, CREATE_NOTE_MUTATION, UPDATE_NOTE_MUTATION } from './graphqlMock';
 import { note as noteSchema } from './schema';
-import { selectors as currentNoteSelectors } from '../../modules/currentNote';
+import { selectors as currentNoteSelectors, types as currentNoteTypes } from '../../modules/currentNote';
 import { selectors as editorSelectors } from '../../modules/editor';
 import {
   editorValueToJson,
@@ -54,6 +54,35 @@ function* updateNote(action) {
   }
 }
 
+function* updateIfDirty() {
+  try {
+    const currentNote = yield select(currentNoteSelectors.getCurrentNote);
+    const isDirty = yield select(currentNoteSelectors.getCurrentNoteIsDirty);
+    const editorContent = yield select(editorSelectors.getEditorContent);
+    const editorContentJson = editorValueToJson(editorContent);
+    const editorContentText = editorValueToPlaintext(editorContent);
+    // Only update if there are changes in content
+    if (isDirty && currentNote && editorContentJson !== currentNote.contentJson) {
+      const noteUpdate = {
+        id: currentNote.id,
+        contentJson: editorContentJson,
+        contentText: editorContentText
+      };
+      yield put(actions.updateNote(noteUpdate));
+    }
+  } catch (error) {
+    console.error(error);
+    yield put(actions.fetchNotesError(error));
+  }
+}
+
+function* pollUpdateNotes() {
+  while (true) {
+    yield call(updateIfDirty)
+    yield call(delay, POLL_INTERVAL);
+  }
+}
+
 function* pollFetchNotes() {
   while (true) {
     try {
@@ -66,35 +95,12 @@ function* pollFetchNotes() {
   }
 }
 
-function* pollUpdateNotes() {
-  while (true) {
-    try {
-      const currentNote = yield select(currentNoteSelectors.getCurrentNote);
-      const isDirty = yield select(currentNoteSelectors.getCurrentNoteIsDirty);
-      const editorContent = yield select(editorSelectors.getEditorContent);
-      const editorContentJson = editorValueToJson(editorContent);
-      const editorContentText = editorValueToPlaintext(editorContent);
-      // Only update if there are changes in content
-      if (isDirty && currentNote && editorContentJson !== currentNote.contentJson) {
-        const noteUpdate = {
-          id: currentNote.id,
-          contentJson: editorContentJson,
-          contentText: editorContentText
-        };
-        yield put(actions.updateNote(noteUpdate));
-      }
-    } catch (error) {
-      console.error(error);
-      yield put(actions.fetchNotesError(error));
-    }
-    yield call(delay, POLL_INTERVAL);
-  }
-}
-
 function* noteSaga() {
   yield takeEvery(FETCH_NOTES.START, fetchNotes);
   yield takeEvery(CREATE_NOTE.START, createNote);
   yield takeEvery(UPDATE_NOTE.START, updateNote);
+  yield takeEvery(currentNoteTypes.SELECT_CURRENT_NOTE, updateIfDirty);
+  yield takeEvery(currentNoteTypes.RESET_CURRENT_NOTE, updateIfDirty);
   yield spawn(pollFetchNotes);
   yield spawn(pollUpdateNotes);
 }
