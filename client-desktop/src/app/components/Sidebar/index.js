@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { SidebarContainer, H3, SName, USection, GSection, Sect, Img } from './styles';
+import { SidebarContainer, H3, SName, USection, GSection, Sect, Img, GroupName } from './styles';
 
 import notes from '../../../assets/paper-plane.svg';
 import extracts from '../../../assets/origami.svg';

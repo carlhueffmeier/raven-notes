@@ -37,6 +37,8 @@ const Sect = styled('p')`
   margin: 4px;
   font-size: 0.8em;
   padding-bottom: 2px;
+  display: flex;
+  line-height: 20px;
 `;
 
 const SearchBox = styled('input')`
@@ -55,6 +57,14 @@ const SearchBox = styled('input')`
   }
 `;
 
+const GroupName = styled('span')`
+  flex-basis: 80%;
+  :active {
+    text-decoration: underline;
+  }
+  line-height: 20px;
+`;
+
 const Button = styled('button')`
   border-radius: 20px;
   height: 27px;
@@ -70,9 +80,9 @@ const Button = styled('button')`
 `;
 
 const Img = styled('img')`
-  height: 2.6vh;
-  padding-right: 2px;
+  height: 20px;
+  margin-right: 10px;
   vertical-align: middle;
 `;
 
-export { SidebarContainer, SName, USection, GSection, Sect, H3, SearchBox, Button, Img };
+export { SidebarContainer, SName, USection, GSection, Sect, H3, SearchBox, Button, Img, GroupName };

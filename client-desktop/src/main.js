@@ -27,7 +27,13 @@ async function installDevTools() {
 
 function createWindow() {
   // Create the browser window.
-  mainWindow = new BrowserWindow({ width: 900, height: 600 });
+  mainWindow = new BrowserWindow({
+    width: 900,
+    height: 600,
+    minHeight: 400,
+    minWidth: 600,
+    titleBarStyle: 'customButtonsOnHover'
+  });
   installDevTools();
 
   const menu = createMenu({ mainWindow });

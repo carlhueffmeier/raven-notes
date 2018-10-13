@@ -46,26 +46,22 @@ const Hour = styled('span')`
 const Note = styled('div')`
   justify-content: space-evenly;
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column wrap;
   width: 100%;
-  flex-basis: 1 1 50%;
-  align-items: center;
+  align-items: flex-start;
+  background-color: green;
 `;
 
 const Title = styled('div')`
-  font-size: 0.8em;
-  font-weight: 600;
-  margin-bottom: 6px;
-  flex: 1 1 15%;
-  justify-content: center;
+  & * {
+    margin: 20px 0 !important;
+  }
 `;
 
 const Body = styled('div')`
   font-size: 0.8em;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.5);
-  flex: 1 1 70%;
-
   overflow: hidden;
   text-overflow: ellipsis;
 `;
@@ -73,10 +69,26 @@ const Body = styled('div')`
 const Author = styled('div')`
   font-size: 0.7em;
   font-weight: 500;
-  flex: 1 1 15%;
   span {
     font-weight: 300;
   }
+`;
+
+const RowNote = styled(Note)`
+  flex-flow: row wrap;
+  background: whitesmoke;
+`;
+
+const RowTitle = styled(Title)`
+  flex-basis: 1 1 15%;
+`;
+
+const RowBody = styled(Body)`
+  flex-basis: 1 1 70%;
+`;
+
+const RowAuthor = styled(Author)`
+  flex-basis: 1 1 15%;
 `;
 
 const Divider = styled('div')`
@@ -89,11 +101,15 @@ export {
   SingleNoteContainer,
   SubContainer,
   Day,
+  RowNote,
+  RowTitle,
+  RowBody,
+  RowAuthor,
+  Divider,
+  SearchAndCreateContainer,
+  Hour,
   Note,
   Title,
   Body,
-  Author,
-  Divider,
-  SearchAndCreateContainer,
-  Hour
+  Author
 };

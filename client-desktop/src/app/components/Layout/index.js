@@ -84,6 +84,7 @@ const EditorPane = posed.div({
   [layoutConstants.ONE_COLUMN_LAYOUT]: {
     width: 100 + 'vw',
     overflow: 'hidden',
+    opacity: 1,
 
     transition: {
       default: {
@@ -94,6 +95,7 @@ const EditorPane = posed.div({
   },
   [layoutConstants.TWO_COLUMN_LAYOUT]: {
     width: 0,
+    opacity: 0,
     overflow: 'hidden',
 
     transition: {
@@ -105,6 +107,7 @@ const EditorPane = posed.div({
   },
   [layoutConstants.THREE_COLUMN_LAYOUT]: {
     width: 68 + 'vw',
+    opacity: 1,
     overflow: 'hidden',
     transition: {
       default: {
