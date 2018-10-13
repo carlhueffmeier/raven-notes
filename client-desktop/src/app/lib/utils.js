@@ -20,4 +20,16 @@ function prop(key) {
   return obj => obj[key];
 }
 
-export { toMapIndexedBy, unique, path, prop };
+function sortBy(evaluate, array) {
+  return [...array].sort((a, b) => (evaluate(a) < evaluate(b) ? -1 : 1));
+}
+
+function dateAscending(getDate) {
+  return item => new Date(getDate(item));
+}
+
+function dateDescending(getDate) {
+  return item => -new Date(getDate(item));
+}
+
+export { toMapIndexedBy, unique, path, prop, sortBy, dateAscending, dateDescending };
