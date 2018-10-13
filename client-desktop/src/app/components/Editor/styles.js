@@ -3,8 +3,9 @@ import styled from 'react-emotion';
 const EditorContainer = styled('div')`
   display: flex;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   padding: 3vw;
+  overflow: scroll;
 `;
 const User = styled('div')`
   flex-direction: column;

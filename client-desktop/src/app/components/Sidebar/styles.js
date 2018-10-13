@@ -2,10 +2,8 @@ import styled from 'react-emotion';
 
 const SidebarContainer = styled('div')`
   height: 100%;
-  // border-right: 0.4px solid rgba(119, 136, 153, 0.8);
   padding: 15px;
   padding: 15px;
-
   background-color: #f7f6f3;
 `;
 const H3 = styled('h3')`
