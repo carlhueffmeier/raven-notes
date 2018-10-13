@@ -1,23 +1,28 @@
-function getNoteEntity(state) {
+import { denormalize } from 'normalizr';
+import { note as noteSchema } from './schema';
+import { getRawEntities } from '../../../lib/reduxUtils';
+
+function getModuleState(state) {
   return state.entities.notes;
 }
 
-function getAllNotes(state) {
-  const notes = getNoteEntity(state);
-  return notes.allIds.map(id => notes.byId[id]);
+function getAllNotesWithAuthor(state) {
+  const notes = getModuleState(state);
+  const denormalizedNotes = denormalize(notes.allIds, [noteSchema], getRawEntities(state.entities));
+  return denormalizedNotes;
 }
 
 function getNoteById(state, id) {
-  const notes = getNoteEntity(state);
+  const notes = getModuleState(state);
   return notes.byId[id];
 }
 
 function getLoading(state) {
-  return getNoteEntity(state).loading;
+  return getModuleState(state).loading;
 }
 
 function getError(state) {
-  return getNoteEntity(state).error;
+  return getModuleState(state).error;
 }
 
-export { getAllNotes, getNoteById, getLoading, getError };
+export { getAllNotesWithAuthor, getNoteById, getLoading, getError };
