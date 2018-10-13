@@ -3,7 +3,7 @@ import { SearchBox } from './styles';
 
 class SearchBar extends Component {
   render() {
-    return <SearchBox type="search" placeholder="look around" />;
+    return <SearchBox type="search" placeholder="Search!" />;
   }
 }
 
