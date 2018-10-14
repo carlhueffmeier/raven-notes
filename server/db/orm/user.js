@@ -1,8 +1,33 @@
 module.exports = (sequelize, DataTypes) => {
   var User = sequelize.define('user', {
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
-    name: DataTypes.STRING,
+    id: {
+      primaryKey: true,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        isEmail: {
+          msg: 'Please specify a valid email address'
+        }
+      }
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: {
+          args: [3],
+          msg: 'Name must be at least 3 characters long'
+        }
+      }
+    },
     resetToken: DataTypes.STRING,
     resetTokenExpiry: DataTypes.DATE
   });

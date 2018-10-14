@@ -4,20 +4,35 @@ function createUserModel() {
   return {
     create,
     findOne,
-    findOneAndUpdate
+    findOneAndUpdate,
+    getMemberOf,
+    getAdminOf
   };
 
   async function create(data) {
-    return db.user.create(data);
+    const newUser = await db.user.create(data);
+    return newUser;
   }
 
-  async function findOne(where) {
-    return db.user.findOne({ where });
+  async function findOne(where = {}) {
+    const foundUser = await db.user.findOne({ where });
+    return foundUser;
   }
 
   async function findOneAndUpdate(where, update) {
-    const [_affectedCount, affectedRows] = await db.user.update(update, { where });
-    return affectedRows[0];
+    const foundUser = await db.user.findOne({ where });
+    await foundUser.update(update);
+    return foundUser;
+  }
+
+  async function getMemberOf(userId) {
+    const foundUser = await db.user.findOne({ where: { id: userId } });
+    return foundUser.getMemberOf();
+  }
+
+  async function getAdminOf(userId) {
+    const foundUser = await db.user.findOne({ where: { id: userId } });
+    return foundUser.getAdminOf();
   }
 }
 

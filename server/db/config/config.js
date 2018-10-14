@@ -7,7 +7,8 @@ module.exports = {
     },
     define: {
       charset: 'utf8mb4',
-      collation: 'utf8mb4_col'
+      collation: 'utf8mb4_col',
+      freezeTableName: true
     }
   },
   production: {
@@ -18,7 +19,8 @@ module.exports = {
     },
     define: {
       charset: 'utf8mb4',
-      collation: 'utf8mb4_col'
+      collation: 'utf8mb4_col',
+      freezeTableName: true
     }
   }
 };

@@ -4,6 +4,7 @@ const generateModels = require('./db/generateModels');
 
 // Import type definitions and resolvers for custom scalar types
 const { typeDef: DateTime, resolvers: dateTimeResolvers } = require('./graphql/scalars/dateTime');
+const { typeDef: JsonType, resolvers: jsonResolvers } = require('./graphql/scalars/json');
 
 // Import type definitions and resolvers for entities
 const { typeDef: Group, resolvers: groupResolvers } = require('./graphql/entities/group');
@@ -29,12 +30,9 @@ const resolvers = {};
 // Put the request and response objects into the context
 // As well as generate the database models based on the
 // current user
-const FAKE_USER = {
-  id: 'FAKE'
-};
 function createContext({ req, res }) {
   return {
-    db: generateModels({ user: req.user || FAKE_USER }),
+    db: generateModels({ user: req.user }),
     req,
     res
   };
@@ -45,8 +43,15 @@ function createContext({ req, res }) {
 // type definitions.
 // For the resolvers, we have to combine them via object deep merge.
 const apolloServer = new ApolloServer({
-  typeDefs: [Query, Mutation, DateTime, Group, Note, User],
-  resolvers: merge(resolvers, dateTimeResolvers, groupResolvers, noteResolvers, userResolvers),
+  typeDefs: [Query, Mutation, DateTime, JsonType, Group, Note, User],
+  resolvers: merge(
+    resolvers,
+    dateTimeResolvers,
+    jsonResolvers,
+    groupResolvers,
+    noteResolvers,
+    userResolvers
+  ),
   context: createContext
 });
 

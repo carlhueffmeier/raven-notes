@@ -20,7 +20,8 @@ exports.typeDef = gql`
     id: ID!
     email: String!
     name: String!
-    groups: [Group!]!
+    adminOf: [Group!]!
+    memberOf: [Group!]!
   }
 
   type SuccessMessage {
@@ -131,6 +132,14 @@ const resetPassword = async (
   return updatedUser;
 };
 
+const memberOf = async (user, _, { db }) => {
+  return db.user.getMemberOf(user.id);
+};
+
+const adminOf = async (user, _, { db }) => {
+  return db.user.getAdminOf(user.id);
+};
+
 exports.resolvers = {
   Query: {
     me
@@ -142,5 +151,10 @@ exports.resolvers = {
     signout,
     requestReset,
     resetPassword
+  },
+
+  User: {
+    adminOf,
+    memberOf
   }
 };

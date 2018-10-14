@@ -1,46 +1,59 @@
-const ALL_NOTES_QUERY = `
-  id
-  body
-  author {
+const NOTE_FRAGMENT = `
     id
-    email
-    name
-  }
-  group {
-    id
-    name
-    members {
+    contentJson
+    contentText
+    createdAt
+    updatedAt
+    author {
       id
       email
       name
+    }
+    group {
+      id
+      name
+      members {
+        id
+        email
+        name
+      }
+    }
+`;
+
+const ALL_NOTES_QUERY = `
+  query allNotes {
+    allNotes {
+      ${NOTE_FRAGMENT}
     }
   }
 `;
 
 const CREATE_NOTE_MUTATION = `
-  mutation createNote($body: String) {
-    createNote(data: {body: $body}) {
-      id
-      body
-      author {
-        id
-        email
-        name
+  mutation createNote($contentJson: JSON, $contentText: String, $groupId: ID) {
+    createNote(
+      data: {
+        contentText: $contentText,
+        contentJson: $contentJson,
+        group: $groupId
       }
+    ) {
+      ${NOTE_FRAGMENT}
     }
   }
 `;
 
 const UPDATE_NOTE_MUTATION = `
-  mutation updateNote($id: ID!, $body: String) {
-    updateNote(data: {id: $id, body: $body}) {
-      id
-      body
-      author {
-        id
-        email
-        name
+  mutation updateNote($id: ID!, $contentJson: JSON, $contentText: String) {
+    updateNote(
+      where: {
+        id: $id
       }
+      data: {
+        contentText: $contentText,
+        contentJson: $contentJson
+      }
+    ) {
+      ${NOTE_FRAGMENT}
     }
   }
 `;

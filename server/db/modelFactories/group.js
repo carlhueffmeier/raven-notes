@@ -9,25 +9,37 @@ function createGroupModel({ user } = {}) {
   };
 
   async function create(data) {
-    const newGroup = db.group.build(data);
+    const newGroup = await db.group.create(data);
     newGroup.addAdmins([user.id]);
+    newGroup.addMembers([user.id]);
     return newGroup.save();
   }
 
   async function findOne(where) {
-    return db.group.findOne({ where });
+    return db.group.findOne({
+      where,
+      include: [
+        {
+          model: db.user,
+          as: 'members'
+        },
+        {
+          model: db.user,
+          as: 'admins'
+        }
+      ]
+    });
   }
 
   async function findOneAndUpdate(where, update) {
-    const existingGroup = db.note.findOne({ where });
-    // TODO: What is this returning? Check whether user is authorized to make changes.
-    console.log(
-      'trying to apply updates to group',
-      update,
-      'need to check rights',
-      existingGroup.getAdmins()
-    );
-    throw new AuthenticationError('You are not authorized to change this note');
+    const existingGroup = await db.group.findOne({ where });
+    // Check whether user is admin of group
+    const isAllowedToModify = existingGroup && (await existingGroup.hasAdmin(user));
+    if (!isAllowedToModify) {
+      throw new AuthenticationError('You are not authorized to change group details');
+    }
+    existingGroup.update(update);
+    return existingGroup.save();
   }
 }
 
