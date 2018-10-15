@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import { actions as currentGroupActions } from '../redux/modules/currentGroup';
 import { selectors as groupSelectors } from '../redux/modules/group';
 import { selectors as userSelectors } from '../redux/modules/user';
+
+import { actions as groupActions } from '../redux/modules/group';
+
 import Sidebar from '../components/Sidebar';
 import { prop, sortBy } from '../lib/utils';
 
@@ -29,7 +32,8 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  selectGroup: currentGroupActions.selectGroup
+  selectGroup: currentGroupActions.selectGroup,
+  createGroup: groupActions.createGroup
 };
 
 export default connect(

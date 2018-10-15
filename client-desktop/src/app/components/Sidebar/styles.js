@@ -83,4 +83,78 @@ const Img = styled('img')`
   vertical-align: middle;
 `;
 
-export { SidebarContainer, SName, USection, GSection, Sect, H3, SearchBox, Button, Img, GroupName };
+//==================== POP UP
+const PopUpContainer = styled('div')`
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: lavender;
+`;
+
+const TitlePop = styled('h1')`
+  font-size: 1.6em;
+  margin: 10px;
+`;
+
+const InputContainer = styled('div')`
+  flex-direction: row;
+`
+
+const Input = styled('input')`
+  margin: 0px 15px;
+  display: flex;
+  justify-content: center;
+  background-color: transparent;
+  color: black;
+  border: none;
+  padding: 0.5em 1.5em 1.5em 0.8em;
+  border-bottom: 1.2px solid #a8a497;
+  text-transform: uppercase;
+  :focus {
+    outline: none;
+  }
+  :nth-child(1) {
+    flex-basis: 15%;
+  }
+  :nth-child(2) {
+    flex-basis: 15%;
+  }
+`;
+
+const ButtonPop = styled('button')`
+  border: none;
+  background: transparent;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 0.6em;
+  cursor: pointer;
+  border-radius: 10px;
+  :focus {
+    outline: none;
+  }
+  margin: 10px;
+  background-color: pink;
+`;
+
+
+export {
+  SidebarContainer,
+  SName,
+  USection,
+  GSection,
+  Sect,
+  H3,
+  SearchBox,
+  Button,
+  Img,
+  GroupName,
+  PopUpContainer,
+  Input,
+  TitlePop,
+  ButtonPop,
+  InputContainer
+};

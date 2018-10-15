@@ -1,9 +1,25 @@
 import React, { Component } from 'react';
-import { SidebarContainer, H3, SName, USection, GSection, Sect, Img } from './styles';
+import {
+  SidebarContainer,
+  H3,
+  SName,
+  USection,
+  GSection,
+  Sect,
+  Img,
+  PopUpContainer,
+  Input,
+  TitlePop,
+  ButtonPop,
+  InputContainer
+} from './styles';
 import notes from '../../../assets/paper-plane.svg';
 import extracts from '../../../assets/origami.svg';
 import codeworks from '../../../assets/codeworks-logo.svg';
 import user from '../../../assets/man.svg';
+
+
+import PopUp from 'react-base-popup';
 
 class Sidebar extends Component {
   render() {
@@ -29,7 +45,29 @@ class Sidebar extends Component {
         </USection>
 
         <GSection>
-          <SName>WORKSPACE</SName>
+          <SName>
+            WORKSPACE
+            {/* THIS IS POP UP SECTION, GONNA BE A MESS 🤖 */}
+            <PopUp
+              onPop={()=> console.log('i/m on pop!')}
+              onUnpop={()=> console.log('not pop')}
+              buttonText='➕'>
+                <PopUpContainer>
+                  <TitlePop>
+                    Let's create a new cool group! <span role='img' aria-label='monkey'>🙉</span>
+                  </TitlePop>
+
+                  <InputContainer>
+                    <div>IMG INPUT</div>
+                    <Input type='text' placeholder='group name'/>
+                  </InputContainer>
+
+                  <ButtonPop>CREATE!</ButtonPop>
+                </PopUpContainer>
+            </PopUp>
+            {/* END OF POP UP */}
+
+            </SName>
           {groups.map(group => (
             <Sect key={group.id} onClick={() => selectGroup(group.id)}>
               <Img src={codeworks} />
@@ -43,3 +81,5 @@ class Sidebar extends Component {
 }
 
 export default Sidebar;
+
+
