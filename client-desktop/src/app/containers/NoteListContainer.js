@@ -4,11 +4,12 @@ import { selectors as noteSelectors } from '../redux/modules/note';
 import { actions as currentNoteActions } from '../redux/modules/currentNote';
 import NoteList from '../components/NoteList';
 import { sortBy, dateDescending, prop } from '../lib/utils';
+import { actions as layoutActions } from '../redux/modules/layout';
 
 class NoteListContainer extends Component {
   render() {
-    const { notes, selectNote } = this.props;
-    return <NoteList notes={notes} selectNote={selectNote} />;
+    const { notes, selectNote, changeLayout } = this.props;
+    return <NoteList notes={notes} selectNote={selectNote} changeLayout={changeLayout} />;
   }
 }
 
@@ -20,10 +21,12 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-  selectNote: currentNoteActions.selectNote
+  selectNote: currentNoteActions.selectNote,
+  changeLayout: layoutActions.changeLayout
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(NoteListContainer);
+
