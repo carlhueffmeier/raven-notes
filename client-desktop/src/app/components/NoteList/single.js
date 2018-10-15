@@ -11,11 +11,10 @@ import {
   RowBody,
   RowAuthor,
   Divider,
-  Hour,
   Note,
   Title,
   Body,
-  Author,
+  Author
 } from './styles';
 
 class SingleNote extends Component {

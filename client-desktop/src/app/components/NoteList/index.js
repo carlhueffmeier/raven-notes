@@ -6,22 +6,25 @@ import { NoteListContainer, SearchAndCreateContainer } from './styles';
 
 import { constants as layoutConstants } from '../../redux/modules/layout';
 
-
 class NoteList extends Component {
   render() {
-    const { notes, selectNote, changeLayout } = this.props;
+    const { notes, selectNote, changeLayout, onQueryChange } = this.props;
     return (
       <NoteListContainer>
         <SearchAndCreateContainer>
-          <SearchBar />
+          <SearchBar onChange={onQueryChange} />
           <CreateNoteContainer />
         </SearchAndCreateContainer>
         <div>
           {notes.map(note => (
-            <SingleNote key={note.id} note={note} onClick={() => {
-              selectNote(note.id)
-              changeLayout(layoutConstants.THREE_COLUMN_LAYOUT)
-            }} />
+            <SingleNote
+              key={note.id}
+              note={note}
+              onClick={() => {
+                selectNote(note.id);
+                changeLayout(layoutConstants.THREE_COLUMN_LAYOUT);
+              }}
+            />
           ))}
         </div>
       </NoteListContainer>
