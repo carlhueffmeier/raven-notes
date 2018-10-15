@@ -12,7 +12,6 @@ import {
   TitlePop,
   ButtonPop,
   InputContainer,
-  LabelInput
 } from './styles';
 import notes from '../../../assets/paper-plane.svg';
 import extracts from '../../../assets/origami.svg';

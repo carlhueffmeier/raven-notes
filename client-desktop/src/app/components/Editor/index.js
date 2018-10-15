@@ -5,10 +5,26 @@ import './prism.css';
 import { Editor as SlateEditor } from 'slate-react';
 
 import { EditorContainer, Quote, H1, H2, H3, H4, H5, H6, List, Raven } from './styles';
+import { throws } from 'assert';
 
 class Editor extends Component {
   // Get the block type for a series of auto-markdown shortcut `chars`.
-  getType = chars => {
+  getType = (chars, change) => {
+    let isImage = /^!\[(.*)]\((http.*\.(jpg|gif|jpeg))\)$/.exec(chars);
+    if (isImage) {
+      const image = {
+        alt: isImage[1],
+        src: isImage[2]
+      };
+
+      change.insertBlock({
+        type: 'image',
+        data: image
+      });
+
+      return '-!image!-';
+    }
+
     switch (chars) {
       case '**':
         return 'bold';
@@ -49,6 +65,15 @@ class Editor extends Component {
   renderNode = props => {
     const { attributes, children, node } = props;
     switch (node.type) {
+      case 'image':
+        const src = node.data.get('src');
+        const alt = node.data.get('alt');
+        return (
+          <div {...attributes}>
+            <img src={src} alt={alt} />
+            {children}
+          </div>
+        );
       case 'block-quote':
         return (
           <Quote {...attributes}>
@@ -125,12 +150,18 @@ class Editor extends Component {
     if (selection.isExpanded) return;
 
     const { startBlock } = value;
+
     const { start } = selection;
     const chars = startBlock.text.slice(0, start.offset).replace(/\s*/g, '');
-    const type = this.getType(chars);
+    const type = this.getType(chars, change);
 
     if (!type) return;
     if (type === 'list-item' && startBlock.type === 'list-item') return;
+    if (type === '-!image!-' && (startBlock.type === 'line' || startBlock.type === 'paragraph')) {
+      change.moveFocusToStartOfNode(startBlock).delete();
+      return;
+    }
+
     event.preventDefault();
 
     change.setBlocks(type);
@@ -140,6 +171,7 @@ class Editor extends Component {
     }
 
     change.moveFocusToStartOfNode(startBlock).delete();
+
     // Prism.highlightAll();
     return true;
   };
@@ -204,7 +236,9 @@ class Editor extends Component {
         <SlateEditor
           placeholder="Let's write some notes! 💃🏼"
           value={content}
-          onChange={change => onChange(change.value)}
+          onChange={change => {
+            onChange(change.value);
+          }}
           onKeyDown={this.onKeyDown}
           renderNode={this.renderNode}
           style={{

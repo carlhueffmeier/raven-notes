@@ -1,3 +1,3 @@
-const ON_SEARCH = 'app/ui/search/update'
+const ON_SEARCH = 'app/ui/search/update';
 
-export { ON_SEARCH }
+export { ON_SEARCH };

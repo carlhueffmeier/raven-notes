@@ -9,7 +9,7 @@ injectGlobal`
     margin: 0;
     padding: 0;
     font-family: 'Montserrat', sans-serif;
-    width: 100%; 
+    width: 100%;
   }
   *,
   *:before,
