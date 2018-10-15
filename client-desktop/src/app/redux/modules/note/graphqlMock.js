@@ -6,6 +6,9 @@ const NOTE_FRAGMENT = `
       id
       email
       name
+      privateGroup {
+        id
+      }
     }
     group {
       id

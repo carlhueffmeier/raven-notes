@@ -8,7 +8,7 @@ import user from '../../../assets/man.svg';
 
 class Sidebar extends Component {
   render() {
-    const { groups, selectGroup } = this.props;
+    const { groups, selectGroup, privateGroup } = this.props;
     return (
       <SidebarContainer>
         <H3>
@@ -19,7 +19,7 @@ class Sidebar extends Component {
         {/* Getting the notes and extracts from user. */}
         <USection>
           <SName>PRIVATE</SName>
-          <Sect onClick={() => console.log('this is to show user notes')}>
+          <Sect onClick={() => selectGroup(privateGroup.id)}>
             <Img src={notes} />
             All Notes
           </Sect>
