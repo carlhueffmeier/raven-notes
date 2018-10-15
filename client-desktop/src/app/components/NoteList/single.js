@@ -15,7 +15,9 @@ import {
   Note,
   Title,
   Body,
+  SnippetFail,
   Author,
+  RowDay
 } from './styles';
 
 class SingleNote extends Component {
@@ -29,23 +31,30 @@ class SingleNote extends Component {
           <SingleNoteContainer onClick={onClick}>
             <Divider />
             <SubContainer>
-              <Day>{moment(note.createdAt).format('MMM Do')}</Day>
               {size.width > 300 ? (
-                <RowNote>
-                  <RowTitle>{title}</RowTitle>
-                  <RowBody>{snippet}</RowBody>
-                  <RowAuthor>
-                    <span>Written by</span> {note.author.name}
-                  </RowAuthor>
-                </RowNote>
+                <React.Fragment>
+                  <RowDay>{moment(note.createdAt).format('MMM Do')}</RowDay>
+                  <RowNote>
+                    <RowTitle>{title ? title : 'No title'}</RowTitle>
+                    <RowBody>
+                      {snippet ? snippet : <SnippetFail>~~ Empty note ~~</SnippetFail>}
+                    </RowBody>
+                    <RowAuthor>
+                      <span>Written by</span> {note.author.name}
+                    </RowAuthor>
+                  </RowNote>
+                </React.Fragment>
               ) : (
-                <Note>
-                  <Title>{title}</Title>
-                  <Body>{snippet}</Body>
-                  <Author>
-                    <span>Written by</span> {note.author.name}
-                  </Author>
-                </Note>
+                <React.Fragment>
+                  <Day>{moment(note.createdAt).format('MMM Do')}</Day>
+                  <Note>
+                    <Title>{title}</Title>
+                    <Body>{snippet}</Body>
+                    <Author>
+                      <span>Written by</span> {note.author.name}
+                    </Author>
+                  </Note>
+                </React.Fragment>
               )}
             </SubContainer>
           </SingleNoteContainer>

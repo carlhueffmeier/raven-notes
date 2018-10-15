@@ -45,7 +45,7 @@ const NoteListPane = posed.div({
     x: -200
   },
   [layoutConstants.TWO_COLUMN_LAYOUT]: {
-    width: 90 + 'vw',
+    width: 95 + 'vw',
     x: 0
   },
   [layoutConstants.THREE_COLUMN_LAYOUT]: {
@@ -66,7 +66,7 @@ const EditorPane = posed.div({
     overflow: 'hidden'
   },
   [layoutConstants.THREE_COLUMN_LAYOUT]: {
-    width: 68 + 'vw',
+    width: 88 + 'vw',
     opacity: 1,
     overflow: 'hidden'
   }

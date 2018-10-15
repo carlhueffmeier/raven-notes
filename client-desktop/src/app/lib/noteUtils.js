@@ -1,5 +1,5 @@
 const MAXIMUM_TITLE_LENGTH = 20;
-const MAXIMUM_SNIPPET_LENGTH = 100;
+const MAXIMUM_SNIPPET_LENGTH = 1000;
 
 function createNoteTitle(note) {
   if (!note.contentText) {

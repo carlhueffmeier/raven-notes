@@ -11,6 +11,7 @@ const H3 = styled('h3')`
   font-weight: 500;
   font-size: 0.9em;
   margin: 0;
+  text-align: center;
 `;
 
 const SName = styled('h1')`
@@ -37,6 +38,10 @@ const Sect = styled('p')`
   padding-bottom: 2px;
   display: flex;
   line-height: 20px;
+  cursor: pointer;
+  :hover {
+    color: orange;
+  }
 `;
 
 const SearchBox = styled('input')`
