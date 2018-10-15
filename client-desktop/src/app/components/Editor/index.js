@@ -15,9 +15,9 @@ class Editor extends Component {
       case '_':
         return 'italic';
       case '—':
-      return 'underline';
+        return 'underline';
       case ';':
-      return 'strike';
+        return 'strike';
       case '*':
       case '-':
       case '+':
@@ -39,7 +39,7 @@ class Editor extends Component {
       case '<':
         return 'code-block';
       case 'raven':
-        return 'raven'
+        return 'raven';
       default:
         return null;
     }
@@ -61,11 +61,11 @@ class Editor extends Component {
       case 'bold':
         return <b {...attributes}>{children}</b>;
       case 'italic':
-      return <i {...attributes}>{children}</i>;
+        return <i {...attributes}>{children}</i>;
       case 'underline':
-      return <u {...attributes}>{children}</u>;
+        return <u {...attributes}>{children}</u>;
       case 'strike':
-      return <s {...attributes}>{children}</s>;
+        return <s {...attributes}>{children}</s>;
       case 'heading-one':
         return <H1 {...attributes}>{children}</H1>;
       case 'heading-two':
@@ -81,12 +81,14 @@ class Editor extends Component {
       case 'list-item':
         return <List {...attributes}>{children}</List>;
       case 'raven':
-        return <Raven {...attributes}>
-        <span role="img" aria-label="monkeys">
-        🙈 🙉 🙊 🐒
-        </span>
-        {children}
-        </Raven>;
+        return (
+          <Raven {...attributes}>
+            <span role="img" aria-label="monkeys">
+              🙈 🙉 🙊 🐒
+            </span>
+            {children}
+          </Raven>
+        );
       case 'code-block':
         return (
           <pre className="language-javascript">
@@ -186,7 +188,6 @@ class Editor extends Component {
       startBlock.type !== 'italic' &&
       startBlock.type !== 'underline' &&
       startBlock.type !== 'strike'
-
     ) {
       return;
     }
