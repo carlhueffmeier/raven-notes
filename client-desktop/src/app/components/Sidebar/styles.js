@@ -89,10 +89,9 @@ const PopUpContainer = styled('div')`
   height: 100%;
   padding: 20px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: lavender;
+  flex-direction: column;
 `;
 
 const TitlePop = styled('h1')`
@@ -101,36 +100,49 @@ const TitlePop = styled('h1')`
 `;
 
 const InputContainer = styled('div')`
-  flex-direction: row;
-`
-
-const Input = styled('input')`
-  margin: 0px 15px;
+  width: 100%;
+  background-color: peachpuff;
   display: flex;
   justify-content: center;
+
+`;
+
+const Input = styled('input')`
+  width: 50%;
+  flex-direction: row;
+  margin: 0px 15px;
+  display: flex;
+  flex-direction: row;
   background-color: transparent;
   color: black;
   border: none;
-  padding: 0.5em 1.5em 1.5em 0.8em;
   border-bottom: 1.2px solid #a8a497;
   text-transform: uppercase;
+  text-align: center;
+
   :focus {
     outline: none;
   }
-  :nth-child(1) {
-    flex-basis: 15%;
-  }
-  :nth-child(2) {
-    flex-basis: 15%;
-  }
+`;
+
+const LabelInput = styled('div')`
+  flex-direction: row;
+  cursor: pointer;
+  width: 5vh;
+  height: 5vh;
+  line-height: 5vh;
+  text-align: center;
+  border-radius: 50%;
+  background-color: pink;
+  align-self: flex-start;
 `;
 
 const ButtonPop = styled('button')`
   border: none;
   background: transparent;
   text-transform: uppercase;
-  font-weight: 500;
-  font-size: 0.6em;
+  font-weight: 400;
+  font-size: 0.8em;
   cursor: pointer;
   border-radius: 10px;
   :focus {
@@ -156,5 +168,6 @@ export {
   Input,
   TitlePop,
   ButtonPop,
-  InputContainer
+  InputContainer,
+  LabelInput
 };

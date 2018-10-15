@@ -11,7 +11,8 @@ import {
   Input,
   TitlePop,
   ButtonPop,
-  InputContainer
+  InputContainer,
+  LabelInput
 } from './styles';
 import notes from '../../../assets/paper-plane.svg';
 import extracts from '../../../assets/origami.svg';
@@ -51,15 +52,19 @@ class Sidebar extends Component {
             <PopUp
               onPop={()=> console.log('i/m on pop!')}
               onUnpop={()=> console.log('not pop')}
-              buttonText='➕'>
+              buttonText='➕'
+              >
+
                 <PopUpContainer>
                   <TitlePop>
                     Let's create a new cool group! <span role='img' aria-label='monkey'>🙉</span>
                   </TitlePop>
 
                   <InputContainer>
-                    <div>IMG INPUT</div>
-                    <Input type='text' placeholder='group name'/>
+                    {/* Check input type file and label for file. */}
+                    {/* <input type='file' name='file' id='file' class='inputfile' /> */}
+                    {/* <LabelInput><span role='img' aria-label='img'>IMG</span></LabelInput> */}
+                    <Input type='text' placeholder='Super duper group name 🙆🏼‍'/>
                   </InputContainer>
 
                   <ButtonPop>CREATE!</ButtonPop>
