@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SingleNote from './single';
 import SearchBar from '../SearchBar/index';
 import CreateNoteContainer from '../../containers/CreateNoteContainer';
-import { NoteListContainer, SearchAndCreateContainer } from './styles';
+import { NoteListContainer, SearchAndCreateContainer, NoteListWrapper } from './styles';
 
 import { constants as layoutConstants } from '../../redux/modules/layout';
 
@@ -15,7 +15,7 @@ class NoteList extends Component {
           <SearchBar onChange={onQueryChange} />
           <CreateNoteContainer />
         </SearchAndCreateContainer>
-        <div>
+        <NoteListWrapper>
           {notes.map(note => (
             <SingleNote
               key={note.id}
@@ -26,7 +26,7 @@ class NoteList extends Component {
               }}
             />
           ))}
-        </div>
+        </NoteListWrapper>
       </NoteListContainer>
     );
   }
