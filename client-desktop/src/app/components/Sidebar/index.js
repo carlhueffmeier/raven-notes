@@ -51,13 +51,19 @@ class Sidebar extends Component {
         </USection>
 
         <GSection>
+          {/* More flex box hell 🎇 */}
+          {/* FLEX BOX START */}
+          <div>
           <SName>
             WORKSPACE
           </SName>
+
             {/* THIS IS THE POP UP SECTION, GONNA BE A MESS 🤖 */}
+            <div>
             <PopUp
               onPop={()=> console.log('i/m on pop!')}
               onUnpop={()=> console.log('not pop')}
+              button={{backgroundColor: 'lavender', border: 'none'}}
               buttonText='➕'
               >
 
@@ -79,7 +85,10 @@ class Sidebar extends Component {
               </PopUpContainer>
 
             </PopUp>
+            </div>
             {/* END OF POP UP */}
+          </div>
+          {/* FLEX BOX END */}
 
           {groups.map(group => (
             <Sect key={group.id} onClick={() => selectGroup(group.id)}>

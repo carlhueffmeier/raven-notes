@@ -153,7 +153,7 @@ const ButtonPop = styled('button')`
     outline: none;
   }
   margin: 10px;
-  background-color: ${props => props.theme.colors.pdark};;
+  background-color: ${props => props.theme.colors.pdark};
 `;
 
 
