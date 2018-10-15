@@ -15,7 +15,6 @@ import {
   Title,
   Body,
   SnippetFail,
-  Author,
   RowDay,
   Author
 } from './styles';

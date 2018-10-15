@@ -42,7 +42,7 @@ const Sect = styled('p')`
   :hover {
     color: orange;
   }
-  & img:hover {
+  & :hover img {
     transition: all 0.3s ease-in-out 0.2s;
     transform: rotateZ(360deg);
   }
