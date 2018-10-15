@@ -74,7 +74,7 @@ class Sidebar extends Component {
                   />
                 </InputContainer>
 
-                <ButtonPop onClick={() => console.log(this.state.input) || this.props.createGroup(this.state.input)}>CREATE!</ButtonPop>
+                <ButtonPop onClick={() => console.log('group', this.state.input)|| this.props.createGroup(this.state.input)}>CREATE!</ButtonPop>
               </PopUpContainer>
 
             </PopUp>
@@ -83,7 +83,7 @@ class Sidebar extends Component {
           </SName>
           {groups.map(group => (
             <Sect key={group.id} onClick={() => selectGroup(group.id)}>
-              <GroupInitial><p>{group.name.slice(0,1)}</p></GroupInitial>
+              <GroupInitial><p>{groups.name && group.name.slice(0,1)}</p></GroupInitial>
               {group.name}
             </Sect>
           ))}

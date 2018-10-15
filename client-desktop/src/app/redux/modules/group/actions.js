@@ -1,7 +1,7 @@
 import * as types from './types';
 
 // Create new group
-const createGroup = (groupName) => console.log('in group', groupName) || ({
+const createGroup = (groupName) => ({
   type: types.CREATE_GROUP.START,
   payload: groupName
 });
