@@ -4,6 +4,7 @@ const generateModels = require('./db/generateModels');
 
 // Import type definitions and resolvers for custom scalar types
 const { typeDef: DateTime, resolvers: dateTimeResolvers } = require('./graphql/scalars/dateTime');
+const { typeDef: JsonType, resolvers: jsonResolvers } = require('./graphql/scalars/json');
 
 // Import type definitions and resolvers for entities
 const { typeDef: Group, resolvers: groupResolvers } = require('./graphql/entities/group');
@@ -42,10 +43,16 @@ function createContext({ req, res }) {
 // type definitions.
 // For the resolvers, we have to combine them via object deep merge.
 const apolloServer = new ApolloServer({
-  typeDefs: [Query, Mutation, DateTime, Group, Note, User],
-  resolvers: merge(resolvers, dateTimeResolvers, groupResolvers, noteResolvers, userResolvers),
-  context: createContext,
-  mocks: true
+  typeDefs: [Query, Mutation, DateTime, JsonType, Group, Note, User],
+  resolvers: merge(
+    resolvers,
+    dateTimeResolvers,
+    jsonResolvers,
+    groupResolvers,
+    noteResolvers,
+    userResolvers
+  ),
+  context: createContext
 });
 
 module.exports = apolloServer;

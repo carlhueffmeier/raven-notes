@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser');
 const { getUserIdFromCookie } = require('./lib/utils');
 const apolloServer = require('./apollo');
 const User = require('./db/modelFactories/user')();
+const MOCK_USER_ID = 'user-id-bob';
 
 const app = express();
 
@@ -18,7 +19,7 @@ app.use(cookieParser());
 
 // Extract the user id and store for this request
 app.use((req, res, next) => {
-  const userId = getUserIdFromCookie(req);
+  const userId = getUserIdFromCookie(req) || MOCK_USER_ID;
   if (userId) {
     req.userId = userId;
   }
@@ -30,7 +31,7 @@ app.use(async (req, res, next) => {
   if (!req.userId) {
     return next();
   }
-  const user = await User.findOne({ _id: req.userId });
+  const user = await User.findOne({ id: req.userId });
   req.user = user;
   next();
 });

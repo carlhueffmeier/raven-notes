@@ -8,7 +8,7 @@ exports.typeDef = gql`
 
   extend type Mutation {
     createGroup(data: GroupCreateInput!): Group!
-    updateGroup(data: GroupUpdateInput!): Group!
+    updateGroup(where: GroupWhereUniqueInput!, data: GroupUpdateInput!): Group!
   }
 
   type Group {
@@ -18,10 +18,10 @@ exports.typeDef = gql`
     admins: [User!]!
     notes: [Note!]!
     createdAt: DateTime!
+    updatedAt: DateTime!
   }
 
   input GroupUpdateInput {
-    id: ID!
     name: String
   }
 
@@ -30,7 +30,7 @@ exports.typeDef = gql`
   }
 
   input GroupWhereUniqueInput {
-    id: ID
+    id: ID!
   }
 
   input GroupWhereInput {
@@ -39,7 +39,7 @@ exports.typeDef = gql`
   }
 `;
 
-const getGroup = (_, { where = {} }, { db }) => {
+const getGroup = (_, { where }, { db }) => {
   return db.group.findOne(where);
 };
 
@@ -51,9 +51,8 @@ const createGroup = (_, { data }, { db }) => {
   return db.group.create(data);
 };
 
-const updateGroup = (_, { data }, { db }) => {
-  const { id, ...update } = data;
-  return db.group.findOneAndUpdate({ id }, update);
+const updateGroup = (_, { where, data }, { db }) => {
+  return db.group.findOneAndUpdate(where, data);
 };
 
 exports.resolvers = {

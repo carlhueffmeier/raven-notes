@@ -1,11 +1,17 @@
 module.exports = (sequelize, DataTypes) => {
-  var Note = sequelize.define('Note', {
-    body: DataTypes.STRING
+  var Note = sequelize.define('note', {
+    id: {
+      primaryKey: true,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4
+    },
+    contentJson: DataTypes.JSON,
+    contentText: DataTypes.TEXT
   });
 
   Note.associate = function(models) {
-    models.Note.hasOne(models.User, { as: 'author' });
-    models.Note.hasOne(models.Group, { as: 'postedIn' });
+    models.note.belongsTo(models.user, { as: 'author', foreignKey: 'authorId' });
+    models.note.belongsTo(models.group, { as: 'group', foreignKey: 'groupId' });
   };
 
   return Note;
