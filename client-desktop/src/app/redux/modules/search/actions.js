@@ -1,8 +1,8 @@
 import * as types from './types';
 
-const onQueryChange = payload => ({
+const changeQuery = payload => ({
   type: types.ON_SEARCH,
   payload
 });
 
-export { onQueryChange };
+export { changeQuery };
