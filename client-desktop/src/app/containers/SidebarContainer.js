@@ -23,7 +23,7 @@ class SidebarContainer extends Component {
 function mapStateToProps(state) {
   const allGroups = groupSelectors.getAllGroups(state);
   return {
-    user: userSelectors.getUserById(state, 'cjn5pv4vkjqgw0932trypskwh')
+    user: userSelectors.getUserById(state, 'cjn5pv4vkjqgw0932trypskwh'),
     groups: sortBy(prop('name'), allGroups)
   };
 }
