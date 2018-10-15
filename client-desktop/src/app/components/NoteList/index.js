@@ -6,11 +6,11 @@ import { NoteListContainer, SearchAndCreateContainer } from './styles';
 
 class NoteList extends Component {
   render() {
-    const { notes, selectNote } = this.props;
+    const { notes, selectNote, onQueryChange } = this.props;
     return (
       <NoteListContainer>
         <SearchAndCreateContainer>
-          <SearchBar />
+          <SearchBar onChange={onQueryChange}/>
           <CreateNoteContainer />
         </SearchAndCreateContainer>
         <div>

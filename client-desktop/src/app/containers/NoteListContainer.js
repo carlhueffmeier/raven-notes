@@ -6,9 +6,25 @@ import NoteList from '../components/NoteList';
 import { sortBy, dateDescending, prop } from '../lib/utils';
 
 class NoteListContainer extends Component {
+
+  state = {
+    searchQuery: ''
+  };
+
+  onQueryChange = newQuery => {
+    this.setState({ searchQuery: newQuery});
+  };
+
   render() {
     const { notes, selectNote } = this.props;
-    return <NoteList notes={notes} selectNote={selectNote} />;
+    const noteFilter = new RegExp(this.state.searchQuery, 'i');
+    const filteredNotes = notes.filter(note => noteFilter.test(note.contentText));
+
+    return (
+      <NoteList notes={filteredNotes}
+        selectNote={selectNote}
+        onQueryChange={this.onQueryChange} />
+    );
   }
 }
 

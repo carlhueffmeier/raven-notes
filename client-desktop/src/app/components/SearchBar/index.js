@@ -3,7 +3,10 @@ import { SearchBox } from './styles';
 
 class SearchBar extends Component {
   render() {
-    return <SearchBox type="search" placeholder="Search!" />;
+    const { onChange } = this.props;
+    return <SearchBox type="search"
+              placeholder="Search!" 
+              onChange={e => onChange(e.target.value)} />;
   }
 }
 
