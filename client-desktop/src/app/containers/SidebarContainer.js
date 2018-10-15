@@ -11,13 +11,13 @@ import { prop, sortBy } from '../lib/utils';
 
 class SidebarContainer extends Component {
   render() {
-    const { groups, selectGroup, user } = this.props;
-    console.log(this.props);
+    const { groups, selectGroup, user, createGroup } = this.props;
     return (
       <Sidebar
         groups={groups.filter(group => group.id !== user.privateGroup.id)}
         selectGroup={selectGroup}
         privateGroup={groups.find(group => group.id === user.privateGroup.id)}
+        createGroup={createGroup}
       />
     );
   }

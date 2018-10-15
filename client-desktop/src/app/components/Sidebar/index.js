@@ -16,15 +16,20 @@ import {
 } from './styles';
 import notes from '../../../assets/paper-plane.svg';
 import extracts from '../../../assets/origami.svg';
-import codeworks from '../../../assets/codeworks-logo.svg';
 import user from '../../../assets/man.svg';
 
 
 import PopUp from 'react-base-popup';
 
 class Sidebar extends Component {
+  state = {
+    input: ''
+  }
+  handleInputChange = (e) => {
+    this.setState({ input: e.target.value })
+  }
   render() {
-    const { groups, selectGroup, privateGroup, createGroup } = this.props;
+    const { groups, selectGroup, privateGroup } = this.props;
     return (
       <SidebarContainer>
         <H3>
@@ -48,32 +53,37 @@ class Sidebar extends Component {
         <GSection>
           <SName>
             WORKSPACE
-            {/* THIS IS POP UP SECTION, GONNA BE A MESS 🤖 */}
+            {/* THIS IS THE POP UP SECTION, GONNA BE A MESS 🤖 */}
             <PopUp
               onPop={()=> console.log('i/m on pop!')}
               onUnpop={()=> console.log('not pop')}
               buttonText='➕'
               >
 
-                <PopUpContainer>
-                  <TitlePop>
-                    Let's create a new cool group! <span role='img' aria-label='monkey'>🙉</span>
-                  </TitlePop>
+              <PopUpContainer>
+                <TitlePop>
+                  Let's create a new cool group! <span role='img' aria-label='monkey'>🙉</span>
+                </TitlePop>
 
-                  <InputContainer>
-                    <Input type='text' placeholder='Super duper group name 🙆🏼‍'/>
-                  </InputContainer>
+                <InputContainer>
+                  <Input
+                    type='text'
+                    placeholder='Super duper group name 🙆🏼‍'
+                    onChange={this.handleInputChange}
+                    value={this.state.input}
+                  />
+                </InputContainer>
 
-                  <ButtonPop onClick={()=> console.log('create group works?')}>CREATE!</ButtonPop>
-                </PopUpContainer>
+                <ButtonPop onClick={() => console.log(this.state.input) || this.props.createGroup(this.state.input)}>CREATE!</ButtonPop>
+              </PopUpContainer>
+
             </PopUp>
             {/* END OF POP UP */}
 
-            </SName>
+          </SName>
           {groups.map(group => (
             <Sect key={group.id} onClick={() => selectGroup(group.id)}>
               <GroupInitial><p>{group.name.slice(0,1)}</p></GroupInitial>
-              {/* <Img src={codeworks} /> */}
               {group.name}
             </Sect>
           ))}

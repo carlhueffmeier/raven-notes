@@ -133,7 +133,6 @@ const Input = styled('input')`
   color: black;
   border: none;
   border-bottom: 1.2px solid #a8a497;
-  text-transform: uppercase;
   text-align: center;
 
   :focus {
