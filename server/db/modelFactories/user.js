@@ -1,27 +1,38 @@
-const userStore = {};
-const { AuthenticationError } = require('apollo-server-express');
+const db = require('../orm');
 
-function createUserModel({ user } = {}) {
+function createUserModel() {
   return {
     create,
     findOne,
-    update
+    findOneAndUpdate,
+    getMemberOf,
+    getAdminOf
   };
 
   async function create(data) {
-    userStore[data.id] = data;
+    const newUser = await db.user.create(data);
+    return newUser;
   }
 
-  async function findOne(where) {
-    return userStore[where.id];
+  async function findOne(where = {}) {
+    const foundUser = await db.user.findOne({ where });
+    return foundUser;
   }
 
-  async function update(whereUnique, update) {
-    if (!user) {
-      throw new AuthenticationError('You are not authorized to update user info');
-    }
-    userStore[whereUnique.id] = { ...userStore[whereUnique.id], ...update };
-    return userStore[whereUnique.id];
+  async function findOneAndUpdate(where, update) {
+    const foundUser = await db.user.findOne({ where });
+    await foundUser.update(update);
+    return foundUser;
+  }
+
+  async function getMemberOf(userId) {
+    const foundUser = await db.user.findOne({ where: { id: userId } });
+    return foundUser.getMemberOf();
+  }
+
+  async function getAdminOf(userId) {
+    const foundUser = await db.user.findOne({ where: { id: userId } });
+    return foundUser.getAdminOf();
   }
 }
 

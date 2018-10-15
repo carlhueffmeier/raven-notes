@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { SidebarContainer, H3, SName, USection, GSection, Sect, Img } from './styles';
-
 import notes from '../../../assets/paper-plane.svg';
 import extracts from '../../../assets/origami.svg';
 import codeworks from '../../../assets/codeworks-logo.svg';

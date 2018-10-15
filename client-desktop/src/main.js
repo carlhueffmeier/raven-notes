@@ -34,6 +34,9 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     width: 900,
     height: 600,
+    minHeight: 400,
+    minWidth: 600,
+    titleBarStyle: 'hidden',
     icon: __dirname + './../public/icons/mac/crow.icns'
   });
   installDevTools();

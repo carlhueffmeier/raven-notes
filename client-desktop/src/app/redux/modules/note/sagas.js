@@ -1,5 +1,6 @@
 import { call, put, takeEvery, spawn, select } from 'redux-saga/effects';
 import { delay } from 'redux-saga';
+import { normalize } from 'normalizr';
 import graphqlClient from '../../../api/graphqlClient';
 import * as actions from './actions';
 import { FETCH_NOTES, CREATE_NOTE, UPDATE_NOTE } from './types';
@@ -13,13 +14,14 @@ import {
   editorValueToPlaintext,
   createEmptyJson
 } from '../../../lib/editorUtils';
-import { normalize } from 'normalizr';
 
 const POLL_INTERVAL = 1000 * 10; // 10s
 
 function* fetchNotes() {
   try {
     const response = yield call([graphqlClient, 'request'], ALL_NOTES_QUERY);
+    // ⚠️ Caution: Necessary change for local server
+    // const normalizedData = normalize(response.allNotes, [noteSchema]);
     const normalizedData = normalize(response.notes, [noteSchema]);
     yield put(actions.fetchNotesSuccess(normalizedData));
   } catch (error) {

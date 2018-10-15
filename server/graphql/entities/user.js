@@ -20,7 +20,8 @@ exports.typeDef = gql`
     id: ID!
     email: String!
     name: String!
-    groups: [Group!]!
+    adminOf: [Group!]!
+    memberOf: [Group!]!
   }
 
   type SuccessMessage {
@@ -53,13 +54,12 @@ const me = (_, __, { req }) => {
   return req.user;
 };
 
-const signup = async (_, { data: { email, password, name } }, { db, res }) => {
+const signup = async (_, { data: { email, name, password } }, { db, res }) => {
   // Create new user
   const newUser = await db.user.create({
-    email: email,
-    password: await bcrypt.hash(password, 10),
-    name: name,
-    permissions: ['USER']
+    email,
+    name,
+    password: await bcrypt.hash(password, 10)
   });
   // Authenticate right away
   storeUserInCookie(newUser, res);
@@ -132,6 +132,14 @@ const resetPassword = async (
   return updatedUser;
 };
 
+const memberOf = async (user, _, { db }) => {
+  return db.user.getMemberOf(user.id);
+};
+
+const adminOf = async (user, _, { db }) => {
+  return db.user.getAdminOf(user.id);
+};
+
 exports.resolvers = {
   Query: {
     me
@@ -143,5 +151,10 @@ exports.resolvers = {
     signout,
     requestReset,
     resetPassword
+  },
+
+  User: {
+    adminOf,
+    memberOf
   }
 };

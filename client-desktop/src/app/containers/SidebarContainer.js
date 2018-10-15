@@ -4,6 +4,7 @@ import { actions as currentGroupActions } from '../redux/modules/currentGroup';
 import { selectors as groupSelectors } from '../redux/modules/group';
 import { selectors as userSelectors } from '../redux/modules/user';
 import Sidebar from '../components/Sidebar';
+import { prop, sortBy } from '../lib/utils';
 
 class SidebarContainer extends Component {
   render() {
@@ -20,9 +21,10 @@ class SidebarContainer extends Component {
 }
 
 function mapStateToProps(state) {
+  const allGroups = groupSelectors.getAllGroups(state);
   return {
-    groups: groupSelectors.getAllGroups(state),
     user: userSelectors.getUserById(state, 'cjn5pv4vkjqgw0932trypskwh')
+    groups: sortBy(prop('name'), allGroups)
   };
 }
 

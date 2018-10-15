@@ -2,8 +2,8 @@ import styled from 'react-emotion';
 
 const SidebarContainer = styled('div')`
   height: 100%;
-  padding: 15px;
-  padding: 15px;
+  // border-right: 0.4px solid rgba(119, 136, 153, 0.8);
+  padding: 25px 15px 0 15px;
   background-color: #f7f6f3;
 `;
 const H3 = styled('h3')`
@@ -35,6 +35,8 @@ const Sect = styled('p')`
   margin: 4px;
   font-size: 0.8em;
   padding-bottom: 2px;
+  display: flex;
+  line-height: 20px;
 `;
 
 const SearchBox = styled('input')`
@@ -53,6 +55,14 @@ const SearchBox = styled('input')`
   }
 `;
 
+const GroupName = styled('span')`
+  flex-basis: 80%;
+  :active {
+    text-decoration: underline;
+  }
+  line-height: 20px;
+`;
+
 const Button = styled('button')`
   border-radius: 20px;
   height: 27px;
@@ -68,10 +78,9 @@ const Button = styled('button')`
 `;
 
 const Img = styled('img')`
-  height: 2.6vh;
-  padding-right: 2px;
+  height: 20px;
+  margin-right: 10px;
   vertical-align: middle;
 `;
 
-
-export { SidebarContainer, SName, USection, GSection, Sect, H3, SearchBox, Button, Img };
+export { SidebarContainer, SName, USection, GSection, Sect, H3, SearchBox, Button, Img, GroupName };

@@ -19,94 +19,56 @@ const SidebarPane = posed.div({
   [layoutConstants.ONE_COLUMN_LAYOUT]: {
     x: -200,
     width: 0,
-    transition: {
-      default: {
-        duration: 150,
-        ease: 'linear'
-      }
-    }
+    paddingTop: 25
   },
   [layoutConstants.TWO_COLUMN_LAYOUT]: {
     width: '150px',
+    paddingTop: 25,
     x: 0,
     transition: {
       default: {
-        duration: 150,
+        duration: 0,
         ease: 'linear'
       }
     }
   },
   [layoutConstants.THREE_COLUMN_LAYOUT]: {
     width: '150px',
-    x: 0,
-    transition: {
-      default: {
-        duration: 150,
-        ease: 'linear'
-      }
-    }
+    paddingTop: 25,
+    x: 0
   }
 });
 
 const NoteListPane = posed.div({
   [layoutConstants.ONE_COLUMN_LAYOUT]: {
     width: 0,
-    x: -200,
-    transition: {
-      default: {
-        duration: 150,
-        ease: 'linear'
-      }
-    }
+    x: -200
   },
   [layoutConstants.TWO_COLUMN_LAYOUT]: {
     width: 90 + 'vw',
-    x: 0,
-    transition: {
-      default: {
-        duration: 150
-      }
-    }
+    x: 0
   },
   [layoutConstants.THREE_COLUMN_LAYOUT]: {
     width: '250px',
-    x: 0,
-    transition: {
-      default: {
-        duration: 150,
-        ease: 'linear'
-      }
-    }
+    x: 0
   }
 });
 
 const EditorPane = posed.div({
   [layoutConstants.ONE_COLUMN_LAYOUT]: {
     width: 100 + 'vw',
-    transition: {
-      default: {
-        duration: 150,
-        ease: 'linear'
-      }
-    }
+    overflow: 'hidden',
+    opacity: 1
   },
   [layoutConstants.TWO_COLUMN_LAYOUT]: {
     width: 0,
-    transition: {
-      default: {
-        duration: 150,
-        ease: 'linear'
-      }
-    }
+    opacity: 0,
+    overflow: 'hidden'
   },
   [layoutConstants.THREE_COLUMN_LAYOUT]: {
     width: 68 + 'vw',
-    transition: {
-      default: {
-        duration: 150,
-        ease: 'linear'
-      }
-    }
+    opacity: 1,
+    overflow: 'hidden'
   }
 });
 
