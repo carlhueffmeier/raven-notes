@@ -20,7 +20,6 @@ injectGlobal`
 
 const Header = styled('header')`
   background-color: transparent;
-  border-bottom: 0.2px solid black;
   height: 23px;
   font-size: 0.8rem;
   width: 100%;
