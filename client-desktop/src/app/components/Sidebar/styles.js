@@ -112,7 +112,7 @@ const PopUpContainer = styled('div')`
 `;
 
 const TitlePop = styled('h1')`
-  font-size: 1.6em;
+  font-size: 1.4em;
   margin: 10px;
 `;
 

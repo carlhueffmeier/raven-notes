@@ -14,11 +14,11 @@ class SidebarContainer extends Component {
     const { groups, selectGroup, user, createGroup } = this.props;
     return (
       <Sidebar
-        // groups={groups.filter(group => group.id !== user.privateGroup.id)}
-        groups={groups}
+        groups={groups.filter(group => group.id !== user.privateGroup.id)}
+        // groups={groups}
         selectGroup={selectGroup}
-        // privateGroup={groups.find(group => group.id === user.privateGroup.id)}
-        privateGroup={groups[0]}
+        privateGroup={groups.find(group => group.id === user.privateGroup.id)}
+        // privateGroup={groups[0]}
         createGroup={createGroup}
       />
     );

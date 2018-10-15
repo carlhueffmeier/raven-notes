@@ -53,6 +53,7 @@ class Sidebar extends Component {
         <GSection>
           <SName>
             WORKSPACE
+          </SName>
             {/* THIS IS THE POP UP SECTION, GONNA BE A MESS 🤖 */}
             <PopUp
               onPop={()=> console.log('i/m on pop!')}
@@ -80,10 +81,10 @@ class Sidebar extends Component {
             </PopUp>
             {/* END OF POP UP */}
 
-          </SName>
           {groups.map(group => (
             <Sect key={group.id} onClick={() => selectGroup(group.id)}>
-              <GroupInitial><p>{groups.name && group.name.slice(0,1)}</p></GroupInitial>
+              {/* <GroupInitial><p>{group.name && group.name.slice(0,1)}</p></GroupInitial> */}
+              <GroupInitial><p>{group.name.slice(0,1)}</p></GroupInitial>
               {group.name}
             </Sect>
           ))}
