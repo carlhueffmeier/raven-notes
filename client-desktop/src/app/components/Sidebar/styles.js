@@ -4,7 +4,7 @@ const SidebarContainer = styled('div')`
   height: 100%;
   // border-right: 0.4px solid rgba(119, 136, 153, 0.8);
   padding: 25px 15px 0 15px;
-  background-color: #f7f6f3;
+  background-color: ${props => props.theme.colors.primary};
 `;
 const H3 = styled('h3')`
   color: #778899;

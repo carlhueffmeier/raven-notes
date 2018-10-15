@@ -1,49 +1,22 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { lightTheme } from './themes';
 import { ThemeProvider } from 'emotion-theming';
 import { Header } from './styles';
 import LayoutContainer from './containers/LayoutContainer';
 import LayoutSwitch from './components/LayoutSwitch';
-// import LogIn from './components/LogIn';
-
-const { ipcRenderer } = window.require('electron');
+import SigninPlease from './containers/SigninPlease';
 
 class App extends Component {
-  state = {
-    loadedFile: ''
-  };
-
-  constructor() {
-    super();
-    this.state = {
-      groups: [],
-      displayNoteList: false,
-      notes: []
-    };
-    // When a new file is opened, load the file content
-    ipcRenderer.on('new-file', (event, fileContent) => {
-      this.setState({
-        loadedFile: fileContent
-      });
-    });
-  }
-
   render() {
-    // if (!this.props.user) {
-    //   return (
-    //   <LogIn />
-    //   )
-    // } else {
     return (
       <ThemeProvider theme={lightTheme}>
-        <Fragment>
-          <Header>Raven Notes 1.0</Header>
+        <SigninPlease>
+          <Header>Raven Notes 𝜶</Header>
           <LayoutSwitch />
           <LayoutContainer />
-        </Fragment>
+        </SigninPlease>
       </ThemeProvider>
     );
-    // }
   }
 }
 

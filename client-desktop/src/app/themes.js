@@ -1,8 +1,8 @@
 const colors = {
-  primary: 'blue',
-  secondary: 'green',
-  foreground: '#333',
-  background: '#fafafa'
+  primary: '#F7F6F3',
+  plight: '#FFFFFF',
+  pdark: '#C4C3C0',
+  text: '#000000'
 };
 
 const lightTheme = {

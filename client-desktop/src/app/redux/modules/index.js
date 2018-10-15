@@ -5,6 +5,7 @@ import userReducer from './user';
 import groupReducer from './group';
 import editorReducer from './editor';
 import layoutReducer from './layout';
+import searchReducer from './search';
 import currentNoteReducer, { sagas as currentNoteSaga } from './currentNote';
 import currentGroupReducer from './currentGroup';
 
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
     currentNote: currentNoteReducer,
     currentGroup: currentGroupReducer,
     editor: editorReducer,
-    layout: layoutReducer
+    layout: layoutReducer,
+    search: searchReducer
   })
 });
 
