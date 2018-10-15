@@ -2,7 +2,6 @@
 const { app, BrowserWindow, Menu, Tray } = require('electron');
 const { createMenu } = require('./menu');
 
-
 const {
   default: installExtension,
   REACT_DEVELOPER_TOOLS,
