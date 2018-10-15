@@ -28,7 +28,7 @@ const SubTitle = styled('h2')`
   margin: 0;
 `
 const InputWrapper = styled('div')`
-  // background-color: #F7F6F3;
+  // background-color: ${props => props.theme.colors.primary};
   height: 200px;
   display: flex;
   flex-flow: column wrap;
@@ -50,7 +50,7 @@ const Input = styled('input')`
   color: black;
   border: none;
   padding: 0.5em 1.5em 1.5em 0.8em;
-  border-bottom: 1.2px solid #A8A497;
+  border-bottom: 1.2px solid ${props => props.theme.colors.pdark};
   text-transform: uppercase;
   :focus {
     outline: none;
