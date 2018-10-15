@@ -7,6 +7,7 @@ import {
   GSection,
   Sect,
   Img,
+  GroupInitial,
   PopUpContainer,
   Input,
   TitlePop,
@@ -23,7 +24,7 @@ import PopUp from 'react-base-popup';
 
 class Sidebar extends Component {
   render() {
-    const { groups, selectGroup, privateGroup } = this.props;
+    const { groups, selectGroup, privateGroup, createGroup } = this.props;
     return (
       <SidebarContainer>
         <H3>
@@ -60,13 +61,10 @@ class Sidebar extends Component {
                   </TitlePop>
 
                   <InputContainer>
-                    {/* Check input type file and label for file. */}
-                    {/* <input type='file' name='file' id='file' class='inputfile' /> */}
-                    {/* <LabelInput><span role='img' aria-label='img'>IMG</span></LabelInput> */}
                     <Input type='text' placeholder='Super duper group name 🙆🏼‍'/>
                   </InputContainer>
 
-                  <ButtonPop>CREATE!</ButtonPop>
+                  <ButtonPop onClick={()=> console.log('create group works?')}>CREATE!</ButtonPop>
                 </PopUpContainer>
             </PopUp>
             {/* END OF POP UP */}
@@ -74,7 +72,8 @@ class Sidebar extends Component {
             </SName>
           {groups.map(group => (
             <Sect key={group.id} onClick={() => selectGroup(group.id)}>
-              <Img src={codeworks} />
+              <GroupInitial><p>{group.name.slice(0,1)}</p></GroupInitial>
+              {/* <Img src={codeworks} /> */}
               {group.name}
             </Sect>
           ))}

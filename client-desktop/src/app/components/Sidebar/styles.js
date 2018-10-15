@@ -31,7 +31,7 @@ const GSection = styled('div')`
   padding: 1vh;
 `;
 
-const Sect = styled('p')`
+const Sect = styled('div')`
   margin: 4px;
   font-size: 0.8em;
   padding-bottom: 2px;
@@ -83,6 +83,23 @@ const Img = styled('img')`
   vertical-align: middle;
 `;
 
+const GroupInitial = styled('div')`
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+  margin-right: 10px;
+  background-color: ${props => props.theme.colors.pdark};
+  border-radius: 50%;
+  text-align: center;
+  font-size: 0.8em;
+  font-weight: 600;
+  min-width: 20px;
+  & p {
+    margin: 0;
+    line-height: 12px;
+  }
+`;
+
 //==================== POP UP
 const PopUpContainer = styled('div')`
   width: 100%;
@@ -101,7 +118,6 @@ const TitlePop = styled('h1')`
 
 const InputContainer = styled('div')`
   width: 100%;
-  background-color: peachpuff;
   display: flex;
   justify-content: center;
 
@@ -125,31 +141,20 @@ const Input = styled('input')`
   }
 `;
 
-const LabelInput = styled('div')`
-  flex-direction: row;
-  cursor: pointer;
-  width: 5vh;
-  height: 5vh;
-  line-height: 5vh;
-  text-align: center;
-  border-radius: 50%;
-  background-color: pink;
-  align-self: flex-start;
-`;
-
 const ButtonPop = styled('button')`
   border: none;
   background: transparent;
   text-transform: uppercase;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 0.8em;
   cursor: pointer;
+  color: white;
   border-radius: 10px;
   :focus {
     outline: none;
   }
   margin: 10px;
-  background-color: pink;
+  background-color: ${props => props.theme.colors.pdark};;
 `;
 
 
@@ -163,11 +168,11 @@ export {
   SearchBox,
   Button,
   Img,
+  GroupInitial,
   GroupName,
   PopUpContainer,
   Input,
   TitlePop,
   ButtonPop,
   InputContainer,
-  LabelInput
 };
