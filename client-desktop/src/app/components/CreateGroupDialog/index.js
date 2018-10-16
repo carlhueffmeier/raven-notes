@@ -2,27 +2,12 @@ import React, { Component } from 'react';
 import { bool } from 'prop-types';
 import PopUp from 'react-base-popup';
 import idea from '../../../assets/idea.svg';
-import {
-  PopUpContainer,
-  PopContentContainer,
-  PopUpClose,
-  Input,
-  TitlePop,
-  ButtonPop,
-  InputContainer
-} from './styles';
+import { PopUpContainer, PopContentContainer, PopUpClose, TitlePop } from './styles';
+import CreateGroupContainer from '../../containers/CreateGroupContainer';
 
 export default class CreateGroupDialog extends Component {
   static propTypes = {
     isVisible: bool
-  };
-
-  state = {
-    input: ''
-  };
-
-  handleInputChange = e => {
-    this.setState({ input: e.target.value });
   };
 
   render() {
@@ -31,25 +16,14 @@ export default class CreateGroupDialog extends Component {
       <PopUp disable pop={isVisible} popup={{ borderRadius: '30px', height: '380px' }}>
         <PopUpContainer>
           <PopUpClose onClick={onDismiss}>
-            <span role="img" aria-label="x">
+            <span role="img" aria-label="close">
               X
             </span>
           </PopUpClose>
-
           <PopContentContainer>
             <img src={idea} alt="idea" style={{ height: '15vh' }} />
             <TitlePop>Let's create a new workspace!</TitlePop>
-
-            <InputContainer>
-              <Input
-                type="text"
-                placeholder="🚀 Workspace name"
-                onChange={this.handleInputChange}
-                value={this.state.input}
-              />
-            </InputContainer>
-
-            <ButtonPop onClick={() => {}}>Create workspace</ButtonPop>
+            <CreateGroupContainer />
           </PopContentContainer>
         </PopUpContainer>
       </PopUp>
