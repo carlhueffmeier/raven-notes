@@ -29,7 +29,6 @@ exports.typeDef = gql`
 
   type UserSigninResponse {
     token: String
-    user: User
   }
 
   input UserSignupInput {

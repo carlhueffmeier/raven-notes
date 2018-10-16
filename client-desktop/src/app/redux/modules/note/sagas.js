@@ -112,8 +112,7 @@ function* noteSaga() {
   yield takeEvery(FETCH_NOTES.START, fetchNotes);
   yield takeEvery(CREATE_NOTE.START, createNote);
   yield takeEvery(UPDATE_NOTE.START, updateNote);
-  yield takeEvery(authenticationTypes.SIGNIN.SUCCESS, fetchNotes);
-  yield takeEvery(authenticationTypes.SIGNUP.SUCCESS, fetchNotes);
+  yield takeEvery(authenticationTypes.FETCH_CURRENT_USER.SUCCESS, fetchNotes);
   yield spawn(pollFetchNotes);
   yield spawn(pollUpdateNotes);
 }

@@ -13,13 +13,6 @@ const CURRENT_USER_FRAGMENT = `
   }
 `;
 
-const SIGNIN_RESPONSE_FRAGMENT = `
-  token
-  user {
-    ${CURRENT_USER_FRAGMENT}
-  }
-`;
-
 const CURRENT_USER_QUERY = `
   query me {
     me {
@@ -31,7 +24,7 @@ const CURRENT_USER_QUERY = `
 const SIGNIN_MUTATION = `
   mutation signin($email: String!, $password: String!) {
     signin(data: { email: $email, password: $password }) {
-      ${SIGNIN_RESPONSE_FRAGMENT}
+      token
     }
   }
 `;
@@ -39,7 +32,7 @@ const SIGNIN_MUTATION = `
 const SIGNUP_MUTATION = `
   mutation signup($name: String!, $email: String!, $password: String!) {
     signup(data: { name: $name, email: $email, password: $password }) {
-      ${SIGNIN_RESPONSE_FRAGMENT}
+      token
     }
   }
 `;
