@@ -14,7 +14,7 @@ const H3 = styled('h3')`
   text-align: center;
 `;
 
-const SName = styled('h1')`
+const SName = styled('div')`
   font-size: 0.8em;
   font-weight: 500;
   color: #778899;
@@ -110,4 +110,130 @@ const Img = styled('img')`
   vertical-align: middle;
 `;
 
-export { SidebarContainer, SName, USection, GSection, Sect, H3, SearchBox, Button, Img, GroupName };
+const GroupInitial = styled('div')`
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+  margin-right: 10px;
+  background-color: #FEC66C;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 0.8em;
+  font-weight: 600;
+  min-width: 20px;
+  color: white;
+  & p {
+    margin: 0;
+    line-height: 12px;
+  }
+`;
+
+//============================== POP UP
+const ButtonAddGroup = styled('div')`
+  // width: 25px;
+  // height: 25px;
+  line-height: 13px;
+  border: none;
+  margin-left: 20px;
+`;
+
+const ButtonAddImg = styled('img')`
+  width: 1vw;
+`;
+
+const PopUpContainer = styled('div')`
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+s`;
+
+const PopUpClose = styled('div')`
+  cursor: pointer;
+  width: 1.8vw;
+  height: 1.8vw;
+  line-height: 1.8vw;
+  & span {
+    cursor: pointer;
+    margin: 20px;
+    top: 0;
+    right: 0;
+    position: absolute;
+    font-weight: 900;
+  }
+`;
+
+const PopContentContainer = styled('div')`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const TitlePop = styled('h1')`
+  font-size: 1.4em;
+  margin-top: 40px;
+  font-weight: 800;
+`;
+
+const InputContainer = styled('div')`
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+`;
+
+const Input = styled('input')`
+  width: 50%;
+  flex-direction: row;
+  margin: 0px 15px;
+  display: flex;
+  flex-direction: row;
+  background-color: transparent;
+  color: black;
+  border: none;
+  border-bottom: 1.2px solid #FEC66C;
+  padding: 5px;
+  :focus {
+    outline: none;
+  }
+`;
+
+const ButtonPop = styled('button')`
+  border: none;
+  text-transform: uppercase;
+  padding: 20px;
+  font-weight: 800;
+  font-size: 0.8em;
+  cursor: pointer;
+  color: white;
+  border-radius: 100px;
+  :focus {
+    outline: none;
+  }
+  margin: 20px;
+  background-color: #FEC66C
+`;
+
+
+export {
+  SidebarContainer,
+  SName,
+  USection,
+  GSection,
+  Sect,
+  H3,
+  SearchBox,
+  Button,
+  Img,
+  GroupInitial,
+  GroupName,
+  ButtonAddGroup,
+  ButtonAddImg,
+  PopUpContainer,
+  PopContentContainer,
+  PopUpClose,
+  Input,
+  TitlePop,
+  ButtonPop,
+  InputContainer,
+};
