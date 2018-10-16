@@ -27,27 +27,3 @@ export default class AddMembers extends Component {
     );
   }
 }
-
-/*
-
-<ButtonAddGroup onClick={this.handlePop}>
-              <ButtonAddImg alt="add" src={add} />
-            </ButtonAddGroup>
-          </div>
-
-          <CreateGroupDialog isVisible={popped} onDismiss={this.handlePop} />
-state = {
-    input: '',
-    popped: false
-  };
-
-  handlePop = () => {
-    this.setState({ popped: !this.state.popped });
-  };
-
-  render() {
-    const { popped } = this.state;
-
-
-
-*/

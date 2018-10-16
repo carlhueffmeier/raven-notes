@@ -26,6 +26,7 @@ const Members = styled('div')`
 `;
 
 const Button = styled('button')`
+  cursor: pointer;
   background-color: #FEC66C;
   border-radius: 50px;
   border: none;
@@ -35,6 +36,9 @@ const Button = styled('button')`
   text-transform: uppercase;
   font-weight: 600;
   font-size: 0.7em;
+  : focus {
+    outline: none;
+  }
 `;
 
 export {
