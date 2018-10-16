@@ -4,6 +4,7 @@ import notes from '../../../assets/paper-plane.svg';
 import extracts from '../../../assets/origami.svg';
 import codeworks from '../../../assets/codeworks-logo.svg';
 import user from '../../../assets/man.svg';
+import { withTheme } from 'emotion-theming';
 
 class Sidebar extends Component {
   render() {
@@ -31,9 +32,17 @@ class Sidebar extends Component {
         <GSection>
           <SName>WORKSPACE</SName>
           {groups.map(group => (
-            <Sect key={group.id} onClick={() => selectGroup(group.id)}>
+            <Sect
+              key={group.id}
+              onClick={() => selectGroup(group.id)}
+              color={
+                this.props.currentGroupId === group.id
+                  ? this.props.theme.colors.textHardSelect
+                  : null
+              }
+            >
               <Img src={codeworks} />
-              {group.name}
+              <p>{group.name}</p>
             </Sect>
           ))}
         </GSection>
@@ -42,4 +51,4 @@ class Sidebar extends Component {
   }
 }
 
-export default Sidebar;
+export default withTheme(Sidebar);
