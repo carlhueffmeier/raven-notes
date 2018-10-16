@@ -9,6 +9,7 @@ exports.typeDef = gql`
   extend type Mutation {
     createGroup(data: GroupCreateInput!): Group!
     updateGroup(where: GroupWhereUniqueInput!, data: GroupUpdateInput!): Group!
+    addMemberToGroup(where: GroupWhereUniqueInput!, data: UserWhereUniqueInput!): Group!
   }
 
   type Group {
@@ -63,6 +64,10 @@ const getAdmins = async (group, _, { db }) => {
   return db.group.getAdmins(group.id);
 };
 
+const addMemberToGroup = (_, { where, data: userDetails }, { db }) => {
+  return db.group.addMember(where, userDetails);
+};
+
 exports.resolvers = {
   Query: {
     group: getGroup,
@@ -71,7 +76,8 @@ exports.resolvers = {
 
   Mutation: {
     createGroup,
-    updateGroup
+    updateGroup,
+    addMemberToGroup
   },
 
   Group: {

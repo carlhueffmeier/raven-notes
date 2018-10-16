@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { AddMembersContainer, MembersButtonContainer, Group, Members, Button } from './styles';
-import CreateMemberDialog from '../CreateMemberDialog';
+import { Container, MembersButtonContainer, Group, Members, Button } from './styles';
+import AddMemberDialog from '../AddMemberDialog';
 
-export default class AddMembers extends Component {
+class GroupDetails extends Component {
   state = {
     popped: false
   };
@@ -15,8 +15,8 @@ export default class AddMembers extends Component {
     const { popped } = this.state;
     const { name, members } = this.props.currentGroup;
     return (
-      <AddMembersContainer>
-        <CreateMemberDialog isVisible={popped} onDismiss={this.handlePop} />
+      <Container>
+        <AddMemberDialog isVisible={popped} onDismiss={this.handlePop} />
         <Group>{name}</Group>
         <MembersButtonContainer>
           <Members>
@@ -28,7 +28,9 @@ export default class AddMembers extends Component {
           </Members>
           <Button onClick={this.handlePop}>Add Member</Button>
         </MembersButtonContainer>
-      </AddMembersContainer>
+      </Container>
     );
   }
 }
+
+export default GroupDetails;

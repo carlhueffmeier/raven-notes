@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { func } from 'prop-types';
 import { StyledForm, SubmitButton, Input, InputContainer } from './styles';
 
-class CreateGroupForm extends Component {
+class AddMemberForm extends Component {
   static propTypes = {
     onSubmit: func
   };
 
   state = {
-    name: ''
+    email: ''
   };
 
   handleInputChange = event => {
@@ -27,17 +27,18 @@ class CreateGroupForm extends Component {
       <StyledForm onSubmit={this.handleSubmit}>
         <InputContainer>
           <Input
-            type="text"
-            name="name"
-            placeholder="🚀 Workspace name"
+            type="email"
+            name="email"
+            placeholder="🤖 Member name"
             onChange={this.handleInputChange}
             value={this.state.input}
+            required
           />
         </InputContainer>
-        <SubmitButton>Create workspace</SubmitButton>
+        <SubmitButton>Add Member</SubmitButton>
       </StyledForm>
     );
   }
 }
 
-export default CreateGroupForm;
+export default AddMemberForm;

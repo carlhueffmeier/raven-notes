@@ -27,6 +27,11 @@ exports.typeDef = gql`
     memberOf: [Group!]!
   }
 
+  input UserWhereUniqueInput {
+    id: ID
+    email: String
+  }
+
   type UserSigninResponse {
     token: String
   }

@@ -5,14 +5,14 @@ import CreateNoteContainer from '../../containers/CreateNoteContainer';
 import { NoteListContainer, SearchAndCreateContainer, NoteListWrapper } from './styles';
 
 import { constants as layoutConstants } from '../../redux/modules/layout';
-import AddMembers from '../AddMembers';
+import GroupDetails from '../GroupDetails';
 
 class NoteList extends Component {
   render() {
     const { notes, selectNote, changeLayout, onQueryChange } = this.props;
     return (
       <NoteListContainer>
-        <AddMembers currentGroup={this.props.currentGroup} />
+        <GroupDetails currentGroup={this.props.currentGroup} />
         <SearchAndCreateContainer>
           <SearchBar onChange={onQueryChange} />
           <CreateNoteContainer />

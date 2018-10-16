@@ -1,6 +1,6 @@
 import styled from 'react-emotion';
 
-const AddMembersContainer = styled('div')`
+const Container = styled('div')`
   padding: 0 15px;
   padding-top: 20px;
   margin: 0;
@@ -37,9 +37,9 @@ const Button = styled('button')`
   text-transform: uppercase;
   font-weight: 600;
   font-size: 0.7em;
-  : focus {
+  :focus {
     outline: none;
   }
 `;
 
-export { AddMembersContainer, MembersButtonContainer, Group, Members, Button };
+export { Container, MembersButtonContainer, Group, Members, Button };
