@@ -9,7 +9,6 @@ import { prop, sortBy } from '../lib/utils';
 class SidebarContainer extends Component {
   render() {
     const { groups, selectGroup, user } = this.props;
-    console.log(this.props);
     return (
       <Sidebar
         groups={groups.filter(group => group.id !== user.privateGroup.id)}
