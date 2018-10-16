@@ -2,6 +2,7 @@
   "name": "raven-client-desktop",
   "version": "0.0.1",
   "dependencies": {
+    "@reach/dialog": "^0.1.2",
     "emotion": "^9.2.12",
     "emotion-theming": "^9.2.9",
     "final-form": "^4.10.0",
