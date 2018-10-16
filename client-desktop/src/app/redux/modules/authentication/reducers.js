@@ -18,11 +18,14 @@ const rootReducer = combineReducers({
 
 function currentUserReducer(state = null, action) {
   switch (action.type) {
-    case FETCH_CURRENT_USER.SUCCESS:
+    case FETCH_CURRENT_USER.SUCCESS: {
+      const { result } = action.payload;
+      return result.me || null;
+    }
     case SIGNIN.SUCCESS:
     case SIGNUP.SUCCESS: {
       const { result } = action.payload;
-      return result;
+      return result.user || null;
     }
     case SIGNOUT: {
       return null;
@@ -36,7 +39,6 @@ function authTokenReducer(state = '', action) {
   switch (action.type) {
     case SIGNIN.SUCCESS:
     case SIGNUP.SUCCESS: {
-      console.log(action);
       const { result } = action.payload;
       return result.token;
     }

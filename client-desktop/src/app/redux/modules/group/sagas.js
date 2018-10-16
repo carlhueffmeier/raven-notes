@@ -11,11 +11,10 @@ import { group as groupSchema } from './schema';
 
 function* createGroup(action) {
   try {
-    const { payload: name } = action
+    const { payload: name } = action;
     const response = yield call([graphqlClient, 'request'], CREATE_GROUP_MUTATION, { name });
     // ⚠️ Caution: Necessary change for local server
     const normalizedData = normalize(response.createGroup, groupSchema);
-    console.log('data', normalizedData)
     yield put(actions.createGroupSuccess(normalizedData));
   } catch (error) {
     console.error(error);
