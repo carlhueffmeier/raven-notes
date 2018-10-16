@@ -88,7 +88,7 @@ const GroupInitial = styled('div')`
   height: 20px;
   padding: 5px;
   margin-right: 10px;
-  background-color: ${props => props.theme.colors.pdark};
+  background-color: #FEC66C;
   border-radius: 50%;
   text-align: center;
   font-size: 0.8em;
