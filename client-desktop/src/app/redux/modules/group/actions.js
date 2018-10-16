@@ -1,9 +1,9 @@
 import * as types from './types';
 
 // Create new group
-const createGroup = (groupName) => ({
+const createGroup = payload => ({
   type: types.CREATE_GROUP.START,
-  payload: groupName
+  payload
 });
 const createGroupSuccess = payload => ({
   type: types.CREATE_GROUP.SUCCESS,

@@ -6,14 +6,25 @@ import { selectors as currentGroupSelectors } from '../redux/modules/currentGrou
 import { selectors as authenticationSelectors } from '../redux/modules/authentication';
 
 import { actions as groupActions } from '../redux/modules/group';
+import { actions as currentNoteActions } from '../redux/modules/currentNote';
 
 import Sidebar from '../components/Sidebar';
 import { prop, sortBy } from '../lib/utils';
 
 class SidebarContainer extends Component {
+  handleGroupChange = newGroupId => {
+    const { currentGroupId, resetCurrentNote, selectGroup } = this.props;
+    if (newGroupId !== currentGroupId) {
+      resetCurrentNote();
+      selectGroup(newGroupId);
+    }
+  };
+
   render() {
-    const { groups, selectGroup } = this.props;
-    return <Sidebar groups={groups} selectGroup={selectGroup} privateGroup={groups[0]} />;
+    const { groups } = this.props;
+    return (
+      <Sidebar groups={groups} selectGroup={this.handleGroupChange} privateGroup={groups[0]} />
+    );
   }
 }
 
@@ -29,7 +40,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
   selectGroup: currentGroupActions.selectGroup,
-  createGroup: groupActions.createGroup
+  createGroup: groupActions.createGroup,
+  resetCurrentNote: currentNoteActions.resetCurrentNote
 };
 
 export default connect(
