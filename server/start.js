@@ -2,7 +2,7 @@
 require('dotenv').config();
 
 (async () => {
-  await require('./db/orm').sequelize.sync({ force: true });
+  await require('./db/orm').sequelize.sync();
 
   // Configure express and middleware
   const app = require('./app');
