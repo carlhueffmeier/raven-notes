@@ -6,6 +6,7 @@ const NoteListContainer = styled('div')`
   height: calc(100vh - 25px);
   border-right: 0.4px solid rgba(119, 136, 153, 0.8);
   padding-top: 5px;
+  background: #fff;
 `;
 
 const SingleNoteContainer = styled('div')`
@@ -34,7 +35,7 @@ const NoteListWrapper = styled('div')`
 
 const SubContainer = styled('div')`
   display: flex;
-  padding-top: 2vh;
+  padding-top: 15px;
 `;
 
 const Day = styled('div')`
