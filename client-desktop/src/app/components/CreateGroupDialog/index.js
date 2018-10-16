@@ -28,7 +28,7 @@ export default class CreateGroupDialog extends Component {
   render() {
     const { isVisible, onDismiss } = this.props;
     return (
-      <PopUp disable pop={isVisible} popup={{ borderRadius: '30px', height: '380px' }}>
+      <PopUp disable pop={isVisible} popup={{ borderRadius: '30px', minHeight: '380px', height: '380' }}>
         <PopUpContainer>
           <PopUpClose onClick={onDismiss}>
             <span role="img" aria-label="x">
