@@ -1,10 +1,8 @@
 const express = require('express');
 const cors = require('cors');
-const cookieParser = require('cookie-parser');
-const { getUserIdFromCookie } = require('./lib/utils');
+const { extractToken } = require('./lib/utils');
 const apolloServer = require('./apollo');
 const User = require('./db/modelFactories/user')();
-const MOCK_USER_ID = 'user-id-bob';
 
 const app = express();
 
@@ -15,11 +13,9 @@ app.use(
   })
 );
 
-app.use(cookieParser());
-
 // Extract the user id and store for this request
 app.use((req, res, next) => {
-  const userId = getUserIdFromCookie(req) || MOCK_USER_ID;
+  const userId = extractToken(req);
   if (userId) {
     req.userId = userId;
   }

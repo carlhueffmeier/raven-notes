@@ -9,15 +9,8 @@ import { prop, sortBy } from '../lib/utils';
 
 class SidebarContainer extends Component {
   render() {
-    const { groups, selectGroup, user, currentGroupId } = this.props;
-    return (
-      <Sidebar
-        groups={groups.filter(group => group.id !== user.privateGroup.id)}
-        selectGroup={selectGroup}
-        privateGroup={groups.find(group => group.id === user.privateGroup.id)}
-        currentGroupId={currentGroupId}
-      />
-    );
+    const { groups, selectGroup } = this.props;
+    return <Sidebar groups={groups} selectGroup={selectGroup} privateGroup={groups[0]} />;
   }
 }
 

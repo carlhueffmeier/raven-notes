@@ -1,15 +1,22 @@
 import React, { Component, Fragment } from 'react';
-import SigninContainer from '../containers/SigninContainer';
+import { connect } from 'react-redux';
+import SigninPage from '../components/SigninPage';
+import { selectors as authenticationSelectors } from '../redux/modules/authentication';
 
 class SigninPlease extends Component {
   render() {
-    // TODO: Get status from redux store
-    const isAuthenticated = true;
+    const { isAuthenticated } = this.props;
     if (!isAuthenticated) {
-      return <SigninContainer />;
+      return <SigninPage />;
     }
     return <Fragment>{this.props.children}</Fragment>;
   }
 }
 
-export default SigninPlease;
+function mapStateToProps(state) {
+  return {
+    isAuthenticated: authenticationSelectors.getIsAuthenticated(state)
+  };
+}
+
+export default connect(mapStateToProps)(SigninPlease);

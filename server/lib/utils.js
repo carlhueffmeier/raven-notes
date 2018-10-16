@@ -6,16 +6,12 @@ const jwt = require('jsonwebtoken');
 const asyncRandomBytes = promisify(randomBytes);
 
 // ~~ Cookies ~~
-const storeUserInCookie = (user, res) => {
-  const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
-  res.cookie('token', token, {
-    httpOnly: true,
-    maxAge: 1000 * 60 * 60 * 24 * 365 // 1 year cookie
-  });
+const generateToken = user => {
+  return jwt.sign({ userId: user.id }, process.env.APP_SECRET);
 };
 
-const getUserIdFromCookie = req => {
-  const { token } = req.cookies;
+const extractToken = req => {
+  const token = req.headers.authorization;
   if (token) {
     const { userId } = jwt.verify(token, process.env.APP_SECRET);
     // Put the userId onto the req for future requests to access
@@ -24,5 +20,5 @@ const getUserIdFromCookie = req => {
 };
 
 exports.asyncRandomBytes = asyncRandomBytes;
-exports.storeUserInCookie = storeUserInCookie;
-exports.getUserIdFromCookie = getUserIdFromCookie;
+exports.generateToken = generateToken;
+exports.extractToken = extractToken;

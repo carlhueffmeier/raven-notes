@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { persistStore } from 'redux-persist';
 import createSagaMiddleware from 'redux-saga';
 import rootReducer, { rootSaga } from './modules';
 
@@ -9,8 +10,10 @@ function configureStore() {
   const composedEnhancers = composeWithDevTools(middlewareEnhancer);
 
   const store = createStore(rootReducer, composedEnhancers);
+  const persistor = persistStore(store);
   sagaMiddleware.run(rootSaga);
-  return store;
+
+  return { store, persistor };
 }
 
 export default configureStore;
