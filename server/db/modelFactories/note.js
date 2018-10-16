@@ -10,6 +10,9 @@ function createNoteModel({ user } = {}) {
   };
 
   async function create({ contentText, contentJson, group } = {}) {
+    if (!user) {
+      throw new AuthenticationError('You have to authenticate to execute this query');
+    }
     // Check whether user is member of group
     const isAllowedToPost = user && (await user.hasMemberOf([group]));
     if (!isAllowedToPost) {
@@ -30,6 +33,9 @@ function createNoteModel({ user } = {}) {
   }
 
   async function find({ author, group } = {}) {
+    if (!user) {
+      throw new AuthenticationError('You have to authenticate to execute this query');
+    }
     // Restrict notes to those that belong to groups
     // that the user is a member of
     const where = {
@@ -64,6 +70,9 @@ function createNoteModel({ user } = {}) {
   }
 
   async function findOne({ id: noteId } = {}) {
+    if (!user) {
+      throw new AuthenticationError('You have to authenticate to execute this query');
+    }
     // Restrict notes to those that belong to groups
     // that the user is a member of
     const where = {
@@ -90,6 +99,9 @@ function createNoteModel({ user } = {}) {
   }
 
   async function findOneAndUpdate({ id: noteId } = {}, update) {
+    if (!user) {
+      throw new AuthenticationError('You have to authenticate to execute this query');
+    }
     const where = { id: noteId };
     const existingNode = await db.note.findOne({ where });
     if (existingNode.authorId !== user.id) {

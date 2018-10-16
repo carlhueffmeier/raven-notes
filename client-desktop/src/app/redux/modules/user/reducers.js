@@ -1,7 +1,21 @@
 import { combineReducers } from 'redux';
+import { persistReducer } from 'redux-persist';
+import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
+import storage from '../../storage';
 import { unique, path } from '../../../lib/utils';
 
-function byId(state = {}, action) {
+const persistConfig = {
+  key: 'user',
+  storage,
+  stateReconciler: autoMergeLevel2
+};
+
+const rootReducer = combineReducers({
+  byId: byIdReducer,
+  allIds: allIdsReducer
+});
+
+function byIdReducer(state = {}, action) {
   const userEntities = path(['payload', 'entities', 'users'], action);
   if (userEntities) {
     return { ...state, ...userEntities };
@@ -9,7 +23,7 @@ function byId(state = {}, action) {
   return state;
 }
 
-function allIds(state = [], action) {
+function allIdsReducer(state = [], action) {
   const userEntities = path(['payload', 'entities', 'users'], action);
   if (userEntities) {
     const ids = Object.keys(userEntities);
@@ -18,9 +32,4 @@ function allIds(state = [], action) {
   return state;
 }
 
-const rootReducer = combineReducers({
-  byId,
-  allIds
-});
-
-export default rootReducer;
+export default persistReducer(persistConfig, rootReducer);

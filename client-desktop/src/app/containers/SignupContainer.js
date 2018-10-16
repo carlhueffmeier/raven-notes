@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { actions as authenticationActions } from '../redux/modules/authentication';
-import SigninForm from '../components/SigninForm';
+import SignupForm from '../components/SignupForm';
 
-class SigninContainer extends Component {
+class SignupContainer extends Component {
   render() {
-    const { signin, ...props } = this.props;
-    return <SigninForm onSubmit={signin} {...props} />;
+    const { signup, ...props } = this.props;
+    return <SignupForm onSubmit={signup} {...props} />;
   }
 }
 
 const mapDispatchToProps = {
-  signin: authenticationActions.signin
+  signup: authenticationActions.signup
 };
 
 export default connect(
   null,
   mapDispatchToProps
-)(SigninContainer);
+)(SignupContainer);

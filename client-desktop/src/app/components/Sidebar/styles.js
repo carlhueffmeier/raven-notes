@@ -11,6 +11,7 @@ const H3 = styled('h3')`
   font-weight: 500;
   font-size: 0.9em;
   margin: 0;
+  text-align: center;
 `;
 
 const SName = styled('div')`
@@ -33,10 +34,36 @@ const GSection = styled('div')`
 
 const Sect = styled('div')`
   margin: 4px;
+  max-width: auto;
   font-size: 0.8em;
   padding-bottom: 2px;
-  display: flex;
+  display: inline-flex;
   line-height: 20px;
+  cursor: pointer;
+  :hover {
+    color: peachpuff;
+  }
+  & p {
+    margin: 0;
+  }
+  & img:hover {
+    transition: all 0.3s ease-in-out 0.2s;
+    transform: rotateZ(360deg);
+  }
+  & img {
+    ${props =>
+      props.color
+        ? `
+            filter: brightness(1.5);
+          `
+        : null};
+  }
+  ${props =>
+    props.color
+      ? `
+          color: ${props.color};
+        `
+      : null};
 `;
 
 const SearchBox = styled('input')`

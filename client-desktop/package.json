@@ -4,7 +4,6 @@
   "dependencies": {
     "emotion": "^9.2.12",
     "emotion-theming": "^9.2.9",
-    "final-form": "^4.10.0",
     "graphql-request": "^1.8.2",
     "immutable": "^3.8.2",
     "moment": "^2.22.2",
@@ -19,6 +18,7 @@
     "react-sizeme": "^2.5.2",
     "redux": "^4.0.0",
     "redux-devtools-extension": "^2.13.5",
+    "redux-persist": "^5.10.0",
     "redux-saga": "^0.16.2",
     "slate": "^0.41.2",
     "slate-html-serializer": "^0.7.7",

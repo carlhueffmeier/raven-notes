@@ -17,40 +17,98 @@ const Container = posed.div({
 
 const SidebarPane = posed.div({
   [layoutConstants.ONE_COLUMN_LAYOUT]: {
-    x: -200,
     width: 0,
-    paddingTop: 25
+    translateX: -200,
+    transition: {
+      translateX: {
+        duration: 10,
+        ease: 'linear'
+      },
+      width: {
+        duration: 10,
+        delay: 50
+      }
+    }
   },
   [layoutConstants.TWO_COLUMN_LAYOUT]: {
     width: '150px',
-    paddingTop: 25,
-    x: 0,
+    translateX: 0,
     transition: {
-      default: {
-        duration: 0,
-        ease: 'linear'
+      translateX: {
+        duration: 10,
+        ease: 'linear',
+        delay: 50
+      },
+      width: {
+        duration: 10
       }
     }
   },
   [layoutConstants.THREE_COLUMN_LAYOUT]: {
     width: '150px',
-    paddingTop: 25,
-    x: 0
+    translateX: 0,
+    transition: {
+      translateX: {
+        duration: 10,
+        ease: 'linear',
+        delay: 50
+      },
+      width: {
+        duration: 10
+      }
+    }
   }
 });
 
 const NoteListPane = posed.div({
   [layoutConstants.ONE_COLUMN_LAYOUT]: {
     width: 0,
-    x: -200
+    maxWidth: 0,
+    minWidth: 0,
+    translateX: -400,
+    transition: {
+      default: {
+        duration: 150,
+        ease: 'linear'
+      },
+      opacity: {
+        duration: 100,
+        delay: 150
+      }
+    }
   },
   [layoutConstants.TWO_COLUMN_LAYOUT]: {
     width: 90 + 'vw',
-    x: 0
+    translateX: 0,
+    opacity: 1,
+    maxWidth: '10000px',
+    minWidth: '250px',
+    transition: {
+      default: {
+        duration: 150
+      },
+      translateX: {
+        duration: 100,
+        delay: 150
+      }
+    }
   },
   [layoutConstants.THREE_COLUMN_LAYOUT]: {
     width: '250px',
-    x: 0
+    opacity: 1,
+    translateX: 0,
+    maxWidth: '250px',
+    minWidth: '250px',
+    transition: {
+      default: {
+        duration: 150,
+        ease: 'linear'
+      },
+      opacity: {
+        duration: 100,
+        delay: 150
+      }
+    }
   }
 });
 
@@ -58,17 +116,37 @@ const EditorPane = posed.div({
   [layoutConstants.ONE_COLUMN_LAYOUT]: {
     width: 100 + 'vw',
     overflow: 'hidden',
-    opacity: 1
+    opacity: 1,
+
+    transition: {
+      default: {
+        duration: 150,
+        ease: 'linear'
+      }
+    }
   },
   [layoutConstants.TWO_COLUMN_LAYOUT]: {
     width: 0,
     opacity: 0,
-    overflow: 'hidden'
+    overflow: 'hidden',
+
+    transition: {
+      default: {
+        duration: 150,
+        ease: 'linear'
+      }
+    }
   },
   [layoutConstants.THREE_COLUMN_LAYOUT]: {
-    width: 68 + 'vw',
+    width: 88 + 'vw',
     opacity: 1,
-    overflow: 'hidden'
+    overflow: 'hidden',
+    transition: {
+      default: {
+        duration: 150,
+        ease: 'linear'
+      }
+    }
   }
 });
 

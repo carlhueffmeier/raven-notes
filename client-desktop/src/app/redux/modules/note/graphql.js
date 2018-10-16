@@ -29,7 +29,7 @@ const ALL_NOTES_QUERY = `
 `;
 
 const CREATE_NOTE_MUTATION = `
-  mutation createNote($contentJson: JSON, $contentText: String, $groupId: ID) {
+  mutation createNote($contentJson: Json, $contentText: String, $groupId: ID) {
     createNote(
       data: {
         contentText: $contentText,
@@ -43,7 +43,7 @@ const CREATE_NOTE_MUTATION = `
 `;
 
 const UPDATE_NOTE_MUTATION = `
-  mutation updateNote($id: ID!, $contentJson: JSON, $contentText: String) {
+  mutation updateNote($id: ID!, $contentJson: Json, $contentText: String) {
     updateNote(
       where: {
         id: $id

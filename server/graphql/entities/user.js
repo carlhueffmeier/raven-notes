@@ -1,6 +1,6 @@
 const { gql, AuthenticationError } = require('apollo-server-express');
 const bcrypt = require('bcryptjs');
-const { asyncRandomBytes, storeUserInCookie } = require('../../lib/utils');
+const { asyncRandomBytes, generateToken } = require('../../lib/utils');
 const { sendResetMail } = require('../../lib/mail');
 
 exports.typeDef = gql`
@@ -9,11 +9,14 @@ exports.typeDef = gql`
   }
 
   extend type Mutation {
-    signup(data: UserSignupInput!): User!
-    signin(data: UserSigninInput!): User!
-    signout: SuccessMessage
+    signup(data: UserSignupInput!): UserSigninResponse
+    signin(data: UserSigninInput!): UserSigninResponse
     requestReset(data: UserRequestResetInput!): SuccessMessage
-    resetPassword(data: UserResetPasswordInput!): User
+    resetPassword(data: UserResetPasswordInput!): UserSigninResponse
+  }
+
+  type SuccessMessage {
+    message: String
   }
 
   type User {
@@ -24,8 +27,9 @@ exports.typeDef = gql`
     memberOf: [Group!]!
   }
 
-  type SuccessMessage {
-    message: String
+  type UserSigninResponse {
+    token: String
+    user: User
   }
 
   input UserSignupInput {
@@ -54,19 +58,28 @@ const me = (_, __, { req }) => {
   return req.user;
 };
 
-const signup = async (_, { data: { email, name, password } }, { db, res }) => {
+const signup = async (_, { data: { email, name, password } }, { db }) => {
   // Create new user
   const newUser = await db.user.create({
     email,
     name,
     password: await bcrypt.hash(password, 10)
   });
+  await db.group.create(
+    {
+      name: 'My first workspace 🎊'
+    },
+    newUser
+  );
   // Authenticate right away
-  storeUserInCookie(newUser, res);
-  return newUser;
+  const token = generateToken(newUser);
+  return {
+    token,
+    user: newUser
+  };
 };
 
-const signin = async (_, { data: { email, password } }, { db, res }) => {
+const signin = async (_, { data: { email, password } }, { db }) => {
   // Look for user by email
   const user = await db.user.findOne({
     email: email.toLowerCase()
@@ -79,14 +92,12 @@ const signin = async (_, { data: { email, password } }, { db, res }) => {
   if (!valid) {
     throw new AuthenticationError(`Invalid password.`);
   }
-  // Give the user a cookie to identify for future requests 🍪
-  storeUserInCookie(user, res);
-  return user;
-};
-
-const signout = (_, __, { res }) => {
-  res.clearCookie('token');
-  return { message: 'Goodbye 👋' };
+  // Give the user a token to identify for future requests 🏅
+  const token = generateToken(user);
+  return {
+    token,
+    user
+  };
 };
 
 const requestReset = async (_, { data: { email } }, { db }) => {
@@ -103,11 +114,7 @@ const requestReset = async (_, { data: { email } }, { db }) => {
   return { message: 'Mail is on the way!' };
 };
 
-const resetPassword = async (
-  _,
-  { data: { resetToken, password, confirmPassword } },
-  { db, res }
-) => {
+const resetPassword = async (_, { data: { resetToken, password, confirmPassword } }, { db }) => {
   if (password !== confirmPassword) {
     throw new AuthenticationError('Passwords do not match.');
   }
@@ -128,8 +135,11 @@ const resetPassword = async (
     }
   );
   // Authenticate right away
-  storeUserInCookie(user, res);
-  return updatedUser;
+  const token = generateToken(user);
+  return {
+    token,
+    user: updatedUser
+  };
 };
 
 const memberOf = async (user, _, { db }) => {
@@ -148,7 +158,6 @@ exports.resolvers = {
   Mutation: {
     signup,
     signin,
-    signout,
     requestReset,
     resetPassword
   },

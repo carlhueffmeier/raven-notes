@@ -4,7 +4,9 @@
   "description": "Backend of raven-notes",
   "main": "start.js",
   "scripts": {
-    "start": "nodemon start.js"
+    "start": "nodemon start.js",
+    "start:mysql": "npm run mysql && nodemon start.js",
+    "mysql": "docker run -p 3306:3306 mysql:latest"
   },
   "license": "ISC",
   "dependencies": {

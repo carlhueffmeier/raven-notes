@@ -1,13 +1,37 @@
 import { schema } from 'normalizr';
 
-const user = new schema.Entity('users');
-const group = new schema.Entity('groups', {
-  members: [user]
+const userSchema = new schema.Entity('users');
+
+const groupSchema = new schema.Entity('groups', {
+  members: [userSchema]
 });
 
-const note = new schema.Entity('notes', {
-  author: user,
-  group: group
+const noteSchema = new schema.Entity('notes', {
+  author: userSchema,
+  group: groupSchema
 });
 
-export { note };
+const fetchNotesResponseSchema = {
+  allNotes: [noteSchema]
+};
+
+const createNoteResponseSchema = {
+  createNote: noteSchema
+};
+
+const updateNoteResponseSchema = {
+  updateNote: noteSchema
+};
+
+// 🔥 TODO: Remove 🔥
+const MOCK__fetchNotesResponseSchema = {
+  allNotes: [noteSchema]
+};
+
+export {
+  noteSchema,
+  fetchNotesResponseSchema,
+  createNoteResponseSchema,
+  updateNoteResponseSchema,
+  MOCK__fetchNotesResponseSchema
+};

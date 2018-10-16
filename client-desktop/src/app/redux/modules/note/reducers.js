@@ -1,8 +1,25 @@
 import { combineReducers } from 'redux';
+import { persistReducer } from 'redux-persist';
+import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
+import storage from '../../storage';
 import { FETCH_NOTES, CREATE_NOTE, UPDATE_NOTE } from './types';
 import { unique, path } from '../../../lib/utils';
 
-function byId(state = {}, action) {
+const persistConfig = {
+  key: 'note',
+  storage,
+  stateReconciler: autoMergeLevel2,
+  whitelist: ['byId', 'allIds']
+};
+
+const rootReducer = combineReducers({
+  byId: byIdReducer,
+  allIds: allIdsReducer,
+  loading: loadingReducer,
+  error: errorReducer
+});
+
+function byIdReducer(state = {}, action) {
   const noteEntities = path(['payload', 'entities', 'notes'], action);
   if (noteEntities) {
     return { ...state, ...noteEntities };
@@ -10,7 +27,7 @@ function byId(state = {}, action) {
   return state;
 }
 
-function allIds(state = [], action) {
+function allIdsReducer(state = [], action) {
   const noteEntities = path(['payload', 'entities', 'notes'], action);
   if (noteEntities) {
     const ids = Object.keys(noteEntities);
@@ -19,7 +36,7 @@ function allIds(state = [], action) {
   return state;
 }
 
-function loading(state = false, action) {
+function loadingReducer(state = false, action) {
   switch (action.type) {
     case FETCH_NOTES.START:
     case CREATE_NOTE.START:
@@ -37,7 +54,7 @@ function loading(state = false, action) {
   }
 }
 
-function error(state = null, action) {
+function errorReducer(state = null, action) {
   switch (action.type) {
     case FETCH_NOTES.START:
     case CREATE_NOTE.START:
@@ -55,11 +72,4 @@ function error(state = null, action) {
   }
 }
 
-const rootReducer = combineReducers({
-  byId,
-  allIds,
-  loading,
-  error
-});
-
-export default rootReducer;
+export default persistReducer(persistConfig, rootReducer);

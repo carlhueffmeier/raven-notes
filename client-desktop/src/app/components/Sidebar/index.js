@@ -26,6 +26,7 @@ import add from '../../../assets/plus.svg'
 import idea from '../../../assets/idea.svg'
 
 import PopUp from 'react-base-popup';
+import { withTheme } from 'emotion-theming';
 
 class Sidebar extends Component {
   state = {
@@ -43,7 +44,7 @@ class Sidebar extends Component {
   }
 
   render() {
-    const { groups, selectGroup, privateGroup } = this.props;
+    const { groups, selectGroup } = this.props;
     return (
       <SidebarContainer>
         <H3>
@@ -53,7 +54,7 @@ class Sidebar extends Component {
 
         <USection>
           <SName>PRIVATE</SName>
-          <Sect onClick={() => selectGroup(privateGroup.id)}>
+          <Sect>
             <Img src={notes} />
             All Notes
           </Sect>
@@ -114,10 +115,17 @@ class Sidebar extends Component {
           {/* END OF POP UP */}
 
           {groups.map(group => (
-            <Sect key={group.id} onClick={() => selectGroup(group.id)}>
-              {/* <GroupInitial><p>{group.name && group.name.slice(0,1)}</p></GroupInitial> */}
+            <Sect
+              key={group.id}
+              onClick={() => selectGroup(group.id)}
+              color={
+                this.props.currentGroupId === group.id
+                  ? this.props.theme.colors.textHardSelect
+                  : null
+              }
+            >
               <GroupInitial><p>{group.name.slice(0,1)}</p></GroupInitial>
-              {group.name}
+              <p>{group.name}</p>
             </Sect>
           ))}
         </GSection>
@@ -126,6 +134,4 @@ class Sidebar extends Component {
   }
 }
 
-export default Sidebar;
-
-
+export default withTheme(Sidebar);
