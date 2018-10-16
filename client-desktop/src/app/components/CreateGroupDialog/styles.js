@@ -52,6 +52,8 @@ const Input = styled('input')`
   border: none;
   border-bottom: 1.2px solid #fec66c;
   padding: 5px;
+  font-size: 1.4em;
+  font-weight: 400;
   :focus {
     outline: none;
   }
