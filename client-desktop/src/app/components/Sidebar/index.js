@@ -33,6 +33,7 @@ class Sidebar extends Component {
   render() {
     const { popped } = this.state;
     const { groups, selectGroup, user, privateGroup } = this.props;
+    console.log(groups)
     return (
       <SidebarContainer>
         <H3>
