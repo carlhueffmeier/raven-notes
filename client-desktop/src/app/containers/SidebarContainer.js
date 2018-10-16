@@ -14,12 +14,12 @@ class SidebarContainer extends Component {
     const { groups, selectGroup, user, createGroup } = this.props;
     return (
       <Sidebar
-        groups={groups.filter(group => group.id !== user.privateGroup.id)}
-        // groups={groups}
+        // groups={groups.filter(group => group.id !== user.privateGroup.id)}
+        groups={groups}
         selectGroup={selectGroup}
-        privateGroup={groups.find(group => group.id === user.privateGroup.id)}
+        // privateGroup={groups.find(group => group.id === user.privateGroup.id)}
         // privateGroup={groups[0]}
-        createGroup={createGroup}
+        createGroup={() => {}}
       />
     );
   }
@@ -28,7 +28,7 @@ class SidebarContainer extends Component {
 function mapStateToProps(state) {
   const allGroups = groupSelectors.getAllGroups(state);
   return {
-    user: userSelectors.getUserById(state, 'cjn5pv4vkjqgw0932trypskwh'),
+    user: userSelectors.getUserById(state, "cjn5pv4vkjqgw0932trypskwh"),
     groups: sortBy(prop('name'), allGroups)
   };
 }
