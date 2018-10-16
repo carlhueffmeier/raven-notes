@@ -12,7 +12,7 @@ class NoteList extends Component {
     const { notes, selectNote, changeLayout, onQueryChange } = this.props;
     return (
       <NoteListContainer>
-        <AddMembers />
+        <AddMembers currentGroup={this.props.currentGroup} />
         <SearchAndCreateContainer>
           <SearchBar onChange={onQueryChange} />
           <CreateNoteContainer />

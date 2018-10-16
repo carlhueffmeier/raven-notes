@@ -11,7 +11,7 @@ import {
   InputContainer
 } from '../CreateGroupDialog/styles';
 
-import addMember from '../../../assets/chat.svg'
+import addMember from '../../../assets/chat.svg';
 
 export default class CreateMemberDialog extends Component {
   static propTypes = {
@@ -29,7 +29,7 @@ export default class CreateMemberDialog extends Component {
   render() {
     const { isVisible, onDismiss } = this.props;
     return (
-      <PopUp disable pop={isVisible} popup={{ borderRadius: '30px', height: '50vh' }}>
+      <PopUp disable pop={isVisible} popup={{ borderRadius: '30px', height: '380px' }}>
         <PopUpContainer>
           <PopUpClose onClick={onDismiss}>
             <span role="img" aria-label="x">
@@ -38,7 +38,7 @@ export default class CreateMemberDialog extends Component {
           </PopUpClose>
 
           <PopContentContainer>
-            <img alt='members' src={addMember} style={{ height: '15vh' }}/>
+            <img alt="members" src={addMember} style={{ height: '15vh' }} />
             <TitlePop>Add a new member!</TitlePop>
 
             <InputContainer>

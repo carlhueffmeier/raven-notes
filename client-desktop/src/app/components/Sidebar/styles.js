@@ -136,7 +136,7 @@ const ButtonAddGroup = styled('div')`
 `;
 
 const ButtonAddImg = styled('img')`
-  width: 1vw;
+  width: 15px;
 `;
 
 export {

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { selectors as noteSelectors } from '../redux/modules/note';
+import { selectors as currentGroupSelectors } from '../redux/modules/currentGroup';
+import { selectors as groupSelectors } from '../redux/modules/group';
 import { actions as currentNoteActions } from '../redux/modules/currentNote';
 
 import { actions as searchActions, selectors as searchSelectors } from '../redux/modules/search';
@@ -20,6 +22,7 @@ class NoteListContainer extends Component {
         selectNote={selectNote}
         changeLayout={changeLayout}
         onQueryChange={this.props.onQueryChange}
+        currentGroup={this.props.currentGroup}
       />
     );
   }
@@ -27,10 +30,15 @@ class NoteListContainer extends Component {
 
 function mapStateToProps(state) {
   const groupNotes = noteSelectors.getCurrentGroupNotesWithAuthor(state);
-
+  const allGroups = groupSelectors.getAllGroups(state);
+  let currentGroupId = currentGroupSelectors.getCurrentGroupId(state);
+  if (!currentGroupId && allGroups.length > 0) {
+    currentGroupId = allGroups[0].id;
+  }
   return {
     notes: sortBy(dateDescending(prop('updatedAt')), groupNotes),
-    searchQuery: searchSelectors.getCurrentSearch(state)
+    searchQuery: searchSelectors.getCurrentSearch(state),
+    currentGroup: groupSelectors.getGroupById(state, currentGroupId)
   };
 }
 

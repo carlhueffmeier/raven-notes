@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { actions as currentGroupActions } from '../redux/modules/currentGroup';
 import { selectors as groupSelectors } from '../redux/modules/group';
-import { selectors as currentGroupSelectors } from '../redux/modules/currentGroup';
 import { selectors as authenticationSelectors } from '../redux/modules/authentication';
 
 import { actions as groupActions } from '../redux/modules/group';
@@ -21,20 +20,19 @@ class SidebarContainer extends Component {
   };
 
   render() {
-    const { groups } = this.props;
+    const { groups, selectGroup, user } = this.props;
     return (
-      <Sidebar groups={groups} selectGroup={this.handleGroupChange} privateGroup={groups[0]} />
+      <Sidebar groups={groups} selectGroup={selectGroup} privateGroup={groups[0]} user={user} />
     );
   }
 }
 
 function mapStateToProps(state) {
   const allGroups = groupSelectors.getAllGroups(state);
-  const currentGroupId = currentGroupSelectors.getCurrentGroupId(state);
+
   return {
     user: authenticationSelectors.getCurrentUser(state),
-    groups: sortBy(prop('name'), allGroups),
-    currentGroupId
+    groups: sortBy(prop('name'), allGroups)
   };
 }
 
