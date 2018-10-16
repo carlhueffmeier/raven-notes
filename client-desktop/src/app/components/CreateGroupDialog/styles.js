@@ -34,4 +34,53 @@ const TitlePop = styled('h1')`
   font-weight: 800;
 `;
 
-export { PopUpContainer, PopContentContainer, PopUpClose, TitlePop };
+const InputContainer = styled('div')`
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+`;
+
+const Input = styled('input')`
+  width: 50%;
+  flex-direction: row;
+  margin: 0px 15px;
+  display: flex;
+  flex-direction: row;
+  background-color: transparent;
+  color: black;
+  border: none;
+  border-bottom: 1.2px solid #fec66c;
+  padding: 5px;
+  font-size: 1.4em;
+  font-weight: 400;
+  :focus {
+    outline: none;
+  }
+`;
+
+const ButtonPop = styled('button')`
+  border: none;
+  text-transform: uppercase;
+  padding: 20px;
+  font-weight: 800;
+  font-size: 0.8em;
+  cursor: pointer;
+  color: white;
+  border-radius: 100px;
+  :focus {
+    outline: none;
+  }
+  margin: 20px;
+  background-color: #fec66c;
+`;
+
+export {
+  PopUpContainer,
+  PopContentContainer,
+  PopUpClose,
+  Input,
+  TitlePop,
+  ButtonPop,
+  InputContainer
+};
