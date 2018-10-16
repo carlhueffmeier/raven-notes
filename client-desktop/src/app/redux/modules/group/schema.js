@@ -1,8 +1,12 @@
-import { schema } from 'normalizr'
+import { schema } from 'normalizr';
 
-const user = new schema.Entity('users');
-const group = new schema.Entity('groups', {
-  members: [user]
+const userSchema = new schema.Entity('users');
+const groupSchema = new schema.Entity('groups', {
+  members: [userSchema]
 });
 
-export { group }
+const createGroupResponseSchema = {
+  createGroup: groupSchema
+};
+
+export { createGroupResponseSchema };
