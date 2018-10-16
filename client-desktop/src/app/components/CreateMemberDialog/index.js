@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { bool } from 'prop-types';
 import PopUp from 'react-base-popup';
-import idea from '../../../assets/idea.svg';
 import {
   PopUpContainer,
   PopContentContainer,
@@ -10,9 +9,11 @@ import {
   TitlePop,
   ButtonPop,
   InputContainer
-} from './styles';
+} from '../CreateGroupDialog/styles';
 
-export default class CreateGroupDialog extends Component {
+import addMember from '../../../assets/chat.svg'
+
+export default class CreateMemberDialog extends Component {
   static propTypes = {
     isVisible: bool
   };
@@ -37,19 +38,19 @@ export default class CreateGroupDialog extends Component {
           </PopUpClose>
 
           <PopContentContainer>
-            <img src={idea} alt="idea" style={{ height: '15vh' }} />
-            <TitlePop>Let's create a new workspace!</TitlePop>
+            <img alt='members' src={addMember} style={{ height: '15vh' }}/>
+            <TitlePop>Add a new member!</TitlePop>
 
             <InputContainer>
               <Input
                 type="text"
-                placeholder="🚀 Workspace name"
+                placeholder="🤖 Member name"
                 onChange={this.handleInputChange}
                 value={this.state.input}
               />
             </InputContainer>
 
-            <ButtonPop onClick={() => {}}>Create workspace</ButtonPop>
+            <ButtonPop onClick={() => {}}>Add a member</ButtonPop>
           </PopContentContainer>
         </PopUpContainer>
       </PopUp>
