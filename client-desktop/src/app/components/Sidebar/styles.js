@@ -164,7 +164,7 @@ const Input = styled('input')`
   background-color: transparent;
   color: black;
   border: none;
-  border-bottom: 1.2px solid #a8a497;
+  border-bottom: 1.2px solid #FEC66C;
   padding: 5px;
   :focus {
     outline: none;

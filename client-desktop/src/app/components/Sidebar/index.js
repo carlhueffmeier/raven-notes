@@ -97,14 +97,14 @@ class Sidebar extends Component {
                       placeholder='🚀 Workspace name'
                       onChange={this.handleInputChange}
                       value={this.state.input}
-                      />
+                    />
                   </InputContainer>
 
                   <InputContainer>
                     <Input
                       type='text'
                       placeholder='✉️ User e-mail'
-                      />
+                    />
                   </InputContainer>
 
                   <ButtonPop onClick={this.props.createGroup(this.state.input)}>Create workspace</ButtonPop>
