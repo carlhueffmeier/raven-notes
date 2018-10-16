@@ -8,8 +8,9 @@ import editorReducer from './editor';
 import layoutReducer from './layout';
 import searchReducer from './search';
 import currentNoteReducer, { sagas as currentNoteSaga } from './currentNote';
-import { sagas as groupSaga } from './group'
+import { sagas as groupSaga } from './group';
 import currentGroupReducer from './currentGroup';
+import { createReducer as createAppReducer } from './app';
 
 const rootReducer = combineReducers({
   authentication: authenticationReducer,
@@ -31,5 +32,5 @@ const rootSaga = function* rootSaga() {
   yield all([call(noteSaga), call(currentNoteSaga), call(groupSaga), call(authenticationSaga)]);
 };
 
-export default rootReducer;
+export default createAppReducer(rootReducer);
 export { rootSaga };

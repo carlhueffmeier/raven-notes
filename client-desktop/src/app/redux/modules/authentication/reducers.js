@@ -20,12 +20,7 @@ function currentUserReducer(state = null, action) {
   switch (action.type) {
     case FETCH_CURRENT_USER.SUCCESS: {
       const { result } = action.payload;
-      return result.me || null;
-    }
-    case SIGNIN.SUCCESS:
-    case SIGNUP.SUCCESS: {
-      const { result } = action.payload;
-      return result.user || null;
+      return result.me;
     }
     case SIGNOUT: {
       return null;
@@ -39,8 +34,8 @@ function authTokenReducer(state = '', action) {
   switch (action.type) {
     case SIGNIN.SUCCESS:
     case SIGNUP.SUCCESS: {
-      const { result } = action.payload;
-      return result.token;
+      const { token } = action.payload;
+      return token;
     }
     case SIGNOUT: {
       return '';

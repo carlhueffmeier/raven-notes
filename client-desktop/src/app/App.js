@@ -22,12 +22,13 @@ class App extends Component {
   }
 
   onBeforeLift = () => {
+    // ⚠️ Possible race condition
     this.props.resetAuthHeaders();
     this.props.fetchCurrentUser();
   };
 
   render() {
-    const { persistor, resetAuthHeaders } = this.props;
+    const { persistor } = this.props;
     return (
       <PersistGate loading={null} persistor={persistor} onBeforeLift={this.onBeforeLift}>
         <ThemeProvider theme={lightTheme}>

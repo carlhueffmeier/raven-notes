@@ -14,8 +14,4 @@ const fetchCurrentUserResponseSchema = {
   me: currentUserSchema
 };
 
-const signinResponseSchema = {
-  user: currentUserSchema
-};
-
-export { currentUserSchema, fetchCurrentUserResponseSchema, signinResponseSchema };
+export { currentUserSchema, fetchCurrentUserResponseSchema };
