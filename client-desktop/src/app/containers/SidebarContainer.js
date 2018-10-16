@@ -19,6 +19,8 @@ class SidebarContainer extends Component {
         selectGroup={selectGroup}
         // privateGroup={groups.find(group => group.id === user.privateGroup.id)}
         // privateGroup={groups[0]}
+        // remember to change this later 🙉
+        // createGroup={createGroup}
         createGroup={() => {}}
       />
     );
