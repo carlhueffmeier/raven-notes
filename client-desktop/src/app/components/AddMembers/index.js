@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import user from '../../../assets/team.svg';
 import { AddMembersContainer, MembersButtonContainer, Group, Members, Button } from './styles';
 import CreateMemberDialog from '../CreateMemberDialog';
 

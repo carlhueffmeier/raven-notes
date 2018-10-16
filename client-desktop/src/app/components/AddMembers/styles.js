@@ -7,6 +7,7 @@ const AddMembersContainer = styled('div')`
 `;
 
 const Group = styled('div')`
+  height: 1.5rem;
   font-weight: 500;
   font-size: 0.8em;
   margin-bottom: 5px;
