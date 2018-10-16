@@ -129,7 +129,6 @@ class Editor extends Component {
   // If it was after an auto-markdown shortcut, convert the current node into the shortcut's
   // corresponding type.
   onSpace = (event, change) => {
-    event.preventDefault();
     const { value } = change;
     const { selection, startBlock } = value;
     const { start } = selection;
@@ -140,11 +139,12 @@ class Editor extends Component {
 
     if (!type) return;
     if (type === 'list-item' && startBlock.type === 'list-item') return;
+    change.setBlocks(type);
     if (type === 'list-item') {
       change.wrapBlock('bulleted-list');
     }
-    change.setBlocks(type);
     change.moveFocusToStartOfNode(startBlock).delete();
+    event.preventDefault();
     return true;
   };
 
