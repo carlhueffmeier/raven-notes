@@ -100,7 +100,7 @@ const GroupInitial = styled('div')`
   }
 `;
 
-//==================== POP UP
+//============================== POP UP
 const ButtonAddGroup = styled('div')`
   // width: 25px;
   // height: 25px;
@@ -117,22 +117,41 @@ const PopUpContainer = styled('div')`
   width: 100%;
   height: 100%;
   padding: 20px;
+s`;
+
+const PopUpClose = styled('div')`
+  cursor: pointer;
+  width: 1.8vw;
+  height: 1.8vw;
+  line-height: 1.8vw;
+  & span {
+    cursor: pointer;
+    margin: 20px;
+    top: 0;
+    right: 0;
+    position: absolute;
+    font-weight: 900;
+  }
+`;
+
+const PopContentContainer = styled('div')`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
 `;
 
 const TitlePop = styled('h1')`
   font-size: 1.4em;
-  margin: 10px;
+  margin-top: 40px;
+  font-weight: 800;
 `;
 
 const InputContainer = styled('div')`
   width: 100%;
+  padding: 10px;
   display: flex;
   justify-content: center;
-
 `;
 
 const Input = styled('input')`
@@ -145,8 +164,7 @@ const Input = styled('input')`
   color: black;
   border: none;
   border-bottom: 1.2px solid #a8a497;
-  text-align: center;
-
+  padding: 5px;
   :focus {
     outline: none;
   }
@@ -154,18 +172,18 @@ const Input = styled('input')`
 
 const ButtonPop = styled('button')`
   border: none;
-  background: transparent;
   text-transform: uppercase;
-  font-weight: 500;
+  padding: 20px;
+  font-weight: 800;
   font-size: 0.8em;
   cursor: pointer;
   color: white;
-  border-radius: 10px;
+  border-radius: 100px;
   :focus {
     outline: none;
   }
-  margin: 10px;
-  background-color: ${props => props.theme.colors.pdark};
+  margin: 20px;
+  background-color: #FEC66C
 `;
 
 
@@ -184,6 +202,8 @@ export {
   ButtonAddGroup,
   ButtonAddImg,
   PopUpContainer,
+  PopContentContainer,
+  PopUpClose,
   Input,
   TitlePop,
   ButtonPop,

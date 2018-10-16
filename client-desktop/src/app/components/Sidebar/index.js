@@ -11,6 +11,8 @@ import {
   ButtonAddGroup,
   ButtonAddImg,
   PopUpContainer,
+  PopContentContainer,
+  PopUpClose,
   Input,
   TitlePop,
   ButtonPop,
@@ -21,6 +23,7 @@ import notes from '../../../assets/paper-plane.svg';
 import extracts from '../../../assets/origami.svg';
 import user from '../../../assets/man.svg';
 import add from '../../../assets/plus.svg'
+import idea from '../../../assets/idea.svg'
 
 import PopUp from 'react-base-popup';
 
@@ -61,7 +64,6 @@ class Sidebar extends Component {
         </USection>
 
         <GSection>
-          {/* More flex box hell 🎇 */}
           <div style={{display: 'flex'}}>
             <SName>
               WORKSPACE
@@ -75,27 +77,39 @@ class Sidebar extends Component {
           {/* THIS IS THE POP UP SECTION, GONNA BE A MESS 🤖 */}
             <PopUp disable
               pop={this.state.popped}
-              popup={{height: '40vh'}}>
+              popup={{borderRadius: '30px', height: '60vh'}}
+              >
 
               <PopUpContainer>
-              <div onClick={this.handlePop}>
-                <span role='img' aria-label='closepackage-lock.json'>❌</span>
-              </div>
-              <TitlePop>
-                Let's create a new cool group! <span role='img' aria-label='monkey'>🙉</span>
-              </TitlePop>
+                <PopUpClose onClick={this.handlePop}>
+                  <span role='img' aria-label='x'>X</span>
+                </PopUpClose>
 
-              <InputContainer>
-                <Input
-                  type='text'
-                  placeholder='Super duper group name 🙆🏼‍'
-                  onChange={this.handleInputChange}
-                  value={this.state.input}
-                  />
-              </InputContainer>
+                <PopContentContainer>
+                  <img src={idea} alt='idea' style={{height: '15vh'}} />
+                  <TitlePop>
+                    Let's create a new workspace!
+                  </TitlePop>
 
-              <ButtonPop onClick={this.props.createGroup(this.state.input)}>CREATE!</ButtonPop>
-            </PopUpContainer>
+                  <InputContainer>
+                    <Input
+                      type='text'
+                      placeholder='🚀 Workspace name'
+                      onChange={this.handleInputChange}
+                      value={this.state.input}
+                      />
+                  </InputContainer>
+
+                  <InputContainer>
+                    <Input
+                      type='text'
+                      placeholder='✉️ User e-mail'
+                      />
+                  </InputContainer>
+
+                  <ButtonPop onClick={this.props.createGroup(this.state.input)}>Create workspace</ButtonPop>
+                </PopContentContainer>
+              </PopUpContainer>
             </PopUp>
           {/* END OF POP UP */}
 
