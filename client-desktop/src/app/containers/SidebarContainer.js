@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { actions as currentGroupActions } from '../redux/modules/currentGroup';
 import { selectors as groupSelectors } from '../redux/modules/group';
 import { selectors as currentGroupSelectors } from '../redux/modules/currentGroup';
-import { selectors as userSelectors } from '../redux/modules/user';
+import { selectors as authenticationSelectors } from '../redux/modules/authentication';
 
 import { actions as groupActions } from '../redux/modules/group';
 
@@ -21,7 +21,7 @@ function mapStateToProps(state) {
   const allGroups = groupSelectors.getAllGroups(state);
   const currentGroupId = currentGroupSelectors.getCurrentGroupId(state);
   return {
-    user: userSelectors.getUserById(state, "cjn5pv4vkjqgw0932trypskwh"),
+    user: authenticationSelectors.getCurrentUser(state),
     groups: sortBy(prop('name'), allGroups),
     currentGroupId
   };
