@@ -1,5 +1,5 @@
 import { denormalize } from 'normalizr';
-import { note as noteSchema } from './schema';
+import { noteSchema } from './schema';
 import { getRawEntities } from '../../../lib/reduxUtils';
 import { selectors as currentGroupSelectors } from '../currentGroup';
 

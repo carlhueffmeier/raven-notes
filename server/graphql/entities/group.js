@@ -55,6 +55,14 @@ const updateGroup = (_, { where, data }, { db }) => {
   return db.group.findOneAndUpdate(where, data);
 };
 
+const getMembers = async (group, _, { db }) => {
+  return db.group.getMembers(group.id);
+};
+
+const getAdmins = async (group, _, { db }) => {
+  return db.group.getAdmins(group.id);
+};
+
 exports.resolvers = {
   Query: {
     group: getGroup,
@@ -64,5 +72,10 @@ exports.resolvers = {
   Mutation: {
     createGroup,
     updateGroup
+  },
+
+  Group: {
+    members: getMembers,
+    admins: getAdmins
   }
 };

@@ -5,7 +5,9 @@ function createGroupModel({ user } = {}) {
   return {
     create,
     findOne,
-    findOneAndUpdate
+    findOneAndUpdate,
+    getMembers,
+    getAdmins
   };
 
   async function create(data) {
@@ -40,6 +42,16 @@ function createGroupModel({ user } = {}) {
     }
     existingGroup.update(update);
     return existingGroup.save();
+  }
+
+  async function getMembers(groupId) {
+    const foundGroup = await db.group.findOne({ where: { id: groupId } });
+    return foundGroup.getMembers();
+  }
+
+  async function getAdmins(groupId) {
+    const foundGroup = await db.group.findOne({ where: { id: groupId } });
+    return foundGroup.getAdmins();
   }
 }
 

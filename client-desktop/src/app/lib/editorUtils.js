@@ -11,6 +11,11 @@ function editorValueToPlaintext(editorValue) {
   return text;
 }
 
+function plaintextToEditorValue(text) {
+  const editorValue = Plain.deserialize(text);
+  return editorValue;
+}
+
 function jsonToEditorValue(json) {
   if (!json) {
     return createEmptyEditorValue();
@@ -31,6 +36,7 @@ export {
   editorValueToJson,
   editorValueToPlaintext,
   jsonToEditorValue,
+  plaintextToEditorValue,
   createEmptyEditorValue,
   createEmptyJson
 };

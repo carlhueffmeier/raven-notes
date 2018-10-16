@@ -1,36 +1,7 @@
 import styled from 'react-emotion';
 
-const SigninContainer = styled('div')`
-  width: 100vw;
-  height: 100vh;
-  padding: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const Img = styled('img')`
-  width: 40%;
-`;
-
-const TitleWrapper = styled('div')`
-  text-align: center;
-  margin-bottom: 5vh;
-`;
-
-const Title = styled('h1')`
-  font-size: 3em;
-  margin: 0;
-`;
-const SubTitle = styled('h2')`
-  font-size: 1.4em;
-  font-weight: 300;
-  margin: 0;
-`;
-
-const InputWrapper = styled('div')`
-  /* background-color: #F7F6F3; */
-  height: 200px;
+const StyledSigninForm = styled('form')`
+  height: 300px;
   display: flex;
   flex-flow: column wrap;
   justify-content: space-evenly;
@@ -76,22 +47,11 @@ const Button = styled('button')`
     outline: none;
   }
   :nth-child(1) {
-    flex-basis: 15%;
+    flex-basis: 45%;
   }
   :nth-child(2) {
-    flex-basis: 38%;
+    flex-basis: 15%;
   }
 `;
 
-export {
-  SigninContainer,
-  Input,
-  Button,
-  InputWrapper,
-  SigninText,
-  ButtonWrapper,
-  Img,
-  Title,
-  SubTitle,
-  TitleWrapper
-};
+export { StyledSigninForm, Input, Button, SigninText, ButtonWrapper };
