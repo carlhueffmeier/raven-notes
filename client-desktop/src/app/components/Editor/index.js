@@ -3,12 +3,34 @@ import './prism.css';
 
 //========== Slate editor
 import { Editor as SlateEditor } from 'slate-react';
+import { Block } from 'slate';
 
 import { EditorContainer, Quote, H1, H2, H3, H4, H5, H6, List, Raven } from './styles';
-import { throws } from 'assert';
 
 class Editor extends Component {
   // Get the block type for a series of auto-markdown shortcut `chars`.
+
+  schema = {
+    document: {
+      last: { type: 'paragraph' },
+      normalize: (change, { code, node, child }) => {
+        switch (code) {
+          case 'last_child_type_invalid': {
+            const paragraph = Block.create('paragraph');
+            return change.insertNodeByKey(node.key, node.nodes.size, paragraph);
+          }
+          default:
+            return;
+        }
+      }
+    },
+    blocks: {
+      image: {
+        isVoid: true
+      }
+    }
+  };
+
   getType = (chars, change) => {
     let isImage = /^!\[(.*)]\((http.*\.(jpg|gif|jpeg))\)$/.exec(chars);
     if (isImage) {
@@ -54,8 +76,6 @@ class Editor extends Component {
         return 'heading-six';
       case '<':
         return 'code-block';
-      case 'raven':
-        return 'raven';
       default:
         return null;
     }
@@ -68,12 +88,7 @@ class Editor extends Component {
       case 'image':
         const src = node.data.get('src');
         const alt = node.data.get('alt');
-        return (
-          <div {...attributes}>
-            <img src={src} alt={alt} />
-            {children}
-          </div>
-        );
+        return <img src={src} alt={alt} {...attributes} />;
       case 'block-quote':
         return (
           <Quote {...attributes}>
@@ -84,13 +99,33 @@ class Editor extends Component {
           </Quote>
         );
       case 'bold':
-        return <b {...attributes}>{children}</b>;
+        return (
+          <b {...attributes}>
+            {children}
+            {'\n'}
+          </b>
+        );
       case 'italic':
-        return <i {...attributes}>{children}</i>;
+        return (
+          <i {...attributes}>
+            {children}
+            {'\n'}
+          </i>
+        );
       case 'underline':
-        return <u {...attributes}>{children}</u>;
+        return (
+          <u {...attributes}>
+            {children}
+            {'\n'}
+          </u>
+        );
       case 'strike':
-        return <s {...attributes}>{children}</s>;
+        return (
+          <s {...attributes}>
+            {children}
+            {'\n'}
+          </s>
+        );
       case 'heading-one':
         return <H1 {...attributes}>{children}</H1>;
       case 'heading-two':
@@ -105,15 +140,6 @@ class Editor extends Component {
         return <H6 {...attributes}>{children}</H6>;
       case 'list-item':
         return <List {...attributes}>{children}</List>;
-      case 'raven':
-        return (
-          <Raven {...attributes}>
-            <span role="img" aria-label="monkeys">
-              🙈 🙉 🙊 🐒
-            </span>
-            {children}
-          </Raven>
-        );
       case 'code-block':
         return (
           <pre className="language-javascript">
@@ -152,14 +178,16 @@ class Editor extends Component {
     const { startBlock } = value;
 
     const { start } = selection;
-    const chars = startBlock.text.slice(0, start.offset).replace(/\s*/g, '');
+    const chars = startBlock.text.slice(0, start.offset);
     const type = this.getType(chars, change);
 
     if (!type) return;
     if (type === 'list-item' && startBlock.type === 'list-item') return;
-    if (type === '-!image!-' && (startBlock.type === 'line' || startBlock.type === 'paragraph')) {
-      change.moveFocusToStartOfNode(startBlock).delete();
-      return;
+    if (type === '-!image!-') {
+      change.moveFocusToStartOfNode(startBlock);
+      change.deleteLineForward();
+      change.insertText('\n');
+      return true;
     }
 
     event.preventDefault();
@@ -172,7 +200,6 @@ class Editor extends Component {
 
     change.moveFocusToStartOfNode(startBlock).delete();
 
-    // Prism.highlightAll();
     return true;
   };
 
@@ -207,6 +234,14 @@ class Editor extends Component {
     if (start.offset === 0 && startBlock.text.length === 0) return this.onBackspace(event, change);
     if (end.offset !== startBlock.text.length) return;
 
+    const chars = startBlock.text.slice(0, start.offset);
+    const type = this.getType(chars, change);
+    if (type === '-!image!-') {
+      change.moveFocusToStartOfNode(startBlock);
+      change.deleteLineForward();
+      return;
+    }
+
     if (
       startBlock.type !== 'heading-one' &&
       startBlock.type !== 'heading-two' &&
@@ -239,6 +274,7 @@ class Editor extends Component {
           onChange={change => {
             onChange(change.value);
           }}
+          schema={this.schema}
           onKeyDown={this.onKeyDown}
           renderNode={this.renderNode}
           style={{
