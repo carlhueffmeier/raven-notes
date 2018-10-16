@@ -22,8 +22,6 @@ function mapStateToProps(state) {
   const currentGroupId = currentGroupSelectors.getCurrentGroupId(state);
   return {
     user: userSelectors.getUserById(state, "cjn5pv4vkjqgw0932trypskwh"),
-    groups: sortBy(prop('name'), allGroups)
-    user: userSelectors.getUserById(state, 'cjn5pv4vkjqgw0932trypskwh'),
     groups: sortBy(prop('name'), allGroups),
     currentGroupId
   };
