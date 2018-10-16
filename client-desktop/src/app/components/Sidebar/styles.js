@@ -94,6 +94,7 @@ const GroupInitial = styled('div')`
   font-size: 0.8em;
   font-weight: 600;
   min-width: 20px;
+  color: white;
   & p {
     margin: 0;
     line-height: 12px;
