@@ -63,6 +63,13 @@ const signout = () => ({
   type: types.SIGNOUT
 });
 
+/**
+ * Starts the sign out process.
+ */
+const resetAuthHeaders = () => ({
+  type: types.RESET_AUTH_HEADERS
+});
+
 export {
   fetchCurrentUser,
   fetchCurrentUserSuccess,
@@ -73,5 +80,6 @@ export {
   signup,
   signupSuccess,
   signupError,
-  signout
+  signout,
+  resetAuthHeaders
 };

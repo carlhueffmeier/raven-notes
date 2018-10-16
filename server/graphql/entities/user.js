@@ -65,6 +65,12 @@ const signup = async (_, { data: { email, name, password } }, { db }) => {
     name,
     password: await bcrypt.hash(password, 10)
   });
+  await db.group.create(
+    {
+      name: 'My first workspace 🎊'
+    },
+    newUser
+  );
   // Authenticate right away
   const token = generateToken(newUser);
   return {

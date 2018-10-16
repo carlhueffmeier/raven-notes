@@ -10,10 +10,14 @@ function createGroupModel({ user } = {}) {
     getAdmins
   };
 
-  async function create(data) {
+  async function create(data, newUser) {
+    if (!user && !newUser) {
+      throw new AuthenticationError('You have to authenticate to execute this query');
+    }
+    const userId = newUser ? newUser.id : user.id;
     const newGroup = await db.group.create(data);
-    newGroup.addAdmins([user.id]);
-    newGroup.addMembers([user.id]);
+    newGroup.addAdmins([userId]);
+    newGroup.addMembers([userId]);
     return newGroup.save();
   }
 
@@ -34,6 +38,9 @@ function createGroupModel({ user } = {}) {
   }
 
   async function findOneAndUpdate(where, update) {
+    if (!user) {
+      throw new AuthenticationError('You have to authenticate to execute this query');
+    }
     const existingGroup = await db.group.findOne({ where });
     // Check whether user is admin of group
     const isAllowedToModify = existingGroup && (await existingGroup.hasAdmin(user));

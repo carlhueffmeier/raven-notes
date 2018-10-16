@@ -1,10 +1,11 @@
-import { call, put, takeEvery } from 'redux-saga/effects';
+import { call, put, takeEvery, select } from 'redux-saga/effects';
 import { normalize } from 'normalizr';
 import graphqlClient from '../../../api/graphqlClient';
 import * as actions from './actions';
-import { FETCH_CURRENT_USER, SIGNIN, SIGNUP, SIGNOUT } from './types';
+import * as selectors from './selectors';
+import { FETCH_CURRENT_USER, SIGNIN, SIGNUP, SIGNOUT, RESET_AUTH_HEADERS } from './types';
 import { CURRENT_USER_QUERY, SIGNIN_MUTATION, SIGNUP_MUTATION } from './graphql';
-import { fetchCurrentUserResponseSchema, currentUserSchema } from './schema';
+import { fetchCurrentUserResponseSchema, signinResponseSchema } from './schema';
 
 function* fetchCurrentUser() {
   try {
@@ -21,10 +22,10 @@ function* signin(action) {
   try {
     const signinInfo = action.payload;
     const response = yield call([graphqlClient, 'request'], SIGNIN_MUTATION, signinInfo);
-    const { token, user } = response.signin;
-    graphqlClient.setHeader('authorization', token);
-    const normalizedData = normalize(user, currentUserSchema);
+    const normalizedData = normalize(response.signin, signinResponseSchema);
     yield put(actions.signinSuccess(normalizedData));
+    yield call(resetAuthHeaders);
+    yield call(fetchCurrentUser);
   } catch (error) {
     console.error(error);
     yield put(actions.signinError(error));
@@ -35,10 +36,10 @@ function* signup(action) {
   try {
     const signupInfo = action.payload;
     const response = yield call([graphqlClient, 'request'], SIGNUP_MUTATION, signupInfo);
-    const { token, user } = response.signup;
-    graphqlClient.setHeader('authorization', token);
-    const normalizedData = normalize(user, currentUserSchema);
+    const normalizedData = normalize(response.signup, signinResponseSchema);
     yield put(actions.signupSuccess(normalizedData));
+    yield call(resetAuthHeaders);
+    yield call(fetchCurrentUser);
   } catch (error) {
     console.error(error);
     yield put(actions.signupError(error));
@@ -46,9 +47,13 @@ function* signup(action) {
 }
 
 function* signout() {
-  graphqlClient.setHeader('authorization', '');
-  // TODO: Clear store 🔥
-  yield put('__TODO__ CLEAR STORE');
+  // TODO: Clear store & local data 🔥
+  throw 'resetting local storage 😅💣💥';
+}
+
+function* resetAuthHeaders() {
+  const token = yield select(selectors.getAuthToken);
+  graphqlClient.setHeader('authorization', token);
 }
 
 function* authenticationSaga() {
@@ -56,6 +61,7 @@ function* authenticationSaga() {
   yield takeEvery(SIGNIN.START, signin);
   yield takeEvery(SIGNUP.START, signup);
   yield takeEvery(SIGNOUT, signout);
+  yield takeEvery(RESET_AUTH_HEADERS, resetAuthHeaders);
 }
 
 export default authenticationSaga;

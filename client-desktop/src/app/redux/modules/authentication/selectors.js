@@ -20,6 +20,10 @@ function getIsAuthenticated(state) {
   return getModuleState(state).me !== null;
 }
 
+function getAuthToken(state) {
+  return getModuleState(state).authToken || '';
+}
+
 function getLoading(state) {
   return getModuleState(state).loading;
 }
@@ -28,4 +32,4 @@ function getError(state) {
   return getModuleState(state).error;
 }
 
-export { getCurrentUser, getIsAuthenticated, getLoading, getError };
+export { getCurrentUser, getIsAuthenticated, getAuthToken, getLoading, getError };

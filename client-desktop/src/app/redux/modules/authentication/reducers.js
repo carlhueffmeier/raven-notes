@@ -6,11 +6,12 @@ import { FETCH_CURRENT_USER, SIGNIN, SIGNUP, SIGNOUT } from './types';
 const persistConfig = {
   key: 'authentication',
   storage,
-  whitelist: ['me']
+  whitelist: ['me', 'authToken']
 };
 
 const rootReducer = combineReducers({
   me: currentUserReducer,
+  authToken: authTokenReducer,
   loading: loadingReducer,
   error: errorReducer
 });
@@ -25,6 +26,22 @@ function currentUserReducer(state = null, action) {
     }
     case SIGNOUT: {
       return null;
+    }
+    default:
+      return state;
+  }
+}
+
+function authTokenReducer(state = '', action) {
+  switch (action.type) {
+    case SIGNIN.SUCCESS:
+    case SIGNUP.SUCCESS: {
+      console.log(action);
+      const { result } = action.payload;
+      return result.token;
+    }
+    case SIGNOUT: {
+      return '';
     }
     default:
       return state;
