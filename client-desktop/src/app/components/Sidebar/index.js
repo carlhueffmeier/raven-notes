@@ -32,7 +32,8 @@ class Sidebar extends Component {
 
   render() {
     const { popped } = this.state;
-    const { groups, selectGroup, user } = this.props;
+    const { groups, selectGroup, user, privateGroup } = this.props;
+    console.log(groups)
     return (
       <SidebarContainer>
         <H3>
@@ -42,7 +43,7 @@ class Sidebar extends Component {
 
         <USection>
           <SName>PRIVATE</SName>
-          <Sect>
+          <Sect onClick={() => selectGroup(privateGroup.id)}>
             <Img src={notes} />
             All Notes
           </Sect>
@@ -85,4 +86,6 @@ class Sidebar extends Component {
   }
 }
 
-export default withTheme(Sidebar);
+export default Sidebar;
+
+
