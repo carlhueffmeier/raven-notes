@@ -25,7 +25,6 @@ function mapStateToProps(state) {
     groups: sortBy(prop('name'), allGroups),
     currentGroupId
   };
-  
 }
 
 const mapDispatchToProps = {
