@@ -27,10 +27,10 @@ const Members = styled('div')`
 
 const Button = styled('button')`
   cursor: pointer;
-  background-color: #FEC66C;
+  background-color: #fec66c;
   border-radius: 50px;
   border: none;
-  height: 2vh;
+  height: 20px;
   flex-direction: row;
   justify-content: space-evenly;
   text-transform: uppercase;
@@ -41,10 +41,4 @@ const Button = styled('button')`
   }
 `;
 
-export {
-  AddMembersContainer,
-  MembersButtonContainer,
-  Group,
-  Members,
-  Button
-}
+export { AddMembersContainer, MembersButtonContainer, Group, Members, Button };
