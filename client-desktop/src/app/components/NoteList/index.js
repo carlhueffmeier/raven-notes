@@ -5,12 +5,14 @@ import CreateNoteContainer from '../../containers/CreateNoteContainer';
 import { NoteListContainer, SearchAndCreateContainer, NoteListWrapper } from './styles';
 
 import { constants as layoutConstants } from '../../redux/modules/layout';
+import AddMembers from '../AddMembers';
 
 class NoteList extends Component {
   render() {
     const { notes, selectNote, changeLayout, onQueryChange } = this.props;
     return (
       <NoteListContainer>
+        <AddMembers />
         <SearchAndCreateContainer>
           <SearchBar onChange={onQueryChange} />
           <CreateNoteContainer />
