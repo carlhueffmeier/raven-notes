@@ -26,7 +26,6 @@ import add from '../../../assets/plus.svg'
 import idea from '../../../assets/idea.svg'
 
 import PopUp from 'react-base-popup';
-import { withTheme } from 'emotion-theming';
 
 class Sidebar extends Component {
   state = {
@@ -44,7 +43,7 @@ class Sidebar extends Component {
   }
 
   render() {
-    const { groups, selectGroup } = this.props;
+    const { groups, selectGroup, privateGroup } = this.props;
     return (
       <SidebarContainer>
         <H3>
@@ -54,7 +53,7 @@ class Sidebar extends Component {
 
         <USection>
           <SName>PRIVATE</SName>
-          <Sect>
+          <Sect onClick={() => selectGroup(privateGroup.id)}>
             <Img src={notes} />
             All Notes
           </Sect>
@@ -78,7 +77,7 @@ class Sidebar extends Component {
           {/* THIS IS THE POP UP SECTION, GONNA BE A MESS 🤖 */}
             <PopUp disable
               pop={this.state.popped}
-              popup={{borderRadius: '30px', height: '60vh'}}
+              popup={{borderRadius: '30px', height: '30vh;'}}
               >
 
               <PopUpContainer>
@@ -98,14 +97,14 @@ class Sidebar extends Component {
                       placeholder='🚀 Workspace name'
                       onChange={this.handleInputChange}
                       value={this.state.input}
-                    />
+                      />
                   </InputContainer>
 
                   <InputContainer>
                     <Input
                       type='text'
                       placeholder='✉️ User e-mail'
-                    />
+                      />
                   </InputContainer>
 
                   <ButtonPop onClick={this.props.createGroup(this.state.input)}>Create workspace</ButtonPop>
@@ -115,17 +114,10 @@ class Sidebar extends Component {
           {/* END OF POP UP */}
 
           {groups.map(group => (
-            <Sect
-              key={group.id}
-              onClick={() => selectGroup(group.id)}
-              color={
-                this.props.currentGroupId === group.id
-                  ? this.props.theme.colors.textHardSelect
-                  : null
-              }
-            >
+            <Sect key={group.id} onClick={() => selectGroup(group.id)}>
+              {/* <GroupInitial><p>{group.name && group.name.slice(0,1)}</p></GroupInitial> */}
               <GroupInitial><p>{group.name.slice(0,1)}</p></GroupInitial>
-              <p>{group.name}</p>
+              {group.name}
             </Sect>
           ))}
         </GSection>
@@ -134,4 +126,6 @@ class Sidebar extends Component {
   }
 }
 
-export default withTheme(Sidebar);
+export default Sidebar;
+
+
