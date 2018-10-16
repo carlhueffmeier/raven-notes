@@ -22,7 +22,6 @@ import extracts from '../../../assets/origami.svg';
 import user from '../../../assets/man.svg';
 import add from '../../../assets/plus.svg'
 
-
 import PopUp from 'react-base-popup';
 
 class Sidebar extends Component {
@@ -30,7 +29,6 @@ class Sidebar extends Component {
     input: '',
     popped: false
   }
-
 
   handleInputChange = (e) => {
     this.setState({ input: e.target.value })
@@ -50,7 +48,6 @@ class Sidebar extends Component {
           Nikko89
         </H3>
 
-        {/* Getting the notes and extracts from user. */}
         <USection>
           <SName>PRIVATE</SName>
           <Sect onClick={() => selectGroup(privateGroup.id)}>
@@ -78,9 +75,12 @@ class Sidebar extends Component {
           {/* THIS IS THE POP UP SECTION, GONNA BE A MESS 🤖 */}
             <PopUp disable
               pop={this.state.popped}
-              >
+              popup={{height: '40vh'}}>
+
               <PopUpContainer>
-              <div onClick={this.handlePop}><span role='img' aria-label='closepackage-lock.json'>❌</span></div>
+              <div onClick={this.handlePop}>
+                <span role='img' aria-label='closepackage-lock.json'>❌</span>
+              </div>
               <TitlePop>
                 Let's create a new cool group! <span role='img' aria-label='monkey'>🙉</span>
               </TitlePop>
@@ -94,7 +94,7 @@ class Sidebar extends Component {
                   />
               </InputContainer>
 
-              <ButtonPop onClick={() => console.log('group', this.state.input)|| this.props.createGroup(this.state.input)}>CREATE!</ButtonPop>
+              <ButtonPop onClick={this.props.createGroup(this.state.input)}>CREATE!</ButtonPop>
             </PopUpContainer>
             </PopUp>
           {/* END OF POP UP */}
