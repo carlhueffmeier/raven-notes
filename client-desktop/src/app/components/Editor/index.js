@@ -1,52 +1,14 @@
 import React, { Component } from 'react';
 import './prism.css';
-
 //========== Slate editor
 import { Editor as SlateEditor } from 'slate-react';
-import { Block } from 'slate';
 
-import { EditorContainer, Quote, H1, H2, H3, H4, H5, H6, List, Raven } from './styles';
+import { EditorContainer, Quote, H1, H2, H3, H4, H5, H6, List } from './styles';
 
 class Editor extends Component {
   // Get the block type for a series of auto-markdown shortcut `chars`.
 
-  schema = {
-    document: {
-      last: { type: 'paragraph' },
-      normalize: (change, { code, node, child }) => {
-        switch (code) {
-          case 'last_child_type_invalid': {
-            const paragraph = Block.create('paragraph');
-            return change.insertNodeByKey(node.key, node.nodes.size, paragraph);
-          }
-          default:
-            return;
-        }
-      }
-    },
-    blocks: {
-      image: {
-        isVoid: true
-      }
-    }
-  };
-
-  getType = (chars, change) => {
-    let isImage = /^!\[(.*)]\((http.*\.(jpg|gif|jpeg))\)$/.exec(chars);
-    if (isImage) {
-      const image = {
-        alt: isImage[1],
-        src: isImage[2]
-      };
-
-      change.insertBlock({
-        type: 'image',
-        data: image
-      });
-
-      return '-!image!-';
-    }
-
+  getType = chars => {
     switch (chars) {
       case '**':
         return 'bold';
@@ -85,10 +47,6 @@ class Editor extends Component {
   renderNode = props => {
     const { attributes, children, node } = props;
     switch (node.type) {
-      case 'image':
-        const src = node.data.get('src');
-        const alt = node.data.get('alt');
-        return <img src={src} alt={alt} {...attributes} />;
       case 'block-quote':
         return (
           <Quote {...attributes}>
@@ -171,77 +129,49 @@ class Editor extends Component {
   // If it was after an auto-markdown shortcut, convert the current node into the shortcut's
   // corresponding type.
   onSpace = (event, change) => {
+    event.preventDefault();
     const { value } = change;
-    const { selection } = value;
-    if (selection.isExpanded) return;
-
-    const { startBlock } = value;
-
+    const { selection, startBlock } = value;
     const { start } = selection;
+
+    if (selection.isExpanded) return;
     const chars = startBlock.text.slice(0, start.offset);
     const type = this.getType(chars, change);
 
     if (!type) return;
     if (type === 'list-item' && startBlock.type === 'list-item') return;
-    if (type === '-!image!-') {
-      change.moveFocusToStartOfNode(startBlock);
-      change.deleteLineForward();
-      change.insertText('\n');
-      return true;
-    }
-
-    event.preventDefault();
-
-    change.setBlocks(type);
-
     if (type === 'list-item') {
       change.wrapBlock('bulleted-list');
     }
-
+    change.setBlocks(type);
     change.moveFocusToStartOfNode(startBlock).delete();
-
     return true;
   };
 
   // If at the start of a non-paragraph, convert it back into a paragraph node.
   onBackspace = (event, change) => {
+    event.preventDefault();
     const { value } = change;
-    const { selection } = value;
+    const { selection, startBlock } = value;
     if (selection.isExpanded) return;
     if (selection.start.offset !== 0) return;
-
-    const { startBlock } = value;
     if (startBlock.type === 'paragraph') return;
-
-    event.preventDefault();
-    change.setBlocks('paragraph');
-
     if (startBlock.type === 'list-item') {
       change.unwrapBlock('bulleted-list');
     }
-
+    change.setBlocks('paragraph');
     return true;
   };
 
   // If at the end of a node type that should not be extended, create a new paragraph below it.
   onEnter = (event, change) => {
+    event.preventDefault();
     const { value } = change;
-    const { selection } = value;
+    const { selection, startBlock } = value;
     const { start, end, isExpanded } = selection;
     if (isExpanded) return;
-
-    const { startBlock } = value;
     if (start.offset === 0 && startBlock.text.length === 0) return this.onBackspace(event, change);
     if (end.offset !== startBlock.text.length) return;
-
-    const chars = startBlock.text.slice(0, start.offset);
-    const type = this.getType(chars, change);
-    if (type === '-!image!-') {
-      change.moveFocusToStartOfNode(startBlock);
-      change.deleteLineForward();
-      return;
-    }
-
     if (
       startBlock.type !== 'heading-one' &&
       startBlock.type !== 'heading-two' &&
@@ -258,8 +188,6 @@ class Editor extends Component {
     ) {
       return;
     }
-
-    event.preventDefault();
     change.splitBlock().setBlocks('paragraph');
     return true;
   };
