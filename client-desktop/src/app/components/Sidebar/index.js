@@ -8,26 +8,39 @@ import {
   Sect,
   Img,
   GroupInitial,
+  ButtonAddGroup,
+  ButtonAddImg,
   PopUpContainer,
   Input,
   TitlePop,
   ButtonPop,
   InputContainer,
 } from './styles';
+
 import notes from '../../../assets/paper-plane.svg';
 import extracts from '../../../assets/origami.svg';
 import user from '../../../assets/man.svg';
+import add from '../../../assets/plus.svg'
 
 
 import PopUp from 'react-base-popup';
 
 class Sidebar extends Component {
   state = {
-    input: ''
+    input: '',
+    popped: false
   }
+
+
   handleInputChange = (e) => {
     this.setState({ input: e.target.value })
   }
+
+
+  handlePop = () => {
+    this.setState({popped: !this.state.popped})
+  }
+
   render() {
     const { groups, selectGroup, privateGroup } = this.props;
     return (
@@ -52,43 +65,39 @@ class Sidebar extends Component {
 
         <GSection>
           {/* More flex box hell 🎇 */}
-          {/* FLEX BOX START */}
-          <div>
-          <SName>
-            WORKSPACE
-          </SName>
+          <div style={{display: 'flex'}}>
+            <SName>
+              WORKSPACE
+            </SName>
 
-            {/* THIS IS THE POP UP SECTION, GONNA BE A MESS 🤖 */}
-            <div>
-            <PopUp
-              onPop={()=> console.log('i/m on pop!')}
-              onUnpop={()=> console.log('not pop')}
-              button={{backgroundColor: 'lavender', border: 'none'}}
-              buttonText='➕'
-              >
-
-              <PopUpContainer>
-                <TitlePop>
-                  Let's create a new cool group! <span role='img' aria-label='monkey'>🙉</span>
-                </TitlePop>
-
-                <InputContainer>
-                  <Input
-                    type='text'
-                    placeholder='Super duper group name 🙆🏼‍'
-                    onChange={this.handleInputChange}
-                    value={this.state.input}
-                  />
-                </InputContainer>
-
-                <ButtonPop onClick={() => console.log('group', this.state.input)|| this.props.createGroup(this.state.input)}>CREATE!</ButtonPop>
-              </PopUpContainer>
-
-            </PopUp>
-            </div>
-            {/* END OF POP UP */}
+            <ButtonAddGroup onClick={this.handlePop}>
+              <ButtonAddImg alt='add' src={add} />
+            </ButtonAddGroup>
           </div>
-          {/* FLEX BOX END */}
+
+          {/* THIS IS THE POP UP SECTION, GONNA BE A MESS 🤖 */}
+            <PopUp disable
+              pop={this.state.popped}
+              >
+              <PopUpContainer>
+              <div onClick={this.handlePop}><span role='img' aria-label='closepackage-lock.json'>❌</span></div>
+              <TitlePop>
+                Let's create a new cool group! <span role='img' aria-label='monkey'>🙉</span>
+              </TitlePop>
+
+              <InputContainer>
+                <Input
+                  type='text'
+                  placeholder='Super duper group name 🙆🏼‍'
+                  onChange={this.handleInputChange}
+                  value={this.state.input}
+                  />
+              </InputContainer>
+
+              <ButtonPop onClick={() => console.log('group', this.state.input)|| this.props.createGroup(this.state.input)}>CREATE!</ButtonPop>
+            </PopUpContainer>
+            </PopUp>
+          {/* END OF POP UP */}
 
           {groups.map(group => (
             <Sect key={group.id} onClick={() => selectGroup(group.id)}>

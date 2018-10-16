@@ -13,7 +13,7 @@ const H3 = styled('h3')`
   margin: 0;
 `;
 
-const SName = styled('h1')`
+const SName = styled('div')`
   font-size: 0.8em;
   font-weight: 500;
   color: #778899;
@@ -101,6 +101,18 @@ const GroupInitial = styled('div')`
 `;
 
 //==================== POP UP
+const ButtonAddGroup = styled('div')`
+  // width: 25px;
+  // height: 25px;
+  line-height: 13px;
+  border: none;
+  margin-left: 20px;
+`;
+
+const ButtonAddImg = styled('img')`
+  width: 1vw;
+`;
+
 const PopUpContainer = styled('div')`
   width: 100%;
   height: 100%;
@@ -169,6 +181,8 @@ export {
   Img,
   GroupInitial,
   GroupName,
+  ButtonAddGroup,
+  ButtonAddImg,
   PopUpContainer,
   Input,
   TitlePop,
