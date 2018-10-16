@@ -32,7 +32,7 @@ class App extends Component {
       <PersistGate loading={null} persistor={persistor} onBeforeLift={this.onBeforeLift}>
         <ThemeProvider theme={lightTheme}>
           <SigninPlease>
-            <Header>Raven Notes 𝜶</Header>
+            <Header />
             <LayoutSwitch />
             <LayoutContainer />
           </SigninPlease>

@@ -7,4 +7,9 @@ function getAllGroups(state) {
   return groups.allIds.map(id => groups.byId[id]);
 }
 
-export { getAllGroups };
+function getGroupById(state, id) {
+  const groups = getModuleState(state);
+  return groups.byId[id];
+}
+
+export { getAllGroups, getGroupById };
