@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { object } from 'prop-types';
-import { lightTheme, darkTheme } from './themes';
 import { PersistGate } from 'redux-persist/integration/react';
 import { ThemeProvider } from 'emotion-theming';
 import { Header } from './styles';
@@ -10,6 +9,7 @@ import LayoutContainer from './containers/LayoutContainer';
 import LayoutSwitch from './components/LayoutSwitch';
 import SigninPlease from './containers/SigninPlease';
 import { actions as authenticationActions } from './redux/modules/authentication';
+import { selectors as themeSelectors } from './redux/modules/theme';
 
 class App extends Component {
   static propTypes = {
@@ -29,10 +29,10 @@ class App extends Component {
   };
 
   render() {
-    const { persistor } = this.props;
+    const { persistor, currentTheme } = this.props;
     return (
       <PersistGate loading={null} persistor={persistor} onBeforeLift={this.onBeforeLift}>
-        <ThemeProvider theme={darkTheme}>
+        <ThemeProvider theme={currentTheme}>
           <SigninPlease>
             <Header />
             <ModalsContainer />
@@ -45,12 +45,18 @@ class App extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    currentTheme: themeSelectors.getCurrentTheme(state)
+  };
+}
+
 const mapDispatchToProps = {
   resetAuthHeaders: authenticationActions.resetAuthHeaders,
   fetchCurrentUser: authenticationActions.fetchCurrentUser
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(App);

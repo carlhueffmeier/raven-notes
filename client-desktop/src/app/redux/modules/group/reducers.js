@@ -9,7 +9,8 @@ import { createLoadingReducer, createErrorReducer } from '../../../lib/reduxUtil
 const persistConfig = {
   key: 'group',
   storage,
-  stateReconciler: autoMergeLevel2
+  stateReconciler: autoMergeLevel2,
+  whitelist: ['byId', 'allIds']
 };
 
 const rootReducer = combineReducers({
