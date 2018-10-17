@@ -23,7 +23,7 @@ const Input = styled('input')`
   border: none;
   padding: 0.5em 1.5em 1.5em 0.8em;
   border-bottom: 1.2px solid ${props => props.theme.colors.pdark};
-  text-transform: uppercase;
+  font-size: .8em;
   :focus {
     outline: none;
   }

@@ -24,6 +24,7 @@ class SingleNote extends Component {
     const { note, onClick } = this.props;
     const title = createNoteTitle(note);
     const snippet = createNoteSnippet(note);
+    console.log(note)
     return (
       <SizeMe>
         {({ size }) => (
@@ -36,7 +37,7 @@ class SingleNote extends Component {
                   <RowNote>
                     <RowTitle>{title ? title : 'No title'}</RowTitle>
                     <RowBody>
-                      {snippet ? snippet : <SnippetFail>~~ Empty note ~~</SnippetFail>}
+                      {snippet ? snippet : <SnippetFail>Empty note</SnippetFail>}
                     </RowBody>
                     <RowAuthor>
                       <span>Written by</span> {note.author.name}
@@ -47,8 +48,8 @@ class SingleNote extends Component {
                 <Fragment>
                   <Day>{moment(note.createdAt).format('MMM Do')}</Day>
                   <Note>
-                    <Title>{title}</Title>
-                    <Body>{snippet}</Body>
+                    <Title>{title ? title : 'No title'}</Title>
+                    <Body>{snippet ? snippet.substring(0, 100) + '...' : <SnippetFail>Empty note</SnippetFail>}</Body>
                     <Author>
                       <span>Written by</span> {note.author.name}
                     </Author>

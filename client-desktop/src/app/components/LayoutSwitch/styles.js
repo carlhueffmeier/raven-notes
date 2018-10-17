@@ -45,7 +45,7 @@ const LayoutSwitchButton = styled('button')`
 `;
 
 const Img = styled('img')`
-  width: 5vw;
+  width: 50px;
 `;
 
 export { ButtonContainer, LayoutSwitchButton, Img };
