@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {
-  selectors as authenticationSelectors,
-  actions as authenticationActions
-} from '../redux/modules/authentication';
+import { selectors as authenticationSelectors } from '../redux/modules/authentication';
 import UserBadge from '../components/UserBadge';
 
 class UserBadgeContainer extends Component {
@@ -19,11 +16,4 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = {
-  signout: authenticationActions.signout
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(UserBadgeContainer);
+export default connect(mapStateToProps)(UserBadgeContainer);

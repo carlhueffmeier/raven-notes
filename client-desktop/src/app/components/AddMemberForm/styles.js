@@ -14,7 +14,7 @@ const InputContainer = styled('div')`
   justify-content: center;
 `;
 
-const Input = styled('input')`
+const BigInput = styled('input')`
   width: 80%;
   flex-direction: row;
   margin: 0px 15px;
@@ -40,11 +40,14 @@ const SubmitButton = styled('button')`
   cursor: pointer;
   color: white;
   border-radius: 100px;
+  margin: 20px;
+  background-color: ${props => props.theme.colors.primary};
   :focus {
     outline: none;
   }
-  margin: 20px;
-  background-color: ${props => props.theme.colors.primary};
+  :disabled {
+    background: ${props => props.theme.colors.pdark};
+  }
 `;
 
-export { StyledForm, SubmitButton, Input, InputContainer };
+export { StyledForm, SubmitButton, BigInput, InputContainer };

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { actions as groupActions } from '../redux/modules/group';
+import { actions as groupActions, selectors as groupSelectors } from '../redux/modules/group';
 import { selectors as currentGroupSelectors } from '../redux/modules/currentGroup';
 import AddMemberForm from '../components/AddMemberForm';
 
@@ -11,13 +11,16 @@ class AddMemberContainer extends Component {
   };
 
   render() {
-    return <AddMemberForm onSubmit={this.handleSubmit} />;
+    const { loading, error } = this.props;
+    return <AddMemberForm onSubmit={this.handleSubmit} loading={loading} error={error} />;
   }
 }
 
 function mapStateToProps(state) {
   return {
-    currentGroupId: currentGroupSelectors.getCurrentGroupId(state)
+    currentGroupId: currentGroupSelectors.getCurrentGroupId(state),
+    loading: groupSelectors.getLoading(state),
+    error: groupSelectors.getError(state)
   };
 }
 

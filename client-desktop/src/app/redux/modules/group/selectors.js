@@ -12,4 +12,12 @@ function getGroupById(state, id) {
   return groups.byId[id];
 }
 
-export { getAllGroups, getGroupById };
+function getLoading(state) {
+  return getModuleState(state).loading;
+}
+
+function getError(state) {
+  return getModuleState(state).error;
+}
+
+export { getAllGroups, getGroupById, getLoading, getError };
