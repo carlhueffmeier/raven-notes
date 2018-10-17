@@ -4,7 +4,7 @@ const Container = styled('div')`
   display: flex;
   align-items: center;
   max-height: 50px;
-  padding: 25px 15px 0 15px;
+  padding: 30px 15px 0 15px;
 
 `;
 
