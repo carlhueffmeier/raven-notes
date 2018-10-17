@@ -24,7 +24,6 @@ class SingleNote extends Component {
     const { note, onClick } = this.props;
     const title = createNoteTitle(note);
     const snippet = createNoteSnippet(note);
-    console.log(note);
     return (
       <SizeMe>
         {({ size }) => (

@@ -41,11 +41,14 @@ const SubmitButton = styled('button')`
   cursor: pointer;
   color: ${props => props.theme.colors.plight};
   border-radius: 100px;
+  margin: 20px;
+  background-color: ${props => props.theme.colors.primary};
   :focus {
     outline: none;
   }
-  margin: 20px;
-  background-color: ${props => props.theme.colors.primary};
+  :disabled {
+    background: ${props => props.theme.colors.pdark};
+  }
 `;
 
 export { StyledForm, SubmitButton, Input, InputContainer };

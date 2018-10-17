@@ -62,9 +62,11 @@ const Button = styled('button')`
 const FormError = styled('span')`
   font-size: 0.8rem;
   background: ${props => props.theme.colors.secondary};
-  color: ${props => props.theme.colors.softWarning}
+  color: ${props => props.theme.colors.danger};
   padding: 0.5rem;
   margin: 1rem;
+  text-align: center;
+  font-weight: 700;
 `;
 
 export { StyledSigninForm, Input, Button, SigninText, ButtonWrapper, FormError };

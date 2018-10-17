@@ -1,22 +1,17 @@
 import React, { Component } from 'react';
+import CreateNote from '../components/CreateNote';
 import { connect } from 'react-redux';
 import { actions as noteActions } from '../redux/modules/note';
 import { actions as layoutActions } from '../redux/modules/layout';
-import { CreateButton, CreateImg } from './../components/SearchBar/styles';
-import add from './../../assets/plus.svg';
 
 class CreateNoteContainer extends Component {
+  handleClick = () => {
+    this.props.createNote();
+    this.props.changeLayout('THREE_COLUMN_LAYOUT');
+  };
+
   render() {
-    return (
-      <CreateButton
-        onClick={() => {
-          this.props.createNote();
-          this.props.changeLayout('THREE_COLUMN_LAYOUT');
-        }}
-      >
-        <CreateImg alt="Add Notes" src={add} />
-      </CreateButton>
-    );
+    return <CreateNote handleClick={this.handleClick} />;
   }
 }
 

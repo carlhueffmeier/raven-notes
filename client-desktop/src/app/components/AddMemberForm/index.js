@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { func } from 'prop-types';
-import { StyledForm, SubmitButton, Input, InputContainer } from './styles';
+import { StyledForm, SubmitButton, BigInput, InputContainer } from './styles';
+import { FormError } from '../../shared/formStyles';
+import { isValidEmail } from '../../lib/formUtils';
 
 class AddMemberForm extends Component {
   static propTypes = {
@@ -22,20 +24,30 @@ class AddMemberForm extends Component {
     this.props.onSubmit(this.state);
   };
 
+  isValid() {
+    return isValidEmail(this.state.email);
+  }
+
   render() {
+    const { loading, error } = this.props;
     return (
       <StyledForm onSubmit={this.handleSubmit}>
         <InputContainer>
-          <Input
+          <BigInput
             type="email"
             name="email"
-            placeholder="🤖 Member name"
+            placeholder="🤖 Member email"
             onChange={this.handleInputChange}
             value={this.state.input}
             required
+            maxLength="20"
+            showValidationHints
           />
         </InputContainer>
-        <SubmitButton>Add Member</SubmitButton>
+        {error && <FormError>{error}</FormError>}
+        <SubmitButton disabled={loading || !this.isValid()}>
+          {loading ? 'Loading...' : 'Add Member'}
+        </SubmitButton>
       </StyledForm>
     );
   }

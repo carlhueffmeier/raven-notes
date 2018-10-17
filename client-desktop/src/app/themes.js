@@ -19,7 +19,8 @@ const lightTheme = {
     h6: '#a9a9a9',
     softWarning: '#ff5722',
     searchbar: '#FFFFFF',
-    searchbarBorder: '#FAFAFA'
+    searchbarBorder: '#FAFAFA',
+    danger: '#ff5722'
   }
 };
 
@@ -44,7 +45,9 @@ const darkTheme = {
     h6: '#9E9E9E',
     softWarning: '#FDEDEC',
     searchbar: '#616161',
-    searchbarBorder: '#424242'
+    searchbarBorder: '#424242',
+    danger: '#ff5722'
+
   }
 };
 
