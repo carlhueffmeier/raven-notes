@@ -36,10 +36,11 @@ class AddMemberForm extends Component {
           <BigInput
             type="email"
             name="email"
-            placeholder="🤖 Member name"
+            placeholder="🤖 Member email"
             onChange={this.handleInputChange}
             value={this.state.input}
             required
+            maxLength="20"
             showValidationHints
           />
         </InputContainer>

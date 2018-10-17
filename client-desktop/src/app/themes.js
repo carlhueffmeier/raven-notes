@@ -14,7 +14,8 @@ const lightTheme = {
     h4: '#696969',
     h5: '#808080',
     h6: '#a9a9a9',
-    softWarning: '#ff5722'
+    softWarning: '#ff5722',
+    danger: '#ff5722'
   }
 };
 

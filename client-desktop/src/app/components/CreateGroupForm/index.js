@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { func } from 'prop-types';
 import { StyledForm, SubmitButton, Input, InputContainer } from './styles';
+import { FormError } from '../../shared/formStyles';
 
 class CreateGroupForm extends Component {
   static propTypes = {
@@ -22,7 +23,12 @@ class CreateGroupForm extends Component {
     this.props.onSubmit(this.state);
   };
 
+  isValid() {
+    return this.state.name.length > 0;
+  }
+
   render() {
+    const { loading, error } = this.props;
     return (
       <StyledForm onSubmit={this.handleSubmit}>
         <InputContainer>
@@ -32,9 +38,14 @@ class CreateGroupForm extends Component {
             placeholder="🚀 Workspace name"
             onChange={this.handleInputChange}
             value={this.state.input}
+            required
+            showValidationHints
           />
         </InputContainer>
-        <SubmitButton>Create workspace</SubmitButton>
+        {error && <FormError>{error}</FormError>}
+        <SubmitButton disabled={loading || !this.isValid()}>
+          {loading ? 'Loading...' : 'Create workspace'}
+        </SubmitButton>
       </StyledForm>
     );
   }

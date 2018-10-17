@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { actions as groupActions } from '../redux/modules/group';
+import { actions as groupActions, selectors as groupSelectors } from '../redux/modules/group';
 import CreateGroupForm from '../components/CreateGroupForm';
 
 class CreateGroupContainer extends Component {
   render() {
-    const { createGroup } = this.props;
-    return <CreateGroupForm onSubmit={createGroup} />;
+    const { createGroup, loading, error } = this.props;
+    return <CreateGroupForm onSubmit={createGroup} loading={loading} error={error} />;
   }
+}
+
+function mapStateToProps(state) {
+  return {
+    loading: groupSelectors.getLoading(state),
+    error: groupSelectors.getError(state)
+  };
 }
 
 const mapDispatchToProps = {
@@ -15,6 +22,6 @@ const mapDispatchToProps = {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(CreateGroupContainer);
