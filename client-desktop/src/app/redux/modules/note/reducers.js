@@ -4,6 +4,7 @@ import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 import storage from '../../storage';
 import { FETCH_NOTES, CREATE_NOTE, UPDATE_NOTE } from './types';
 import { unique, path } from '../../../lib/utils';
+import { createLoadingReducer, createErrorReducer } from '../../../lib/reduxUtils';
 
 const persistConfig = {
   key: 'note',
@@ -15,8 +16,13 @@ const persistConfig = {
 const rootReducer = combineReducers({
   byId: byIdReducer,
   allIds: allIdsReducer,
-  loading: loadingReducer,
-  error: errorReducer
+  loading: createLoadingReducer({
+    compositeTypes: [FETCH_NOTES, CREATE_NOTE, UPDATE_NOTE]
+  }),
+  error: createErrorReducer({
+    compositeTypes: [FETCH_NOTES, CREATE_NOTE, UPDATE_NOTE],
+    errorPath: ['response', 'errors', '0', 'message']
+  })
 });
 
 function byIdReducer(state = {}, action) {
@@ -34,42 +40,6 @@ function allIdsReducer(state = [], action) {
     return unique([...ids, ...state]);
   }
   return state;
-}
-
-function loadingReducer(state = false, action) {
-  switch (action.type) {
-    case FETCH_NOTES.START:
-    case CREATE_NOTE.START:
-    case UPDATE_NOTE.START:
-      return true;
-    case FETCH_NOTES.SUCCESS:
-    case CREATE_NOTE.SUCCESS:
-    case UPDATE_NOTE.SUCCESS:
-    case FETCH_NOTES.ERROR:
-    case CREATE_NOTE.ERROR:
-    case UPDATE_NOTE.ERROR:
-      return false;
-    default:
-      return state;
-  }
-}
-
-function errorReducer(state = null, action) {
-  switch (action.type) {
-    case FETCH_NOTES.START:
-    case CREATE_NOTE.START:
-    case UPDATE_NOTE.START:
-    case FETCH_NOTES.SUCCESS:
-    case CREATE_NOTE.SUCCESS:
-    case UPDATE_NOTE.SUCCESS:
-      return null;
-    case FETCH_NOTES.ERROR:
-    case CREATE_NOTE.ERROR:
-    case UPDATE_NOTE.ERROR:
-      return action.error;
-    default:
-      return state;
-  }
 }
 
 export default persistReducer(persistConfig, rootReducer);
