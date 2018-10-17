@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { bool } from 'prop-types';
 import PopUp from 'react-base-popup';
 import { PopUpContainer, PopContentContainer, PopUpClose } from './styles';
+import { withTheme } from 'emotion-theming';
+
 
 class ModalDialog extends Component {
   static propTypes = {
@@ -9,12 +11,16 @@ class ModalDialog extends Component {
   };
 
   render() {
-    const { isVisible, onDismiss, children } = this.props;
+    const { isVisible, onDismiss, children, theme } = this.props;
     return (
       <PopUp
         disable
         pop={isVisible}
-        popup={{ borderRadius: '30px', minHeight: '380px', height: '380' }}
+        popup={{
+          borderRadius: '30px',
+          minHeight: '380px',
+          height: '380',
+          backgroundColor: theme.colors.secondary }}
       >
         <PopUpContainer>
           <PopUpClose onClick={onDismiss}>
@@ -29,4 +35,4 @@ class ModalDialog extends Component {
   }
 }
 
-export default ModalDialog;
+export default withTheme(ModalDialog);
