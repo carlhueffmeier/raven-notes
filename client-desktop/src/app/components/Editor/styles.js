@@ -6,6 +6,7 @@ const EditorContainer = styled('div')`
   height: 100vh;
   padding: 3vw;
   overflow: scroll;
+  background-color: ${props => props.theme.colors.plight};
 `;
 const User = styled('div')`
   flex-direction: column;
@@ -49,4 +50,12 @@ const Raven = styled('div')`
   font-family: 'Space Mono', monospace;
 `;
 
-export { EditorContainer, User, Quote, H1, H2, H3, H4, H5, H6, List, Code, Raven };
+const EditorStyle = styled('div')`
+  width: '100%',
+  height: '100%',
+  padding: '2vh',
+  overflow: 'auto',
+  color: ${props => props.theme.colors.text}
+`
+
+export { EditorContainer, User, Quote, H1, H2, H3, H4, H5, H6, List, Code, Raven, EditorStyle };

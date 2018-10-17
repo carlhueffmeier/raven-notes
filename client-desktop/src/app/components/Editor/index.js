@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { object, func, bool } from 'prop-types';
 import { Editor as SlateEditor } from 'slate-react';
-import { EditorContainer, Quote, H1, H2, H3, H4, H5, H6, List } from './styles';
+import { EditorContainer, Quote, H1, H2, H3, H4, H5, H6, List, EditorStyle } from './styles';
 import './prism.css';
+import { withTheme } from 'emotion-theming';
+
 
 class Editor extends Component {
   static propTypes = {
@@ -197,7 +199,7 @@ class Editor extends Component {
   };
 
   render() {
-    const { content, onChange, readOnly } = this.props;
+    const { content, onChange, readOnly, theme } = this.props;
     return (
       <EditorContainer>
         <SlateEditor
@@ -210,16 +212,15 @@ class Editor extends Component {
           schema={this.schema}
           onKeyDown={this.onKeyDown}
           renderNode={this.renderNode}
-          style={{
-            width: '100%',
+          style={{width: '100%',
             height: '100%',
             padding: '2vh',
-            overflow: 'auto'
-          }}
+            overflow: 'auto',
+            color: theme.colors.text}}
         />
       </EditorContainer>
     );
   }
 }
 
-export default Editor;
+export default withTheme(Editor);
