@@ -7,6 +7,7 @@ import userReducer from './user';
 import groupReducer, { sagas as groupSaga } from './group';
 import editorReducer from './editor';
 import layoutReducer from './layout';
+import themeReducer from './theme';
 import searchReducer from './search';
 import currentNoteReducer, { sagas as currentNoteSaga } from './currentNote';
 import currentGroupReducer, { sagas as currentGroupSaga } from './currentGroup';
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
     currentGroup: currentGroupReducer,
     editor: editorReducer,
     layout: layoutReducer,
+    theme: themeReducer,
     search: searchReducer,
     modals: modalsReducer
   })
