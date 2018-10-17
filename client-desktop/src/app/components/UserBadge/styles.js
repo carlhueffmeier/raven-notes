@@ -3,6 +3,9 @@ import styled from 'react-emotion';
 const Container = styled('div')`
   display: flex;
   align-items: center;
+  max-height: 50px;
+  padding: 25px 15px 0 15px;
+
 `;
 
 const H3 = styled('h3')`
