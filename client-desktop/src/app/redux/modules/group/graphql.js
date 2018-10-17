@@ -6,6 +6,11 @@ const GROUP_DETAILS_FRAGMENT = `
     name
     email
   }
+  admins {
+    id
+    name
+    email
+  }
 `;
 
 const CREATE_GROUP_MUTATION = `

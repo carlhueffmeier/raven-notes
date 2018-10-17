@@ -4,16 +4,15 @@
   "description": "Backend of raven-notes",
   "main": "start.js",
   "scripts": {
-    "start": "nodemon start.js",
-    "start:mysql": "npm run mysql && nodemon start.js",
-    "mysql": "docker run -p 3306:3306 mysql:latest"
+    "watch": "nodemon start.js",
+    "start": "node start.js",
+    "deploy": "now --docker -e PORT=443 -e NODE_ENV=production && now alias"
   },
   "license": "ISC",
   "dependencies": {
     "apollo-server-express": "^2.1.0",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.3",
-    "cors": "^2.8.4",
     "dotenv": "^6.1.0",
     "express": "^4.16.3",
     "graphql": "^14.0.2",
