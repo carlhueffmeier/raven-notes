@@ -30,7 +30,7 @@ class NoteList extends Component {
             ))
           ) : (
             <NoNotesMessage>
-              <p style={{ opacity: '0.4' }}>No notes yet</p>{' '}
+              <p className="text">No notes yet</p>
               <span role="img" aria-labelledby="very sad">
                 😭
               </span>

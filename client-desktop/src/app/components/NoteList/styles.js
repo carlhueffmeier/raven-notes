@@ -35,6 +35,11 @@ const NoNotesMessage = styled('div')`
   justify-content: center;
   height: 50%;
   min-height: 5rem;
+  & > .text {
+    color: ${props => props.theme.colors.text};
+    opacity: 0.6;
+    margin-right: 1rem;
+  }
 `;
 
 export { Container, SearchAndCreateContainer, NoteListWrapper, NoNotesMessage };

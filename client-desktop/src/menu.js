@@ -9,10 +9,7 @@ function createMenu({ mainWindow }) {
       submenu: [
         {
           label: 'Open Folder',
-          accelerator: 'CmdOrCtrl+O',
-          click() {
-            fileActions.openFile();
-          }
+          accelerator: 'CmdOrCtrl+O'
         },
         { label: 'Open File' }
       ]
@@ -42,7 +39,14 @@ function createMenu({ mainWindow }) {
         { role: 'zoomin' },
         { role: 'zoomout' },
         { type: 'separator' },
-        { role: 'togglefullscreen' }
+        { role: 'togglefullscreen' },
+        {
+          label: 'Toggle Dark Mode 🦉',
+          accelerator: 'CmdOrCtrl+P',
+          click() {
+            mainWindow.webContents.send('toggle-dark-mode');
+          }
+        }
       ]
     },
     {
