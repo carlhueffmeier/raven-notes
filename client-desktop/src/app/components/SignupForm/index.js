@@ -5,8 +5,10 @@ import {
   Input,
   Button,
   SigninText,
-  ButtonWrapper
+  ButtonWrapper,
+  FormError
 } from '../../shared/formStyles';
+import { isValidEmail, isValidPassword } from '../../lib/formUtils';
 
 class SignupForm extends Component {
   static propTypes = {
@@ -30,7 +32,13 @@ class SignupForm extends Component {
     });
   };
 
+  isValid() {
+    const { email, password } = this.state;
+    return isValidEmail(email) && isValidPassword(password);
+  }
+
   render() {
+    const { loading, error } = this.props;
     return (
       <StyledSigninForm onSubmit={this.handleSubmit}>
         <SigninText>
@@ -40,14 +48,33 @@ class SignupForm extends Component {
           </span>
         </SigninText>
 
-        <Input name="name" onChange={this.handleFormChange} type="text" placeholder="Name" />
-        <Input name="email" onChange={this.handleFormChange} type="email" placeholder="Email" />
+        <Input
+          name="name"
+          onChange={this.handleFormChange}
+          type="text"
+          placeholder="Name"
+          required
+          showValidationHints
+        />
+        <Input
+          name="email"
+          onChange={this.handleFormChange}
+          type="email"
+          placeholder="Email"
+          required
+          showValidationHints
+        />
         <Input
           name="password"
           onChange={this.handleFormChange}
           type="password"
           placeholder="Password"
+          minLength="3"
+          required
+          showValidationHints
         />
+
+        {error && <FormError>{error.message}</FormError>}
 
         <ButtonWrapper>
           <Button
@@ -60,7 +87,7 @@ class SignupForm extends Component {
               ⭐️
             </span>
           </Button>
-          <Button>
+          <Button disabled={loading || !this.isValid()}>
             Sign up
             <span role="img" aria-label="spaceship">
               🚀

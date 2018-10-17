@@ -14,6 +14,7 @@ const H3 = styled('h3')`
   font-size: 0.9em;
   margin: 0;
   text-align: center;
+  text-transform: capitalize;
 `;
 
 const Img = styled('img')`
