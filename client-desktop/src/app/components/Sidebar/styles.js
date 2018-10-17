@@ -49,7 +49,7 @@ const GroupListItem = styled('div')`
   & img {
     ${props => props.selected && `filter: brightness(1.5)`};
   }
-  ${props => props.selected && `color: ${props.theme.colors.primary}`};
+  ${props => props.selected && `color: ${props.theme.colors.textHardSelect}`};
 `;
 
 const SearchBox = styled('input')`
