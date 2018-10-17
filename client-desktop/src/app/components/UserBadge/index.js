@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { shape, string, func } from 'prop-types';
-import { Container, Img, H3 } from './styles';
-import defaultAvatar from '../../../assets/man.svg';
+import { Container, H3 } from './styles';
+import { UserIcon } from '../Icons';
+import { withTheme } from 'emotion-theming';
+
 
 class UserBadge extends Component {
   static propTypes = {
@@ -12,14 +14,14 @@ class UserBadge extends Component {
   };
 
   render() {
-    const { user } = this.props;
+    const { user, theme } = this.props;
     return (
       <Container>
-        <Img src={defaultAvatar} />
+        <UserIcon style={{color: theme.colors.text, marginRight: '5px'}}/>
         <H3>{user && user.name}</H3>
       </Container>
     );
   }
 }
 
-export default UserBadge;
+export default withTheme(UserBadge);
