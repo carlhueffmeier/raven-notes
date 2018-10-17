@@ -13,11 +13,12 @@ const User = styled('div')`
 `;
 const Quote = styled('blockquote')`
   background: #f9f9f9;
-  border-left: 10px solid ${props => props.theme.colors.pdark};
+  border-left: 10px solid ${props => props.theme.colors.quoteBorder};
   margin: 1.5em 10px;
   padding: 0.5em 10px;
   font-family: 'Space Mono', monospace;
   font-size: 0.8em;
+  color: ${props => props.theme.colors.quote};
 `;
 const H1 = styled('h1')`
   color: ${props => props.theme.colors.h1};
@@ -50,12 +51,4 @@ const Raven = styled('div')`
   font-family: 'Space Mono', monospace;
 `;
 
-const EditorStyle = styled('div')`
-  width: '100%',
-  height: '100%',
-  padding: '2vh',
-  overflow: 'auto',
-  color: ${props => props.theme.colors.text}
-`
-
-export { EditorContainer, User, Quote, H1, H2, H3, H4, H5, H6, List, Code, Raven, EditorStyle };
+export { EditorContainer, User, Quote, H1, H2, H3, H4, H5, H6, List, Code, Raven };

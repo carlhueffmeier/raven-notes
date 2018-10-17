@@ -64,7 +64,7 @@ const Note = styled('div')`
 
 const Title = styled('div')`
   font-size: 0.8em;
-  font-weight: 500;
+  font-weight: 600;
   margin-bottom: 5px;
   & * {
     margin: 20px 0 !important;
