@@ -11,6 +11,7 @@ const PopUpClose = styled('div')`
   width: 1.8vw;
   height: 1.8vw;
   line-height: 1.8vw;
+  color: ${props => props.theme.colors.plight};
   & span {
     cursor: pointer;
     margin: 20px;
@@ -32,6 +33,7 @@ const TitlePop = styled('h1')`
   font-size: 1.4em;
   margin-top: 40px;
   font-weight: 800;
+  color: ${props => props.theme.colors.primary};
 `;
 
 const InputContainer = styled('div')`

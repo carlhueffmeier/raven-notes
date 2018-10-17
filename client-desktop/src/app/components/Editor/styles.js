@@ -6,17 +6,19 @@ const EditorContainer = styled('div')`
   height: 100vh;
   padding: 3vw;
   overflow: scroll;
+  background-color: ${props => props.theme.colors.plight};
 `;
 const User = styled('div')`
   flex-direction: column;
 `;
 const Quote = styled('blockquote')`
   background: #f9f9f9;
-  border-left: 10px solid ${props => props.theme.colors.pdark};
+  border-left: 10px solid ${props => props.theme.colors.quoteBorder};
   margin: 1.5em 10px;
   padding: 0.5em 10px;
   font-family: 'Space Mono', monospace;
   font-size: 0.8em;
+  color: ${props => props.theme.colors.quote};
 `;
 const H1 = styled('h1')`
   color: ${props => props.theme.colors.h1};

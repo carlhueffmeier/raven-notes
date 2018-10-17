@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { bool, func } from 'prop-types';
-import { Title } from '../CreateGroupDialog/styles';
+import { Title } from '../AddMemberDialog/styles';
 import ModalDialog from '../ModalDialog';
 import chatIcon from '../../../assets/chat.svg';
 import AddMemberContainer from '../../containers/AddMemberContainer';

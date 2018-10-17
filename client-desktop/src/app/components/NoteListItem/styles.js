@@ -13,6 +13,8 @@ const SingleNoteContainer = styled('div')`
   padding: 10px;
   margin-bottom: -12px;
   cursor: pointer;
+  color: ${props => props.theme.colors.text};
+
 `;
 
 const SearchAndCreateContainer = styled('div')`
@@ -62,7 +64,7 @@ const Note = styled('div')`
 
 const Title = styled('div')`
   font-size: 0.8em;
-  font-weight: 500;
+  font-weight: 600;
   margin-bottom: 5px;
   & * {
     margin: 20px 0 !important;

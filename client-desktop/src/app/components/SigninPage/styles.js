@@ -7,6 +7,7 @@ const Container = styled('div')`
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: ${props => props.theme.colors.plight}
 `;
 
 const Img = styled('img')`
@@ -16,6 +17,7 @@ const Img = styled('img')`
 const Title = styled('h1')`
   font-size: 3em;
   margin: 0;
+  color: ${props => props.theme.colors.text}
 `;
 
 const TitleWrapper = styled('div')`
@@ -27,6 +29,8 @@ const SubTitle = styled('h2')`
   font-size: 1.4em;
   font-weight: 300;
   margin: 0;
+  color: ${props => props.theme.colors.text}
+
 `;
 
 export { Container, Img, Title, SubTitle, TitleWrapper };

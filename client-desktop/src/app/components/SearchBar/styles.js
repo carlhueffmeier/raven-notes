@@ -4,7 +4,9 @@ const SearchBox = styled('input')`
   height: 25px;
   flex: 3 1;
   border-radius: 20px;
-  border: 0.5px solid #ccc;
+  border: 0.5px solid ${props => props.theme.colors.searchbarBorder};
+  background: ${props => props.theme.colors.searchbar};
+  transition: background 300ms ease-out;
   margin: 0 10px;
   padding: 5px;
   text-indent: 12px;

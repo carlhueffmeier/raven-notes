@@ -11,6 +11,7 @@ const Group = styled('div')`
   font-weight: 500;
   font-size: ${props => (props.large ? '1.5rem' : '0.8rem')};
   margin-bottom: 5px;
+  color: ${props => props.theme.colors.text};
 `;
 
 const MembersButtonContainer = styled('div')`
@@ -24,7 +25,7 @@ const Members = styled('div')`
   flex-direction: row;
   justify-content: space-evenly;
   font-size: 1.2em;
-  color: ${props => props.theme.colors.primary};
+  color: ${props => props.theme.colors.highlight};
 `;
 
 const Button = styled('button')`

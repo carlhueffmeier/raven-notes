@@ -5,6 +5,7 @@ const StyledForm = styled('form')`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: ${props => props.theme.colors.text};
 `;
 
 const InputContainer = styled('div')`
