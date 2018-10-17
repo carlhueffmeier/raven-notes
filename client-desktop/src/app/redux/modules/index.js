@@ -9,7 +9,7 @@ import editorReducer from './editor';
 import layoutReducer from './layout';
 import searchReducer from './search';
 import currentNoteReducer, { sagas as currentNoteSaga } from './currentNote';
-import currentGroupReducer from './currentGroup';
+import currentGroupReducer, { sagas as currentGroupSaga } from './currentGroup';
 import modalsReducer from './modals';
 
 const rootReducer = combineReducers({
@@ -30,7 +30,13 @@ const rootReducer = combineReducers({
 });
 
 const rootSaga = function* rootSaga() {
-  yield all([call(noteSaga), call(currentNoteSaga), call(groupSaga), call(authenticationSaga)]);
+  yield all([
+    call(noteSaga),
+    call(currentNoteSaga),
+    call(groupSaga),
+    call(authenticationSaga),
+    call(currentGroupSaga)
+  ]);
 };
 
 export default createAppReducer(rootReducer);
