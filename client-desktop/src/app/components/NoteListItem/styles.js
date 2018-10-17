@@ -39,13 +39,13 @@ const SubContainer = styled('div')`
 `;
 
 const Day = styled('div')`
-  margin-top: 5px;
   justify-content: center;
   font-size: 0.8em;
   font-weight: 400;
   margin-right: 15px;
   max-width: 60px;
   min-width: 60px;
+  margin-top: 5px;
 `;
 
 const Note = styled('div')`
@@ -54,30 +54,28 @@ const Note = styled('div')`
   width: 100%;
   align-items: flex-start;
   justify-content: space-around;
-  // & div {
-  //   margin: 5px 0;
-  // }
+  & div {
+    margin: 5px 0;
+  }
 `;
 
 const Title = styled('div')`
   font-size: 0.8em;
   font-weight: 500;
   margin-bottom: 5px;
-  margin-top: 5px;
   & * {
     margin: 20px 0 !important;
   }
 `;
 
 const Body = styled('div')`
+  max-width: 150px;
   font-size: 0.8em;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.5);
   overflow: hidden;
   white-space: no-wrap;
   text-overflow: ellipsis;
-    margin-bottom: 5px;
-
 `;
 
 const Author = styled('div')`
@@ -103,6 +101,7 @@ const RowTitle = styled(Title)`
 
 const RowBody = styled(Body)`
   margin: 0 15px;
+  max-width: 100vw;
 `;
 
 const SnippetFail = styled('span')`
