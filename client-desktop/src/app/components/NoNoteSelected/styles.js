@@ -6,7 +6,8 @@ const NoSelection = styled('div')`
   align-items: center;
   font-size: 2rem;
   height: 100%;
-  color: darkgrey;
+  color: #17101085;
+  background-color: ${props => props.theme.colors.plight};
 `;
 
 export { NoSelection };
