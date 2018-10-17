@@ -6,6 +6,8 @@ function createGroupModel({ user } = {}) {
     create,
     findOne,
     findOneAndUpdate,
+    addMember,
+    addAdmin,
     getMembers,
     getAdmins
   };
@@ -16,8 +18,8 @@ function createGroupModel({ user } = {}) {
     }
     const userId = newUser ? newUser.id : user.id;
     const newGroup = await db.group.create(data);
-    newGroup.addAdmins([userId]);
-    newGroup.addMembers([userId]);
+    await newGroup.addAdmins([userId]);
+    await newGroup.addMembers([userId]);
     return newGroup.save();
   }
 
@@ -47,7 +49,55 @@ function createGroupModel({ user } = {}) {
     if (!isAllowedToModify) {
       throw new AuthenticationError('You are not authorized to change group details');
     }
-    existingGroup.update(update);
+    await existingGroup.update(update);
+    return existingGroup.save();
+  }
+
+  async function addMember(where, newMemberInfo) {
+    if (!user) {
+      throw new AuthenticationError('You have to authenticate to execute this query');
+    }
+    // Look up group
+    const existingGroup = await db.group.findOne({ where });
+    if (!existingGroup) {
+      throw new Error('Group not found!');
+    }
+    // Check whether current user is admin of group
+    const isAllowedToModify = existingGroup && (await existingGroup.hasAdmin(user));
+    if (!isAllowedToModify) {
+      throw new AuthenticationError('You are not authorized to change group details');
+    }
+    // Look up the new member
+    const newMember = await db.user.findOne({ where: newMemberInfo });
+    if (!newMember) {
+      throw new Error('Could not find any matching users!');
+    }
+    // Add member to group
+    await existingGroup.addMembers([newMember.id]);
+    return existingGroup.save();
+  }
+
+  async function addAdmin(where, newAdminInfo) {
+    if (!user) {
+      throw new AuthenticationError('You have to authenticate to execute this query');
+    }
+    // Look up group
+    const existingGroup = await db.group.findOne({ where });
+    if (!existingGroup) {
+      throw new Error('Group not found!');
+    }
+    // Check whether current user is admin of group
+    const isAllowedToModify = existingGroup && (await existingGroup.hasAdmin(user));
+    if (!isAllowedToModify) {
+      throw new AuthenticationError('You are not authorized to change group details');
+    }
+    // Look up the user
+    const newAdmin = await db.user.findOne({ where: newAdminInfo });
+    if (!newAdmin) {
+      throw new Error('Could not find any matching users!');
+    }
+    // Add user to group as admin
+    await existingGroup.addAdmins([newAdmin.id]);
     return existingGroup.save();
   }
 

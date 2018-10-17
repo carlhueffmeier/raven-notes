@@ -30,8 +30,6 @@ class SigninPage extends Component {
           ) : (
             <SignupContainer goToSignin={this.toggleForm} />
           )}
-
-          <h5 style={{ textAlign: 'right', fontWeight: '300' }}>Forgot your password?</h5>
         </div>
       </Container>
     );

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { selectors as layoutSelectors, actions as layoutActions } from '../redux/modules/layout';
+import { selectors as layoutSelectors } from '../redux/modules/layout';
 import Layout from '../components/Layout';
 import SidebarContainer from '../containers/SidebarContainer';
 import NoteListContainer from '../containers/NoteListContainer';

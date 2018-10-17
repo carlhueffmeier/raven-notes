@@ -28,11 +28,28 @@ const updateGroupError = error => ({
   error
 });
 
+// Update group
+const addMember = payload => ({
+  type: types.ADD_MEMBER.START,
+  payload
+});
+const addMemberSuccess = payload => ({
+  type: types.ADD_MEMBER.SUCCESS,
+  payload
+});
+const addMemberError = error => ({
+  type: types.ADD_MEMBER.ERROR,
+  error
+});
+
 export {
   createGroup,
   createGroupSuccess,
   createGroupError,
   updateGroup,
   updateGroupSuccess,
-  updateGroupError
+  updateGroupError,
+  addMember,
+  addMemberSuccess,
+  addMemberError
 };

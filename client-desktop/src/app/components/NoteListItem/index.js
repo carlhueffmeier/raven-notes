@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import moment from 'moment';
 import { createNoteTitle, createNoteSnippet } from '../../lib/noteUtils';
 import { SizeMe } from 'react-sizeme';
@@ -31,7 +31,7 @@ class SingleNote extends Component {
             <Divider />
             <SubContainer>
               {size.width > 300 ? (
-                <React.Fragment>
+                <Fragment>
                   <RowDay>{moment(note.createdAt).format('MMM Do')}</RowDay>
                   <RowNote>
                     <RowTitle>{title ? title : 'No title'}</RowTitle>
@@ -42,9 +42,9 @@ class SingleNote extends Component {
                       <span>Written by</span> {note.author.name}
                     </RowAuthor>
                   </RowNote>
-                </React.Fragment>
+                </Fragment>
               ) : (
-                <React.Fragment>
+                <Fragment>
                   <Day>{moment(note.createdAt).format('MMM Do')}</Day>
                   <Note>
                     <Title>{title}</Title>
@@ -53,7 +53,7 @@ class SingleNote extends Component {
                       <span>Written by</span> {note.author.name}
                     </Author>
                   </Note>
-                </React.Fragment>
+                </Fragment>
               )}
             </SubContainer>
           </SingleNoteContainer>

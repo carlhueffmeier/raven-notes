@@ -1,35 +1,43 @@
 import React, { Component } from 'react';
-import SingleNote from './single';
+import NoteListItem from '../NoteListItem';
 import SearchBar from '../SearchBar/index';
 import CreateNoteContainer from '../../containers/CreateNoteContainer';
-import { NoteListContainer, SearchAndCreateContainer, NoteListWrapper } from './styles';
-
+import { Container, SearchAndCreateContainer, NoteListWrapper, NoNotesMessage } from './styles';
 import { constants as layoutConstants } from '../../redux/modules/layout';
-import AddMembers from '../AddMembers';
+import GroupDetailsContainer from '../../containers/GroupDetailsContainer';
 
 class NoteList extends Component {
   render() {
-    const { notes, selectNote, changeLayout, onQueryChange } = this.props;
+    const { notes, selectNote, changeLayout, onQueryChange, loading } = this.props;
     return (
-      <NoteListContainer>
-        <AddMembers currentGroup={this.props.currentGroup} />
+      <Container>
+        <GroupDetailsContainer />
         <SearchAndCreateContainer>
           <SearchBar onChange={onQueryChange} />
           <CreateNoteContainer />
         </SearchAndCreateContainer>
         <NoteListWrapper>
-          {notes.map(note => (
-            <SingleNote
-              key={note.id}
-              note={note}
-              onClick={() => {
-                selectNote(note.id);
-                changeLayout(layoutConstants.THREE_COLUMN_LAYOUT);
-              }}
-            />
-          ))}
+          {loading || notes.length > 0 ? (
+            notes.map(note => (
+              <NoteListItem
+                key={note.id}
+                note={note}
+                onClick={() => {
+                  selectNote(note.id);
+                  changeLayout(layoutConstants.THREE_COLUMN_LAYOUT);
+                }}
+              />
+            ))
+          ) : (
+            <NoNotesMessage>
+              No notes yet{' '}
+              <span role="img" aria-labelledby="very sad">
+                😭
+              </span>
+            </NoNotesMessage>
+          )}
         </NoteListWrapper>
-      </NoteListContainer>
+      </Container>
     );
   }
 }
