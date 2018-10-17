@@ -15,9 +15,9 @@ function* resetCurrentNote() {
   yield put(editorActions.updateEditorContent(newEditorContent));
 }
 
-function* noteSaga() {
+function* currentNoteSaga() {
   yield takeEvery(SELECT_CURRENT_NOTE, selectCurrentNote);
   yield takeEvery(RESET_CURRENT_NOTE, resetCurrentNote);
 }
 
-export default noteSaga;
+export default currentNoteSaga;

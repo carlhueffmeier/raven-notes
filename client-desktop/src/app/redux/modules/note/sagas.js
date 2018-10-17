@@ -10,7 +10,10 @@ import {
   createNoteResponseSchema,
   updateNoteResponseSchema
 } from './schema';
-import { selectors as currentNoteSelectors } from '../../modules/currentNote';
+import {
+  selectors as currentNoteSelectors,
+  actions as currentNoteActions
+} from '../../modules/currentNote';
 import { selectors as currentGroupSelectors } from '../../modules/currentGroup';
 import { selectors as editorSelectors } from '../../modules/editor';
 import {
@@ -47,6 +50,8 @@ function* createNote() {
     const response = yield call([graphqlClient, 'request'], CREATE_NOTE_MUTATION, newNoteInfo);
     const normalizedData = normalize(response, createNoteResponseSchema);
     yield put(actions.createNoteSuccess(normalizedData));
+    const newNoteId = normalizedData.result.createNote;
+    yield put(currentNoteActions.selectNote(newNoteId));
   } catch (error) {
     console.error(error);
     yield put(actions.createNoteError(error));
