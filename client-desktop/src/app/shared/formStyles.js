@@ -62,6 +62,7 @@ const FormError = styled('span')`
   background: #eaeaea;
   color: #ff5722;
   padding: 0.5rem;
+  margin: 1rem;
 `;
 
 export { StyledSigninForm, Input, Button, SigninText, ButtonWrapper, FormError };

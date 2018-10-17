@@ -66,7 +66,7 @@ class SigninForm extends Component {
           showValidationHints
         />
 
-        {error && <FormError>{error.message}</FormError>}
+        {error && <FormError>{error}</FormError>}
 
         <ButtonWrapper>
           <Button
