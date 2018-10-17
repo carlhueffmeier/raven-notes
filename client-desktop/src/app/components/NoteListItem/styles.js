@@ -39,6 +39,7 @@ const SubContainer = styled('div')`
 `;
 
 const Day = styled('div')`
+  margin-top: 10px;
   justify-content: center;
   font-size: 0.8em;
   font-weight: 400;
@@ -47,26 +48,22 @@ const Day = styled('div')`
   min-width: 60px;
 `;
 
-const Hour = styled('span')`
-  display: block;
-  color: lightgray;
-  margin-top: 5px;
-`;
-
 const Note = styled('div')`
   display: flex;
   flex-flow: column wrap;
   width: 100%;
   align-items: flex-start;
   justify-content: space-around;
-  & div {
-    margin: 5px 0;
-  }
+  // & div {
+  //   margin: 5px 0;
+  // }
 `;
 
 const Title = styled('div')`
   font-size: 0.8em;
   font-weight: 500;
+  margin-bottom: 5px;
+  margin-top: 5px;
   & * {
     margin: 20px 0 !important;
   }
@@ -79,6 +76,8 @@ const Body = styled('div')`
   overflow: hidden;
   white-space: no-wrap;
   text-overflow: ellipsis;
+    margin-bottom: 5px;
+
 `;
 
 const Author = styled('div')`
@@ -133,7 +132,6 @@ export {
   RowAuthor,
   Divider,
   SearchAndCreateContainer,
-  Hour,
   Note,
   Title,
   Body,
