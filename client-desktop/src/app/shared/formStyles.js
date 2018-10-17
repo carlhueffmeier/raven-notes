@@ -29,7 +29,7 @@ const Input = styled('input')`
     outline: none;
   }
   :valid {
-    ${props => props.showValidationHints && `border-color: #3f51b5`};
+    ${props => props.showValidationHints && `border-color: #FEC66C`};
   }
 `;
 
