@@ -6,7 +6,7 @@ const Container = styled('div')`
   height: calc(100vh - 25px);
   border-right: 0.4px solid rgba(119, 136, 153, 0.8);
   padding-top: 5px;
-  background: #fff;
+  background-color: ${props => props.theme.colors.plight};
 `;
 
 const SearchAndCreateContainer = styled('div')`

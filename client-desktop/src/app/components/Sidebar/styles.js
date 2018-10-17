@@ -10,13 +10,13 @@ const SidebarContainer = styled('div')`
 const SectionTitle = styled('div')`
   font-size: 0.8em;
   font-weight: 500;
-  color: #778899;
+  color: ${props => props.theme.colors.sectionTitle};
   text-transform: uppercase;
 `;
 
 const GroupSection = styled('div')`
   font-weight: 500;
-  color: #333;
+  color: ${props => props.theme.colors.pdark};
   margin-top: 1.5rem;
 `;
 
@@ -35,7 +35,7 @@ const GroupListItem = styled('div')`
   line-height: 20px;
   cursor: pointer;
   :hover {
-    color: peachpuff;
+    color: ${props => props.theme.colors.textHover};
   }
   & p {
     margin: 0;
@@ -78,7 +78,7 @@ const Button = styled('button')`
   border-radius: 20px;
   height: 27px;
   background-color: black;
-  color: white;
+  color: ${props => props.theme.colors.plight}
   cursor: pointer;
   :focus {
     outline: 0;

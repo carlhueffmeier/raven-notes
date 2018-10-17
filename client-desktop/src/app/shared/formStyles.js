@@ -19,7 +19,7 @@ const Input = styled('input')`
   display: flex;
   justify-content: center;
   background-color: transparent;
-  color: black;
+  color: ${props => props.theme.colors.text};
   border: none;
   padding: 0.5em 1.5em 1.5em 0.8em;
   border-bottom: 1.2px solid ${props => props.theme.colors.pdark};
@@ -59,8 +59,8 @@ const Button = styled('button')`
 
 const FormError = styled('span')`
   font-size: 0.8rem;
-  background: #eaeaea;
-  color: #ff5722;
+  background: ${props => props.theme.colors.secondary};
+  color: ${props => props.theme.colors.softWarning}
   padding: 0.5rem;
 `;
 

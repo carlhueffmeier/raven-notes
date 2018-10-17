@@ -6,7 +6,7 @@ const Container = styled('div')`
 `;
 
 const H3 = styled('h3')`
-  color: #778899;
+  color: ${props => props.theme.colors.h3};
   font-weight: 500;
   font-size: 0.9em;
   margin: 0;

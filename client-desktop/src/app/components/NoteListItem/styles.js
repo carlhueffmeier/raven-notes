@@ -6,7 +6,7 @@ const NoteListContainer = styled('div')`
   height: calc(100vh - 25px);
   border-right: 0.4px solid rgba(119, 136, 153, 0.8);
   padding-top: 5px;
-  background: #fff;
+  background-color: ${props => props.theme.colors.plight};
 `;
 
 const SingleNoteContainer = styled('div')`
@@ -47,12 +47,6 @@ const Day = styled('div')`
   min-width: 60px;
 `;
 
-const Hour = styled('span')`
-  display: block;
-  color: lightgray;
-  margin-top: 5px;
-`;
-
 const Note = styled('div')`
   display: flex;
   flex-flow: column wrap;
@@ -75,7 +69,7 @@ const Title = styled('div')`
 const Body = styled('div')`
   font-size: 0.8em;
   font-weight: 400;
-  color: rgba(0, 0, 0, 0.5);
+  color: ${props => props.theme.colors.pdark};
   overflow: hidden;
   white-space: no-wrap;
   text-overflow: ellipsis;
@@ -104,10 +98,12 @@ const RowTitle = styled(Title)`
 
 const RowBody = styled(Body)`
   margin: 0 15px;
+  letter-spacing: 0.8px;
+  line-height: 17px;
 `;
 
 const SnippetFail = styled('span')`
-  color: crimson;
+  color: ${props => props.theme.colors.softWarning};
   opacity: 0.7;
   transition: all 0.3s linear;
 `;
@@ -133,7 +129,6 @@ export {
   RowAuthor,
   Divider,
   SearchAndCreateContainer,
-  Hour,
   Note,
   Title,
   Body,
