@@ -17,7 +17,9 @@ const lightTheme = {
     h4: '#696969',
     h5: '#808080',
     h6: '#a9a9a9',
-    softWarning: '#ff5722'
+    softWarning: '#ff5722',
+    searchbar: '#FFFFFF',
+    searchbarBorder: '#FAFAFA'
   }
 };
 
@@ -31,7 +33,7 @@ const darkTheme = {
     quote: '#000000',
     quoteBorder: '#B0BEC5',
     text: '#FFFFFF',
-    textHover: '#99826f',
+    textHover: '#ccc0ae',
     textHardSelect: '#FEC66C',
     h1: '#FAFAFA',
     h2: '#F5F5F5',
@@ -40,7 +42,9 @@ const darkTheme = {
     h4: '#E0E0E0',
     h5: '#BDBDBD',
     h6: '#9E9E9E',
-    softWarning: '#FDEDEC'
+    softWarning: '#FDEDEC',
+    searchbar: '#616161',
+    searchbarBorder: '#424242'
   }
 };
 
