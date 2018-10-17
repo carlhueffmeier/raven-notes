@@ -20,6 +20,9 @@ const Img = styled('img')`
   height: 20px;
   margin-right: 10px;
   vertical-align: middle;
+  background-color: ${props => props.theme.colors.primary};
+  border-radius: 50px;
+  border: 1px solid ${props => props.theme.colors.primary};
 `;
 
 export { Container, H3, Img };
