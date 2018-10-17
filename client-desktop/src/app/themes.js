@@ -31,7 +31,7 @@ const darkTheme = {
     quote: '#000000',
     quoteBorder: '#B0BEC5',
     text: '#FFFFFF',
-    textHover: 'peachpuff',
+    textHover: '#99826f',
     textHardSelect: '#F5F5F5',
     h1: '#FAFAFA',
     h2: '#F5F5F5',
