@@ -5,6 +5,7 @@ import { lightTheme } from './themes';
 import { PersistGate } from 'redux-persist/integration/react';
 import { ThemeProvider } from 'emotion-theming';
 import { Header } from './styles';
+import ModalsContainer from './containers/ModalsContainer';
 import LayoutContainer from './containers/LayoutContainer';
 import LayoutSwitch from './components/LayoutSwitch';
 import SigninPlease from './containers/SigninPlease';
@@ -34,6 +35,7 @@ class App extends Component {
         <ThemeProvider theme={lightTheme}>
           <SigninPlease>
             <Header />
+            <ModalsContainer />
             <LayoutSwitch />
             <LayoutContainer />
           </SigninPlease>

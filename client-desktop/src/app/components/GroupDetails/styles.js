@@ -1,6 +1,6 @@
 import styled from 'react-emotion';
 
-const AddMembersContainer = styled('div')`
+const Container = styled('div')`
   padding: 0 15px;
   padding-top: 20px;
   margin: 0;
@@ -9,7 +9,7 @@ const AddMembersContainer = styled('div')`
 const Group = styled('div')`
   height: 1.5rem;
   font-weight: 500;
-  font-size: 0.8em;
+  font-size: ${props => (props.large ? '1.5rem' : '0.8rem')};
   margin-bottom: 5px;
 `;
 
@@ -24,11 +24,12 @@ const Members = styled('div')`
   flex-direction: row;
   justify-content: space-evenly;
   font-size: 1.2em;
+  color: ${props => props.theme.colors.primary};
 `;
 
 const Button = styled('button')`
   cursor: pointer;
-  background-color: #fec66c;
+  background-color: ${props => props.theme.colors.primary};
   border-radius: 50px;
   border: none;
   height: 20px;
@@ -37,9 +38,9 @@ const Button = styled('button')`
   text-transform: uppercase;
   font-weight: 600;
   font-size: 0.7em;
-  : focus {
+  :focus {
     outline: none;
   }
 `;
 
-export { AddMembersContainer, MembersButtonContainer, Group, Members, Button };
+export { Container, MembersButtonContainer, Group, Members, Button };

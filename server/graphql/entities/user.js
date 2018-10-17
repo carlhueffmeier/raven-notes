@@ -27,6 +27,11 @@ exports.typeDef = gql`
     memberOf: [Group!]!
   }
 
+  input UserWhereUniqueInput {
+    id: ID
+    email: String
+  }
+
   type UserSigninResponse {
     token: String
   }
@@ -64,9 +69,10 @@ const signup = async (_, { data: { email, name, password } }, { db }) => {
     name,
     password: await bcrypt.hash(password, 10)
   });
+  // Create a default group
   await db.group.create(
     {
-      name: 'My first workspace 🎊'
+      name: 'My first workspace'
     },
     newUser
   );

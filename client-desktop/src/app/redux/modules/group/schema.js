@@ -9,4 +9,8 @@ const createGroupResponseSchema = {
   createGroup: groupSchema
 };
 
-export { createGroupResponseSchema };
+const addMemberResponseSchema = {
+  addMemberToGroup: groupSchema
+};
+
+export { createGroupResponseSchema, addMemberResponseSchema };

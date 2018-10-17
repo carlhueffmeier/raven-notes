@@ -28,9 +28,6 @@ const POLL_INTERVAL = 1000 * 10; // 10s
 function* fetchNotes() {
   try {
     const response = yield call([graphqlClient, 'request'], ALL_NOTES_QUERY);
-    graphqlClient.request(ALL_NOTES_QUERY);
-    // ⚠️ Caution: Necessary change for local / mock api
-    // const normalizedData = normalize(response, MOCK__fetchNotesResponseSchema);
     const normalizedData = normalize(response, fetchNotesResponseSchema);
     yield put(actions.fetchNotesSuccess(normalizedData));
   } catch (error) {

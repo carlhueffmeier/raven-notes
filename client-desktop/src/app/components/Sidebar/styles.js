@@ -6,33 +6,38 @@ const SidebarContainer = styled('div')`
   overflow: auto;
   background-color: ${props => props.theme.colors.primary};
 `;
+
 const H3 = styled('h3')`
   color: #778899;
   font-weight: 500;
   font-size: 0.9em;
   margin: 0;
   text-align: left;
+  height: 100%;
+  padding: 0.8rem;
+  background-color: ${props => props.theme.colors.secondary};
 `;
 
-const SName = styled('div')`
+const SectionTitle = styled('div')`
   font-size: 0.8em;
   font-weight: 500;
   color: #778899;
-  margin-bottom: 1vh;
+  text-transform: uppercase;
 `;
 
-const USection = styled('div')`
-  font-weight: 600;
-  padding: 1vh;
-`;
-
-const GSection = styled('div')`
+const GroupSection = styled('div')`
   font-weight: 500;
   color: #333;
-  padding: 1vh;
+  margin-top: 1.5rem;
 `;
 
-const Sect = styled('div')`
+const GroupSectionHeader = styled('div')`
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+`;
+
+const GroupListItem = styled('div')`
   margin: 4px;
   max-width: auto;
   font-size: 0.8em;
@@ -51,19 +56,9 @@ const Sect = styled('div')`
     transform: rotateZ(360deg);
   }
   & img {
-    ${props =>
-      props.color
-        ? `
-            filter: brightness(1.5);
-          `
-        : null};
+    ${props => props.selected && `filter: brightness(1.5)`};
   }
-  ${props =>
-    props.color
-      ? `
-          color: ${props.color};
-        `
-      : null};
+  ${props => props.selected && `color: ${props.theme.colors.primary}`};
 `;
 
 const SearchBox = styled('input')`
@@ -104,36 +99,36 @@ const Button = styled('button')`
   }
 `;
 
-const Img = styled('img')`
-  height: 20px;
-  margin-right: 10px;
-  vertical-align: middle;
-`;
-
 const GroupInitial = styled('div')`
   width: 20px;
   height: 20px;
   padding: 5px;
   margin-right: 10px;
-  background-color: #fec66c;
+  background-color: ${props => props.theme.colors.primary};
   border-radius: 50%;
   text-align: center;
   font-size: 0.8em;
   font-weight: 600;
   min-width: 20px;
   color: black;
-  & p {
+  & > p {
     margin: 0;
     line-height: 12px;
   }
 `;
 
-const ButtonAddGroup = styled('div')`
-  // width: 25px;
-  // height: 25px;
-  line-height: 13px;
+const AddGroupButton = styled('button')`
+  background: transparent;
   border: none;
-  margin-left: 20px;
+  padding: 0 5px;
+  height: 1.5rem;
+  width: 1.5rem;
+  margin-left: 8px;
+  cursor: pointer;
+  &:active,
+  &:focus {
+    outline: none;
+  }
 `;
 
 const ButtonAddImg = styled('img')`
@@ -142,16 +137,14 @@ const ButtonAddImg = styled('img')`
 
 export {
   SidebarContainer,
-  SName,
-  USection,
-  GSection,
-  Sect,
-  H3,
+  SectionTitle,
+  GroupSection,
+  GroupSectionHeader,
+  GroupListItem,
   SearchBox,
   Button,
-  Img,
   GroupInitial,
   GroupName,
-  ButtonAddGroup,
+  AddGroupButton,
   ButtonAddImg
 };
