@@ -1,6 +1,18 @@
 import styled from 'react-emotion';
 
 const SidebarContainer = styled('div')`
+  height: 100vh;
+  padding: 25px 15px 0 15px;
+  overflow: auto;
+  background-color: ${props => props.theme.colors.primary};
+`;
+
+const H3 = styled('h3')`
+  color: #778899;
+  font-weight: 500;
+  font-size: 0.9em;
+  margin: 0;
+  text-align: left;
   height: 100%;
   padding: 0.8rem;
   background-color: ${props => props.theme.colors.secondary};
