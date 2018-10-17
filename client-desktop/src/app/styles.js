@@ -3,7 +3,7 @@ import styled from 'react-emotion';
 
 injectGlobal`
   html {
-    overflow: hidden
+    overflow: hidden;
   }
   body {
     margin: 0;
