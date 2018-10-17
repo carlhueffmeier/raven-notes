@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { object } from 'prop-types';
-import { lightTheme } from './themes';
+import { lightTheme, darkTheme } from './themes';
 import { PersistGate } from 'redux-persist/integration/react';
 import { ThemeProvider } from 'emotion-theming';
 import { Header } from './styles';
@@ -32,7 +32,7 @@ class App extends Component {
     const { persistor } = this.props;
     return (
       <PersistGate loading={null} persistor={persistor} onBeforeLift={this.onBeforeLift}>
-        <ThemeProvider theme={lightTheme}>
+        <ThemeProvider theme={darkTheme}>
           <SigninPlease>
             <Header />
             <ModalsContainer />
