@@ -5,11 +5,10 @@ const Container = styled('div')`
   align-items: center;
   max-height: 50px;
   padding: 30px 15px 0 15px;
-
 `;
 
 const H3 = styled('h3')`
-  color: #778899;
+  color: ${props => props.theme.colors.h3};
   font-weight: 500;
   font-size: 0.9em;
   margin: 0;

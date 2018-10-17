@@ -6,7 +6,7 @@ const NoteListContainer = styled('div')`
   height: calc(100vh - 25px);
   border-right: 0.4px solid rgba(119, 136, 153, 0.8);
   padding-top: 5px;
-  background: #fff;
+  background-color: ${props => props.theme.colors.plight};
 `;
 
 const SingleNoteContainer = styled('div')`
@@ -73,7 +73,7 @@ const Body = styled('div')`
   max-width: 150px;
   font-size: 0.8em;
   font-weight: 400;
-  color: rgba(0, 0, 0, 0.5);
+  color: ${props => props.theme.colors.pdark};
   overflow: hidden;
   white-space: no-wrap;
   text-overflow: ellipsis;
@@ -106,7 +106,7 @@ const RowBody = styled(Body)`
 `;
 
 const SnippetFail = styled('span')`
-  color: crimson;
+  color: ${props => props.theme.colors.softWarning};
   opacity: 0.7;
   transition: all 0.3s linear;
 `;

@@ -12,29 +12,29 @@ const User = styled('div')`
 `;
 const Quote = styled('blockquote')`
   background: #f9f9f9;
-  border-left: 10px solid #ccc;
+  border-left: 10px solid ${props => props.theme.colors.pdark};
   margin: 1.5em 10px;
   padding: 0.5em 10px;
   font-family: 'Space Mono', monospace;
   font-size: 0.8em;
 `;
 const H1 = styled('h1')`
-  color: #2f4f4f;
+  color: ${props => props.theme.colors.h1};
 `;
 const H2 = styled('h2')`
-  color: #708090;
+  color: ${props => props.theme.colors.h2};
 `;
 const H3 = styled('h3')`
-  color: #778899;
+  color: ${props => props.theme.colors.h3};
 `;
 const H4 = styled('h4')`
-  color: #696969;
+  color: ${props => props.theme.colors.h4};
 `;
 const H5 = styled('h5')`
-  color: #808080;
+  color: ${props => props.theme.colors.h5};
 `;
 const H6 = styled('h6')`
-  color: #a9a9a9;
+  color: ${props => props.theme.colors.h6};
 `;
 
 const List = styled('li')`
@@ -43,7 +43,6 @@ const List = styled('li')`
 
 const Code = styled('code')`
   padding: 5px;
-  background: lavender;
 `;
 
 const Raven = styled('div')`

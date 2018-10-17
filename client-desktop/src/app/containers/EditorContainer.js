@@ -4,16 +4,7 @@ import { actions as editorActions, selectors as noteSelectors } from '../redux/m
 import { selectors as currentNoteSelectors } from '../redux/modules/currentNote';
 import { selectors as authenticationSelectors } from '../redux/modules/authentication';
 import Editor from '../components/Editor';
-import styled from 'react-emotion';
-
-const NoSelection = styled('div')`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2rem;
-  height: 100%;
-  color: darkgrey;
-`;
+import NoNoteSelected from '../components/NoNoteSelected/index';
 
 class EditorContainer extends Component {
   render() {
@@ -21,12 +12,7 @@ class EditorContainer extends Component {
     return currentNote ? (
       <Editor content={editorContent} onChange={updateEditorContent} readOnly={!isAuthor} />
     ) : (
-      <NoSelection>
-        No note selected{' '}
-        <span role="img" aria-labelledby="babychick">
-          🐣
-        </span>
-      </NoSelection>
+      <NoNoteSelected />
     );
   }
 }
