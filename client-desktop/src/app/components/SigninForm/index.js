@@ -8,6 +8,7 @@ import {
   ButtonWrapper,
   FormError
 } from '../../shared/formStyles';
+import { isValidEmail, isValidPassword } from '../../lib/formUtils';
 
 class SigninForm extends Component {
   static propTypes = {
@@ -32,9 +33,7 @@ class SigninForm extends Component {
 
   isValid() {
     const { email, password } = this.state;
-    const validEmailRegEx = /[a-z]+@[a-z]+.[a-z]+/i;
-    console.log(validEmailRegEx.test(email));
-    return validEmailRegEx.test(email) && password.length > 3;
+    return isValidEmail(email) && isValidPassword(password);
   }
 
   render() {
@@ -66,7 +65,7 @@ class SigninForm extends Component {
           showValidationHints
         />
 
-        {error && <FormError>{error.message}</FormError>}
+        {error && <FormError>{error}</FormError>}
 
         <ButtonWrapper>
           <Button

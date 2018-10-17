@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { shape, string, func } from 'prop-types';
-import { Container, Img, H3, SignoutButton } from './styles';
+import { Container, Img, H3 } from './styles';
 import defaultAvatar from '../../../assets/man.svg';
 
 class UserBadge extends Component {
@@ -12,16 +12,11 @@ class UserBadge extends Component {
   };
 
   render() {
-    const { user, signout } = this.props;
+    const { user } = this.props;
     return (
       <Container>
         <Img src={defaultAvatar} />
         <H3>{user && user.name}</H3>
-        <SignoutButton onClick={signout}>
-          <span role="img" aria-labelledby="bye">
-            👋
-          </span>
-        </SignoutButton>
       </Container>
     );
   }

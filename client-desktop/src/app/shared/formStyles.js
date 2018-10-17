@@ -23,7 +23,7 @@ const Input = styled('input')`
   border: none;
   padding: 0.5em 1.5em 1.5em 0.8em;
   border-bottom: 1.2px solid ${props => props.theme.colors.pdark};
-  text-transform: uppercase;
+  font-size: 0.8em;
   :focus {
     outline: none;
   }
@@ -62,6 +62,7 @@ const FormError = styled('span')`
   background: ${props => props.theme.colors.secondary};
   color: ${props => props.theme.colors.softWarning}
   padding: 0.5rem;
+  margin: 1rem;
 `;
 
 export { StyledSigninForm, Input, Button, SigninText, ButtonWrapper, FormError };

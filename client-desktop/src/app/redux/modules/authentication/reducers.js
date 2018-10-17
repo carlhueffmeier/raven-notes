@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
 import storage from '../../storage';
 import { FETCH_CURRENT_USER, SIGNIN, SIGNUP, SIGNOUT } from './types';
+import { createLoadingReducer, createErrorReducer } from '../../../lib/reduxUtils';
 
 const persistConfig = {
   key: 'authentication',
@@ -12,8 +13,13 @@ const persistConfig = {
 const rootReducer = combineReducers({
   me: currentUserReducer,
   authToken: authTokenReducer,
-  loading: loadingReducer,
-  error: errorReducer
+  loading: createLoadingReducer({
+    compositeTypes: [FETCH_CURRENT_USER, SIGNIN, SIGNUP]
+  }),
+  error: createErrorReducer({
+    compositeTypes: [FETCH_CURRENT_USER, SIGNIN, SIGNUP],
+    errorPath: ['response', 'errors', '0', 'message']
+  })
 });
 
 function currentUserReducer(state = null, action) {
@@ -40,42 +46,6 @@ function authTokenReducer(state = '', action) {
     case SIGNOUT: {
       return '';
     }
-    default:
-      return state;
-  }
-}
-
-function loadingReducer(state = false, action) {
-  switch (action.type) {
-    case FETCH_CURRENT_USER.START:
-    case SIGNIN.START:
-    case SIGNUP.START:
-      return true;
-    case FETCH_CURRENT_USER.SUCCESS:
-    case SIGNIN.SUCCESS:
-    case SIGNUP.SUCCESS:
-    case FETCH_CURRENT_USER.ERROR:
-    case SIGNIN.ERROR:
-    case SIGNUP.ERROR:
-      return false;
-    default:
-      return state;
-  }
-}
-
-function errorReducer(state = null, action) {
-  switch (action.type) {
-    case FETCH_CURRENT_USER.START:
-    case SIGNIN.START:
-    case SIGNUP.START:
-    case FETCH_CURRENT_USER.SUCCESS:
-    case SIGNIN.SUCCESS:
-    case SIGNUP.SUCCESS:
-      return null;
-    case FETCH_CURRENT_USER.ERROR:
-    case SIGNIN.ERROR:
-    case SIGNUP.ERROR:
-      return action.error;
     default:
       return state;
   }

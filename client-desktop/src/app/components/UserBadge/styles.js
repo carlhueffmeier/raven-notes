@@ -3,6 +3,8 @@ import styled from 'react-emotion';
 const Container = styled('div')`
   display: flex;
   align-items: center;
+  max-height: 50px;
+  padding: 30px 15px 0 15px;
 `;
 
 const H3 = styled('h3')`
@@ -11,6 +13,7 @@ const H3 = styled('h3')`
   font-size: 0.9em;
   margin: 0;
   text-align: center;
+  text-transform: capitalize;
 `;
 
 const Img = styled('img')`
@@ -19,16 +22,4 @@ const Img = styled('img')`
   vertical-align: middle;
 `;
 
-const SignoutButton = styled('button')`
-  font-size: 1rem;
-  margin-left: 1rem;
-  background: transparent;
-  cursor: pointer;
-  border: none;
-  &:active,
-  &:focus {
-    outline: none;
-  }
-`;
-
-export { Container, H3, Img, SignoutButton };
+export { Container, H3, Img };

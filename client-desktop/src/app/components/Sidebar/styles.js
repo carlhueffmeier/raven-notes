@@ -1,10 +1,11 @@
 import styled from 'react-emotion';
 
 const SidebarContainer = styled('div')`
+  display: flex;
   height: 100vh;
-  padding: 25px 15px 0 15px;
   overflow: auto;
   background-color: ${props => props.theme.colors.secondary};
+  flex-flow: column wrap;
 `;
 
 const SectionTitle = styled('div')`
@@ -15,6 +16,7 @@ const SectionTitle = styled('div')`
 `;
 
 const GroupSection = styled('div')`
+  padding: 0 15px;
   font-weight: 500;
   color: ${props => props.theme.colors.pdark};
   margin-top: 1.5rem;
@@ -124,6 +126,20 @@ const ButtonAddImg = styled('img')`
   width: 15px;
 `;
 
+const ButtonSignOut = styled('button')`
+  margin-top: auto;
+  height: 40px;
+  width: 150px;
+  border: none;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 0.8em;
+  background-color: ${props => props.theme.colors.primary};
+  :focus {
+    outline: 0;
+  }
+`;
+
 export {
   SidebarContainer,
   SectionTitle,
@@ -135,5 +151,6 @@ export {
   GroupInitial,
   GroupName,
   AddGroupButton,
-  ButtonAddImg
+  ButtonAddImg,
+  ButtonSignOut
 };

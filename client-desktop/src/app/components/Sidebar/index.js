@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { shape, string, func } from 'prop-types';
+
 import {
   SidebarContainer,
   SectionTitle,
@@ -7,14 +9,22 @@ import {
   GroupListItem,
   GroupInitial,
   AddGroupButton,
-  ButtonAddImg
+  ButtonAddImg,
+  ButtonSignOut
 } from './styles';
 import addIcon from '../../../assets/plus.svg';
 import UserBadgeContainer from '../../containers/UserBadgeContainer';
 
 class Sidebar extends Component {
+  static propTypes = {
+    signout: func,
+    user: shape({
+      name: string
+    })
+  };
+
   render() {
-    const { groups, currentGroupId, selectGroup, showAddGroupDialog } = this.props;
+    const { groups, currentGroupId, selectGroup, showAddGroupDialog, signout } = this.props;
     return (
       <SidebarContainer>
         <UserBadgeContainer />
@@ -40,6 +50,8 @@ class Sidebar extends Component {
             </GroupListItem>
           ))}
         </GroupSection>
+
+        <ButtonSignOut onClick={signout}>Sign Out</ButtonSignOut>
       </SidebarContainer>
     );
   }
