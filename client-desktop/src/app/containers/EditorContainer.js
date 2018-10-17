@@ -20,7 +20,12 @@ class EditorContainer extends Component {
     return currentNote ? (
       <Editor content={this.props.editorContent} onChange={this.props.updateEditorContent} />
     ) : (
-      <NoSelection>No note selected 🐣</NoSelection>
+      <NoSelection>
+        No note selected{' '}
+        <span role="img" aria-labelledby="babychick">
+          🐣
+        </span>
+      </NoSelection>
     );
   }
 }

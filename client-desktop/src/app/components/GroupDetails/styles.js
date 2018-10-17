@@ -9,7 +9,7 @@ const Container = styled('div')`
 const Group = styled('div')`
   height: 1.5rem;
   font-weight: 500;
-  font-size: 0.8em;
+  font-size: ${props => (props.large ? '1.5rem' : '0.8rem')};
   margin-bottom: 5px;
 `;
 
@@ -24,11 +24,12 @@ const Members = styled('div')`
   flex-direction: row;
   justify-content: space-evenly;
   font-size: 1.2em;
+  color: ${props => props.theme.colors.primary};
 `;
 
 const Button = styled('button')`
   cursor: pointer;
-  background-color: #fec66c;
+  background-color: ${props => props.theme.colors.primary};
   border-radius: 50px;
   border: none;
   height: 20px;

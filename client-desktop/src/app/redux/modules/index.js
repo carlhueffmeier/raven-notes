@@ -1,16 +1,16 @@
 import { combineReducers } from 'redux';
 import { all, call } from 'redux-saga/effects';
+import { createReducer as createAppReducer } from './app';
+import authenticationReducer, { sagas as authenticationSaga } from './authentication';
 import noteReducer, { sagas as noteSaga } from './note';
 import userReducer from './user';
-import groupReducer from './group';
-import authenticationReducer, { sagas as authenticationSaga } from './authentication';
+import groupReducer, { sagas as groupSaga } from './group';
 import editorReducer from './editor';
 import layoutReducer from './layout';
 import searchReducer from './search';
 import currentNoteReducer, { sagas as currentNoteSaga } from './currentNote';
-import { sagas as groupSaga } from './group';
 import currentGroupReducer from './currentGroup';
-import { createReducer as createAppReducer } from './app';
+import modalsReducer from './modals';
 
 const rootReducer = combineReducers({
   authentication: authenticationReducer,
@@ -24,7 +24,8 @@ const rootReducer = combineReducers({
     currentGroup: currentGroupReducer,
     editor: editorReducer,
     layout: layoutReducer,
-    search: searchReducer
+    search: searchReducer,
+    modals: modalsReducer
   })
 });
 

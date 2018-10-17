@@ -23,7 +23,7 @@ const Input = styled('input')`
   background-color: transparent;
   color: black;
   border: none;
-  border-bottom: 1.2px solid #fec66c;
+  border-bottom: 1.2px solid ${props => props.theme.colors.primary};
   font-size: 2rem;
   padding: 5px;
   :focus {
@@ -44,7 +44,7 @@ const SubmitButton = styled('button')`
     outline: none;
   }
   margin: 20px;
-  background-color: #fec66c;
+  background-color: ${props => props.theme.colors.primary};
 `;
 
 export { StyledForm, SubmitButton, Input, InputContainer };

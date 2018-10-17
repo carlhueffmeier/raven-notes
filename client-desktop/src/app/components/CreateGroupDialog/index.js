@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { bool } from 'prop-types';
+import { bool, func } from 'prop-types';
 import ModalDialog from '../ModalDialog';
 import idea from '../../../assets/idea.svg';
 import { Title } from './styles';
@@ -7,7 +7,8 @@ import CreateGroupContainer from '../../containers/CreateGroupContainer';
 
 class CreateGroupDialog extends Component {
   static propTypes = {
-    isVisible: bool
+    isVisible: bool,
+    onDismiss: func
   };
 
   render() {

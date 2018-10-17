@@ -1,34 +1,28 @@
 import React, { Component } from 'react';
 import { Container, MembersButtonContainer, Group, Members, Button } from './styles';
-import AddMemberDialog from '../AddMemberDialog';
+import { SizeMe } from 'react-sizeme';
 
 class GroupDetails extends Component {
-  state = {
-    popped: false
-  };
-
-  handlePop = () => {
-    this.setState({ popped: !this.state.popped });
-  };
-
   render() {
-    const { popped } = this.state;
-    const { name, members } = this.props.currentGroup;
+    const { currentGroup: { name, members } = {}, showAddMemberDialog } = this.props;
     return (
-      <Container>
-        <AddMemberDialog isVisible={popped} onDismiss={this.handlePop} />
-        <Group>{name}</Group>
-        <MembersButtonContainer>
-          <Members>
-            {members
-              ? members.length > 1
-                ? members.length + ' Members'
-                : members.length + ' Member'
-              : 0 + ' Members'}
-          </Members>
-          <Button onClick={this.handlePop}>Add Member</Button>
-        </MembersButtonContainer>
-      </Container>
+      <SizeMe>
+        {({ size }) => (
+          <Container>
+            <Group large={size.width > 300}>{name}</Group>
+            <MembersButtonContainer>
+              <Members>
+                {members
+                  ? members.length > 1
+                    ? members.length + ' Members'
+                    : members.length + ' Member'
+                  : 0 + ' Members'}
+              </Members>
+              <Button onClick={showAddMemberDialog}>Add Member</Button>
+            </MembersButtonContainer>
+          </Container>
+        )}
+      </SizeMe>
     );
   }
 }

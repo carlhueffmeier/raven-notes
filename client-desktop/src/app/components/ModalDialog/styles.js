@@ -50,7 +50,7 @@ const Input = styled('input')`
   background-color: transparent;
   color: black;
   border: none;
-  border-bottom: 1.2px solid #fec66c;
+  border-bottom: 1.2px solid ${props => props.theme.colors.primary};
   padding: 5px;
   font-size: 1.4em;
   font-weight: 400;
@@ -72,7 +72,7 @@ const ButtonPop = styled('button')`
     outline: none;
   }
   margin: 20px;
-  background-color: #fec66c;
+  background-color: ${props => props.theme.colors.primary};
 `;
 
 export {

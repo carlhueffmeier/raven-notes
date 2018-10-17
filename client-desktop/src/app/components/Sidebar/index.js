@@ -1,85 +1,45 @@
 import React, { Component } from 'react';
 import {
   SidebarContainer,
-  H3,
-  SName,
-  USection,
-  GSection,
-  Sect,
-  Img,
+  SectionTitle,
+  GroupSection,
+  GroupSectionHeader,
+  GroupListItem,
   GroupInitial,
-  ButtonAddGroup,
+  AddGroupButton,
   ButtonAddImg
 } from './styles';
-
-import notes from '../../../assets/paper-plane.svg';
-import extracts from '../../../assets/origami.svg';
-import defaultAvatar from '../../../assets/man.svg';
-import add from '../../../assets/plus.svg';
-
-import { withTheme } from 'emotion-theming';
-import CreateGroupDialog from '../CreateGroupDialog';
+import addIcon from '../../../assets/plus.svg';
+import UserBadgeContainer from '../../containers/UserBadgeContainer';
 
 class Sidebar extends Component {
-  state = {
-    input: '',
-    popped: false
-  };
-
-  handlePop = () => {
-    this.setState({ popped: !this.state.popped });
-  };
-
   render() {
-    const { popped } = this.state;
-    const { groups, selectGroup, user, privateGroup } = this.props;
+    const { groups, currentGroupId, selectGroup, showAddGroupDialog } = this.props;
     return (
       <SidebarContainer>
-        <H3>
-          <Img src={defaultAvatar} />
-          {user && user.name}
-        </H3>
+        <UserBadgeContainer />
 
-        <USection>
-          <SName>PRIVATE</SName>
-          <Sect onClick={() => selectGroup(privateGroup.id)}>
-            <Img src={notes} />
-            All Notes
-          </Sect>
-          <Sect onClick={() => console.log('this is to show extracts')}>
-            <Img src={extracts} />
-            Extracts
-          </Sect>
-        </USection>
-
-        <GSection>
-          <div style={{ display: 'flex' }}>
-            <SName>WORKSPACE</SName>
-
-            <ButtonAddGroup onClick={this.handlePop}>
-              <ButtonAddImg alt="add" src={add} />
-            </ButtonAddGroup>
-          </div>
-
-          <CreateGroupDialog isVisible={popped} onDismiss={this.handlePop} />
+        <GroupSection>
+          <GroupSectionHeader>
+            <SectionTitle>Workspace</SectionTitle>
+            <AddGroupButton onClick={showAddGroupDialog}>
+              <ButtonAddImg alt="add" src={addIcon} />
+            </AddGroupButton>
+          </GroupSectionHeader>
 
           {groups.map(group => (
-            <Sect
+            <GroupListItem
               key={group.id}
               onClick={() => selectGroup(group.id)}
-              color={
-                this.props.currentGroupId === group.id
-                  ? this.props.theme.colors.textHardSelect
-                  : null
-              }
+              selected={group.id === currentGroupId}
             >
               <GroupInitial>
-                <p>{group.name.slice(0, 1)}</p>
+                <p>{group.name && group.name.slice(0, 1)}</p>
               </GroupInitial>
-              <p>{group.name}</p>
-            </Sect>
+              <span>{group.name}</span>
+            </GroupListItem>
           ))}
-        </GSection>
+        </GroupSection>
       </SidebarContainer>
     );
   }
