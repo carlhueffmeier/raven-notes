@@ -12,6 +12,7 @@ const SigninText = styled('div')`
   font-size: 1.6em;
   font-weight: 300;
   margin-bottom: 5vh;
+  color: ${props => props.theme.colors.text}
 `;
 
 const Input = styled('input')`
@@ -46,6 +47,7 @@ const Button = styled('button')`
   font-size: 0.6em;
   cursor: pointer;
   border-radius: 10px;
+  color: ${props => props.theme.colors.text};
   :focus {
     outline: none;
   }
