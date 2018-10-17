@@ -2,6 +2,7 @@ const { gql, AuthenticationError } = require('apollo-server-express');
 const bcrypt = require('bcryptjs');
 const { asyncRandomBytes, generateToken } = require('../../lib/utils');
 const { sendResetMail } = require('../../lib/mail');
+const welcomePage = require('../../data/welcome-page.json');
 
 exports.typeDef = gql`
   extend type Query {
@@ -70,9 +71,17 @@ const signup = async (_, { data: { email, name, password } }, { db }) => {
     password: await bcrypt.hash(password, 10)
   });
   // Create a default group
-  await db.group.create(
+  const defaultGroup = await db.group.create(
     {
       name: 'My first workspace'
+    },
+    newUser
+  );
+  // Add welcome page 🦋
+  await db.note.create(
+    {
+      group: defaultGroup.id,
+      ...welcomePage
     },
     newUser
   );
