@@ -39,7 +39,7 @@ const SubContainer = styled('div')`
 `;
 
 const Day = styled('div')`
-  margin-top: 10px;
+  margin-top: 5px;
   justify-content: center;
   font-size: 0.8em;
   font-weight: 400;
