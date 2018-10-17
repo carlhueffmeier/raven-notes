@@ -16,8 +16,7 @@ const SectionTitle = styled('div')`
 `;
 
 const GroupSection = styled('div')`
-padding: 5px 15px 0 15px;
-
+  padding: 0 15px;
   font-weight: 500;
   color: #333;
   margin-top: 1.5rem;
@@ -129,11 +128,11 @@ const ButtonAddImg = styled('img')`
 
 const ButtonSignOut = styled('button')`
   margin-top: auto;
-  height: 30px;
+  height: 40px;
   width: 150px;
   border: none;
   cursor: pointer;
-  font-weight: 500;
+  font-weight: 400;
   font-size: .8em;
   background-color: ${props => props.theme.colors.primary};
   :focus {

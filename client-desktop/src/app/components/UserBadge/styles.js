@@ -22,16 +22,4 @@ const Img = styled('img')`
   vertical-align: middle;
 `;
 
-const SignoutButton = styled('button')`
-  font-size: 1rem;
-  margin-left: 1rem;
-  background: transparent;
-  cursor: pointer;
-  border: none;
-  &:active,
-  &:focus {
-    outline: none;
-  }
-`;
-
-export { Container, H3, Img, SignoutButton };
+export { Container, H3, Img };
