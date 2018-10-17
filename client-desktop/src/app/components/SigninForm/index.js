@@ -5,7 +5,8 @@ import {
   Input,
   Button,
   SigninText,
-  ButtonWrapper
+  ButtonWrapper,
+  FormError
 } from '../../shared/formStyles';
 
 class SigninForm extends Component {
@@ -29,7 +30,15 @@ class SigninForm extends Component {
     });
   };
 
+  isValid() {
+    const { email, password } = this.state;
+    const validEmailRegEx = /[a-z]+@[a-z]+.[a-z]+/i;
+    console.log(validEmailRegEx.test(email));
+    return validEmailRegEx.test(email) && password.length > 3;
+  }
+
   render() {
+    const { loading, error } = this.props;
     return (
       <StyledSigninForm onSubmit={this.handleSubmit}>
         <SigninText>
@@ -39,13 +48,25 @@ class SigninForm extends Component {
           </span>
         </SigninText>
 
-        <Input name="email" onChange={this.handleFormChange} type="email" placeholder="Email" />
+        <Input
+          name="email"
+          onChange={this.handleFormChange}
+          type="email"
+          placeholder="Email"
+          required
+          showValidationHints
+        />
         <Input
           name="password"
           onChange={this.handleFormChange}
           type="password"
           placeholder="Password"
+          minLength="3"
+          required
+          showValidationHints
         />
+
+        {error && <FormError>{error.message}</FormError>}
 
         <ButtonWrapper>
           <Button
@@ -58,7 +79,7 @@ class SigninForm extends Component {
               😱
             </span>
           </Button>
-          <Button>
+          <Button disabled={loading || !this.isValid()}>
             Sign in
             <span role="img" aria-label="spaceship">
               🚀

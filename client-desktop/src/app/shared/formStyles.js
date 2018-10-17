@@ -27,6 +27,9 @@ const Input = styled('input')`
   :focus {
     outline: none;
   }
+  :valid {
+    ${props => props.showValidationHints && `border-color: #3f51b5`};
+  }
 `;
 
 const ButtonWrapper = styled('div')`
@@ -54,4 +57,11 @@ const Button = styled('button')`
   }
 `;
 
-export { StyledSigninForm, Input, Button, SigninText, ButtonWrapper };
+const FormError = styled('span')`
+  font-size: 0.8rem;
+  background: #eaeaea;
+  color: #ff5722;
+  padding: 0.5rem;
+`;
+
+export { StyledSigninForm, Input, Button, SigninText, ButtonWrapper, FormError };
