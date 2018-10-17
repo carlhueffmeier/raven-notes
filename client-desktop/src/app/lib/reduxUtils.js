@@ -43,7 +43,7 @@ function createLoadingReducer({ compositeTypes }) {
   const errorTypes = compositeTypes.map(prop('ERROR'));
   const resetLoadingTypes = [...successTypes, ...errorTypes];
 
-  return function errorReducer(state = null, action) {
+  return function loadingReducer(state = false, action) {
     if (startTypes.includes(action.type)) {
       return true;
     }
