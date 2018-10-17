@@ -48,7 +48,7 @@ const Input = styled('input')`
   display: flex;
   flex-direction: row;
   background-color: transparent;
-  color: black;
+  color: ${props => props.theme.colors.text};
   border: none;
   border-bottom: 1.2px solid ${props => props.theme.colors.primary};
   padding: 5px;
@@ -66,7 +66,7 @@ const ButtonPop = styled('button')`
   font-weight: 800;
   font-size: 0.8em;
   cursor: pointer;
-  color: white;
+  color: ${props => props.theme.colors.plight};
   border-radius: 100px;
   :focus {
     outline: none;

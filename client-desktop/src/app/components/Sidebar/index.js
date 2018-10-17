@@ -16,7 +16,6 @@ import addIcon from '../../../assets/plus.svg';
 import UserBadgeContainer from '../../containers/UserBadgeContainer';
 
 class Sidebar extends Component {
-
   static propTypes = {
     signout: func,
     user: shape({
