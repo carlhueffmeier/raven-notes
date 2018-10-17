@@ -1,13 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { actions as authenticationActions } from '../redux/modules/authentication';
+import {
+  actions as authenticationActions,
+  selectors as authenticationSelectors
+} from '../redux/modules/authentication';
 import SigninForm from '../components/SigninForm';
 
 class SigninContainer extends Component {
   render() {
-    const { signin, ...props } = this.props;
-    return <SigninForm onSubmit={signin} {...props} />;
+    const { signin, loading, error, ...props } = this.props;
+    return <SigninForm onSubmit={signin} {...props} loading={loading} error={error} />;
   }
+}
+
+function mapStateToProps(state) {
+  return {
+    loading: authenticationSelectors.getLoading(state),
+    error: authenticationSelectors.getError(state)
+  };
 }
 
 const mapDispatchToProps = {
@@ -15,6 +25,6 @@ const mapDispatchToProps = {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(SigninContainer);
