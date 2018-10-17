@@ -9,12 +9,13 @@ function createNoteModel({ user } = {}) {
     findOneAndUpdate
   };
 
-  async function create({ contentText, contentJson, group } = {}) {
-    if (!user) {
+  async function create({ contentText, contentJson, group } = {}, newUser) {
+    if (!user && !newUser) {
       throw new AuthenticationError('You have to authenticate to execute this query');
     }
+    const userId = newUser ? newUser.id : user.id;
     // Check whether user is member of group
-    const isAllowedToPost = user && (await user.hasMemberOf([group]));
+    const isAllowedToPost = newUser || (user && (await user.hasMemberOf([group])));
     if (!isAllowedToPost) {
       throw new AuthenticationError('You are not authorized to post in this group');
     }
@@ -23,7 +24,7 @@ function createNoteModel({ user } = {}) {
       contentJson: contentJson
     });
     // Set the author to the current user
-    newNote.setAuthor(user.id);
+    newNote.setAuthor(userId);
     if (group) {
       newNote.setGroup(group);
     } else {
