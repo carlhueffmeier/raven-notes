@@ -1,26 +1,22 @@
 import { injectGlobal } from 'emotion';
 import styled from 'react-emotion';
 
-function injectGlobalStyles({ background = '#FFF' } = {}) {
-  console.log(background);
-  return injectGlobal`
-    html {
-      overflow: hidden;
-      background: ${background};
-    }
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Montserrat', sans-serif;
-      width: 100%;
-    }
-    *,
-    *:before,
-    *:after {
-      box-sizing: border-box;
-    }
-  `;
-}
+injectGlobal`
+  html {
+    overflow: hidden;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    width: 100%;
+  }
+  *,
+  *:before,
+  *:after {
+    box-sizing: border-box;
+  }
+`;
 
 const Header = styled('header')`
   background-color: transparent;
@@ -37,4 +33,8 @@ const Header = styled('header')`
   font-weight: 600;
 `;
 
-export { Header, injectGlobalStyles };
+const AppContainer = styled('div')`
+  background-color: ${props => props.theme.colors.secondary};
+`;
+
+export { Header, AppContainer };

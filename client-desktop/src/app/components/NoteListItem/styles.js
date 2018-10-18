@@ -14,7 +14,6 @@ const SingleNoteContainer = styled('div')`
   margin-bottom: -12px;
   cursor: pointer;
   color: ${props => props.theme.colors.text};
-
 `;
 
 const SearchAndCreateContainer = styled('div')`
@@ -28,7 +27,7 @@ const SearchAndCreateContainer = styled('div')`
 `;
 
 const NoteListWrapper = styled('div')`
-  overflow-y: scroll;
+  overflow-y: auto;
   height: 100%;
   ::-webkit-scrollbar {
     width: 10px;
