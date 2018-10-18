@@ -31,9 +31,6 @@ class NoteList extends Component {
           ) : (
             <NoNotesMessage>
               <p className="text">No notes yet</p>
-              <span role="img" aria-labelledby="very sad">
-                😭
-              </span>
             </NoNotesMessage>
           )}
         </NoteListWrapper>

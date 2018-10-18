@@ -5,7 +5,7 @@ const lightTheme = {
     highlight: '#3A2401',
     plight: '#FFFFFF',
     pdark: '#C4C3C0',
-    quote: '#C4C3C0',
+    quote: '#232323',
     quoteBorder: '#C4C3C0',
     text: '#000000',
     textHover: '#735526',

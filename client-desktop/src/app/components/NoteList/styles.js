@@ -20,7 +20,7 @@ const SearchAndCreateContainer = styled('div')`
 `;
 
 const NoteListWrapper = styled('div')`
-  overflow-y: scroll;
+  overflow-y: auto;
   height: 100%;
   ::-webkit-scrollbar {
     width: 10px;
@@ -29,16 +29,18 @@ const NoteListWrapper = styled('div')`
 `;
 
 const NoNotesMessage = styled('div')`
-  font-size: 2rem;
+  font-size: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 50%;
+  height: 100%;
   min-height: 5rem;
   & > .text {
     color: ${props => props.theme.colors.text};
     opacity: 0.6;
     margin-right: 1rem;
+    position: relative;
+    top: -60px;
   }
 `;
 

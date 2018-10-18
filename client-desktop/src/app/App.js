@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { object } from 'prop-types';
 import { PersistGate } from 'redux-persist/integration/react';
 import { ThemeProvider } from 'emotion-theming';
-import { Header, injectGlobalStyles } from './styles';
+import { Header, AppContainer } from './styles';
 import ModalsContainer from './containers/ModalsContainer';
 import LayoutContainer from './containers/LayoutContainer';
 import LayoutSwitch from './components/LayoutSwitch';
@@ -38,17 +38,17 @@ class App extends Component {
 
   render() {
     const { persistor, currentTheme } = this.props;
-    console.log('aaaapp', currentTheme.colors.secondary);
-    injectGlobalStyles({ background: currentTheme.colors.secondary });
     return (
       <PersistGate loading={null} persistor={persistor} onBeforeLift={this.onBeforeLift}>
         <ThemeProvider theme={currentTheme}>
-          <SigninPlease>
-            <Header />
-            <ModalsContainer />
-            <LayoutSwitch />
-            <LayoutContainer />
-          </SigninPlease>
+          <AppContainer>
+            <SigninPlease>
+              <Header />
+              <ModalsContainer />
+              <LayoutSwitch />
+              <LayoutContainer />
+            </SigninPlease>
+          </AppContainer>
         </ThemeProvider>
       </PersistGate>
     );
