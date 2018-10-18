@@ -1,0 +1,14 @@
+{
+  "name": "raven-notes",
+  "alias": "raven-notes",
+  "env": {
+    "DATABASE_URL": "@raven-notes-database-url-prod",
+    "ENGINE_API_KEY": "@raven-notes-apollo-engine-api-key",
+    "APP_SECRET": "@raven-notes-app-secret",
+    "MAIL_HOST": "@raven-notes-mail-host",
+    "MAIL_PORT": "@raven-notes-mail-port",
+    "MAIL_USER": "@raven-notes-mail-user",
+    "MAIL_PASS": "@raven-notes-mail-pass",
+    "MAIL_FROM": "support@raven-notes.com"
+  }
+}

@@ -6,13 +6,14 @@ const SearchBox = styled('input')`
   border-radius: 20px;
   border: 0.5px solid ${props => props.theme.colors.searchbarBorder};
   background: ${props => props.theme.colors.searchbar};
-  transition: background 300ms ease-out;
+  transition: opacity 300ms cubic-bezier(0.19, 1, 0.22, 1);
   margin: 0 10px;
   padding: 5px;
   text-indent: 12px;
+  opacity: 0.4;
   :hover,
   :focus {
-    background-color: #fafafa;
+    opacity: 1;
     color: #000;
     outline: 0;
   }

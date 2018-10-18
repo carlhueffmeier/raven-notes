@@ -52,7 +52,10 @@ const apolloServer = new ApolloServer({
     noteResolvers,
     userResolvers
   ),
-  context: createContext
+  context: createContext,
+  engine: {
+    apiKey: process.env.ENGINE_API_KEY
+  }
 });
 
 module.exports = apolloServer;

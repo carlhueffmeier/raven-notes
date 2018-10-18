@@ -7,8 +7,10 @@ const NoSelection = styled('div')`
   font-size: 2rem;
   height: 100%;
   background-color: ${props => props.theme.colors.plight};
-  & p{
-    opacity: 0.4;
+  & > .text {
+    color: ${props => props.theme.colors.text};
+    opacity: 0.6;
+    margin-right: 1rem;
   }
 `;
 

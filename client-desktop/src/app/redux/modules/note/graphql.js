@@ -17,6 +17,11 @@ const NOTE_FRAGMENT = `
         email
         name
       }
+      admins {
+        id
+        name
+        email
+      }
     }
 `;
 
