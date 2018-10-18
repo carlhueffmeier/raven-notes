@@ -11,7 +11,11 @@ const PopUpClose = styled('div')`
   width: 1.8vw;
   height: 1.8vw;
   line-height: 1.8vw;
-  color: ${props => props.theme.colors.plight};
+  color: ${props => props.theme.colors.pdark};
+  transition: color 100ms;
+  :hover {
+    color: ${props => props.theme.colors.danger};
+  }
   & span {
     cursor: pointer;
     margin: 20px;
