@@ -4,7 +4,6 @@ import PopUp from 'react-base-popup';
 import { PopUpContainer, PopContentContainer, PopUpClose } from './styles';
 import { withTheme } from 'emotion-theming';
 
-
 class ModalDialog extends Component {
   static propTypes = {
     isVisible: bool
@@ -20,7 +19,8 @@ class ModalDialog extends Component {
           borderRadius: '30px',
           minHeight: '380px',
           height: '380',
-          backgroundColor: theme.colors.secondary }}
+          backgroundColor: theme.colors.secondary
+        }}
       >
         <PopUpContainer>
           <PopUpClose onClick={onDismiss}>
