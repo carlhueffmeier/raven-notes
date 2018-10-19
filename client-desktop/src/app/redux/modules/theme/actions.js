@@ -5,9 +5,8 @@ const changeTheme = themeId => ({
   payload: themeId
 });
 
-const toggleDarkMode = themeId => ({
-  type: types.TOGGLE_DARK_MODE,
-  payload: themeId
+const toggleDarkMode = () => ({
+  type: types.TOGGLE_DARK_MODE
 });
 
 export { changeTheme, toggleDarkMode };
