@@ -9,7 +9,6 @@
     "start": "node start.js",
     "deploy": "now --docker -e PORT=443 -e NODE_ENV=production && now alias"
   },
-  "license": "ISC",
   "dependencies": {
     "apollo-server-express": "^2.1.0",
     "bcryptjs": "^2.4.3",
@@ -24,6 +23,15 @@
     "nodemailer": "^4.6.8",
     "sequelize": "^4.39.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carlhueffmeier/raven-notes.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carlhueffmeier/raven-notes/issues"
+  },
+  "homepage": "https://github.com/carlhueffmeier/raven-notes#readme",
   "devDependencies": {
     "jest": "^23.6.0",
     "nodemon": "^1.18.4"

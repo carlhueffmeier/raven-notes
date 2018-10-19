@@ -38,12 +38,12 @@ function createContext({ req, res }) {
   };
 }
 
-// == Putting everything together ==
-// The ApolloServer constructor conveniently takes an array of
-// type definitions.
-// For the resolvers, we have to combine them via object deep merge.
-const apolloServer = new ApolloServer({
+// Putting everything together 🙆‍
+const apolloServerOptions = {
+  // The ApolloServer constructor conveniently takes an array of
+  // type definitions.
   typeDefs: [Query, Mutation, DateTime, JsonType, Group, Note, User],
+  // For the resolvers, we have to combine them via object deep merge.
   resolvers: merge(
     resolvers,
     dateTimeResolvers,
@@ -52,10 +52,16 @@ const apolloServer = new ApolloServer({
     noteResolvers,
     userResolvers
   ),
-  context: createContext,
-  engine: {
-    apiKey: process.env.ENGINE_API_KEY
-  }
-});
+  // The context can be provided as an object or a factory function
+  context: createContext
+};
+
+// Enable Apollo Engine integration if an API key is provided
+// Further information: https://www.apollographql.com/engine
+if (process.env.ENGINE_API_KEY) {
+  apolloServerOptions.engine = { apiKey: process.env.ENGINE_API_KEY };
+}
+
+const apolloServer = new ApolloServer(apolloServerOptions);
 
 module.exports = apolloServer;

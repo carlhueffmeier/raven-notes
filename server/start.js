@@ -2,6 +2,7 @@
 require('dotenv').config();
 
 (async () => {
+  // Wait for sequelize to connect and finish setup
   await require('./db/orm').sequelize.sync();
 
   // Configure express and middleware

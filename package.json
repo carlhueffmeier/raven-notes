@@ -4,8 +4,14 @@
   "description": "Collaborative note taking app",
   "scripts": {
     "test": "run-s test:server test:client",
+    "test:client": "cd client-desktop && npm test",
     "test:server": "cd server && npm test",
-    "test:client": "cd server && npm test",
+    "install:client": "cd client-desktop && npm install",
+    "install:server": "cd server && npm install",
+    "start": "run-p start:client start:server",
+    "start:client": "cd client-desktop && npm start",
+    "start:server": "cd server && npm start",
+    "postinstall": "run-p install:client install:server",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prettier:client": "prettier --write \"client-desktop/src/**/*.{js,jsx}\""

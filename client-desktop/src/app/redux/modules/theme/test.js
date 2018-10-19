@@ -9,7 +9,7 @@ describe('theme reducer', () => {
     const nextState = themeReducer(undefined, initAction);
     expect(nextState).toBe(constants.DEFAULT_THEME_LIGHT);
   });
-  
+
   it('it turns on dark mode on toggle', () => {
     const firstState = themeReducer(undefined, initAction);
     const toggleAction = actions.toggleDarkMode();
