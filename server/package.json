@@ -1,0 +1,39 @@
+{
+  "name": "raven-server",
+  "version": "0.0.1",
+  "description": "Backend of raven-notes",
+  "main": "start.js",
+  "scripts": {
+    "test": "jest",
+    "watch": "nodemon start.js",
+    "start": "node start.js",
+    "deploy": "now --docker -e PORT=443 -e NODE_ENV=production && now alias"
+  },
+  "dependencies": {
+    "apollo-server-express": "^2.1.0",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^6.1.0",
+    "express": "^4.16.3",
+    "graphql": "^14.0.2",
+    "graphql-type-json": "^0.2.1",
+    "jsonwebtoken": "^8.3.0",
+    "lodash.merge": "^4.6.1",
+    "mysql2": "^1.6.1",
+    "nodemailer": "^4.6.8",
+    "sequelize": "^4.39.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carlhueffmeier/raven-notes.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carlhueffmeier/raven-notes/issues"
+  },
+  "homepage": "https://github.com/carlhueffmeier/raven-notes#readme",
+  "devDependencies": {
+    "jest": "^23.6.0",
+    "nodemon": "^1.18.4"
+  }
+}

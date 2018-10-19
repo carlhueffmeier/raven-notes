@@ -1,0 +1,52 @@
+{
+  "name": "raven-notes",
+  "version": "0.0.1",
+  "description": "Collaborative note taking app",
+  "scripts": {
+    "test": "run-s test:server test:client",
+    "test:client": "cd client-desktop && npm test",
+    "test:server": "cd server && npm test",
+    "install:client": "cd client-desktop && npm install",
+    "install:server": "cd server && npm install",
+    "start": "run-p start:client start:server",
+    "start:client": "cd client-desktop && npm start",
+    "start:server": "cd server && npm start",
+    "postinstall": "run-p install:client install:server",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "prettier:client": "prettier --write \"client-desktop/src/**/*.{js,jsx}\""
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && npm run prettier:client && npm test"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "npm run lint:fix",
+      "git add"
+    ],
+    "client-desktop/src/**/*.{js,jsx,json,css}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carlhueffmeier/raven-notes.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carlhueffmeier/raven-notes/issues"
+  },
+  "homepage": "https://github.com/carlhueffmeier/raven-notes#readme",
+  "devDependencies": {
+    "eslint": "5.6.0",
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "husky": "^1.1.1",
+    "lint-staged": "^7.3.0",
+    "npm-run-all": "^4.1.3",
+    "prettier": "^1.14.3"
+  }
+}
