@@ -1,5 +1,5 @@
 const express = require('express');
-const { extractToken } = require('./lib/utils');
+const { getUserIdFromToken } = require('./lib/utils');
 const apolloServer = require('./apollo');
 const User = require('./db/modelFactories/user')();
 
@@ -7,7 +7,7 @@ const app = express();
 
 // Extract the user id and store for this request
 app.use((req, res, next) => {
-  const userId = extractToken(req);
+  const userId = getUserIdFromToken(req);
   if (userId) {
     req.userId = userId;
   }

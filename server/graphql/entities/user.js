@@ -1,6 +1,6 @@
 const { gql, AuthenticationError } = require('apollo-server-express');
 const bcrypt = require('bcryptjs');
-const { asyncRandomBytes, generateToken } = require('../../lib/utils');
+const { asyncRandomBytes, generateTokenForUser } = require('../../lib/utils');
 const { sendResetMail } = require('../../lib/mail');
 const welcomePage = require('../../data/welcome-page.json');
 
@@ -86,7 +86,7 @@ const signup = async (_, { data: { email, name, password } }, { db }) => {
     newUser
   );
   // Authenticate right away
-  const token = generateToken(newUser);
+  const token = generateTokenForUser(newUser);
   return {
     token,
     user: newUser
@@ -107,7 +107,7 @@ const signin = async (_, { data: { email, password } }, { db }) => {
     throw new AuthenticationError(`Invalid password.`);
   }
   // Give the user a token to identify for future requests 🏅
-  const token = generateToken(user);
+  const token = generateTokenForUser(user);
   return {
     token,
     user
@@ -149,7 +149,7 @@ const resetPassword = async (_, { data: { resetToken, password, confirmPassword 
     }
   );
   // Authenticate right away
-  const token = generateToken(user);
+  const token = generateTokenForUser(user);
   return {
     token,
     user: updatedUser

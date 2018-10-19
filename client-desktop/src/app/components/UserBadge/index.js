@@ -4,7 +4,6 @@ import { Container, H3 } from './styles';
 import { UserIcon } from '../Icons';
 import { withTheme } from 'emotion-theming';
 
-
 class UserBadge extends Component {
   static propTypes = {
     signout: func,
@@ -17,7 +16,7 @@ class UserBadge extends Component {
     const { user, theme } = this.props;
     return (
       <Container>
-        <UserIcon style={{color: theme.colors.text, marginRight: '5px'}}/>
+        <UserIcon style={{ color: theme.colors.text, marginRight: '5px' }} />
         <H3>{user && user.name}</H3>
       </Container>
     );
