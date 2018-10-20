@@ -27,7 +27,7 @@ This is what sets _Raven Notes_ apart:
 - [Redux](https://redux.js.org/)
 - [Redux Saga](https://github.com/redux-saga/redux-saga)
 - [GraphQL](https://graphql.org)
-- [Apollo Server](https://www.apollographql.com/docs/apollo-server/)
+- [Apollo Server](https://www.apollographql.com/server)
 - [MySQL](https://www.mysql.com/)
 
 # Showcase
