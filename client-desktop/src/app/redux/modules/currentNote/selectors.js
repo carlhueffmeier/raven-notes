@@ -4,8 +4,12 @@ function getModuleState(state) {
   return state.ui.currentNote;
 }
 
+function getCurrentNoteId(state) {
+  return getModuleState(state).id;
+}
+
 function getCurrentNote(state) {
-  const currentNoteId = getModuleState(state).id;
+  const currentNoteId = getCurrentNoteId(state);
   if (!currentNoteId) {
     return null;
   }
@@ -16,4 +20,4 @@ function getCurrentNoteIsDirty(state) {
   return getModuleState(state).dirty;
 }
 
-export { getCurrentNote, getCurrentNoteIsDirty };
+export { getCurrentNote, getCurrentNoteId, getCurrentNoteIsDirty };

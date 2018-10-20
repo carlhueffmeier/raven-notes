@@ -78,10 +78,9 @@ const NoteListPane = posed.div({
     }
   },
   [layoutConstants.TWO_COLUMN_LAYOUT]: {
-    width: 90 + 'vw',
+    width: '100%',
     translateX: 0,
     opacity: 1,
-    maxWidth: '10000px',
     minWidth: '250px',
     transition: {
       default: {
@@ -152,14 +151,17 @@ const EditorPane = posed.div({
 
 const StyledSidebarPane = styled(SidebarPane)`
   transition: all 0.3s linear;
+  background: ${props => props.theme.colors.plight};
 `;
 
 const StyledNoteListPane = styled(NoteListPane)`
   transition: all 0.3s linear;
+  background: ${props => props.theme.colors.plight};
 `;
 
 const StyledEditorPane = styled(EditorPane)`
   transition: all 0.3s linear;
+  background: ${props => props.theme.colors.plight};
 `;
 
 class Layout extends Component {

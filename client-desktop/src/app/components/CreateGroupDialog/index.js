@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { bool, func } from 'prop-types';
 import ModalDialog from '../ModalDialog';
-import idea from '../../../assets/idea.svg';
-import { Title } from './styles';
+import { Title, StyledIdeaIcon } from './styles';
 import CreateGroupContainer from '../../containers/CreateGroupContainer';
 
 class CreateGroupDialog extends Component {
@@ -15,7 +14,7 @@ class CreateGroupDialog extends Component {
     const { isVisible, onDismiss } = this.props;
     return (
       <ModalDialog isVisible={isVisible} onDismiss={onDismiss}>
-        <img src={idea} alt="idea" style={{ height: '15vh' }} />
+        <StyledIdeaIcon />
         <Title>Let's create a new workspace!</Title>
         <CreateGroupContainer />
       </ModalDialog>

@@ -3,8 +3,10 @@ import styled from 'react-emotion';
 const EditorContainer = styled('div')`
   display: flex;
   width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
   height: 100vh;
-  padding: 0 1.5rem;
+  padding-left: 1.5rem;
   overflow: hidden;
   background-color: ${props => props.theme.colors.plight};
   & ::-webkit-scrollbar {

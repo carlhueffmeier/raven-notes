@@ -214,8 +214,8 @@ class Editor extends Component {
           style={{
             width: '100%',
             height: '100%',
-            padding: '2vh',
             overflow: 'auto',
+            padding: '1.5rem',
             color: theme.colors.text
           }}
         />

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Container, Img, Title, SubTitle, TitleWrapper } from './styles';
+import { Container, StyledBrandIcon, Title, SubTitle, TitleWrapper } from './styles';
 import SigninContainer from '../../containers/SigninContainer';
 import SignupContainer from '../../containers/SignupContainer';
-import icon from '../../../assets/crow.svg';
 
 class SigninPage extends Component {
   state = {
@@ -17,14 +16,12 @@ class SigninPage extends Component {
     const { userHasAccount } = this.state;
     return (
       <Container>
-        <Img alt="crow" src={icon} />
-
+        <StyledBrandIcon />
         <div>
           <TitleWrapper>
             <Title>Welcome to Raven!</Title>
             <SubTitle>Collaborative note-taking without fuss</SubTitle>
           </TitleWrapper>
-
           {userHasAccount ? (
             <SigninContainer goToSignup={this.toggleForm} />
           ) : (

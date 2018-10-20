@@ -3,17 +3,13 @@ import { connect } from 'react-redux';
 import { actions as currentGroupActions } from '../redux/modules/currentGroup';
 import { selectors as groupSelectors } from '../redux/modules/group';
 import { selectors as currentGroupSelectors } from '../redux/modules/currentGroup';
-import {
-  selectors as authenticationSelectors,
-  actions as authenticatioActions
-} from '../redux/modules/authentication';
 import { actions as groupActions } from '../redux/modules/group';
 import { actions as currentNoteActions } from '../redux/modules/currentNote';
 import { actions as modalsActions } from '../redux/modules/modals';
-import Sidebar from '../components/Sidebar';
+import GroupList from '../components/GroupList';
 import { prop, sortBy } from '../lib/utils';
 
-class SidebarContainer extends Component {
+class GroupListContainer extends Component {
   handleGroupChange = newGroupId => {
     const { currentGroupId, resetCurrentNote, selectGroup } = this.props;
     if (newGroupId !== currentGroupId) {
@@ -28,15 +24,13 @@ class SidebarContainer extends Component {
   };
 
   render() {
-    const { groups, selectGroup, currentGroupId, user, signout } = this.props;
+    const { groups, selectGroup, currentGroupId } = this.props;
     return (
-      <Sidebar
+      <GroupList
         groups={groups}
         currentGroupId={currentGroupId}
         selectGroup={selectGroup}
-        user={user}
         showAddGroupDialog={this.showAddGroupDialog}
-        signout={signout}
       />
     );
   }
@@ -45,7 +39,6 @@ class SidebarContainer extends Component {
 function mapStateToProps(state) {
   const allGroups = groupSelectors.getAllGroups(state);
   return {
-    user: authenticationSelectors.getCurrentUser(state),
     groups: sortBy(prop('name'), allGroups),
     currentGroupId: currentGroupSelectors.getCurrentGroupId(state)
   };
@@ -55,11 +48,10 @@ const mapDispatchToProps = {
   selectGroup: currentGroupActions.selectGroup,
   createGroup: groupActions.createGroup,
   resetCurrentNote: currentNoteActions.resetCurrentNote,
-  toggleAddGroupModal: modalsActions.toggleAddGroupModal,
-  signout: authenticatioActions.signout
+  toggleAddGroupModal: modalsActions.toggleAddGroupModal
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SidebarContainer);
+)(GroupListContainer);

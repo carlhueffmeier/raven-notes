@@ -31,14 +31,13 @@ const Members = styled('div')`
 const Button = styled('button')`
   cursor: pointer;
   background-color: ${props => props.theme.colors.primary};
-  border-radius: 50px;
+  border-radius: 2rem;
   border: none;
-  height: 20px;
-  flex-direction: row;
-  justify-content: space-evenly;
   text-transform: uppercase;
   font-weight: 600;
   font-size: 0.7em;
+  line-height: 0;
+  padding: 0.7rem 0.8rem;
   :focus {
     outline: none;
   }

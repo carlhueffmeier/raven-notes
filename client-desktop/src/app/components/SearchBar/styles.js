@@ -7,7 +7,7 @@ const SearchBox = styled('input')`
   border: 0.5px solid ${props => props.theme.colors.searchbarBorder};
   background: ${props => props.theme.colors.searchbar};
   transition: opacity 300ms cubic-bezier(0.19, 1, 0.22, 1);
-  margin: 0 10px;
+  margin: 0 0 0 0.5rem;
   padding: 5px;
   text-indent: 12px;
   opacity: 0.4;
@@ -19,7 +19,6 @@ const SearchBox = styled('input')`
   }
 `;
 
-//Create button styling is in this page, the button is in the same component.
 const CreateButton = styled('button')`
   background: transparent;
   border: none;
@@ -30,10 +29,4 @@ const CreateButton = styled('button')`
   }
 `;
 
-const CreateImg = styled('img')`
-  height: 23px;
-  padding: 1px;
-  vertical-align: middle;
-`;
-
-export { SearchBox, CreateButton, CreateImg };
+export { SearchBox, CreateButton };

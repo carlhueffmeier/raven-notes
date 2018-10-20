@@ -8,7 +8,7 @@ import GroupDetailsContainer from '../../containers/GroupDetailsContainer';
 
 class NoteList extends Component {
   render() {
-    const { notes, selectNote, changeLayout, onQueryChange, loading } = this.props;
+    const { notes, selectNote, currentNoteId, changeLayout, onQueryChange, loading } = this.props;
     return (
       <Container>
         <GroupDetailsContainer />
@@ -21,6 +21,7 @@ class NoteList extends Component {
             notes.map(note => (
               <NoteListItem
                 key={note.id}
+                active={note.id === currentNoteId}
                 note={note}
                 onClick={() => {
                   selectNote(note.id);

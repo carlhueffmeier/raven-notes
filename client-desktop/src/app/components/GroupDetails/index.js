@@ -18,7 +18,7 @@ class GroupDetails extends Component {
                     : members.length + ' Member'
                   : 0 + ' Members'}
               </Members>
-              <Button onClick={showAddMemberDialog}>Add Member</Button>
+              <Button onClick={showAddMemberDialog}>+ Member</Button>
             </MembersButtonContainer>
           </Container>
         )}

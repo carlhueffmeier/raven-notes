@@ -44,9 +44,9 @@ const Day = styled('div')`
   justify-content: center;
   font-size: 0.8em;
   font-weight: 400;
-  margin-right: 15px;
-  max-width: 60px;
-  min-width: 60px;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  width: 3rem;
   margin-top: 5px;
 `;
 
@@ -65,9 +65,8 @@ const Title = styled('div')`
   font-size: 0.8em;
   font-weight: 600;
   margin-bottom: 5px;
-  & * {
-    margin: 20px 0 !important;
-  }
+  transition: color 100ms;
+  color: ${props => (props.active ? props.theme.colors.primary : props.theme.colors.text)};
 `;
 
 const Body = styled('div')`
@@ -89,12 +88,12 @@ const Author = styled('div')`
 `;
 
 const RowDay = styled(Day)`
-  margin-left: 20px;
+  margin-left: 1rem;
+  margin-right: 1.5rem;
+  width: 3rem;
 `;
 
-const RowNote = styled(Note)`
-  margin-left: 30px;
-`;
+const RowNote = styled(Note)``;
 
 const RowTitle = styled(Title)`
   justify-content: flex-start;
@@ -106,8 +105,8 @@ const RowBody = styled(Body)`
   max-width: 100vw;
 `;
 
-const SnippetFail = styled('span')`
-  color: ${props => props.theme.colors.softWarning};
+const EmptySnippet = styled('span')`
+  color: ${props => props.theme.colors.pdark};
   opacity: 0.7;
   transition: all 0.3s linear;
 `;
@@ -137,7 +136,7 @@ export {
   Title,
   Body,
   Author,
-  SnippetFail,
+  EmptySnippet,
   NoteListWrapper,
   RowDay
 };
