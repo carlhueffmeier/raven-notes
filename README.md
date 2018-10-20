@@ -1,10 +1,14 @@
-# Raven
-
-<img width="600" alt="screenshot-1" src="https://user-images.githubusercontent.com/27681148/47255915-d1272380-d477-11e8-84ff-d08d35338e10.png">
+<h1>
+<img src=https://user-images.githubusercontent.com/27681148/47256814-f6bb2980-d485-11e8-8543-b2c9710535b6.png alt="Raven" width=35>&nbsp;Raven Notes&nbsp;
+</h1>
 
 Collaborative note taking without a fuss.
 
-## The idea
+<p align="center">
+  <img width="600" alt="main interface" src="https://user-images.githubusercontent.com/27681148/47255915-d1272380-d477-11e8-84ff-d08d35338e10.png">
+</p>
+
+# Idea
 
 There are many note taking applications out there, so why build another one?
 
@@ -16,19 +20,61 @@ This is what sets _Raven Notes_ apart:
 - 👫 Sharing by default
 - 🐥 Keeping it simple
 
-## Getting started
+# Technologies
 
-To get started, first install all dependencies to run the project (desktop client and server).
+- [Electron](https://electronjs.org/)
+- [React](https://reactjs.org/)
+- [Redux](https://redux.js.org/)
+- [Redux Saga](https://github.com/redux-saga/redux-saga)
+- [GraphQL](https://graphql.org)
+- [Apollo Server](https://www.apollographql.com/docs/apollo-server/)
+- [MySQL](https://www.mysql.com/)
+
+# Showcase
+
+<center>
+  <table>
+    <tr>
+      <td><img width="240" alt="lauragift21" src="https://user-images.githubusercontent.com/27681148/47256944-b8bf0500-d487-11e8-902d-4493ac6c83c8.png"></td>
+      <td><img width="240" alt="maracuja-juice" src="https://user-images.githubusercontent.com/27681148/47256946-bfe61300-d487-11e8-89a1-48ade57349e8.png"></td>
+    </tr>
+    <tr>
+      <td><img width="240" alt="chdemko" src="https://user-images.githubusercontent.com/27681148/47256912-7269a600-d487-11e8-9da2-6275cd81ee5d.png"></td>
+      <td><img width="240" alt="chendaniely" src="https://user-images.githubusercontent.com/27681148/47256915-831a1c00-d487-11e8-8838-98cdc4eb2989.png"></td>
+    </tr>
+    <tr>
+      <td><img width="240" alt="lauragift21" src="https://user-images.githubusercontent.com/27681148/47256927-9200ce80-d487-11e8-942e-a2f6693a3d3b.png"></td>
+      <td><img width="240" alt="maracuja-juice" src="https://user-images.githubusercontent.com/27681148/47256937-a04eea80-d487-11e8-8302-9305eda4a253.png"></td>
+    </tr>
+
+  </table>
+</center>
+
+# Get started
+
+1. Clone the repository
+
+```sh
+> git clone https://github.com/carlhueffmeier/raven-notes.git
+```
+
+2. Install dependencies
 
 ```sh
 > npm install
 ```
 
-In order to run the project, you need to configure your environment by adding a custom `.env` file to the `/server` and `client-desktop` directory.
+3. Configure your environment
 
-Look at the `.env.example` files for the required and optional settings.
+```sh
+> cp client-desktop/.env.example client-desktop/.env
+# Edit client-desktop/.env
 
-Once configured, run the project with
+> cp server/.env.example server/.env
+# Edit server/.env
+```
+
+4. Run the project
 
 ```sh
 # Runs both client and server
@@ -40,3 +86,18 @@ Once configured, run the project with
 # Starts the server
 > npm run start:server
 ```
+
+# Authors
+
+The initial version was the result of a two week group project in [Codeworks](https://codeworks.me/).
+
+Original authors:
+
+- Sae [@saerose](https://github.com/saerose)
+- Rodrigo [@RodriFS](https://github.com/RodriFS)
+- Nicola [@Nikko89](https://github.com/Nikko89)
+- Carl [@carlhueffmeier](https://github.com/carlhueffmeier)
+
+# Contributions
+
+Contributions are always welcome! Please check the [`CONTRIBUTING.md`](CONTRIBUTING.md).
