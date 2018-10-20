@@ -35,16 +35,16 @@ This is what sets _Raven Notes_ apart:
 <center>
   <table>
     <tr>
-      <td><img width="240" alt="lauragift21" src="https://user-images.githubusercontent.com/27681148/47256944-b8bf0500-d487-11e8-902d-4493ac6c83c8.png"></td>
-      <td><img width="240" alt="maracuja-juice" src="https://user-images.githubusercontent.com/27681148/47256946-bfe61300-d487-11e8-89a1-48ade57349e8.png"></td>
+      <td><img width="240" alt="Group View (light theme)" src="https://user-images.githubusercontent.com/27681148/47256944-b8bf0500-d487-11e8-902d-4493ac6c83c8.png"></td>
+      <td><img width="240" alt="Group View (dark theme)" src="https://user-images.githubusercontent.com/27681148/47256946-bfe61300-d487-11e8-89a1-48ade57349e8.png"></td>
     </tr>
     <tr>
-      <td><img width="240" alt="chdemko" src="https://user-images.githubusercontent.com/27681148/47256912-7269a600-d487-11e8-9da2-6275cd81ee5d.png"></td>
-      <td><img width="240" alt="chendaniely" src="https://user-images.githubusercontent.com/27681148/47256915-831a1c00-d487-11e8-8838-98cdc4eb2989.png"></td>
+      <td><img width="240" alt="Three Column View (light theme)" src="https://user-images.githubusercontent.com/27681148/47256912-7269a600-d487-11e8-9da2-6275cd81ee5d.png"></td>
+      <td><img width="240" alt="Three Column View (dark theme)" src="https://user-images.githubusercontent.com/27681148/47256915-831a1c00-d487-11e8-8838-98cdc4eb2989.png"></td>
     </tr>
     <tr>
-      <td><img width="240" alt="lauragift21" src="https://user-images.githubusercontent.com/27681148/47256927-9200ce80-d487-11e8-942e-a2f6693a3d3b.png"></td>
-      <td><img width="240" alt="maracuja-juice" src="https://user-images.githubusercontent.com/27681148/47256937-a04eea80-d487-11e8-8302-9305eda4a253.png"></td>
+      <td><img width="240" alt="Focus View (light theme)" src="https://user-images.githubusercontent.com/27681148/47256927-9200ce80-d487-11e8-942e-a2f6693a3d3b.png"></td>
+      <td><img width="240" alt="Focus View (dark theme)" src="https://user-images.githubusercontent.com/27681148/47256937-a04eea80-d487-11e8-8302-9305eda4a253.png"></td>
     </tr>
 
   </table>
