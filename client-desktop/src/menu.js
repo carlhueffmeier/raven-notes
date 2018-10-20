@@ -1,8 +1,6 @@
 const { app, Menu } = require('electron');
-const { createFileActions } = require('./fileActions');
 
 function createMenu({ mainWindow }) {
-  const fileActions = createFileActions({ mainWindow });
   const template = [
     {
       label: 'File',
@@ -45,6 +43,27 @@ function createMenu({ mainWindow }) {
           accelerator: 'CmdOrCtrl+P',
           click() {
             mainWindow.webContents.send('toggle-dark-mode');
+          }
+        },
+        {
+          label: 'Three Column View',
+          accelerator: 'CmdOrCtrl+1',
+          click() {
+            mainWindow.webContents.send('toggle-layout-1');
+          }
+        },
+        {
+          label: 'Group View',
+          accelerator: 'CmdOrCtrl+2',
+          click() {
+            mainWindow.webContents.send('toggle-layout-2');
+          }
+        },
+        {
+          label: 'Focus View',
+          accelerator: 'CmdOrCtrl+3',
+          click() {
+            mainWindow.webContents.send('toggle-layout-3');
           }
         }
       ]
@@ -90,6 +109,12 @@ function createMenu({ mainWindow }) {
         { role: 'hideothers' },
         { role: 'unhide' },
         { type: 'separator' },
+        {
+          label: 'Sign out',
+          click() {
+            mainWindow.webContents.send('signout');
+          }
+        },
         { role: 'quit' }
       ]
     });
@@ -111,6 +136,18 @@ function createMenu({ mainWindow }) {
       { type: 'separator' },
       { role: 'front' }
     ];
+  } else {
+    template.splice(4, 0, {
+      label: 'Account',
+      submenu: [
+        {
+          label: 'Sign out',
+          click() {
+            mainWindow.webContents.send('signout');
+          }
+        }
+      ]
+    });
   }
 
   const menu = Menu.buildFromTemplate(template);

@@ -1,5 +1,7 @@
 # Raven
 
+<img width="600" alt="screenshot-1" src="https://user-images.githubusercontent.com/27681148/47255915-d1272380-d477-11e8-84ff-d08d35338e10.png">
+
 Collaborative note taking without a fuss.
 
 ## The idea

@@ -3,10 +3,25 @@ import styled from 'react-emotion';
 const EditorContainer = styled('div')`
   display: flex;
   width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
   height: 100vh;
-  padding: 3vw;
-  overflow: auto;
+  padding-left: 1.5rem;
+  overflow: hidden;
   background-color: ${props => props.theme.colors.plight};
+  & ::-webkit-scrollbar {
+    display: block;
+    background: transparent;
+    width: 0.5rem;
+  }
+  & ::-webkit-scrollbar-thumb {
+    display: block;
+    background: ${props => props.theme.colors.pdark};
+    border-radius: 0.5rem;
+    &:active {
+      background: ${props => props.theme.colors.primary};
+    }
+  }
 `;
 
 const User = styled('div')`

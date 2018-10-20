@@ -4,10 +4,7 @@ import { NoSelection } from './styles.js';
 function NoNoteSelected() {
   return (
     <NoSelection>
-      <p className="text">No note selected</p>
-      <span role="img" aria-labelledby="babychick">
-        🐣
-      </span>
+      <span className="text">No note selected</span>
     </NoSelection>
   );
 }

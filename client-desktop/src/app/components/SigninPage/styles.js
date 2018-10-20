@@ -1,4 +1,5 @@
 import styled from 'react-emotion';
+import { BrandIcon } from '../Icons';
 
 const Container = styled('div')`
   width: 100vw;
@@ -10,8 +11,9 @@ const Container = styled('div')`
   background-color: ${props => props.theme.colors.plight};
 `;
 
-const Img = styled('img')`
-  width: 40%;
+const StyledBrandIcon = styled(BrandIcon)`
+  font-size: 15rem;
+  margin-right: 4rem;
 `;
 
 const Title = styled('h1')`
@@ -32,4 +34,4 @@ const SubTitle = styled('h2')`
   color: ${props => props.theme.colors.text};
 `;
 
-export { Container, Img, Title, SubTitle, TitleWrapper };
+export { Container, StyledBrandIcon, Title, SubTitle, TitleWrapper };

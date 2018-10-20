@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { selectors as layoutSelectors } from '../redux/modules/layout';
 import Layout from '../components/Layout';
-import SidebarContainer from '../containers/SidebarContainer';
+import Sidebar from '../components/Sidebar';
 import NoteListContainer from '../containers/NoteListContainer';
 import EditorContainer from '../containers/EditorContainer';
 
@@ -12,7 +12,7 @@ class LayoutContainer extends Component {
     return (
       <Layout layout={currentLayout}>
         <Layout.Sidebar>
-          <SidebarContainer />
+          <Sidebar />
         </Layout.Sidebar>
         <Layout.NoteList>
           <NoteListContainer />

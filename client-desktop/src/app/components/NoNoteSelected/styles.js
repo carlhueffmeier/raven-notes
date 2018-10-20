@@ -9,8 +9,8 @@ const NoSelection = styled('div')`
   background-color: ${props => props.theme.colors.plight};
   & > .text {
     color: ${props => props.theme.colors.text};
+    text-align: center;
     opacity: 0.6;
-    margin-right: 1rem;
   }
 `;
 
