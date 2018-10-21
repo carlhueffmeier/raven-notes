@@ -24,8 +24,6 @@ app.use(async (req, res, next) => {
   next();
 });
 
-// We have to turn off 'cors' to prevent apollo from overwriting origin headers
-// https://github.com/apollographql/apollo-server/blob/79191397faa3f544e9241faa8e9110014bf00e43/packages/apollo-server-express/src/ApolloServer.ts#L127
 apolloServer.applyMiddleware({ app });
 
 module.exports = app;
