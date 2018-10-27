@@ -9,7 +9,7 @@
     "install:client": "cd client-desktop && npm install",
     "install:server": "cd server && npm install",
     "start": "run-p start:client start:server",
-    "start:client": "cd client-desktop && npm start",
+    "start:client": "cd client-desktop && npm run dev",
     "start:server": "cd server && npm start",
     "postinstall": "run-p install:client install:server",
     "lint": "eslint .",
