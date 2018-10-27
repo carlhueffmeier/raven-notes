@@ -1,9 +1,23 @@
 {
   "name": "raven-client-desktop",
+  "productName": "Raven Notes",
+  "license": "MIT",
   "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carlhueffmeier/raven-notes.git"
+  },
+  "bugs": {
+    "url": "https://github.com/carlhueffmeier/raven-notes/issues"
+  },
+  "homepage": "https://github.com/carlhueffmeier/raven-notes#readme",
+  "scripts": {
+    "dev": "electron-webpack dev",
+    "compile": "electron-webpack",
+    "dist": "yarn compile && electron-builder",
+    "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null"
+  },
   "dependencies": {
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
     "emotion": "^9.2.12",
     "emotion-theming": "^9.2.9",
     "graphql-request": "^1.8.2",
@@ -16,51 +30,33 @@
     "react-emotion": "^9.2.12",
     "react-pose": "^3.3.6",
     "react-redux": "^5.0.7",
-    "react-scripts": "2.0.4",
     "react-sizeme": "^2.5.2",
-    "react-test-renderer": "^16.5.2",
     "redux": "^4.0.0",
     "redux-devtools-extension": "^2.13.5",
     "redux-persist": "^5.10.0",
     "redux-saga": "^0.16.2",
     "slate": "^0.41.2",
-    "slate-html-serializer": "^0.7.7",
     "slate-plain-serializer": "^0.6.7",
-    "slate-prism": "^0.5.0",
-    "slate-react": "^0.18.10"
+    "slate-react": "^0.18.10",
+    "source-map-support": "^0.5.9"
   },
-  "main": "src/main.js",
-  "scripts": {
-    "test": "CI=true react-scripts test",
-    "start": "run-p start:react start:electron",
-    "start:react": "BROWSER=none react-scripts start",
-    "start:electron": "wait-on http://localhost:3000 && electron .",
-    "build:react": "react-scripts build",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/carlhueffmeier/raven-notes.git"
-  },
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/carlhueffmeier/raven-notes/issues"
-  },
-  "homepage": "https://github.com/carlhueffmeier/raven-notes#readme",
   "devDependencies": {
-    "babel-jest": "^23.6.0",
-    "electron": "^3.0.2",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "babel-preset-react": "^6.24.1",
+    "dotenv-webpack": "^1.5.7",
+    "electron": "2.0.7",
+    "electron-builder": "^20.28.1",
     "electron-devtools-installer": "^2.2.4",
-    "jest": "^23.6.0",
-    "wait-on": "^3.1.0"
+    "electron-webpack": "^2.1.2",
+    "webpack": "^4.16.5"
+  },
+  "resolutions": {
+    "upath": "^1.0.5"
+  },
+  "electronWebpack": {
+    "title": "Raven Notes",
+    "renderer": {
+      "webpackConfig": "webpack.renderer.additions.js"
+    }
   }
 }
