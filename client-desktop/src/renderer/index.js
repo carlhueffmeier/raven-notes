@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './app/App';
+import App from './App';
 import { Provider } from 'react-redux';
-import configureStore from './app/redux/configureStore';
+import configureStore from './redux/configureStore';
 const { store, persistor } = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>
     <App persistor={persistor} />
   </Provider>,
-  document.getElementById('root')
+  document.getElementById('app')
 );
