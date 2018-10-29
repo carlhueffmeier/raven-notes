@@ -16,6 +16,7 @@
     "dist": "run-s dist:build dist:copy",
     "dist:build": "cd client-desktop && npm run dist",
     "dist:copy": "cp client-desktop/dist/*.dmg website/assets",
+    "deploy:gh-pages": "git subtree push --prefix website origin gh-pages",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prettier:client": "prettier --write \"client-desktop/src/**/*.{js,jsx}\""
