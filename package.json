@@ -2,6 +2,7 @@
   "name": "raven-notes",
   "version": "0.0.1",
   "description": "Collaborative note taking app",
+  "author": "Carl Hüffmeier",
   "scripts": {
     "test": "run-s test:server test:client",
     "test:client": "cd client-desktop && npm test",
@@ -12,6 +13,10 @@
     "start:client": "cd client-desktop && npm run dev",
     "start:server": "cd server && npm start",
     "postinstall": "run-p install:client install:server",
+    "dist": "run-s dist:build dist:copy",
+    "dist:build": "cd client-desktop && npm run dist",
+    "dist:copy": "cp client-desktop/dist/*.dmg website/assets",
+    "deploy:gh-pages": "git subtree push --prefix website origin gh-pages",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prettier:client": "prettier --write \"client-desktop/src/**/*.{js,jsx}\""

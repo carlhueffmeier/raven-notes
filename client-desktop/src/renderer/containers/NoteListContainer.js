@@ -9,7 +9,7 @@ import { actions as currentNoteActions } from '../redux/modules/currentNote';
 import { actions as searchActions, selectors as searchSelectors } from '../redux/modules/search';
 import NoteList from '../components/NoteList';
 import { sortBy, dateDescending, prop } from '../lib/utils';
-import { actions as layoutActions } from '../redux/modules/layout';
+import { selectors as layoutSelectors, actions as layoutActions } from '../redux/modules/layout';
 
 class NoteListContainer extends Component {
   render() {
@@ -18,6 +18,7 @@ class NoteListContainer extends Component {
       currentNoteId,
       notesLoading,
       selectNote,
+      currentLayout,
       changeLayout,
       searchQuery
     } = this.props;
@@ -28,8 +29,9 @@ class NoteListContainer extends Component {
       <NoteList
         notes={filteredNotes}
         currentNoteId={currentNoteId}
-        loading={notesLoading}
+        loading={notes.length === 0 && notesLoading}
         selectNote={selectNote}
+        currentLayout={currentLayout}
         changeLayout={changeLayout}
         onQueryChange={this.props.onQueryChange}
         currentGroup={this.props.currentGroup}
@@ -50,7 +52,8 @@ function mapStateToProps(state) {
     notesLoading: noteSelectors.getLoading(state) || authenticationSelectors.getLoading(state),
     searchQuery: searchSelectors.getCurrentSearch(state),
     currentGroup: groupSelectors.getGroupById(state, currentGroupId),
-    currentNoteId: currentNoteSelectors.getCurrentNoteId(state)
+    currentNoteId: currentNoteSelectors.getCurrentNoteId(state),
+    currentLayout: layoutSelectors.getCurrentLayout(state)
   };
 }
 

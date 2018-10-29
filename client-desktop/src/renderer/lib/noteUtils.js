@@ -13,10 +13,7 @@ function createNoteSnippet(note) {
   if (!note.contentText) {
     return '';
   }
-  const textBody = note.contentText
-    .split('\n')
-    .slice(1)
-    .join('');
+  const textBody = note.contentText.substring(note.contentText.indexOf('\n') + 1);
   return textBody.slice(0, MAXIMUM_SNIPPET_LENGTH);
 }
 
