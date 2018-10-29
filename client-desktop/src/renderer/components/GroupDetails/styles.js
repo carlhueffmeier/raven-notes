@@ -11,6 +11,8 @@ const Group = styled('div')`
   font-weight: 500;
   font-size: ${props => (props.large ? '1.5rem' : '0.8rem')};
   margin-bottom: 5px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   color: ${props => props.theme.colors.text};
 `;
 

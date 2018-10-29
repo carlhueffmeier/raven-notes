@@ -12,9 +12,13 @@ class GroupDetailsContainer extends Component {
   };
 
   render() {
-    const { currentGroup } = this.props;
+    const { currentGroup, spacious } = this.props;
     return (
-      <GroupDetails showAddMemberDialog={this.showAddMemberDialog} currentGroup={currentGroup} />
+      <GroupDetails
+        spacious={spacious}
+        showAddMemberDialog={this.showAddMemberDialog}
+        currentGroup={currentGroup}
+      />
     );
   }
 }

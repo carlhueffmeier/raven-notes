@@ -12,7 +12,7 @@ import {
 class GroupList extends Component {
   static propTypes = {
     groups: array.isRequired,
-    currentGroupId: string.isRequired,
+    currentGroupId: string,
     selectGroup: func.isRequired,
     showAddGroupDialog: func.isRequired
   };

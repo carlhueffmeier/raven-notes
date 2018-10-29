@@ -48,6 +48,14 @@ const Day = styled('div')`
   margin-right: 0.5rem;
   width: 3rem;
   margin-top: 5px;
+  ${props =>
+    props.spacious &&
+    `
+    margin-left: 1rem;
+    margin-right: 1.5rem;
+    width: 3rem;
+  `}
+  }
 `;
 
 const Note = styled('div')`
@@ -67,16 +75,31 @@ const Title = styled('div')`
   margin-bottom: 5px;
   transition: color 100ms;
   color: ${props => (props.active ? props.theme.colors.primary : props.theme.colors.text)};
+  ${props =>
+    props.spacious &&
+    `
+    justify-content: flex-start;
+    margin-top: 0;
+  `};
 `;
 
 const Body = styled('div')`
-  max-width: 150px;
+  width: 150px;
+  white-space: pre-line;
   font-size: 0.8em;
   font-weight: 400;
   color: ${props => props.theme.colors.pdark};
   overflow: hidden;
   white-space: no-wrap;
   text-overflow: ellipsis;
+  max-height: 100px;
+  ${props =>
+    props.spacious &&
+    `
+    margin: 0 15px;
+    width: 300px;
+    max-height: 200px;
+  `};
 `;
 
 const Author = styled('div')`
@@ -85,35 +108,18 @@ const Author = styled('div')`
   span {
     font-weight: 300;
   }
-`;
-
-const RowDay = styled(Day)`
-  margin-left: 1rem;
-  margin-right: 1.5rem;
-  width: 3rem;
-`;
-
-const RowNote = styled(Note)``;
-
-const RowTitle = styled(Title)`
-  justify-content: flex-start;
-  margin-top: 0;
-`;
-
-const RowBody = styled(Body)`
-  margin: 0 15px;
-  max-width: 100vw;
+  ${props =>
+    props.spacious &&
+    `
+    flex: 0.5 1;
+    text-align: right;
+  `};
 `;
 
 const EmptySnippet = styled('span')`
   color: ${props => props.theme.colors.pdark};
   opacity: 0.7;
   transition: all 0.3s linear;
-`;
-
-const RowAuthor = styled(Author)`
-  flex: 0.5 1;
-  text-align: right;
 `;
 
 const Divider = styled('div')`
@@ -126,10 +132,6 @@ export {
   SingleNoteContainer,
   SubContainer,
   Day,
-  RowNote,
-  RowTitle,
-  RowBody,
-  RowAuthor,
   Divider,
   SearchAndCreateContainer,
   Note,
